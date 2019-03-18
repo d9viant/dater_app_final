@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.metadata/.plugins/org.eclipse.jdt.core/.org.eclipse.jdt.core.external.folders/.org.eclipse.jdt.core.external.folders.iml" filepath="$PROJECT_DIR$/.metadata/.plugins/org.eclipse.jdt.core/.org.eclipse.jdt.core.external.folders/.org.eclipse.jdt.core.external.folders.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dater_app_client/dater_app_client.iml" filepath="$PROJECT_DIR$/dater_app_client/dater_app_client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dater_app_common/dater_app_common.iml" filepath="$PROJECT_DIR$/dater_app_common/dater_app_common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dater_app_server/dater_app_server.iml" filepath="$PROJECT_DIR$/dater_app_server/dater_app_server.iml" />
+    </modules>
+  </component>
+</project>

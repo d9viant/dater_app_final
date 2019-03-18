@@ -1,0 +1,77 @@
+package com.comtrade.domain;
+
+public class Rating {
+	
+	private static int rating = 1300;
+	private static boolean newStatus=true;
+	private static int K = 50;
+	
+
+	
+	//Method to calculate the player Rating.
+	//User A is the current user, User B is the possible match.
+  
+	public Rating(Float userB, boolean btn){
+		float user=rating;	
+		
+		if(newStatus) {
+			K = 100;
+		}
+		
+	    // Calculate the Winning 
+        // Probability of User B 
+        float Pb = Probability(user, userB);
+      
+        // Calculate the Winning 
+        // Probability of User A 
+        float Pa = Probability(user, userB);
+      
+        // User B Wins and gets + rating
+        // Updating the ratings 
+        if (btn == true) { 
+        	userB = userB + K * (1 - Pb);        	
+        } 
+      
+        // User B Loss and gets - rating
+        // Updating the ratings 
+        else { 
+        	userB = userB + K * (0 - Pa);         	
+        } 	
+		
+      rating = (int) (Math.round(userB * 1000000.0) / 1000000.0);
+		
+		 
+		
+	}
+	
+	
+	 // Function to calculate the Probability 
+	static float Probability(float rating1,
+                              float rating2)
+   {
+       return 1.0f * 1.0f / (1 + 1.0f *
+               (float)(Math.pow(10, 1.0f *
+              (rating1 - rating2) / 400)));
+   }
+	
+	
+	
+	// Setters and Getters
+	public static int getRating() {
+		return rating;
+	}
+
+	public static void setRating(int rating) {
+		Rating.rating = rating;
+	}
+
+	public static boolean isNewStatus() {
+		return newStatus;
+	}
+
+	public static void setNewStatus(boolean newStatus) {
+		Rating.newStatus = newStatus;
+	}
+	
+
+}

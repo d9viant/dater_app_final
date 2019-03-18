@@ -1,0 +1,215 @@
+package com.comtrade.view;
+
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ResourceBundle;
+
+import com.comtrade.domain.User;
+import com.jfoenix.controls.*;
+import com.sothawo.mapjfx.Coordinate;
+import com.sothawo.mapjfx.MapType;
+import com.sothawo.mapjfx.MapView;
+import com.sothawo.mapjfx.Marker;
+
+import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.util.Duration;
+
+
+public class mainController implements Initializable{
+    @FXML
+    private AnchorPane mapPane;
+
+    @FXML
+    private MapView mapView;
+	
+	@FXML
+    private AnchorPane rootPane, settingsPane;
+
+    @FXML
+    private ImageView imgProfile;
+
+    @FXML
+    private Label lvlNameAge;
+
+    @FXML
+    private Label txtBiography;
+
+    @FXML
+    private JFXButton btnDislike, btnBoost, btnHeart, btnSuper, btnRevert, btnProfileToMain, btnStalkerGlobe, drawerProfile, drawerChat, drawerSettings, btnStalkerToMain, btnNadji, settingsBackToMain;
+    
+    @FXML
+    private JFXHamburger drawerImg;
+
+    @FXML
+    private AnchorPane profilePane;  
+
+    @FXML
+    private Label lvlNameAge1;
+
+    @FXML
+    private Label txtBiography1;
+
+    @FXML
+    private ImageView imgStalkerGlobe, profilePic;
+
+    @FXML
+    private AnchorPane opacityPane;
+
+    @FXML
+	private AnchorPane placeHolderPane;
+
+    @FXML
+    private AnchorPane drawerPane;    
+    
+    @FXML
+   	private JFXPopup popup = new JFXPopup();
+
+	@FXML
+	private JFXRadioButton menCheckbox, womanCheckbox;
+
+    private Coordinate belgrade  = new Coordinate(44.7866,20.4489);
+
+    private Coordinate matchCoord = new Coordinate(44.819977,20.5080518);
+
+	private final ToggleGroup tGroup = new ToggleGroup();
+
+	private User currentUser;
+	
+	public void setCurrentUser(User currentUser) {
+		this.currentUser = currentUser;
+	}
+	
+	private LocalDate currentDate = LocalDate.now();
+
+		private Marker matchMarker = Marker.createProvided(Marker.Provided.BLUE).setPosition(matchCoord).setVisible(true);
+
+		@Override
+		public void initialize(URL location, ResourceBundle resources) {
+			initialSetup();
+
+			settingsBackToMain.setOnAction(Event -> setPaneOut(settingsPane, placeHolderPane));
+
+			opacityPane.setOnMouseClicked(Event -> setPaneOut(opacityPane, drawerPane));
+
+		btnProfileToMain.setOnAction(Event -> setPaneOut(profilePane, placeHolderPane));
+
+		drawerImg.setOnMouseClicked(Event -> setPaneIn(drawerPane));
+
+		drawerSettings.setOnAction(Event -> {
+			setPaneIn(settingsPane);
+			setPaneOut(opacityPane, drawerPane);
+		});
+		
+		btnNadji.setOnAction(Event -> {
+			mapView.setCenter(matchCoord);
+			mapView.addMarker(matchMarker);
+		});
+		
+		btnStalkerToMain.setOnAction(Event -> {
+			setPaneOut(mapPane, placeHolderPane);
+			MapViewClose();
+		});
+		
+		btnStalkerGlobe.setOnAction(Event ->{
+			MapView();
+			setPaneIn(mapPane);
+		});
+
+		drawerProfile.setOnAction(Event -> {
+			setProfilePic();
+			setPaneIn(profilePane);
+			setPaneOut(opacityPane, drawerPane);
+		});
+	}
+
+	private void initialSetup() {
+		setPaneOut(settingsPane, placeHolderPane);
+		setPaneOut(opacityPane, placeHolderPane);
+		setPaneOut(drawerPane, placeHolderPane);
+		setPaneOut(profilePane, placeHolderPane);
+		setPaneOut(mapPane, placeHolderPane);
+		imgStalkerGlobe.setVisible(false);
+		btnStalkerGlobe.setVisible(false);
+		menCheckbox.setToggleGroup(tGroup);
+		womanCheckbox.setToggleGroup(tGroup);
+		womanCheckbox.setSelectedColor(Color.web ("ff6969"));
+		menCheckbox.setSelectedColor(Color.web ("ff6969"));
+	}
+	//Sets defined panels in the main scene
+	private void setPaneIn(AnchorPane pane){
+		if(pane.getId().equals(drawerPane.getId())){
+			opacityPane.setVisible(true);
+			FadeTransition opFade=new FadeTransition(Duration.seconds(0.5),opacityPane);
+			opFade.setFromValue(0);
+			opFade.setToValue(0.15);
+			opFade.play();
+		}
+		FadeTransition fade=new FadeTransition(Duration.seconds(0.5),pane);
+		fade.setFromValue(0);
+		fade.setToValue(1);
+		fade.play();
+		TranslateTransition translateTransition=new TranslateTransition(Duration.seconds(0.5), pane);
+		translateTransition.setByX(322);
+		translateTransition.play();
+	}
+	private void setProfilePic(){
+		String profile = "file:src\\ProfilePics\\"+currentUser.getUserPhoto();
+		Image profileImage= new Image(profile, 200, 200, false, false);
+		profilePic.setImage(profileImage);
+		System.out.println(currentUser.getBirthday());
+		lvlNameAge1.setText(currentUser.getFirstName()+" "+","+" "+ ageCalculator(currentUser.getBirthday(), currentDate));
+	}
+	
+	private void MapViewClose() {
+		this.mapView.close();
+	}
+
+	private void MapView() {		
+		this.mapView.setBingMapsApiKey("AukPAgV0d7E9fohYeGVInZWVcxbXJbBrXRBDSD9iV7kBUF2VsxPtpO6BH9tv-PMe");
+		this.mapView.setMapType(MapType.BINGMAPS_ROAD);	
+		this.mapView.setCenter(belgrade);	
+		this.mapView.initialize();
+	}
+
+
+	private int ageCalculator(LocalDate birthdate, LocalDate currentDate) {
+		return Period.between(birthdate, currentDate).getYears();
+	}
+
+	// Sets defined panels outside of the scene
+	private void setPaneOut(AnchorPane pane, AnchorPane pane2){
+		if(pane.getId().equals(opacityPane.getId())){
+			opacityPane.setVisible(false);
+			FadeTransition fadeTransition=new FadeTransition(Duration.seconds(0.1),pane);
+			fadeTransition.setFromValue(1);
+			fadeTransition.setToValue(0);
+			fadeTransition.play();
+				if(pane2.getId().equals(drawerPane.getId())){
+					fadeTransition.setOnFinished(Event1 -> {
+						opacityPane.setVisible(false);
+					});
+					TranslateTransition translateTransition=new TranslateTransition(Duration.seconds(0.5), pane2);
+					translateTransition.setByX(-322);
+					translateTransition.play();
+				}
+		}else{
+			TranslateTransition transition=new TranslateTransition(Duration.seconds(0.1), pane);
+			transition.setByX(-322);
+			transition.play();
+		}
+
+	}
+
+
+}

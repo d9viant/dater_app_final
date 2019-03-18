@@ -1,0 +1,66 @@
+package com.comtrade.main;
+
+import com.comtrade.domain.EloRatingSystem;
+import javafx.animation.FadeTransition;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
+
+import com.comtrade.view.controller.mainController;
+import com.sothawo.mapjfx.Projection;
+
+
+
+
+public class Main extends Application {
+
+    private Stage stage;
+	private static mainController controller;
+	public Stage getStage() {
+		return stage;
+	}
+
+	@Override
+    public void start(Stage primaryStage) throws Exception{
+      this.stage=primaryStage;
+      mainWindow();
+    }
+
+    private void mainWindow(){
+
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/comtrade/view/login.fxml"));
+        try {
+            AnchorPane pane= loader.load();
+            
+            Scene scene=new Scene(pane);
+            scene.getStylesheets().addAll(Main.class.getResource("application.css").toExternalForm());
+            stage.setResizable(false);
+            stage.setTitle("Dater");
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    
+    }
+
+
+
+    
+
+}

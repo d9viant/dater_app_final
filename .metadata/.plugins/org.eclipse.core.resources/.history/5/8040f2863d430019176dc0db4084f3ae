@@ -1,0 +1,179 @@
+package com.comtrade.domain;
+
+import java.time.LocalDate;
+import java.util.List;
+
+public class User implements GeneralDomain{
+	private int id;	
+	private String username;
+	private String firstName;
+	private String LastName;
+	private String pass;
+	private String email;
+	private String bio;		
+	private LocalDate birthday;
+	private String address;
+	private char gender;
+	private String userPhoto;
+	private float personalRating;
+	boolean noob = true;
+	
+	private Rating r= new Rating();
+	private Distance d=new Distance();
+	
+	
+	
+	public int getId() {
+		return id;
+		
+	}
+	
+
+	public String getUsername() {
+		return username;
+		
+		
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return LastName;
+	}
+
+	public void setLastName(String lastName) {
+		LastName = lastName;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public LocalDate getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(LocalDate birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public char getGender() {
+		return gender;
+	}
+
+	public void setGender(char gender) {
+		this.gender = gender;
+	}
+
+	public Rating getR() {
+		return r;
+	}
+
+	public void setR(Rating r) {
+		this.r = r;
+	}
+
+	public Distance getD() {
+		return d;
+	}
+
+	public void setD(Distance d) {
+		this.d = d;
+	}
+
+	public String getUserPhoto() {
+		return userPhoto;
+	}
+
+	public void setUserPhoto(String userPhoto) {
+		this.userPhoto = userPhoto;
+	}
+
+
+	@Override
+	public List<GeneralDomain> fixSelect() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+ 
+	@Override
+	public String returnTableName() {
+		// TODO Auto-generated method stub
+		return "user";
+	}
+
+	@Override
+	public String returnInsert() {
+		// TODO Auto-generated method stub
+		return "user";
+	}
+
+	public int getId_usera() {
+		return id;
+	}
+
+	public float getPersonalRating() {
+		return personalRating;
+	}
+
+	public void setPersonalRating(float personalRating) {
+		this.personalRating = personalRating;
+	}
+
+
+
+}

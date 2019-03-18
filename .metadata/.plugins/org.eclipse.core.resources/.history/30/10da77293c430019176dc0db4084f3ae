@@ -1,0 +1,62 @@
+package com.comtrade.domain;
+
+public class Rating {
+	
+	private static float rating = 1300;
+	private static boolean newStatus=true;
+	
+	
+	 // Function to calculate the Probability 
+	static float Probability(float rating1,
+                               float rating2)
+    {
+        return 1.0f * 1.0f / (1 + 1.0f *
+                (float)(Math.pow(10, 1.0f *
+               (rating1 - rating2) / 400)));
+    }
+      
+	//Method to calculate the player Rating.
+	//User A is the current user, User B is the possible match.
+  
+	public static int EloRating(Float userB, int K, boolean btn){
+		float user=rating;
+		
+		
+		if(newStatus) {
+			K = 100;
+		}
+		
+	    // Calculate the Winning 
+        // Probability of Player B 
+        float Pb = Probability(user, userB);
+      
+        // Calculate the Winning 
+        // Probability of Player A 
+        float Pa = Probability(user, userB);
+      
+        // Player B Wins and gets + Rating
+        // Updating the Elo Ratings 
+        if (btn == true) { 
+        	userB = userB + K * (1 - Pb);        	
+        } 
+      
+        // Player B Loss and gets - Rating
+        // Updating the Elo Ratings 
+        else { 
+        	userB = userB + K * (0 - Pa);         	
+        } 
+		
+		
+		
+		
+		
+		return (int) (Math.round(userB * 1000000.0) / 1000000.0);
+		 
+		
+	}
+	
+	
+	
+	
+
+}

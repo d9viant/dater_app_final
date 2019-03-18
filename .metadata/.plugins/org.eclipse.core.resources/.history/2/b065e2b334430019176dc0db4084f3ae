@@ -1,0 +1,5 @@
+package com.comtrade.domain;
+
+public class User {
+
+}
