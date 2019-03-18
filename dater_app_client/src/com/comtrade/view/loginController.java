@@ -1,6 +1,7 @@
 package com.comtrade.view;
+
 import com.comtrade.controllerUI.Controller;
-import com.comtrade.domain.*;
+import com.comtrade.domain.User;
 import com.comtrade.geoloc.GeoLoc;
 import com.comtrade.transfer.TransferClass;
 import com.jfoenix.controls.*;
@@ -22,10 +23,10 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.lang.Exception;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -241,14 +242,8 @@ public class loginController implements Initializable, Serializable {
 
                             // Check if Username is in DB
                             Boolean check = null;
-                            try {
-                                tf.setClient_object(check);
-                                Controller.getInstance().serverRequestProcess(tf);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            } catch (ClassNotFoundException e) {
-                                e.printStackTrace();
-                            }
+                            tf.setClient_object(check);
+                            Controller.getInstance().serverRequestProcess(tf);
                             if (check) {
                                 Alert bye = new Alert(AlertType.WARNING);
                                 bye.setHeaderText(null);
@@ -265,12 +260,8 @@ public class loginController implements Initializable, Serializable {
                                     // TODO Auto-generated catch block
                                     e.printStackTrace();
                                 }
-                                try {
-                                    tf.setClient_object(newUser);
-                                    Controller.getInstance().serverRequestProcess(tf);
-                                } catch (IOException | ClassNotFoundException e) {
-                                    e.printStackTrace();
-                                }
+                                tf.setClient_object(newUser);
+                                Controller.getInstance().serverRequestProcess(tf);
                             }
                         }
                     }

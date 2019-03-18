@@ -1,8 +1,9 @@
 package com.comtrade.controllerUI;
 
 import com.comtrade.communication.Comm;
-import com.comtrade.domain.Constants;
 import com.comtrade.transfer.TransferClass;
+
+import static com.comtrade.domain.Constants.RETURN_PROFILE;
 
 public class Controller {
     private static Controller instance;
@@ -21,16 +22,16 @@ public class Controller {
     }
 
     public void serverRequestProcess(TransferClass tc) {
-        TransferClass tf = new TransferClass();
-        tf.setOperation(Constants.CHECK_USER);
-        tf.setOperation(Constants.SAVE_USER);
-        tf.setClient_object(tc);
-        Comm.getInstance().send(tf);
+//        TransferClass tf = new TransferClass();
+//        tf.setClient_object(tc);
+        Comm.getInstance().send(tc);
     }
 
-    public TransferClass getFromServer(TransferClass tc) {
+    public void getFromServer(TransferClass tc) {
+        switch (tc.getOperation()) {
+            case RETURN_PROFILE:
+        }
 
 
-        return tc;
     }
 }
