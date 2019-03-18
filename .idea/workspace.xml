@@ -5,7 +5,12 @@
     <bookmark url="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/view/serverView.java" line="72" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b3dfac1-7723-470a-b738-eb8519dacb07" name="Default Changelist" comment="" />
+    <list default="true" id="2b3dfac1-7723-470a-b738-eb8519dacb07" name="Default Changelist" comment="Second Push">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dater_app_client/src/com/comtrade/controllerUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_client/src/com/comtrade/controllerUI/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dater_app_client/src/com/comtrade/thread/processingFromServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_client/src/com/comtrade/thread/processingFromServer.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.metadata/.plugins/org.eclipse.jdt.core/.org.eclipse.jdt.core.external.folders/bin/" />
     <ignored path="$PROJECT_DIR$/dater_app_client/bin/" />
     <ignored path="$PROJECT_DIR$/dater_app_common/bin/" />
@@ -18,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/view/loginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="562">
-              <caret line="265" column="56" lean-forward="true" selection-start-line="265" selection-start-column="56" selection-end-line="265" selection-end-column="56" />
+            <state relative-caret-position="922">
+              <caret line="265" column="56" selection-start-line="265" selection-start-column="56" selection-end-line="265" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -30,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/controllerUI/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="606">
+              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -46,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/Server.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="346">
-              <caret line="39" column="23" lean-forward="true" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+              <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -58,7 +63,7 @@
         <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/geoloc/GeoLoc.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="264">
-              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+              <caret line="23" selection-start-line="23" selection-end-line="23" />
             </state>
           </provider>
         </entry>
@@ -66,8 +71,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/ClientThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="33" column="16" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="16" />
+            <state relative-caret-position="394">
+              <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -91,7 +96,7 @@
         <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/controllerBL/ControllerBLogic.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="321">
-              <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+              <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -102,8 +107,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/thread/processingFromServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+            <state relative-caret-position="288">
+              <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -127,7 +132,7 @@
         <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/view/mainController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="24">
-              <caret line="54" column="9" lean-forward="true" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
+              <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -148,6 +153,9 @@
     <findStrings>
       <find>setCurrentUser</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -192,20 +200,21 @@
         <option value="$PROJECT_DIR$/dater_app_server/src/com/comtrade/view/serverView.java" />
         <option value="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/SendFile.java" />
         <option value="$PROJECT_DIR$/dater_app_client/src/main/Main.java" />
-        <option value="$PROJECT_DIR$/dater_app_client/src/com/comtrade/thread/processingFromServer.java" />
         <option value="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Message.java" />
         <option value="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Matches.java" />
-        <option value="$PROJECT_DIR$/dater_app_client/src/com/comtrade/controllerUI/Controller.java" />
         <option value="$PROJECT_DIR$/dater_app_client/src/com/comtrade/view/loginController.java" />
+        <option value="$PROJECT_DIR$/dater_app_client/src/com/comtrade/thread/processingFromServer.java" />
+        <option value="$PROJECT_DIR$/dater_app_client/src/com/comtrade/controllerUI/Controller.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-7" />
     <option name="y" value="30" />
     <option name="width" value="1294" />
     <option name="height" value="1057" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -236,12 +245,6 @@
               <item name="dater_app_client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="controllerUI" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dater_app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dater_app_client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="geoloc" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dater_app" type="b2602c69:ProjectViewProjectNode" />
@@ -360,7 +363,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552909212506" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552910795722" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/dater_app_client/src/libraries" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -467,18 +470,18 @@
       <workItem from="1552525757258" duration="36000" />
       <workItem from="1552571929541" duration="25000" />
       <workItem from="1552571970104" duration="4453000" />
-      <workItem from="1552604162857" duration="74012000" />
+      <workItem from="1552604162857" duration="75050000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79145000" />
+    <option name="totallyTimeSpent" value="80183000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="22" width="2576" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13116057" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13116057" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -488,7 +491,7 @@
       <window_info anchor="bottom" id="Messages" order="0" weight="0.3296582" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.3296582" />
-      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.2337376" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.2337376" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.39911798" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -498,7 +501,7 @@
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="Version Control" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="13" weight="0.3296582" />
       <window_info anchor="bottom" id="Flutter Performance" order="14" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -515,6 +518,13 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Second Push" />
+    <option name="LAST_COMMIT_MESSAGE" value="Second Push" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://C:/jdk1.8.0_202/src.zip!/java/lang/Thread.java">
@@ -877,17 +887,7 @@
     <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/Server.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="346">
-          <caret line="39" column="23" lean-forward="true" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/ClientThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="33" column="16" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="16" />
+          <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -907,7 +907,7 @@
     <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/controllerBL/ControllerBLogic.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="321">
-          <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -917,14 +917,21 @@
     <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/geoloc/GeoLoc.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/controllerUI/Controller.java">
+    <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/view/mainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="24">
+          <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/view/loginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="922">
+          <caret line="265" column="56" selection-start-line="265" selection-start-column="56" selection-end-line="265" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -941,27 +948,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/thread/processingFromServer.java">
+    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/ClientThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+        <state relative-caret-position="394">
+          <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/view/mainController.java">
+    <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/thread/processingFromServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="54" column="9" lean-forward="true" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
+        <state relative-caret-position="288">
+          <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/view/loginController.java">
+    <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/controllerUI/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
-          <caret line="265" column="56" lean-forward="true" selection-start-line="265" selection-start-column="56" selection-end-line="265" selection-end-column="56" />
+        <state relative-caret-position="606">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

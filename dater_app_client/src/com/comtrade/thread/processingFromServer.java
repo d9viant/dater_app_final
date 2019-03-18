@@ -10,7 +10,7 @@ public class processingFromServer extends Thread{
             TransferClass tc;
             try {
                 tc = Comm.getInstance().read();
-                Controller.getInstance().serverRequestProcess(tc);
+                Controller.getInstance().getFromServer(tc);
 
             } catch (Exception e) {
 //				e.printStackTrace();
