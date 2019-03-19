@@ -1,22 +1,13 @@
 package com.comtrade.broker;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import com.comtrade.connection.Connection;
 import com.comtrade.domain.GeneralDomain;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class Broker implements IBroker{
-    private List<GeneralDomain>allUsers=new ArrayList<>();
-    private List<GeneralDomain>allAges=new ArrayList<>();
-    private List<GeneralDomain>allGenders=new ArrayList<>();
-    private List<GeneralDomain>allLocations=new ArrayList<>();
-    private List<GeneralDomain>allMatches=new ArrayList<>();
-    private List<GeneralDomain>allMessages=new ArrayList<>();
-    private List<GeneralDomain>allPictures=new ArrayList<>();
-    private List<GeneralDomain>allRatings=new ArrayList<>();
     private static Broker instance;
     public Broker() {
 
