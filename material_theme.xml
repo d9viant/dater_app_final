@@ -1,0 +1,11 @@
+<application>
+  <component name="MaterialThemeConfig">
+    <option name="darkTitleBar" value="true" />
+    <option name="isHighContrast" value="true" />
+    <option name="isWizardShown" value="true" />
+    <option name="accentColor" value="e98411" />
+    <option name="selectedTheme" value="DARKER" />
+    <option name="userId" value="-3b45e59b:1690c8a67a1:-8000" />
+    <option name="version" value="3.5.0.1" />
+  </component>
+</application>
