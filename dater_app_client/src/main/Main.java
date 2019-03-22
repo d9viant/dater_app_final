@@ -1,11 +1,12 @@
 package main;
 
-import com.comtrade.thread.processingFromServer;
+import com.comtrade.thread.ProcessingFromServer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
 
@@ -27,7 +28,7 @@ public class Main extends Application {
     }
 
     private void startListeningFromServer() {
-        processingFromServer pfs = new processingFromServer();
+	    ProcessingFromServer pfs = new ProcessingFromServer();
         pfs.run();
     }
 

@@ -35,10 +35,12 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import static com.comtrade.domain.Constants.CHECK_USER;
 //import net.coobird.thumbnailator.Thumbnails;
 //import net.coobird.thumbnailator.name.Rename;
 
-public class loginController implements Initializable, Serializable {
+public class LoginController implements Initializable, Serializable {
 
     @FXML
     private MapView mapViewLogin;
@@ -243,7 +245,8 @@ public class loginController implements Initializable, Serializable {
                             // Check if Username is in DB
                             Boolean check = null;
                             tf.setClient_object(check);
-                            Controller.getInstance().serverRequestProcess(tf);
+	                        tf.setOperation(CHECK_USER);
+	                        Controller.getInstance().sendToServer(tf);
                             if (check) {
                                 Alert bye = new Alert(AlertType.WARNING);
                                 bye.setHeaderText(null);
@@ -261,7 +264,7 @@ public class loginController implements Initializable, Serializable {
                                     e.printStackTrace();
                                 }
                                 tf.setClient_object(newUser);
-                                Controller.getInstance().serverRequestProcess(tf);
+	                            Controller.getInstance().sendToServer(tf);
                             }
                         }
                     }
@@ -278,7 +281,7 @@ public class loginController implements Initializable, Serializable {
         MediaPlayer player = new MediaPlayer(media);
         logMedia.setMediaPlayer(player);
         player.setVolume(0);
-        player.setCycleCount(player.INDEFINITE);
+	    player.setCycleCount(MediaPlayer.INDEFINITE);
         player.play();
     }
 

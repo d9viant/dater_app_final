@@ -111,6 +111,7 @@ public class Rating implements GeneralDomain
 
 	@Override
 	public String returnTableRows() {
+
 		return null;
 	}
 

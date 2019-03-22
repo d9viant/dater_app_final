@@ -2,7 +2,6 @@ package com.comtrade.domain;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +18,8 @@ public class User implements GeneralDomain {
     private Age age = null;
     private Rating rating = null;
     private Gender gender = null;
+    private static int readyForSql = 0;
+    private static int userArrayIndex;
 
 
     private Matches matches = null;
@@ -188,7 +189,8 @@ public class User implements GeneralDomain {
 
     @Override
     public String delete(GeneralDomain gd) {
-        return null;
+        User u = (User) gd;
+        return "WHERE id =" + u.getId();
     }
 
 

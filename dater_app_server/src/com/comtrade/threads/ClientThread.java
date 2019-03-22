@@ -1,7 +1,6 @@
 package com.comtrade.threads;
 
 import com.comtrade.controllerBL.ControllerBLogic;
-import com.comtrade.domain.Constants;
 import com.comtrade.domain.User;
 import com.comtrade.transfer.TransferClass;
 
@@ -17,8 +16,6 @@ public class ClientThread extends Thread {
     public void setSocket(Socket socket) {
         this.socket = socket;
     }
-
-
     public void run() {
         while (true) {
             try {

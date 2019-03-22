@@ -1,7 +1,10 @@
 package com.comtrade.view;
 
 import com.comtrade.domain.User;
-import com.jfoenix.controls.*;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.controls.JFXPopup;
+import com.jfoenix.controls.JFXRadioButton;
 import com.sothawo.mapjfx.Coordinate;
 import com.sothawo.mapjfx.MapType;
 import com.sothawo.mapjfx.MapView;
@@ -21,7 +24,8 @@ import javafx.util.Duration;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.ResourceBundle;
-public class mainController implements Initializable, Serializable {
+
+public class MainController implements Initializable, Serializable {
     @FXML
     private AnchorPane mapPane;
 
