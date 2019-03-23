@@ -7,14 +7,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2b3dfac1-7723-470a-b738-eb8519dacb07" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Age.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Age.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Gender.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Gender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Location.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Pictures.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Pictures.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/controllerBL/ControllerBLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/controllerBL/ControllerBLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/GetAllSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/GetAllFromDatabaseSO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/SaveUserSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/SaveIntoDatabaseSO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/BackupThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/BackupThread.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.metadata/.plugins/org.eclipse.jdt.core/.org.eclipse.jdt.core.external.folders/bin/" />
     <ignored path="$PROJECT_DIR$/dater_app_client/bin/" />
@@ -106,10 +98,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/GetAllFromDatabaseSO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-120">
+            <state relative-caret-position="168">
               <caret line="16" column="62" lean-forward="true" selection-start-line="16" selection-start-column="62" selection-end-line="16" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -134,7 +126,7 @@
         <entry file="file://$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Location.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="485">
-              <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="20" />
+              <caret line="48" column="8" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1144#1145#0" expanded="true" />
@@ -194,10 +186,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/BackupThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
+            <state relative-caret-position="-168">
               <caret line="15" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
@@ -276,8 +268,8 @@
         <option value="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Gender.java" />
         <option value="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Location.java" />
         <option value="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Pictures.java" />
-        <option value="$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/GetAllFromDatabaseSO.java" />
         <option value="$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/BackupThread.java" />
+        <option value="$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/GetAllFromDatabaseSO.java" />
       </list>
     </option>
   </component>
@@ -362,7 +354,7 @@
     <property name="DatabaseDriversLRU" value="mysql&#10;sqlserver" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553357070814" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553357502610" />
     <property name="database.console.LAST_STATE" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/dater_app_client/src/libraries" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -488,16 +480,24 @@
       <option name="project" value="LOCAL" />
       <updated>1552910803993</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Second Push">
+      <created>1553357387578</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1553357387578</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103038000" />
+    <option name="totallyTimeSpent" value="103408000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="30" width="1366" height="738" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2590909" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2590909" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -517,7 +517,7 @@
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5010225" side_tool="true" visible="true" weight="0.25838926" />
       <window_info anchor="bottom" id="Database Changes" order="12" weight="0.32930845" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="13" sideWeight="0.4989775" visible="true" weight="0.25838926" />
+      <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.4989775" visible="true" weight="0.25838926" />
       <window_info anchor="bottom" id="Flutter Performance" order="14" side_tool="true" />
       <window_info anchor="bottom" id="Database Console" order="15" weight="0.32930845" />
       <window_info active="true" anchor="bottom" id="SQL" order="16" visible="true" weight="0.32930845" />
@@ -964,7 +964,7 @@
     <entry file="file://$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Location.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="485">
-          <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="20" />
+          <caret line="48" column="8" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1144#1145#0" expanded="true" />
@@ -1062,20 +1062,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/BackupThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/GetAllFromDatabaseSO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-120">
+        <state relative-caret-position="168">
           <caret line="16" column="62" lean-forward="true" selection-start-line="16" selection-start-column="62" selection-end-line="16" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/BackupThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-168">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
