@@ -1,4 +1,4 @@
-package com.comtrade.threads;
+package com.comtrade.threads.backupThreads;
 
 import com.comtrade.controllerBL.ControllerBLogic;
 import com.comtrade.domain.GeneralDomain;
@@ -10,6 +10,8 @@ import static com.comtrade.domain.Constants.*;
 
 public class FromDBBackupThread extends Thread {
 	private static Object mutex = new Object();
+
+
 	private HashMap<String, List<GeneralDomain>> allData = new HashMap<>();
 	private HashMap<String, List<GeneralDomain>> users = new HashMap<>();
 
@@ -27,9 +29,12 @@ public class FromDBBackupThread extends Thread {
 		allData.put(MESSAGE, null);
 		allData.put(PICTURES, null);
 		allData.put(RATING, null);
-		ControllerBLogic.getInstance().getAll(allData);
+		ControllerBLogic.getInstance().getAllFromDB(allData);
 
 	}
 
+	public synchronized HashMap<String, List<GeneralDomain>> getAllData() {
+		return allData;
+	}
 
 }

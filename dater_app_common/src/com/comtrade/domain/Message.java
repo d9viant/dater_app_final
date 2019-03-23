@@ -1,11 +1,12 @@
 package com.comtrade.domain;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Message implements GeneralDomain{
+public class Message implements GeneralDomain, Serializable {
     private int idMessage;
     private int userOneId;
     private int userTwoId;

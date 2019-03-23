@@ -1,15 +1,16 @@
 package com.comtrade.domain;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class Location implements GeneralDomain {
+public class Location implements GeneralDomain, Serializable {
     private int userID;
     private double longitude;
     private double latitude;
     private String address;
-    private int prefferedDistance = 50;
+    private static int prefferedDistance = 50;
 
 
     public Location(){

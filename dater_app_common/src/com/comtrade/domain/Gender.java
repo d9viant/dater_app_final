@@ -1,10 +1,11 @@
 package com.comtrade.domain;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class Gender implements GeneralDomain {
+public class Gender implements GeneralDomain, Serializable {
     private int userId;
     private char gender;
     private char preferredGender;

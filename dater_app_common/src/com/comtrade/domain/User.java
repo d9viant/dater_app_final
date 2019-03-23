@@ -1,11 +1,12 @@
 package com.comtrade.domain;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User implements GeneralDomain {
+public class User implements GeneralDomain, Serializable {
     private int id;
     private String username;
     private String firstName;

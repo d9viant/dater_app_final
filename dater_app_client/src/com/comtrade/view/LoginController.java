@@ -1,6 +1,7 @@
 package com.comtrade.view;
 
 import com.comtrade.controllerUI.Controller;
+import com.comtrade.domain.GeneralDomain;
 import com.comtrade.domain.User;
 import com.comtrade.geoloc.GeoLoc;
 import com.comtrade.transfer.TransferClass;
@@ -34,6 +35,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import static com.comtrade.domain.Constants.CHECK_USER;
@@ -99,6 +102,12 @@ public class LoginController implements Initializable, Serializable {
     private static ArrayList<Double> red = new ArrayList<>(2);
 
     private GeoLoc g=null;
+
+    private Boolean checkUser = null;
+
+    public void setCheckUser(Boolean checkUser) {
+        this.checkUser = checkUser;
+    }
 
 
     @Override
@@ -243,11 +252,12 @@ public class LoginController implements Initializable, Serializable {
                             newUser.setUserPhoto(userPhotoString);
 
                             // Check if Username is in DB
-                            Boolean check = null;
-                            tf.setClient_object(check);
+                            Map<String, GeneralDomain> checkMap = new HashMap<>();
+
+                            tf.setClient_object(newUser);
 	                        tf.setOperation(CHECK_USER);
 	                        Controller.getInstance().sendToServer(tf);
-                            if (check) {
+                            if (checkUser) {
                                 Alert bye = new Alert(AlertType.WARNING);
                                 bye.setHeaderText(null);
                                 bye.setTitle("Error");

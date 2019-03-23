@@ -40,13 +40,14 @@ public class ClientThread extends Thread {
                 userMap.put("gender", u.getGender());
                 userMap.put("location", u.getL());
                 userMap.put("ratings", u.getR());
-                ControllerBLogic.getInstance().saveProfile(userMap);
+                ControllerBLogic.getInstance().saveIntoDB(userMap);
                 break;
             case RETURN_PROFILE:
                 break;
             case CHECK_USER:
-                Boolean check = (Boolean) tf.getClient_object();
+                User check = (User) tf.getClient_object();
                 ControllerBLogic.getInstance().checkProfile(check);
+
                 break;
             case LIKE:
                 break;

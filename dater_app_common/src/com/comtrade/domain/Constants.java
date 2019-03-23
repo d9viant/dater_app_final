@@ -8,6 +8,7 @@ public class Constants {
     public static final int LIKE = 4;
     public static final int DISLIKE = 5;
     public static final int SUPER = 6;
+	public static final int USERNAME_TAKEN = 7;
 
 	public static final String USER = "user";
 	public static final String AGE = "age";

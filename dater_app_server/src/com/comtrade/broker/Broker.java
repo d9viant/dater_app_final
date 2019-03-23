@@ -6,7 +6,6 @@ import com.comtrade.domain.GeneralDomain;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
 import java.util.List;
 
 public class Broker implements IBroker {
@@ -62,7 +61,7 @@ public class Broker implements IBroker {
 			Statement st = Connection.getInstance().getConn().createStatement();
 			ResultSet rs = st.executeQuery(upit);
 			list = gd.fixSelect(rs);
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,10 +70,5 @@ public class Broker implements IBroker {
 		return list;
 	}
 
-	private HashMap<String, List<GeneralDomain>> fixSelect() {
-		HashMap<String, List<GeneralDomain>> allUsers = new HashMap<>();
 
-
-		return null;
-	}
 }

@@ -1,12 +1,13 @@
 package com.comtrade.domain;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
 
-public class Age implements GeneralDomain {
+public class Age implements GeneralDomain, Serializable {
     private int idUser;
     private static LocalDate birthday;
     private static int age;

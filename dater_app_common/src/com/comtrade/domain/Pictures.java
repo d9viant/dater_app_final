@@ -1,10 +1,11 @@
 package com.comtrade.domain;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class Pictures implements GeneralDomain {
+public class Pictures implements GeneralDomain, Serializable {
     @Override
     public List<GeneralDomain> fixSelect(ResultSet rs) throws SQLException {
         return null;
