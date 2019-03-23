@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static com.comtrade.domain.Constants.CHECK_USER;
+import static com.comtrade.domain.Constants.SAVE_USER;
 //import net.coobird.thumbnailator.Thumbnails;
 //import net.coobird.thumbnailator.name.Rename;
 
@@ -163,7 +164,6 @@ public class LoginController implements Initializable, Serializable {
     private void createUser(ActionEvent event) {
         User newUser = new User();
         TransferClass tf = new TransferClass();
-
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setHeaderText("You are about to create your profile, are you sure that you want to continue?");
         alert.setTitle(null);
@@ -264,6 +264,7 @@ public class LoginController implements Initializable, Serializable {
                                     e.printStackTrace();
                                 }
                                 tf.setClient_object(newUser);
+	                            tf.setOperation(SAVE_USER);
 	                            Controller.getInstance().sendToServer(tf);
                             }
                         }

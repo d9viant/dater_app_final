@@ -1,7 +1,6 @@
 package com.comtrade.controllerBL;
 
 import com.comtrade.domain.GeneralDomain;
-import com.comtrade.domain.User;
 import com.comtrade.profil.SO.GetAllFromDatabaseSO;
 import com.comtrade.profil.SO.SaveIntoDatabaseSO;
 import com.comtrade.sysops.GeneralSystemOperation;
@@ -32,7 +31,7 @@ public class ControllerBLogic {
 		return instance;
 	}
 
-	public void saveProfile(User u) {
+	public void saveProfile(HashMap u) {
 		GeneralSystemOperation op = new SaveIntoDatabaseSO();
 		op.executeSo(u);
 	}

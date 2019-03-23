@@ -9,7 +9,7 @@ public class Location implements GeneralDomain {
     private double longitude;
     private double latitude;
     private String address;
-    private int prefferedDistance;
+    private int prefferedDistance = 50;
 
 
     public Location(){

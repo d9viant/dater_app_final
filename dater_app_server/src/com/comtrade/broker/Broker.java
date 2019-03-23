@@ -62,6 +62,7 @@ public class Broker implements IBroker {
 			Statement st = Connection.getInstance().getConn().createStatement();
 			ResultSet rs = st.executeQuery(upit);
 			list = gd.fixSelect(rs);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

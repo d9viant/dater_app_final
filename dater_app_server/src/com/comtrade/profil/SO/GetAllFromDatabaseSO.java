@@ -8,47 +8,40 @@ import com.comtrade.sysops.GeneralSystemOperation;
 import java.util.List;
 import java.util.Map;
 
+import static com.comtrade.domain.Constants.*;
 public class GetAllFromDatabaseSO extends GeneralSystemOperation {
 	@Override
 	public void executeConcreteOperation(Object obj) {
 		Map<String, Object> hm = (Map<String, Object>) obj;
 		IBroker ib = new Broker();
-		if (hm.containsKey("users")) {
+		if (hm.containsKey(USER)) {
 			List<GeneralDomain> users = ib.getAll(new User());
-			hm.put("users", users);
-		} else if (hm.containsKey("age")) {
+			hm.put(USER, users);
+		} else if (hm.containsKey(AGE)) {
 			List<GeneralDomain> age = ib.getAll(new Age());
-			hm.put("age", age);
-		} else if (hm.containsKey("gender")) {
+			hm.put(AGE, age);
+		} else if (hm.containsKey(GENDER)) {
 			List<GeneralDomain> gender = ib.getAll(new Gender());
-			hm.put("gender", gender);
-		} else if (hm.containsKey("locaton")) {
+			hm.put(GENDER, gender);
+		} else if (hm.containsKey(LOCATION)) {
 			List<GeneralDomain> location = ib.getAll(new Location());
-			hm.put("location", location);
-		} else if (hm.containsKey("matches")) {
+			hm.put(LOCATION, location);
+		} else if (hm.containsKey(MATCHES)) {
 			List<GeneralDomain> matches = ib.getAll(new Matches());
-			hm.put("matches", matches);
-		} else if (hm.containsKey("message")) {
+			hm.put(MATCHES, matches);
+		} else if (hm.containsKey(MESSAGE)) {
 			List<GeneralDomain> messages = ib.getAll(new Message());
-			hm.put("message", messages);
-		} else if (hm.containsKey("pictures")) {
+			hm.put(MESSAGE, messages);
+		} else if (hm.containsKey(PICTURES)) {
 			List<GeneralDomain> pictures = ib.getAll(new Pictures());
-			hm.put("pictures", pictures);
-		} else if (hm.containsKey("ratings")) {
+			hm.put(PICTURES, pictures);
+		} else if (hm.containsKey(RATING)) {
 			List<GeneralDomain> ratings = ib.getAll(new Rating());
-			hm.put("ratings", ratings);
+			hm.put(RATING, ratings);
 		}
 
 
 	}
 
-//		allData.put("users", null);
-//		allData.put("age", null);
-//		allData.put("gender", null);
-//		allData.put("location", null);
-//		allData.put("matches", null);
-//		allData.put("message", null);
-//		allData.put("pictures", null);
-//		allData.put("ratings", null);
 
 }
