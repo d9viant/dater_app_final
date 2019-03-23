@@ -2,8 +2,8 @@ package com.comtrade.controllerBL;
 
 import com.comtrade.domain.GeneralDomain;
 import com.comtrade.domain.User;
-import com.comtrade.profil.SO.GetAllSO;
-import com.comtrade.profil.SO.SaveUserSO;
+import com.comtrade.profil.SO.GetAllFromDatabaseSO;
+import com.comtrade.profil.SO.SaveIntoDatabaseSO;
 import com.comtrade.sysops.GeneralSystemOperation;
 
 import java.util.HashMap;
@@ -33,12 +33,12 @@ public class ControllerBLogic {
 	}
 
 	public void saveProfile(User u) {
-		GeneralSystemOperation op = new SaveUserSO();
+		GeneralSystemOperation op = new SaveIntoDatabaseSO();
 		op.executeSo(u);
 	}
 
 	public void getAll(HashMap<String, List<GeneralDomain>> hm) {
-		GeneralSystemOperation op = new GetAllSO();
+		GeneralSystemOperation op = new GetAllFromDatabaseSO();
 		op.executeSo(hm);
 	}
 

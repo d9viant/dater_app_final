@@ -1,9 +1,12 @@
 package com.comtrade.domain;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
-public class Age {
+public class Age implements GeneralDomain {
     private int idUser;
     private static LocalDate birthday;
     private static int age;
@@ -56,4 +59,28 @@ public class Age {
         return age;
     }
 
+    @Override
+    public List<GeneralDomain> fixSelect(ResultSet rs) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public String returnTableName() {
+        return null;
+    }
+
+    @Override
+    public String returnTableRows() {
+        return null;
+    }
+
+    @Override
+    public String returnInsertFormat() {
+        return null;
+    }
+
+    @Override
+    public String delete(GeneralDomain gd) {
+        return null;
+    }
 }

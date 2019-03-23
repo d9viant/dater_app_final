@@ -6,29 +6,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b3dfac1-7723-470a-b738-eb8519dacb07" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/GetAllSO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_client/src/com/comtrade/controllerUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_client/src/com/comtrade/controllerUI/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_client/src/com/comtrade/thread/processingFromServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_client/src/com/comtrade/thread/ProcessingFromServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_client/src/com/comtrade/view/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_client/src/com/comtrade/view/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_client/src/com/comtrade/view/mainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_client/src/com/comtrade/view/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_client/src/com/comtrade/viewLayout/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_client/src/com/comtrade/viewLayout/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_client/src/com/comtrade/viewLayout/mainscreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_client/src/com/comtrade/viewLayout/mainscreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_client/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_client/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Rating.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Rating.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/broker/Broker.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/broker/Broker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/broker/IBroker.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/broker/IBroker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Age.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Age.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Gender.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Gender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Pictures.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Pictures.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/controllerBL/ControllerBLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/controllerBL/ControllerBLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/sysops/MakeMatchSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/MakeMatchSO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/GetAllSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/GetAllFromDatabaseSO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/SaveUserSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/SaveIntoDatabaseSO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/BackupThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/BackupThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/ClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/ClientThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/view/serverLayout/server.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/view/serverLayout/server.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/view/serverView.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/view/ServerView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/view/startGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/view/StartGUI.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.metadata/.plugins/org.eclipse.jdt.core/.org.eclipse.jdt.core.external.folders/bin/" />
     <ignored path="$PROJECT_DIR$/dater_app_client/bin/" />
@@ -78,271 +64,146 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.47062114">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/communication/Comm.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="392">
-                  <caret line="37" column="5" lean-forward="true" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="32" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/ClientThread.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="504">
-                  <caret line="41" column="67" lean-forward="true" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="67" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/Server.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="720">
-                  <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/controllerUI/Controller.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="680">
-                  <caret line="36" column="1" lean-forward="true" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/thread/ProcessingFromServer.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="288">
-                  <caret line="12" column="59" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/SaveUserSO.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/GetAllSO.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="504">
-                  <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/CheckProfileSO.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="48">
-                  <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/controllerBL/ControllerBLogic.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1080">
-                  <caret line="45" selection-start-line="45" selection-end-line="45" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/BackupThread.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="308">
-                  <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#345#346#0" expanded="true" />
-                    <element signature="e#360#361#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/broker/Broker.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="432">
-                  <caret line="42" column="9" lean-forward="true" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/MakeMatchSO.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="96">
-                  <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/sysops/AddPicturesSO.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="48">
-                  <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/sysops/MakeMessageSO.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="168">
-                  <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/broker/IBroker.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="10" selection-start-line="10" selection-end-line="10" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="uml://DATABASE/027be28b-3a72-474b-868c-9b880e27230f.SCHEMA:dater_app">
-              <provider selected="true" editor-type-id="UmlEditorProvider">
-                <state>
-                  <ID>DATABASE</ID>
-                  <OriginalElement>027be28b-3a72-474b-868c-9b880e27230f.SCHEMA:dater_app</OriginalElement>
-                  <nodes>
-                    <node x="199.90216519647151" y="326.83720930232556">027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.chatmessage</node>
-                    <node x="399.0" y="352.5">027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.rating</node>
-                    <node x="744.3913392141138" y="393.0653568564554">027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.gender</node>
-                    <node x="1148.0" y="348.1086607858862">027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.location</node>
-                    <node x="958.0978348035285" y="337.70649558941454">027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.pictures</node>
-                    <node x="258.33333333333337" y="-102.09863672814755">027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.user</node>
-                    <node x="588.0978348035285" y="382.0870088211708">027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.age</node>
-                    <node x="0.0" y="364.0">027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.matchtable</node>
-                  </nodes>
-                  <notes />
-                  <edges>
-                    <edge source="027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.pictures" target="027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.user">
-                      <point x="0.0" y="-84.5" />
-                      <point x="1042.5" y="245.0" />
-                      <point x="415.5151515151516" y="245.0" />
-                      <point x="66.18181818181824" y="107.5" />
-                    </edge>
-                    <edge source="027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.chatmessage" target="027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.user">
-                      <point x="-59.33333333333334" y="-130.5" />
-                      <point x="230.66666666666663" y="265.0" />
-                      <point x="316.2424242424243" y="265.0" />
-                      <point x="-33.090909090909065" y="107.5" />
-                    </edge>
-                    <edge source="027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.matchtable" target="027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.user">
-                      <point x="-60.33333333333334" y="-61.5" />
-                      <point x="30.16666666666663" y="235.0" />
-                      <point x="266.6060606060606" y="235.0" />
-                      <point x="-82.72727272727275" y="107.5" />
-                    </edge>
-                    <edge source="027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.rating" target="027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.user">
-                      <point x="0.0" y="-73.0" />
-                      <point x="483.0" y="275.0" />
-                      <point x="365.87878787878793" y="275.0" />
-                      <point x="16.54545454545456" y="107.5" />
-                    </edge>
-                    <edge source="027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.location" target="027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.user">
-                      <point x="0.0" y="-73.0" />
-                      <point x="1248.5" y="235.0" />
-                      <point x="432.0606060606061" y="235.0" />
-                      <point x="82.72727272727275" y="107.5" />
-                    </edge>
-                    <edge source="027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.gender" target="027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.user">
-                      <point x="0.0" y="-50.0" />
-                      <point x="838.5" y="255.0" />
-                      <point x="398.969696969697" y="255.0" />
-                      <point x="49.636363636363626" y="107.5" />
-                    </edge>
-                    <edge source="027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.age" target="027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.user">
-                      <point x="0.0" y="-50.0" />
-                      <point x="653.5" y="265.0" />
-                      <point x="382.4242424242425" y="265.0" />
-                      <point x="33.09090909090912" y="107.5" />
-                    </edge>
-                  </edges>
-                  <settings layout="Hierarchic Group" zoom="0.9108838568298028" x="243.48035284683237" y="77.09623095429026" />
-                  <SelectedNodes>
-                    <node>027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.location</node>
-                  </SelectedNodes>
-                  <Categories>
-                    <Category>Key columns</Category>
-                    <Category>Columns</Category>
-                  </Categories>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/GeneralDomain.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="96">
-                  <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Pictures.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#328#329#0" expanded="true" />
+                <element signature="e#355#356#0" expanded="true" />
+                <element signature="e#408#409#0" expanded="true" />
+                <element signature="e#435#436#0" expanded="true" />
+                <element signature="e#491#492#0" expanded="true" />
+                <element signature="e#518#519#0" expanded="true" />
+                <element signature="e#578#579#0" expanded="true" />
+                <element signature="e#605#606#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/SaveIntoDatabaseSO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/CheckProfileSO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="48">
+              <caret line="2" column="29" lean-forward="true" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/GetAllFromDatabaseSO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-120">
+              <caret line="16" column="62" lean-forward="true" selection-start-line="16" selection-start-column="62" selection-end-line="16" selection-end-column="62" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/ServerTimeThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Location.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="485">
+              <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1144#1145#0" expanded="true" />
+                <element signature="e#1171#1172#0" expanded="true" />
+                <element signature="e#1224#1225#0" expanded="true" />
+                <element signature="e#1251#1252#0" expanded="true" />
+                <element signature="e#1307#1308#0" expanded="true" />
+                <element signature="e#1334#1335#0" expanded="true" />
+                <element signature="e#1394#1395#0" expanded="true" />
+                <element signature="e#1421#1422#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/Server.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="509">
+              <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/ClientThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="509">
+              <caret line="32" column="27" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Gender.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-432">
+              <caret line="9" column="33" lean-forward="true" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#879#880#0" expanded="true" />
+                <element signature="e#906#907#0" expanded="true" />
+                <element signature="e#959#960#0" expanded="true" />
+                <element signature="e#986#987#0" expanded="true" />
+                <element signature="e#1042#1043#0" expanded="true" />
+                <element signature="e#1069#1070#0" expanded="true" />
+                <element signature="e#1129#1130#0" expanded="true" />
+                <element signature="e#1156#1157#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/BackupThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -360,6 +221,7 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -386,9 +248,6 @@
         <option value="$PROJECT_DIR$/dater_app_server/src/com/comtrade/sysops/test.java" />
         <option value="$PROJECT_DIR$/dater_app_server/src/com/comtrade/sysops/GeneralSystemOperation.java" />
         <option value="$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/SaveUserSO.java" />
-        <option value="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Location.java" />
-        <option value="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Age.java" />
-        <option value="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Gender.java" />
         <option value="$PROJECT_DIR$/dater_app_server/src/com/comtrade/connection/Connection.java" />
         <option value="$PROJECT_DIR$/dater_app_client/src/com/comtrade/geoloc/GeoLoc.java" />
         <option value="$PROJECT_DIR$/dater_app_client/src/com/comtrade/communication/Comm.java" />
@@ -412,6 +271,12 @@
         <option value="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/User.java" />
         <option value="$PROJECT_DIR$/dater_app_server/src/com/comtrade/broker/IBroker.java" />
         <option value="$PROJECT_DIR$/dater_app_server/src/com/comtrade/controllerBL/ControllerBLogic.java" />
+        <option value="$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/SaveIntoDatabaseSO.java" />
+        <option value="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Age.java" />
+        <option value="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Gender.java" />
+        <option value="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Location.java" />
+        <option value="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Pictures.java" />
+        <option value="$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/GetAllFromDatabaseSO.java" />
         <option value="$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/BackupThread.java" />
       </list>
     </option>
@@ -428,55 +293,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
-            <path>
-              <item name="dater_app_final" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dater_app_client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dater_app_final" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dater_app_client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dater_app_final" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dater_app_client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="communication" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dater_app_final" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dater_app_client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="controllerUI" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dater_app_final" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dater_app_client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="geoloc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dater_app_final" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dater_app_client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="thread" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dater_app_final" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dater_app_client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dater_app_final" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dater_app_client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="viewLayout" type="462c0819:PsiDirectoryNode" />
-            </path>
             <path>
               <item name="dater_app_final" type="b2602c69:ProjectViewProjectNode" />
               <item name="dater_app_common" type="462c0819:PsiDirectoryNode" />
@@ -491,12 +311,6 @@
               <item name="dater_app_common" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="domain" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dater_app_final" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dater_app_common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="transfer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dater_app_final" type="b2602c69:ProjectViewProjectNode" />
@@ -535,32 +349,20 @@
               <item name="dater_app_final" type="b2602c69:ProjectViewProjectNode" />
               <item name="dater_app_server" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="sysops" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dater_app_final" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dater_app_server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="threads" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dater_app_final" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dater_app_server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql&#10;sqlserver" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553257276547" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553357070814" />
     <property name="database.console.LAST_STATE" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/dater_app_client/src/libraries" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -690,20 +492,18 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101446000" />
+    <option name="totallyTimeSpent" value="103038000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="32" width="2560" height="1048" extended-state="6" />
+    <frame x="0" y="30" width="1366" height="738" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14001592" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2590909" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="SQL" visible="true" weight="0.32930845" />
-      <window_info anchor="bottom" id="SQL Generator" weight="0.32930845" />
       <window_info anchor="bottom" id="Messages" order="0" weight="0.3296582" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32930845" />
@@ -713,13 +513,15 @@
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" />
       <window_info anchor="bottom" id="Duplicate detector" order="8" weight="0.3296582" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3296582" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32885906" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5010225" side_tool="true" visible="true" weight="0.25838926" />
       <window_info anchor="bottom" id="Database Changes" order="12" weight="0.32930845" />
-      <window_info anchor="bottom" id="Version Control" order="13" weight="0.1273326" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="13" sideWeight="0.4989775" visible="true" weight="0.25838926" />
       <window_info anchor="bottom" id="Flutter Performance" order="14" side_tool="true" />
       <window_info anchor="bottom" id="Database Console" order="15" weight="0.32930845" />
+      <window_info active="true" anchor="bottom" id="SQL" order="16" visible="true" weight="0.32930845" />
+      <window_info anchor="bottom" id="SQL Generator" order="17" weight="0.32930845" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -791,46 +593,6 @@
     <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/view/application.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Age.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#211#212#0" expanded="true" />
-            <element signature="e#241#242#0" expanded="true" />
-            <element signature="e#570#571#0" expanded="true" />
-            <element signature="e#596#597#0" expanded="true" />
-            <element signature="e#638#639#0" expanded="true" />
-            <element signature="e#667#668#0" expanded="true" />
-            <element signature="e#712#713#0" expanded="true" />
-            <element signature="e#743#744#0" expanded="true" />
-            <element signature="e#794#795#0" expanded="true" />
-            <element signature="e#833#834#0" expanded="true" />
-            <element signature="e#864#865#0" expanded="true" />
-            <element signature="e#893#894#0" expanded="true" />
-            <element signature="e#934#935#0" expanded="true" />
-            <element signature="e#970#971#0" expanded="true" />
-            <element signature="e#1004#1005#0" expanded="true" />
-            <element signature="e#1030#1031#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Gender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Location.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/view/ServerView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
@@ -855,16 +617,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/ServerTimeThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -910,13 +662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Pictures.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/sysops/GeneralSystemOperation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -955,9 +700,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/027be28b-3a72-474b-868c-9b880e27230f/console.sql">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/027be28b-3a72-474b-868c-9b880e27230f/console.sql" />
     <entry file="das://027be28b-3a72-474b-868c-9b880e27230f/schema/dater_app/table/chatmessage">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1066,7 +809,7 @@
               <point x="33.09090909090912" y="107.5" />
             </edge>
           </edges>
-          <settings layout="Hierarchic Group" zoom="0.9108838568298028" x="243.48035284683237" y="77.09623095429026" />
+          <settings layout="Hierarchic Group" zoom="0.9108838568298028" x="243.0" y="77.0" />
           <SelectedNodes>
             <node>027be28b-3a72-474b-868c-9b880e27230f.TABLE:dater_app.location</node>
           </SelectedNodes>
@@ -1074,6 +817,7 @@
             <Category>Key columns</Category>
             <Category>Columns</Category>
           </Categories>
+          <SCOPE>All</SCOPE>
         </state>
       </provider>
     </entry>
@@ -1101,74 +845,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.software/CodeTime.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-696">
-          <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/.software/CodeTime.txt" />
     <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/broker/IBroker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/ClientThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="41" column="67" lean-forward="true" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="67" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/controllerBL/ControllerBLogic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/CheckProfileSO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/SaveUserSO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/broker/Broker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="42" column="9" lean-forward="true" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1201,28 +882,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/communication/Comm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="37" column="5" lean-forward="true" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/controllerUI/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="36" column="1" lean-forward="true" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/GetAllSO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+        <state relative-caret-position="456">
+          <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1236,14 +897,184 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/BackupThread.java">
+    <entry file="file://$PROJECT_DIR$/dater_app_client/src/com/comtrade/controllerUI/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+        <state relative-caret-position="192">
+          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#345#346#0" expanded="true" />
-            <element signature="e#360#361#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/broker/Broker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/controllerBL/ControllerBLogic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Age.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#211#212#0" expanded="true" />
+            <element signature="e#241#242#0" expanded="true" />
+            <element signature="e#570#571#0" expanded="true" />
+            <element signature="e#596#597#0" expanded="true" />
+            <element signature="e#638#639#0" expanded="true" />
+            <element signature="e#667#668#0" expanded="true" />
+            <element signature="e#712#713#0" expanded="true" />
+            <element signature="e#743#744#0" expanded="true" />
+            <element signature="e#794#795#0" expanded="true" />
+            <element signature="e#833#834#0" expanded="true" />
+            <element signature="e#864#865#0" expanded="true" />
+            <element signature="e#893#894#0" expanded="true" />
+            <element signature="e#934#935#0" expanded="true" />
+            <element signature="e#970#971#0" expanded="true" />
+            <element signature="e#1004#1005#0" expanded="true" />
+            <element signature="e#1030#1031#0" expanded="true" />
+            <element signature="e#1306#1307#0" expanded="true" />
+            <element signature="e#1333#1334#0" expanded="true" />
+            <element signature="e#1386#1387#0" expanded="true" />
+            <element signature="e#1413#1414#0" expanded="true" />
+            <element signature="e#1469#1470#0" expanded="true" />
+            <element signature="e#1496#1497#0" expanded="true" />
+            <element signature="e#1556#1557#0" expanded="true" />
+            <element signature="e#1583#1584#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Location.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1144#1145#0" expanded="true" />
+            <element signature="e#1171#1172#0" expanded="true" />
+            <element signature="e#1224#1225#0" expanded="true" />
+            <element signature="e#1251#1252#0" expanded="true" />
+            <element signature="e#1307#1308#0" expanded="true" />
+            <element signature="e#1334#1335#0" expanded="true" />
+            <element signature="e#1394#1395#0" expanded="true" />
+            <element signature="e#1421#1422#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Pictures.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#328#329#0" expanded="true" />
+            <element signature="e#355#356#0" expanded="true" />
+            <element signature="e#408#409#0" expanded="true" />
+            <element signature="e#435#436#0" expanded="true" />
+            <element signature="e#491#492#0" expanded="true" />
+            <element signature="e#518#519#0" expanded="true" />
+            <element signature="e#578#579#0" expanded="true" />
+            <element signature="e#605#606#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/Gender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-432">
+          <caret line="9" column="33" lean-forward="true" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#879#880#0" expanded="true" />
+            <element signature="e#906#907#0" expanded="true" />
+            <element signature="e#959#960#0" expanded="true" />
+            <element signature="e#986#987#0" expanded="true" />
+            <element signature="e#1042#1043#0" expanded="true" />
+            <element signature="e#1069#1070#0" expanded="true" />
+            <element signature="e#1129#1130#0" expanded="true" />
+            <element signature="e#1156#1157#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/SaveIntoDatabaseSO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/CheckProfileSO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="29" lean-forward="true" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/ClientThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="32" column="27" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/ServerTimeThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/threads/BackupThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/GetAllFromDatabaseSO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-120">
+          <caret line="16" column="62" lean-forward="true" selection-start-line="16" selection-start-column="62" selection-end-line="16" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -13,6 +13,7 @@ public class BackupThread extends Thread{
 
 	public void run() {
 		getAll();
+
 	}
 
 	private void getAll() {
@@ -20,6 +21,12 @@ public class BackupThread extends Thread{
 		allData.put("age", null);
 		allData.put("gender", null);
 		allData.put("location", null);
+		allData.put("matches", null);
+		allData.put("message", null);
+		allData.put("pictures", null);
+		allData.put("ratings", null);
+
+
 		ControllerBLogic.getInstance().getAll(allData);
 
 	}

@@ -5,7 +5,7 @@ import com.comtrade.broker.IBroker;
 import com.comtrade.domain.User;
 import com.comtrade.sysops.GeneralSystemOperation;
 
-public class SaveUserSO extends GeneralSystemOperation {
+public class SaveIntoDatabaseSO extends GeneralSystemOperation {
     @Override
     public void executeConcreteOperation(Object obj) {
         User user = (User) obj;

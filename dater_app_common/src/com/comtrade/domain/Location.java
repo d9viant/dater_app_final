@@ -1,6 +1,10 @@
 package com.comtrade.domain;
-import java.lang.*;
-public class Location {
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+public class Location implements GeneralDomain {
     private int userID;
     private double longitude;
     private double latitude;
@@ -38,5 +42,30 @@ public class Location {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public List<GeneralDomain> fixSelect(ResultSet rs) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public String returnTableName() {
+        return null;
+    }
+
+    @Override
+    public String returnTableRows() {
+        return null;
+    }
+
+    @Override
+    public String returnInsertFormat() {
+        return null;
+    }
+
+    @Override
+    public String delete(GeneralDomain gd) {
+        return null;
     }
 }
