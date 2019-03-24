@@ -1,9 +1,10 @@
 package com.comtrade.domain;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.util.List;
 
-public class Rating implements GeneralDomain
+public class Rating implements GeneralDomain, Serializable
 {
 
 	private static int idUser;
@@ -111,6 +112,7 @@ public class Rating implements GeneralDomain
 
 	@Override
 	public String returnTableRows() {
+
 		return null;
 	}
 

@@ -1,6 +1,7 @@
 package com.comtrade.view;
 
 import com.comtrade.controllerUI.Controller;
+import com.comtrade.domain.GeneralDomain;
 import com.comtrade.domain.User;
 import com.comtrade.geoloc.GeoLoc;
 import com.comtrade.transfer.TransferClass;
@@ -34,11 +35,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
+
+import static com.comtrade.domain.Constants.CHECK_USER;
+import static com.comtrade.domain.Constants.SAVE_USER;
 //import net.coobird.thumbnailator.Thumbnails;
 //import net.coobird.thumbnailator.name.Rename;
 
-public class loginController implements Initializable, Serializable {
+public class LoginController implements Initializable, Serializable {
 
     @FXML
     private MapView mapViewLogin;
@@ -96,6 +102,12 @@ public class loginController implements Initializable, Serializable {
     private static ArrayList<Double> red = new ArrayList<>(2);
 
     private GeoLoc g=null;
+
+    private Boolean checkUser = null;
+
+    public void setCheckUser(Boolean checkUser) {
+        this.checkUser = checkUser;
+    }
 
 
     @Override
@@ -161,7 +173,6 @@ public class loginController implements Initializable, Serializable {
     private void createUser(ActionEvent event) {
         User newUser = new User();
         TransferClass tf = new TransferClass();
-
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setHeaderText("You are about to create your profile, are you sure that you want to continue?");
         alert.setTitle(null);
@@ -208,11 +219,11 @@ public class loginController implements Initializable, Serializable {
                     newUser.getAge().setBirthday(date);
                     String locationString = txtLoc.getText();
                     System.out.println(locationString);
-                    newUser.getL().setAddress(locationString);
+                    newUser.getLocation().setAddress(locationString);
 
                     try {
-                        newUser.getL().setLatitude(red.get(0).doubleValue());
-                        newUser.getL().setLongitude(red.get(1).doubleValue());
+                        newUser.getLocation().setLatitude(red.get(0).doubleValue());
+                        newUser.getLocation().setLongitude(red.get(1).doubleValue());
                     } catch (Exception e) {
                         System.out.println("Nema Koordinata");
                     }
@@ -241,10 +252,12 @@ public class loginController implements Initializable, Serializable {
                             newUser.setUserPhoto(userPhotoString);
 
                             // Check if Username is in DB
-                            Boolean check = null;
-                            tf.setClient_object(check);
-                            Controller.getInstance().serverRequestProcess(tf);
-                            if (check) {
+                            Map<String, GeneralDomain> checkMap = new HashMap<>();
+
+                            tf.setClient_object(newUser);
+	                        tf.setOperation(CHECK_USER);
+	                        Controller.getInstance().sendToServer(tf);
+                            if (checkUser) {
                                 Alert bye = new Alert(AlertType.WARNING);
                                 bye.setHeaderText(null);
                                 bye.setTitle("Error");
@@ -261,7 +274,8 @@ public class loginController implements Initializable, Serializable {
                                     e.printStackTrace();
                                 }
                                 tf.setClient_object(newUser);
-                                Controller.getInstance().serverRequestProcess(tf);
+	                            tf.setOperation(SAVE_USER);
+	                            Controller.getInstance().sendToServer(tf);
                             }
                         }
                     }
@@ -278,7 +292,7 @@ public class loginController implements Initializable, Serializable {
         MediaPlayer player = new MediaPlayer(media);
         logMedia.setMediaPlayer(player);
         player.setVolume(0);
-        player.setCycleCount(player.INDEFINITE);
+	    player.setCycleCount(MediaPlayer.INDEFINITE);
         player.play();
     }
 

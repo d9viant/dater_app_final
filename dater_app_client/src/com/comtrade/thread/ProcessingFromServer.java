@@ -4,7 +4,7 @@ import com.comtrade.communication.Comm;
 import com.comtrade.controllerUI.Controller;
 import com.comtrade.transfer.TransferClass;
 
-public class processingFromServer extends Thread{
+public class ProcessingFromServer extends Thread {
     public void run() {
         while (true) {
             TransferClass tc;

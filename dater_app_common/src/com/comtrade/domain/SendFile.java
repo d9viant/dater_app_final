@@ -7,9 +7,18 @@ import java.util.List;
 public class SendFile implements Serializable {
 
     private byte[] picture;
+    private byte[] picture2;
+    private byte[] picture3;
+    private byte[] picture4;
+    private byte[] picture5;
     private String fileName;
+    private String fileName2;
+    private String fileName3;
+    private String fileName4;
+    private String fileName5;
     private int idSender;
     private List<Integer> listOfRecievers =new ArrayList<>();
+
 
     public List<Integer> getListOfRecievers() {
         return listOfRecievers;

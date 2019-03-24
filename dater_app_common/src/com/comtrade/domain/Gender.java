@@ -1,6 +1,11 @@
 package com.comtrade.domain;
 
-public class Gender {
+import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+public class Gender implements GeneralDomain, Serializable {
     private int userId;
     private char gender;
     private char preferredGender;
@@ -30,5 +35,30 @@ public class Gender {
 
     public void setPreferredGender(char preferredGender) {
         this.preferredGender = preferredGender;
+    }
+
+    @Override
+    public List<GeneralDomain> fixSelect(ResultSet rs) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public String returnTableName() {
+        return null;
+    }
+
+    @Override
+    public String returnTableRows() {
+        return null;
+    }
+
+    @Override
+    public String returnInsertFormat() {
+        return null;
+    }
+
+    @Override
+    public String delete(GeneralDomain gd) {
+        return null;
     }
 }

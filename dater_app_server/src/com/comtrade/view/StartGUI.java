@@ -7,7 +7,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-public class startGUI extends Application {
+
+public class StartGUI extends Application {
     private Stage stage;
     public Stage getStage() {
         return stage;
@@ -20,11 +21,11 @@ public class startGUI extends Application {
     }
 
     private void mainWindow(){
-        FXMLLoader loader = new FXMLLoader(startGUI.class.getResource("/com/comtrade/view/serverLayout/server.fxml"));
+	    FXMLLoader loader = new FXMLLoader(StartGUI.class.getResource("/com/comtrade/view/serverLayout/server.fxml"));
         try {
             AnchorPane pane= loader.load();
             Scene scene=new Scene(pane);
-            scene.getStylesheets().addAll(startGUI.class.getResource("application.css").toExternalForm());
+	        scene.getStylesheets().addAll(StartGUI.class.getResource("application.css").toExternalForm());
             stage.setResizable(false);
             stage.setTitle("Server");
             stage.setScene(scene);

@@ -18,10 +18,10 @@ public class DistanceCalculator {
 
 
     private double DistanceCalculation() {
-            double lat1 = userOne.getL().getLatitude();
-            double lon1 = userOne.getL().getLongitude();
-            double lat2 = userTwo.getL().getLatitude();
-            double lon2 = userTwo.getL().getLatitude();
+        double lat1 = userOne.getLocation().getLatitude();
+        double lon1 = userOne.getLocation().getLongitude();
+        double lat2 = userTwo.getLocation().getLatitude();
+        double lon2 = userTwo.getLocation().getLatitude();
             if ((lat1 == lat2) && (lon1 == lon2)) {
                 distanceInBetween = 0;
             } else {

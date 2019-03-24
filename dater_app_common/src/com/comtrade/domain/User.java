@@ -1,12 +1,12 @@
 package com.comtrade.domain;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User implements GeneralDomain {
+public class User implements GeneralDomain, Serializable {
     private int id;
     private String username;
     private String firstName;
@@ -19,6 +19,8 @@ public class User implements GeneralDomain {
     private Age age = null;
     private Rating rating = null;
     private Gender gender = null;
+    private static int readyForSql = 0;
+    private static int userArrayIndex;
 
 
     private Matches matches = null;
@@ -89,7 +91,7 @@ public class User implements GeneralDomain {
         this.bio = bio;
     }
 
-    public Rating getR() {
+    public Rating getRating() {
         return rating;
     }
 
@@ -109,7 +111,7 @@ public class User implements GeneralDomain {
         return id;
     }
 
-    public Location getL() {
+    public Location getLocation() {
         return location;
     }
 
@@ -188,7 +190,8 @@ public class User implements GeneralDomain {
 
     @Override
     public String delete(GeneralDomain gd) {
-        return null;
+        User u = (User) gd;
+        return "WHERE id =" + u.getId();
     }
 
 

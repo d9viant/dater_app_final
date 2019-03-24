@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-
-<AnchorPane fx:id="pane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.comtrade.view.serverView">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="pane" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="com.comtrade.view.ServerView">
    <children>
       <Button fx:id="btnStartServer" layoutX="37.0" layoutY="58.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" text="Start Server" />
       <Button fx:id="btnManualBackup" layoutX="38.0" layoutY="237.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" text="Manual Backup" />
