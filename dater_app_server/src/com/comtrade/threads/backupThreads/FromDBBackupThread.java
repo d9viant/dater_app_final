@@ -9,15 +9,11 @@ import java.util.List;
 import static com.comtrade.domain.Constants.*;
 
 public class FromDBBackupThread extends Thread {
-	private static Object mutex = new Object();
-
-
 	private HashMap<String, List<GeneralDomain>> allData = new HashMap<>();
 	private HashMap<String, List<GeneralDomain>> users = new HashMap<>();
 
 	public void run() {
 		getAll();
-
 	}
 
 	private void getAll() {
@@ -30,7 +26,6 @@ public class FromDBBackupThread extends Thread {
 		allData.put(PICTURES, null);
 		allData.put(RATING, null);
 		ControllerBLogic.getInstance().getAllFromDB(allData);
-
 	}
 
 	public synchronized HashMap<String, List<GeneralDomain>> getAllData() {

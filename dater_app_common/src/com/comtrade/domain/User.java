@@ -91,7 +91,7 @@ public class User implements GeneralDomain, Serializable {
         this.bio = bio;
     }
 
-    public Rating getR() {
+    public Rating getRating() {
         return rating;
     }
 
@@ -111,7 +111,7 @@ public class User implements GeneralDomain, Serializable {
         return id;
     }
 
-    public Location getL() {
+    public Location getLocation() {
         return location;
     }
 

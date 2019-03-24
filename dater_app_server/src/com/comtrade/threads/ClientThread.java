@@ -38,8 +38,8 @@ public class ClientThread extends Thread {
                 userMap.put("user", u);
                 userMap.put("age", u.getAge());
                 userMap.put("gender", u.getGender());
-                userMap.put("location", u.getL());
-                userMap.put("ratings", u.getR());
+                userMap.put("location", u.getLocation());
+                userMap.put("ratings", u.getRating());
                 ControllerBLogic.getInstance().saveIntoDB(userMap);
                 break;
             case RETURN_PROFILE:

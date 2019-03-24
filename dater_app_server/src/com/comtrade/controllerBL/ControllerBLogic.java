@@ -2,7 +2,7 @@ package com.comtrade.controllerBL;
 
 import com.comtrade.domain.GeneralDomain;
 import com.comtrade.domain.User;
-import com.comtrade.profil.SO.GetAllFromDatabaseSO;
+import com.comtrade.profil.SO.GetFromDatabaseSO;
 import com.comtrade.profil.SO.SaveIntoDatabaseSO;
 import com.comtrade.sysops.GeneralSystemOperation;
 import com.comtrade.threads.backupThreads.FromDBBackupThread;
@@ -42,7 +42,7 @@ public class ControllerBLogic {
 	}
 
 	public void getAllFromDB(HashMap<String, List<GeneralDomain>> hm) {
-		GeneralSystemOperation op = new GetAllFromDatabaseSO();
+		GeneralSystemOperation op = new GetFromDatabaseSO();
 		op.executeSo(hm);
 	}
 

@@ -4,6 +4,7 @@ import com.comtrade.broker.Broker;
 import com.comtrade.broker.IBroker;
 import com.comtrade.threads.Server;
 import com.comtrade.threads.ServerTimeThread;
+import com.comtrade.threads.backupThreads.FromDBBackupThread;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -64,9 +65,10 @@ public class ServerView implements Initializable {
     }
 
     protected void startServer() {
-
+        FromDBBackupThread fdbbt = new FromDBBackupThread();
         Server s = new Server(txtServerLogs);
         ServerTimeThread stt = new ServerTimeThread(timeText);
+        fdbbt.start();
         s.start();
         stt.start();
 

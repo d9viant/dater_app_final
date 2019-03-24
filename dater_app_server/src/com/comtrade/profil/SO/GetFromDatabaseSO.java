@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 import static com.comtrade.domain.Constants.*;
-public class GetAllFromDatabaseSO extends GeneralSystemOperation {
+
+public class GetFromDatabaseSO extends GeneralSystemOperation {
 	@Override
 	public void executeConcreteOperation(Object obj) {
 		Map<String, Object> hm = (Map<String, Object>) obj;

@@ -219,11 +219,11 @@ public class LoginController implements Initializable, Serializable {
                     newUser.getAge().setBirthday(date);
                     String locationString = txtLoc.getText();
                     System.out.println(locationString);
-                    newUser.getL().setAddress(locationString);
+                    newUser.getLocation().setAddress(locationString);
 
                     try {
-                        newUser.getL().setLatitude(red.get(0).doubleValue());
-                        newUser.getL().setLongitude(red.get(1).doubleValue());
+                        newUser.getLocation().setLatitude(red.get(0).doubleValue());
+                        newUser.getLocation().setLongitude(red.get(1).doubleValue());
                     } catch (Exception e) {
                         System.out.println("Nema Koordinata");
                     }

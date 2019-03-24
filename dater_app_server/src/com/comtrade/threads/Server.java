@@ -18,6 +18,7 @@ public class Server extends Thread {
 
 	public void run() {
 		try {
+
 			startServer();
 			System.out.println("yes");
 		} catch (IOException e) {
