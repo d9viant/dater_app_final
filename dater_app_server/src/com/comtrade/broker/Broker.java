@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Broker implements IBroker {
 	private static Broker instance;
-	private static Object mutex = new Object();
+	private static final Object mutex = new Object();
 
 	public Broker() {
 

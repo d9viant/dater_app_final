@@ -94,7 +94,26 @@ public class MainController implements Initializable, Serializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initialSetup();
+        controlButtons();
 
+    }
+
+
+    private void initialSetup() {
+        setPaneOut(settingsPane, placeHolderPane);
+        setPaneOut(opacityPane, placeHolderPane);
+        setPaneOut(drawerPane, placeHolderPane);
+        setPaneOut(profilePane, placeHolderPane);
+        setPaneOut(mapPane, placeHolderPane);
+        imgStalkerGlobe.setVisible(false);
+        btnStalkerGlobe.setVisible(false);
+        menCheckbox.setToggleGroup(tGroup);
+        womanCheckbox.setToggleGroup(tGroup);
+        womanCheckbox.setSelectedColor(Color.web("ff6969"));
+        menCheckbox.setSelectedColor(Color.web("ff6969"));
+    }
+
+    private void controlButtons() {
         settingsBackToMain.setOnAction(Event -> setPaneOut(settingsPane, placeHolderPane));
 
         opacityPane.setOnMouseClicked(Event -> setPaneOut(opacityPane, drawerPane));
@@ -130,20 +149,6 @@ public class MainController implements Initializable, Serializable {
         });
     }
 
-    private void initialSetup() {
-        setPaneOut(settingsPane, placeHolderPane);
-        setPaneOut(opacityPane, placeHolderPane);
-        setPaneOut(drawerPane, placeHolderPane);
-        setPaneOut(profilePane, placeHolderPane);
-        setPaneOut(mapPane, placeHolderPane);
-        imgStalkerGlobe.setVisible(false);
-        btnStalkerGlobe.setVisible(false);
-        menCheckbox.setToggleGroup(tGroup);
-        womanCheckbox.setToggleGroup(tGroup);
-        womanCheckbox.setSelectedColor(Color.web("ff6969"));
-        menCheckbox.setSelectedColor(Color.web("ff6969"));
-    }
-
     //Sets defined panels in the main scene
     private void setPaneIn(AnchorPane pane) {
         if (pane.getId().equals(drawerPane.getId())) {
@@ -174,6 +179,8 @@ public class MainController implements Initializable, Serializable {
         this.mapView.close();
     }
 
+
+    //Centers MapView
     private void MapView() {
         this.mapView.setBingMapsApiKey("AukPAgV0d7E9fohYeGVInZWVcxbXJbBrXRBDSD9iV7kBUF2VsxPtpO6BH9tv-PMe");
         this.mapView.setMapType(MapType.BINGMAPS_ROAD);

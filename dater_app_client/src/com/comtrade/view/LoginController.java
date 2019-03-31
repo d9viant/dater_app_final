@@ -253,10 +253,11 @@ public class LoginController implements Initializable, Serializable {
 
                             // Check if Username is in DB
                             Map<String, GeneralDomain> checkMap = new HashMap<>();
-
+                            System.out.println(newUser.getFirstName());
                             tf.setClient_object(newUser);
 	                        tf.setOperation(CHECK_USER);
 	                        Controller.getInstance().sendToServer(tf);
+
                             if (checkUser) {
                                 Alert bye = new Alert(AlertType.WARNING);
                                 bye.setHeaderText(null);
@@ -274,6 +275,8 @@ public class LoginController implements Initializable, Serializable {
                                     e.printStackTrace();
                                 }
                                 tf.setClient_object(newUser);
+                                System.out.println(newUser.getFirstName());
+
 	                            tf.setOperation(SAVE_USER);
 	                            Controller.getInstance().sendToServer(tf);
                             }
@@ -287,7 +290,7 @@ public class LoginController implements Initializable, Serializable {
     private void loadVideo() {
         regPane.setVisible(false);
 
-        String vurl = "E:\\dater_app\\dater_app_client\\src\\assets\\love.mp4";
+        String vurl = "/home/strahinja/IdeaProjects/dater_app_final/dater_app_client/src/assets/love.mp4";
         Media media = new Media(new File(vurl).toURI().toString());
         MediaPlayer player = new MediaPlayer(media);
         logMedia.setMediaPlayer(player);

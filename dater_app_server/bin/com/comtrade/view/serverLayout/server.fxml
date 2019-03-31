@@ -1,27 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-
-<AnchorPane fx:id="pane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.comtrade.view.serverView">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="pane" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="com.comtrade.view.ServerView">
    <children>
       <Button fx:id="btnStartServer" layoutX="37.0" layoutY="58.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" text="Start Server" />
       <Button fx:id="btnManualBackup" layoutX="38.0" layoutY="237.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" text="Manual Backup" />
       <Button fx:id="btnBackupFrequency" layoutX="37.0" layoutY="152.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" text="Set Backup Frequency" />
-      <TextField fx:id="tfIpAddress" layoutX="36.0" layoutY="346.0" style="-fx-text-fill: black;" />
-      <TextField fx:id="tfIpPort" layoutX="206.0" layoutY="346.0" style="-fx-text-fill: black;" />
-      <Button fx:id="btnSetAddress" layoutX="378.0" layoutY="346.0" mnemonicParsing="false" text="Apply" />
-      <Label fx:id="lblCurrentIP" layoutX="38.0" layoutY="312.0" prefHeight="25.0" prefWidth="146.0" />
-      <Label fx:id="lblCurrentPort" layoutX="208.0" layoutY="312.0" prefHeight="25.0" prefWidth="146.0" />
       <ProgressBar layoutX="37.0" layoutY="269.0" prefHeight="18.0" prefWidth="146.0" progress="0.0" />
       <ComboBox fx:id="backupComboBox" layoutX="36.0" layoutY="188.0" prefWidth="150.0" promptText=" " />
       <TextArea fx:id="txtServerLogs" editable="false" layoutX="208.0" layoutY="58.0" prefHeight="69.0" prefWidth="349.0" style="-fx-text-fill: black; -fx-background-color: transparent;" />
-      <TextArea fx:id="txtBackupLogs" editable="false" layoutX="208.0" layoutY="154.0" prefHeight="69.0" prefWidth="349.0" style="-fx-text-fill: black; -fx-background-color: transparent;" />
+      <TextArea fx:id="txtBackupLogs" editable="false" layoutX="208.0" layoutY="154.0" prefHeight="132.0" prefWidth="349.0" style="-fx-text-fill: black; -fx-background-color: transparent;" />
       <TextField fx:id="timeText" editable="false" layoutX="37.0" layoutY="24.0" style="-fx-text-fill: black; -fx-background-color: transparent;" />
    </children>
 </AnchorPane>

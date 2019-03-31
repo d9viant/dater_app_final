@@ -5,6 +5,7 @@ import com.comtrade.domain.User;
 import com.comtrade.profil.SO.GetFromDatabaseSO;
 import com.comtrade.profil.SO.SaveIntoDatabaseSO;
 import com.comtrade.sysops.GeneralSystemOperation;
+import com.comtrade.threads.ClientThread;
 import com.comtrade.threads.backupThreads.FromDBBackupThread;
 import com.comtrade.transfer.TransferClass;
 
@@ -15,8 +16,9 @@ import static com.comtrade.domain.Constants.USER;
 import static com.comtrade.domain.Constants.USERNAME_TAKEN;
 
 
+
 public class ControllerBLogic {
-	private static Object mutex = new Object();
+    private static final Object mutex = new Object();
 	private static ControllerBLogic instance;
 	private ControllerBLogic() {
 
@@ -54,8 +56,8 @@ public class ControllerBLogic {
 			User user = (User) u;
 			if (user.getUsername().equalsIgnoreCase(check.getUsername())) {
 				tf.setOperation(USERNAME_TAKEN);
-
-
+                ClientThread ct = new ClientThread();
+                ct.sendToClient(tf);
 			}
 		}
 

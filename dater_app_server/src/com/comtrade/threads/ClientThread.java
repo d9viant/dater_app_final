@@ -7,6 +7,7 @@ import com.comtrade.transfer.TransferClass;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.HashMap;
 
@@ -55,6 +56,15 @@ public class ClientThread extends Thread {
                 break;
             case SUPER:
                 break;
+        }
+    }
+
+    public void sendToClient(TransferClass tc2) {
+        try {
+            ObjectOutputStream outStream = new ObjectOutputStream(socket.getOutputStream());
+            outStream.writeObject(tc2);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

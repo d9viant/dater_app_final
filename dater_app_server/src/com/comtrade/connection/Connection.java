@@ -5,17 +5,22 @@ import java.sql.SQLException;
 
 public class Connection {
     private static Connection instance;
-
-
-
+    private static final Object mutex = new Object();
     private java.sql.Connection conn;
     private Connection(){
 
     }
 
     public static Connection getInstance(){
-        if(instance == null){
-            instance = new Connection();
+        Connection result = instance;
+        if (result == null) {
+            synchronized (mutex) {
+                result = instance;
+                if (result == null) {
+                    result = instance = new Connection();
+                }
+            }
+
         }
         return instance;
     }

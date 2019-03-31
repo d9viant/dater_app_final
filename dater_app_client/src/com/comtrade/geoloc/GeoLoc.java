@@ -24,7 +24,8 @@ public class GeoLoc {
 
 
     public GeoLoc() throws IOException {
-        database = new File("E:\\dater_app\\dater_app_client\\src\\assets\\GeoLite2-City.mmdb");
+        database = new File("/home/strahinja/IdeaProjects/dater_app_final/dater_app_client/src/assets/GeoLite2-City.mmdb");
+
         dbReader = new DatabaseReader.Builder(database).build();
     }
 
@@ -45,8 +46,8 @@ public class GeoLoc {
                 String longitude = response.getLocation().getLongitude().toString();
                 double lat = Double.parseDouble(latitude);
                 double longi = Double.parseDouble(longitude);
-                red.add(lat);
-                red.add(longi);
+                red.add(0, lat);
+                red.add(1, longi);
 
             } catch (GeoIp2Exception e) {
                 // TODO Auto-generated catch block
@@ -66,7 +67,7 @@ public class GeoLoc {
     public String[] ReverseGeoLoc() {
         String[] redStrings;
         // address = (test.getAdress(red.get(0), red.get(1).doubleValue()));
-        address = (test.getAdress(red.get(0), red.get(1).doubleValue()));
+        address = (test.getAdress(red.get(0), red.get(1)));
         addressString = address.getDisplayName();
         redStrings = addressString.split("\\, ");
 

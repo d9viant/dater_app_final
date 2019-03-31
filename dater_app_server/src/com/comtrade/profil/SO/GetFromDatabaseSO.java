@@ -10,6 +10,10 @@ import java.util.Map;
 
 import static com.comtrade.domain.Constants.*;
 
+
+// Receives a hash map with a particular key -USER, AGE, GENDER, LOCATION, MATCHES, MESSAGE, PICTURES, RATING-
+// And pulls all the data from the DB while putting in in a ArrayList behind the key.
+
 public class GetFromDatabaseSO extends GeneralSystemOperation {
 	@Override
 	public void executeConcreteOperation(Object obj) {

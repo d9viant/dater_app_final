@@ -26,10 +26,14 @@ public class FromDBBackupThread extends Thread {
 		allData.put(PICTURES, null);
 		allData.put(RATING, null);
 		ControllerBLogic.getInstance().getAllFromDB(allData);
+
 	}
 
-	public synchronized HashMap<String, List<GeneralDomain>> getAllData() {
-		return allData;
+	public HashMap<String, List<GeneralDomain>> getAllData() {
+		synchronized (this) {
+			return allData;
+		}
+
 	}
 
 }
