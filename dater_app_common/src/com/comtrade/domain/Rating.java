@@ -2,6 +2,8 @@ package com.comtrade.domain;
 
 import java.io.Serializable;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 public class Rating implements GeneralDomain, Serializable
@@ -125,4 +127,9 @@ public class Rating implements GeneralDomain, Serializable
 	public String delete(GeneralDomain gd) {
 		return null;
 	}
+
+    @Override
+    public HashMap<String, GeneralDomain> fixInnerSelect(ResultSet rs) throws SQLException {
+        return null;
+    }
 }

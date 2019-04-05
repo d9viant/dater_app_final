@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class User implements GeneralDomain, Serializable {
@@ -194,7 +195,10 @@ public class User implements GeneralDomain, Serializable {
         return "WHERE id =" + u.getId();
     }
 
-
+    @Override
+    public HashMap<String, GeneralDomain> fixInnerSelect(ResultSet rs) throws SQLException {
+        return null;
+    }
 
 
 }

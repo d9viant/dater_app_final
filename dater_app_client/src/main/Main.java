@@ -9,12 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
-
-
-
 public class Main extends Application {
-
     private Stage stage;	
 	public Stage getStage() {
 		return stage;
@@ -23,14 +18,31 @@ public class Main extends Application {
 	@Override
     public void start(Stage primaryStage) throws Exception{
       this.stage=primaryStage;
+        startTask();
       mainWindow();
-      startListeningFromServer();
     }
 
-    private void startListeningFromServer() {
-	    ProcessingFromServer pfs = new ProcessingFromServer();
+    public void startTask() {
+        // Create a Runnable
+        Runnable task = new Runnable() {
+            public void run() {
+                runTask();
+            }
+        };
+
+        // Run the task in a background thread
+        Thread backgroundThread = new Thread(task);
+        // Terminate the running thread if the application exits
+        backgroundThread.setDaemon(true);
+        // Start the thread
+        backgroundThread.start();
+    }
+
+    public void runTask() {
+        ProcessingFromServer pfs = new ProcessingFromServer();
         pfs.run();
     }
+
 
     private void mainWindow(){
 

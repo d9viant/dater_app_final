@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.HashMap;
 import java.util.List;
 
 public class Age implements GeneralDomain, Serializable {
@@ -82,6 +83,11 @@ public class Age implements GeneralDomain, Serializable {
 
     @Override
     public String delete(GeneralDomain gd) {
+        return null;
+    }
+
+    @Override
+    public HashMap<String, GeneralDomain> fixInnerSelect(ResultSet rs) throws SQLException {
         return null;
     }
 }

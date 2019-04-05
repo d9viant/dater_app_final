@@ -6,6 +6,7 @@ import com.comtrade.domain.GeneralDomain;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.List;
 
 public class Broker implements IBroker {
@@ -69,6 +70,23 @@ public class Broker implements IBroker {
 
 		return list;
 	}
+
+    @Override
+    public HashMap<String, GeneralDomain> getInnerJoinUser(GeneralDomain gd) {
+        String upit = "select * from " + gd.returnTableName();
+        HashMap<String, GeneralDomain> userHash = new HashMap<>();
+        try {
+            Statement st = Connection.getInstance().getConn().createStatement();
+            ResultSet rs = st.executeQuery(upit);
+            userHash = gd.fixInnerSelect(rs);
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return userHash;
+    }
 
 
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Matches implements Serializable, GeneralDomain{
@@ -93,6 +94,11 @@ public class Matches implements Serializable, GeneralDomain{
             return " WHERE userOneId="+m.getUserTwoId()+" AND userTwoId="+m.getUserOneId()+"";
         }
 
+    }
+
+    @Override
+    public HashMap<String, GeneralDomain> fixInnerSelect(ResultSet rs) throws SQLException {
+        return null;
     }
 
 

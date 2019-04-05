@@ -1,14 +1,13 @@
 package com.comtrade.threads;
 
-import javafx.scene.control.TextField;
-
+import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ServerTimeThread extends Thread{
-    private TextField timeText;
+    private JTextArea timeText;
 
-    public ServerTimeThread(TextField timeText) {
+    public ServerTimeThread(JTextArea timeText) {
         this.timeText=timeText;
     }
 

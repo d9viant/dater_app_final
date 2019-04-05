@@ -25,7 +25,6 @@ public class GeoLoc {
 
     public GeoLoc() throws IOException {
         database = new File("/home/strahinja/IdeaProjects/dater_app_final/dater_app_client/src/assets/GeoLite2-City.mmdb");
-
         dbReader = new DatabaseReader.Builder(database).build();
     }
 
@@ -70,11 +69,8 @@ public class GeoLoc {
         address = (test.getAdress(red.get(0), red.get(1)));
         addressString = address.getDisplayName();
         redStrings = addressString.split("\\, ");
-
         return redStrings;
-
     }
-
     public void setRed(ArrayList<Double> red) {
         this.red = red;
     }

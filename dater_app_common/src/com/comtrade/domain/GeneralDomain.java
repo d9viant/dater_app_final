@@ -2,6 +2,7 @@ package com.comtrade.domain;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 public interface GeneralDomain {
@@ -14,4 +15,6 @@ public interface GeneralDomain {
     String returnInsertFormat();
 
     String delete(GeneralDomain gd);
+
+    HashMap<String, GeneralDomain> fixInnerSelect(ResultSet rs) throws SQLException;
 }

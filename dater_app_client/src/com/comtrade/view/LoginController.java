@@ -4,6 +4,7 @@ import com.comtrade.controllerUI.Controller;
 import com.comtrade.domain.GeneralDomain;
 import com.comtrade.domain.User;
 import com.comtrade.geoloc.GeoLoc;
+import com.comtrade.thread.ProcessingFromServer;
 import com.comtrade.transfer.TransferClass;
 import com.jfoenix.controls.*;
 import com.sothawo.mapjfx.*;
@@ -39,8 +40,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import static com.comtrade.domain.Constants.CHECK_USER;
-import static com.comtrade.domain.Constants.SAVE_USER;
+import static com.comtrade.domain.Constants.*;
 //import net.coobird.thumbnailator.Thumbnails;
 //import net.coobird.thumbnailator.name.Rename;
 
@@ -112,6 +112,7 @@ public class LoginController implements Initializable, Serializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+//        startListeningFromServer();
         radioM.setToggleGroup(tGroup);
         radioM.setSelected(true);
         radioF.setToggleGroup(tGroup);
@@ -157,6 +158,11 @@ public class LoginController implements Initializable, Serializable {
             regPane.setVisible(false);
             loginpane.setVisible(true);
         });
+    }
+
+    private void startListeningFromServer() {
+        ProcessingFromServer pfs = new ProcessingFromServer();
+        pfs.run();
     }
 
     private void startGeoLoc() throws IOException {
@@ -309,6 +315,9 @@ public class LoginController implements Initializable, Serializable {
 //	}
 
     private void uploadPhoto(ActionEvent event) {
+        TransferClass tf = new TransferClass();
+        tf.setOperation(LIKE);
+        Controller.getInstance().sendToServer(tf);
         FileChooser.ExtensionFilter extFilter =
                 new FileChooser.ExtensionFilter("PICTURE files (*.png, *.jpg, *.jpeg)", "*.png", "*.jpg", "*.jpeg");
         fileChooser.getExtensionFilters().add(extFilter);
