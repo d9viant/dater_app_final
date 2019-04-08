@@ -14,6 +14,7 @@ public class Rating implements GeneralDomain, Serializable
 	private static boolean newStatus=true;
 	private static boolean superUser=false;
 	private static int K = 50;
+	private int readyForSql = 0;
 
 
 
@@ -132,4 +133,12 @@ public class Rating implements GeneralDomain, Serializable
     public HashMap<String, GeneralDomain> fixInnerSelect(ResultSet rs) throws SQLException {
         return null;
     }
+
+	public int getReadyForSql() {
+		return readyForSql;
+	}
+
+	public void setReadyForSql(int readyForSql) {
+		this.readyForSql = readyForSql;
+	}
 }

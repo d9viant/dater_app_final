@@ -4,11 +4,12 @@ import com.comtrade.communication.Comm;
 import com.comtrade.transfer.TransferClass;
 import com.comtrade.view.LoginController;
 
+import static com.comtrade.domain.Constants.USERNAME_OK;
 import static com.comtrade.domain.Constants.USERNAME_TAKEN;
 
 public class Controller {
     private static Controller instance;
-
+    private LoginController log = new LoginController();
     private Controller() {
 
     }
@@ -29,9 +30,9 @@ public class Controller {
     public void getFromServer(TransferClass tc) {
         switch (tc.getOperation()) {
 	        case USERNAME_TAKEN:
-		        LoginController log = new LoginController();
 		        log.setCheckUser(java.lang.Boolean.TRUE);
-
+            case USERNAME_OK:
+                log.setCheckUser(Boolean.FALSE);
         }
 
 

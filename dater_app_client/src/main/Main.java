@@ -19,7 +19,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
       this.stage=primaryStage;
         startTask();
-      mainWindow();
+        mainWindow();
     }
 
     public void startTask() {
@@ -29,7 +29,6 @@ public class Main extends Application {
                 runTask();
             }
         };
-
         // Run the task in a background thread
         Thread backgroundThread = new Thread(task);
         // Terminate the running thread if the application exits

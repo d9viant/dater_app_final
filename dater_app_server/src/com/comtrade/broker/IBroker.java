@@ -12,4 +12,6 @@ public interface IBroker {
 
     HashMap<String, GeneralDomain> getInnerJoinUser(GeneralDomain gd);
 
+    HashMap<String, GeneralDomain> getInnerJoinNewUser(GeneralDomain gd);
+
 }

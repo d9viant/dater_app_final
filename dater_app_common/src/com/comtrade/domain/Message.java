@@ -18,6 +18,7 @@ public class Message implements GeneralDomain, Serializable {
     private String receivedDate;
     private String receivedTime;
     private String messageBody;
+    private int readyForSql = 0;
 
     public Message(){
 
@@ -161,5 +162,13 @@ public class Message implements GeneralDomain, Serializable {
     @Override
     public HashMap<String, GeneralDomain> fixInnerSelect(ResultSet rs) throws SQLException {
         return null;
+    }
+
+    public int getReadyForSql() {
+        return readyForSql;
+    }
+
+    public void setReadyForSql(int readyForSql) {
+        this.readyForSql = readyForSql;
     }
 }

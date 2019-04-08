@@ -296,7 +296,7 @@ public class LoginController implements Initializable, Serializable {
     private void loadVideo() {
         regPane.setVisible(false);
 
-        String vurl = "/home/strahinja/IdeaProjects/dater_app_final/dater_app_client/src/assets/love.mp4";
+        String vurl = "C:\\Users\\Strahinja\\IdeaProjects\\dater_app_final\\dater_app_client\\src\\assets\\love.mp4";
         Media media = new Media(new File(vurl).toURI().toString());
         MediaPlayer player = new MediaPlayer(media);
         logMedia.setMediaPlayer(player);

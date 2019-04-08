@@ -73,6 +73,7 @@ public class Broker implements IBroker {
 
     @Override
     public HashMap<String, GeneralDomain> getInnerJoinUser(GeneralDomain gd) {
+        String hello = "";
         String upit = "select * from " + gd.returnTableName();
         HashMap<String, GeneralDomain> userHash = new HashMap<>();
         try {
@@ -86,6 +87,11 @@ public class Broker implements IBroker {
         }
 
         return userHash;
+    }
+
+    @Override
+    public HashMap<String, GeneralDomain> getInnerJoinNewUser(GeneralDomain gd) {
+        return null;
     }
 
 

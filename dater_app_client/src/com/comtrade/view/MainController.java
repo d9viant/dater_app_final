@@ -112,7 +112,6 @@ public class MainController implements Initializable, Serializable {
         womanCheckbox.setSelectedColor(Color.web("ff6969"));
         menCheckbox.setSelectedColor(Color.web("ff6969"));
     }
-
     private void controlButtons() {
         settingsBackToMain.setOnAction(Event -> setPaneOut(settingsPane, placeHolderPane));
 
@@ -149,23 +148,6 @@ public class MainController implements Initializable, Serializable {
         });
     }
 
-    //Sets defined panels in the main scene
-    private void setPaneIn(AnchorPane pane) {
-        if (pane.getId().equals(drawerPane.getId())) {
-            opacityPane.setVisible(true);
-            FadeTransition opFade = new FadeTransition(Duration.seconds(0.5), opacityPane);
-            opFade.setFromValue(0);
-            opFade.setToValue(0.15);
-            opFade.play();
-        }
-        FadeTransition fade = new FadeTransition(Duration.seconds(0.5), pane);
-        fade.setFromValue(0);
-        fade.setToValue(1);
-        fade.play();
-        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(0.5), pane);
-        translateTransition.setByX(322);
-        translateTransition.play();
-    }
 
     private void setProfilePic() {
         String profile = "file:src\\ProfilePics\\" + currentUser.getUserPhoto();
@@ -187,6 +169,28 @@ public class MainController implements Initializable, Serializable {
         this.mapView.setCenter(belgrade);
         this.mapView.initialize();
     }
+
+    //Sets defined panels in the main scene
+    private void setPaneIn(AnchorPane pane) {
+        if (pane.getId().equals(drawerPane.getId())) {
+            opacityPane.setVisible(true);
+            FadeTransition opFade = new FadeTransition(Duration.seconds(0.5), opacityPane);
+            opFade.setFromValue(0);
+            opFade.setToValue(0.15);
+            opFade.play();
+        }
+        FadeTransition fade = new FadeTransition(Duration.seconds(0.5), pane);
+        fade.setFromValue(0);
+        fade.setToValue(1);
+        fade.play();
+        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(0.5), pane);
+        translateTransition.setByX(322);
+        translateTransition.play();
+    }
+
+
+
+
 
     // Sets defined panels outside of the scene
     private void setPaneOut(AnchorPane pane, AnchorPane pane2) {

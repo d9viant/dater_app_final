@@ -12,6 +12,7 @@ public class Age implements GeneralDomain, Serializable {
     private int idUser;
     private static LocalDate birthday;
     private static int age;
+    private int readyForSql = 0;
 
     public Age(){
         calculateAge();
@@ -89,5 +90,13 @@ public class Age implements GeneralDomain, Serializable {
     @Override
     public HashMap<String, GeneralDomain> fixInnerSelect(ResultSet rs) throws SQLException {
         return null;
+    }
+
+    public int getReadyForSql() {
+        return readyForSql;
+    }
+
+    public void setReadyForSql(int readyForSql) {
+        this.readyForSql = readyForSql;
     }
 }

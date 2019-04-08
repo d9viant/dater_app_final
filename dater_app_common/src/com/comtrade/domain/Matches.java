@@ -12,6 +12,7 @@ public class Matches implements Serializable, GeneralDomain{
     private int userTwoId;
     private int requestUser;
     private boolean matchStatus;
+    private int readyForSql = 0;
 
     public Matches(){
 
@@ -102,4 +103,11 @@ public class Matches implements Serializable, GeneralDomain{
     }
 
 
+    public int getReadyForSql() {
+        return readyForSql;
+    }
+
+    public void setReadyForSql(int readyForSql) {
+        this.readyForSql = readyForSql;
+    }
 }

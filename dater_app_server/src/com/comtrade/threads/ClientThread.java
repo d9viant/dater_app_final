@@ -1,8 +1,8 @@
 package com.comtrade.threads;
 
 import com.comtrade.controllerBL.ControllerBLogic;
-import com.comtrade.domain.GeneralDomain;
 import com.comtrade.domain.User;
+import com.comtrade.threads.backupThreads.FromDBBackupThread;
 import com.comtrade.transfer.TransferClass;
 
 import java.io.IOException;
@@ -15,11 +15,12 @@ import static com.comtrade.domain.Constants.*;
 
 public class ClientThread extends Thread {
     private Socket socket;
-
+    private FromDBBackupThread backupThread = new FromDBBackupThread();
     public void setSocket(Socket socket) {
         this.socket = socket;
     }
     public void run() {
+
         while (true) {
             try {
                 ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
@@ -35,23 +36,31 @@ public class ClientThread extends Thread {
         switch (tf.getOperation()) {
             case SAVE_USER:
                 User u = (User) tf.getClient_object();
-                HashMap<String, GeneralDomain> userMap = new HashMap<>();
-                userMap.put("user", u);
-                userMap.put("age", u.getAge());
-                userMap.put("gender", u.getGender());
-                userMap.put("location", u.getLocation());
-                userMap.put("ratings", u.getRating());
-                ControllerBLogic.getInstance().saveIntoDB(userMap);
+//                HashMap<String, GeneralDomain> userMap = new HashMap<>();
+//                userMap.put("user", u);
+//                userMap.put("age", u.getAge());
+//                userMap.put("gender", u.getGender());
+//                userMap.put("location", u.getLocation());
+//                userMap.put("ratings", u.getRating());
+//                ControllerBLogic.getInstance().saveIntoDB(userMap);
+                u.setReadyForSql(1);
+                backupThread.getGetAllUserList().put(u.getUsername(), u);
                 break;
             case RETURN_PROFILE:
                 break;
             case CHECK_USER:
                 User check = (User) tf.getClient_object();
+                HashMap hashMap = backupThread.getGetAllUserList();
+                if (hashMap.containsKey(check.getUsername())) {
+                    TransferClass back = new TransferClass();
+                    back.setOperation(USERNAME_TAKEN);
+                    sendToClient(back);
+                }
                 ControllerBLogic.getInstance().checkProfile(check);
 
                 break;
             case LIKE:
-
+                System.out.println("KURAC");
                 break;
             case DISLIKE:
                 break;

@@ -20,7 +20,7 @@ public class User implements GeneralDomain, Serializable {
     private Age age = null;
     private Rating rating = null;
     private Gender gender = null;
-    private static int readyForSql = 0;
+    private int readyForSql = 0;
     private static int userArrayIndex;
 
 
@@ -42,6 +42,14 @@ public class User implements GeneralDomain, Serializable {
         this.email=email;
         this.bio=bio;
         this.userPhoto=userPhoto;
+    }
+
+    public int getReadyForSql() {
+        return readyForSql;
+    }
+
+    public void setReadyForSql(int readyForSql) {
+        this.readyForSql = readyForSql;
     }
 
     public String getUsername() {
@@ -197,7 +205,15 @@ public class User implements GeneralDomain, Serializable {
 
     @Override
     public HashMap<String, GeneralDomain> fixInnerSelect(ResultSet rs) throws SQLException {
-        return null;
+        HashMap<String, GeneralDomain> list = new HashMap<>();
+        try {
+            while (rs.next()) {
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
 

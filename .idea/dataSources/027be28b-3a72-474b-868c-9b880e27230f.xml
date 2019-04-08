@@ -4,7 +4,7 @@
     <root id="1">
       <ServerVersion>10.1.38</ServerVersion>
       <DefaultEngine>InnoDB</DefaultEngine>
-      <DefaultCasing>exact</DefaultCasing>
+      <DefaultCasing>lower/lower</DefaultCasing>
     </root>
     <schema id="2" parent="1" name="dater_app">
       <Current>1</Current>
@@ -1024,7 +1024,7 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="259" parent="243" name="nessaegStatus">
+    <column id="259" parent="243" name="messaegeStatus">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>

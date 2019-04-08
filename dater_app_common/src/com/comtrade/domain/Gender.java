@@ -10,6 +10,7 @@ public class Gender implements GeneralDomain, Serializable {
     private int userId;
     private char gender;
     private char preferredGender;
+    private int readyForSql = 0;
 
 
 
@@ -66,5 +67,13 @@ public class Gender implements GeneralDomain, Serializable {
     @Override
     public HashMap<String, GeneralDomain> fixInnerSelect(ResultSet rs) throws SQLException {
         return null;
+    }
+
+    public int getReadyForSql() {
+        return readyForSql;
+    }
+
+    public void setReadyForSql(int readyForSql) {
+        this.readyForSql = readyForSql;
     }
 }

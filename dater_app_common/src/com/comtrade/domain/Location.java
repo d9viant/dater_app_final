@@ -12,6 +12,7 @@ public class Location implements GeneralDomain, Serializable {
     private double latitude;
     private String address;
     private static int prefferedDistance = 50;
+    private int readyForSql = 0;
 
 
     public Location(){
@@ -74,5 +75,13 @@ public class Location implements GeneralDomain, Serializable {
     @Override
     public HashMap<String, GeneralDomain> fixInnerSelect(ResultSet rs) throws SQLException {
         return null;
+    }
+
+    public int getReadyForSql() {
+        return readyForSql;
+    }
+
+    public void setReadyForSql(int readyForSql) {
+        this.readyForSql = readyForSql;
     }
 }
