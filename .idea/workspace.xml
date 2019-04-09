@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2b3dfac1-7723-470a-b738-eb8519dacb07" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/GeneralDomain.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/GeneralDomain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/broker/Broker.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/broker/Broker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/GetInnerJoinFromUserDBSO.java" beforeDir="false" afterPath="$PROJECT_DIR$/dater_app_server/src/com/comtrade/profil/SO/GetInnerJoinFromUserDBSO.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.metadata/.plugins/org.eclipse.jdt.core/.org.eclipse.jdt.core.external.folders/bin/" />
     <ignored path="$PROJECT_DIR$/dater_app_client/bin/" />
@@ -192,14 +189,14 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/User.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="190" column="257" selection-start-line="190" selection-start-column="257" selection-end-line="190" selection-end-column="257" />
+                <state relative-caret-position="386">
+                  <caret line="197" column="42" lean-forward="true" selection-start-line="197" selection-start-column="42" selection-end-line="197" selection-end-column="42" />
                   <folding>
                     <element signature="e#1345#1346#0" expanded="true" />
                     <element signature="e#1391#1392#0" expanded="true" />
                     <element signature="e#5161#5162#0" expanded="true" />
                     <element signature="e#5189#5190#0" expanded="true" />
-                    <marker date="1554811652674" expanded="true" signature="3164:4165" ph="..." />
+                    <marker date="1554813125437" expanded="true" signature="3164:4165" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -699,7 +696,7 @@
       <workItem from="1554496838142" duration="663000" />
       <workItem from="1554719751781" duration="1947000" />
       <workItem from="1554730448837" duration="4697000" />
-      <workItem from="1554742148824" duration="29278000" />
+      <workItem from="1554742148824" duration="29932000" />
     </task>
     <task id="LOCAL-00001" summary="Second Push">
       <created>1552910803993</created>
@@ -743,14 +740,22 @@
       <option name="project" value="LOCAL" />
       <updated>1554805958151</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Inner Join &amp; fix select in progress">
+      <created>1554811671786</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1554811671786</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="209536000" />
+    <option name="totallyTimeSpent" value="210190000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="22" width="2576" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="DB Browser" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.08744038" />
@@ -816,7 +821,8 @@
     <MESSAGE value="Second Push" />
     <MESSAGE value="Push" />
     <MESSAGE value="Changed everything" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed everything" />
+    <MESSAGE value="Inner Join &amp; fix select in progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="Inner Join &amp; fix select in progress" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1206,14 +1212,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dater_app_common/src/com/comtrade/domain/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="190" column="257" selection-start-line="190" selection-start-column="257" selection-end-line="190" selection-end-column="257" />
+        <state relative-caret-position="386">
+          <caret line="197" column="42" lean-forward="true" selection-start-line="197" selection-start-column="42" selection-end-line="197" selection-end-column="42" />
           <folding>
             <element signature="e#1345#1346#0" expanded="true" />
             <element signature="e#1391#1392#0" expanded="true" />
             <element signature="e#5161#5162#0" expanded="true" />
             <element signature="e#5189#5190#0" expanded="true" />
-            <marker date="1554811652674" expanded="true" signature="3164:4165" ph="..." />
+            <marker date="1554813125437" expanded="true" signature="3164:4165" ph="..." />
           </folding>
         </state>
       </provider>
