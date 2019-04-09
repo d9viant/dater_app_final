@@ -188,8 +188,24 @@ public class User implements GeneralDomain, Serializable {
 
     @Override
     public String returnInnerJoin() {
-        return null;
+        return "SELECT user.*, gender.*, location.*, age.*, rating.* FROM user INNER JOIN location ON location.userId = user.id INNER JOIN gender ON gender.userId = user=user.id INNER JOIN age ON age.userId = user.id INNER JOIN rating ON rating.id = user.id";
     }
+//    SELECT
+//    user.*,
+//    gender.*,
+//    location.*,
+//    age.*,
+//    rating.*
+//    FROM user
+//    INNER JOIN location
+//    ON location.userId = user.id
+//    INNER JOIN gender
+//    ON gender.userId = user.id
+//    INNER JOIN age
+//    ON age.userId = user.id
+//    INNER JOIN rating
+//    ON rating.id = user.id
+
 
     @Override
     public String returnTableName() {
@@ -203,9 +219,9 @@ public class User implements GeneralDomain, Serializable {
     }
 
     @Override
-    public String returnInsertFormat() {
-        // TODO Auto-generated method stub
-        return "VALUES ( '"+firstName+"','"+lastName+"','"+username+"','"+pass+"','"+lastName+"','"+email+"','"+bio+"','"+userPhoto+"')";
+    public String returnInsertFormat(GeneralDomain gd) {
+        User u = (User) gd;
+        return "VALUES ( '" + u.firstName + "','" + u.lastName + "','" + u.username + "','" + u.pass + "','" + u.lastName + "','" + u.email + "','" + u.bio + "','" + u.userPhoto + "')";
     }
 
     @Override

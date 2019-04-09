@@ -32,7 +32,7 @@ public class Broker implements IBroker {
 
 
 	public void save(GeneralDomain gd) {
-		String query = "INSERT INTO " + gd.returnTableName() + " " + gd.returnTableRows() + " " + gd.returnInsertFormat();
+		String query = "INSERT INTO " + gd.returnTableName() + " " + gd.returnTableRows() + " " + gd.returnInsertFormat(gd);
 		try {
 			Statement st = Connection.getInstance().getConn().createStatement();
 			st.execute(query);

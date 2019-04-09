@@ -14,7 +14,7 @@ public interface GeneralDomain {
 
     String returnTableRows();
 
-    String returnInsertFormat();
+    String returnInsertFormat(GeneralDomain gd);
 
     String delete(GeneralDomain gd);
 
