@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class FromDBBackupThread extends Thread {
+	/// kontroler cuva djavole i imam nit koja radi upis djavola
 	private HashMap<String, HashMap<String, List<GeneralDomain>>> allMatches = new HashMap<>();
 	private HashMap<String, HashMap<String, List<GeneralDomain>>> allMessages = new HashMap<>();
 	private HashMap<String, HashMap<String, GeneralDomain>> getAllUserList = new HashMap<>();
@@ -24,7 +25,7 @@ public class FromDBBackupThread extends Thread {
 	}
 
 	private void getAllUsers() {
-		ControllerBLogic.getInstance().getAllUsers(getAllUserList);
+		ControllerBLogic.getInstance().getAllUsers();
 	}
 
 	private void getAllMessagesMatches() {

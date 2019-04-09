@@ -15,6 +15,10 @@ public class GetInnerJoinFromUserDBSO extends GeneralSystemOperation {
     public void executeConcreteOperation(Object obj) {
         HashMap<String, HashMap<String, GeneralDomain>> getAllUserList = (HashMap<String, HashMap<String, GeneralDomain>>) obj;
         IBroker ib = new Broker();
+
+
+        HashMap<String, GeneralDomain> hm = ib.getInnerJoinUser(new User());
+
         getAllUserList.put(USER, ib.getInnerJoinUser(new User()));
     }
 }

@@ -12,6 +12,9 @@ import java.util.List;
 public class ControllerBLogic {
     private static final Object mutex = new Object();
 	private static ControllerBLogic instance;
+	HashMap<String, GeneralDomain> getAllUserList = new HashMap<>();
+
+	//// U KONTROLER PRVO IDE KURAC PA ONDA U JEBENI THREAD U USTA GA JEBEM
 	private ControllerBLogic() {
 
 	}
@@ -40,9 +43,9 @@ public class ControllerBLogic {
 		op.executeSo(hm);
 	}
 
-	public void getAllUsers(HashMap<String, HashMap<String, GeneralDomain>> allUsers) {
+	public void getAllUsers() {
 		GeneralSystemOperation op = new GetInnerJoinFromUserDBSO();
-		op.executeSo(allUsers);
+		op.executeSo(getAllUserList);
 
     }
 

@@ -189,7 +189,7 @@ public class User implements GeneralDomain, Serializable {
 
     @Override
     public String returnInnerJoin() {
-        return "SELECT user.*, gender.*, location.*, age.*, rating.* FROM user INNER JOIN location ON location.userId = user.id INNER JOIN gender ON gender.userId = user=user.id INNER JOIN age ON age.userId = user.id INNER JOIN rating ON rating.id = user.id";
+        return "SELECT * FROM user INNER JOIN location ON location.userId = user.id INNER JOIN gender ON gender.userId = user=user.id INNER JOIN age ON age.userId = user.id INNER JOIN rating ON rating.id = user.id";
     }
 
 
@@ -240,7 +240,7 @@ public class User implements GeneralDomain, Serializable {
                 int gender = rs.getInt("gender");
                 int prefferedGender = rs.getInt("preferredGender");
                 Gender gen = new Gender(genderID, gender, prefferedGender);
-                ;
+
                 list.put(u.getUsername(), u);
 
             }
