@@ -3,11 +3,12 @@ package com.comtrade.domain;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class User implements GeneralDomain, Serializable {
+
+
     private int id;
     private String username;
     private String firstName;
@@ -158,8 +159,8 @@ public class User implements GeneralDomain, Serializable {
     }
 
     @Override
-    public List<GeneralDomain> fixSelect(ResultSet rs) {
-        List<GeneralDomain> list = new ArrayList<>();
+    public GeneralDomain fixSelect(ResultSet rs) {
+        User u = new User();
         try {
             while (rs.next()) {
                 int idUser = rs.getInt("id");
@@ -170,14 +171,24 @@ public class User implements GeneralDomain, Serializable {
                 String email = rs.getString("email");
                 String bio = rs.getString("bio");
                 String userPhoto = rs.getString("userPhoto");
-
-                User u = new User(idUser, firstName, lastName, userName, password, email, bio, userPhoto);
-                list.add(u);
+                u.setId(idUser);
+                u.setFirstName(firstName);
+                u.setLastName(lastName);
+                u.setUsername(userName);
+                u.setPass(password);
+                u.setEmail(email);
+                u.setBio(bio);
+                u.setUserPhoto(userPhoto);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return list;
+        return u;
+    }
+
+    @Override
+    public String returnInnerJoin() {
+        return null;
     }
 
     @Override
@@ -216,5 +227,18 @@ public class User implements GeneralDomain, Serializable {
         return list;
     }
 
+    @Override
+    public HashMap<String, List<GeneralDomain>> fixInnerSelectList(ResultSet rs) throws SQLException {
+        return null;
+    }
 
+    @Override
+    public String returnUserName(GeneralDomain gd) {
+        User u = (User) gd;
+        return "WHERE username =" + u.getUsername();
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

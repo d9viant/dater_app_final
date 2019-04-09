@@ -120,24 +120,23 @@ public class Message implements GeneralDomain, Serializable {
     }
 
     @Override
-    public List<GeneralDomain> fixSelect(ResultSet rs) throws SQLException {
-        List<GeneralDomain> list = new ArrayList<>();
-        while(rs.next()) {
-            int idMessage = rs.getInt("idMessage");
-            int userOneId= rs.getInt("userOneId");
-            int userTwoId = rs.getInt("userTwoId");
-            int senderId = rs.getInt("senderId");
-            String messageStatus = rs.getString("messageStatus");
-            String sendDate = rs.getDate("sendDate").toString();
-            String receivedDate = rs.getDate("receivedDate").toString();
-            String sendTime = rs.getTime("sendTime").toString();
-            String receivedTime = rs.getTime("receivedTime").toString();
-            String messageBody = rs.getString("messageBody");
-            Message pm = new Message(idMessage, userOneId, userTwoId, senderId, messageStatus, sendDate, receivedDate, sendTime, receivedTime, messageBody);
-            list.add(pm);
-        }
-        return list;
+    public GeneralDomain fixSelect(ResultSet rs) throws SQLException {
+        return null;
     }
+
+    @Override
+    public String returnInnerJoin() {
+        return "SELECT user.username, chatmessage.* FROM user INNER JOIN chatmessage ON chatmessage.userOne = user.id";
+    }
+
+
+//    SELECT
+//    user.username,
+//    chatmessage.*
+//    FROM user
+//    INNER JOIN chatmessage
+//    ON chatmessage.userOne = user.id
+
 
     @Override
     public String returnTableName() {
@@ -161,6 +160,46 @@ public class Message implements GeneralDomain, Serializable {
 
     @Override
     public HashMap<String, GeneralDomain> fixInnerSelect(ResultSet rs) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public HashMap<String, List<GeneralDomain>> fixInnerSelectList(ResultSet rs) throws SQLException {
+
+        HashMap<String, List<GeneralDomain>> messageHM = new HashMap<>();
+        try {
+            while (rs.next()) {
+                String username = rs.getString("username").toLowerCase();
+                int idMessage = rs.getInt("idMessage");
+                int userOneId = rs.getInt("userOneId");
+                int userTwoId = rs.getInt("userTwoId");
+                int senderId = rs.getInt("senderId");
+                String messageStatus = rs.getString("messageStatus");
+                String sendDate = rs.getDate("sendDate").toString();
+                String receivedDate = rs.getDate("receivedDate").toString();
+                String sendTime = rs.getTime("sendTime").toString();
+                String receivedTime = rs.getTime("receivedTime").toString();
+                String messageBody = rs.getString("messageBody");
+                Message m = new Message(idMessage, userOneId, userTwoId, senderId, messageStatus, sendDate, receivedDate, sendTime, receivedTime, messageBody);
+                if (messageHM.containsKey(username)) {
+                    messageHM.get(username).add(m);
+                } else {
+                    List<GeneralDomain> messageList = new ArrayList<>();
+                    messageHM.put(username, messageList);
+                    messageHM.get(username).add(m);
+                }
+
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return messageHM;
+
+    }
+
+    @Override
+    public String returnUserName(GeneralDomain gd) {
         return null;
     }
 

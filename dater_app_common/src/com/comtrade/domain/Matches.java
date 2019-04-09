@@ -3,7 +3,6 @@ package com.comtrade.domain;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -58,17 +57,22 @@ public class Matches implements Serializable, GeneralDomain{
         this.matchStatus = matchStatus;
     }
     @Override
-    public List<GeneralDomain> fixSelect(ResultSet rs) throws SQLException {
-        List<GeneralDomain> list = new ArrayList<>();
+    public GeneralDomain fixSelect(ResultSet rs) throws SQLException {
+
         while (rs.next()) {
             int userOneId = rs.getInt("userOne");
             int userTwoId = rs.getInt("userTwo");
             int requestUser = rs.getInt("requestUser");
             boolean matchStatus = rs.getBoolean("matchStatus");
             Matches m = new Matches(userOneId, userTwoId, requestUser, matchStatus);
-            list.add(m);
+
         }
-        return list;
+        return null;
+    }
+
+    @Override
+    public String returnInnerJoin() {
+        return null;
     }
 
     @Override
@@ -99,6 +103,16 @@ public class Matches implements Serializable, GeneralDomain{
 
     @Override
     public HashMap<String, GeneralDomain> fixInnerSelect(ResultSet rs) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public HashMap<String, List<GeneralDomain>> fixInnerSelectList(ResultSet rs) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public String returnUserName(GeneralDomain gd) {
         return null;
     }
 

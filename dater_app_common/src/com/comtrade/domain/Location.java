@@ -48,7 +48,12 @@ public class Location implements GeneralDomain, Serializable {
     }
 
     @Override
-    public List<GeneralDomain> fixSelect(ResultSet rs) throws SQLException {
+    public GeneralDomain fixSelect(ResultSet rs) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public String returnInnerJoin() {
         return null;
     }
 
@@ -74,6 +79,16 @@ public class Location implements GeneralDomain, Serializable {
 
     @Override
     public HashMap<String, GeneralDomain> fixInnerSelect(ResultSet rs) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public HashMap<String, List<GeneralDomain>> fixInnerSelectList(ResultSet rs) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public String returnUserName(GeneralDomain gd) {
         return null;
     }
 

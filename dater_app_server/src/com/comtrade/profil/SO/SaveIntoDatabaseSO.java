@@ -29,8 +29,8 @@ public class SaveIntoDatabaseSO extends GeneralSystemOperation {
         } else if (hm.containsKey(MATCHES)) {
             Matches m = (Matches) hm.get(MATCHES);
             ib.save(m);
-        } else if (hm.containsKey(MESSAGE)) {
-            Message msg = (Message) hm.get(MESSAGE);
+        } else if (hm.containsKey(MESSAGES)) {
+            Message msg = (Message) hm.get(MESSAGES);
             ib.save(msg);
         } else if (hm.containsKey(PICTURES)) {
             Pictures p = (Pictures) hm.get(PICTURES);

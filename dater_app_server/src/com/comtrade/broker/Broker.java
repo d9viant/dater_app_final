@@ -16,8 +16,6 @@ public class Broker implements IBroker {
 	public Broker() {
 
 	}
-
-
 	public static Broker getInstance() {
 		Broker result = instance;
 		if (result == null) {
@@ -53,28 +51,26 @@ public class Broker implements IBroker {
 			e.printStackTrace();
 		}
 	}
-
 	@Override
-	public List<GeneralDomain> getAll(GeneralDomain gd) {
-		String upit = "select * from " + gd.returnTableName();
-		List<GeneralDomain> list = null;
+	public GeneralDomain getFromDb(GeneralDomain gd) {
+		String upit = "select * from " + gd.returnTableName() + gd.returnUserName(gd);
+		GeneralDomain obj = null;
 		try {
 			Statement st = Connection.getInstance().getConn().createStatement();
 			ResultSet rs = st.executeQuery(upit);
-			list = gd.fixSelect(rs);
+			obj = gd.fixSelect(rs);
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return list;
+		return obj;
 	}
 
     @Override
     public HashMap<String, GeneralDomain> getInnerJoinUser(GeneralDomain gd) {
-        String hello = "";
-        String upit = "select * from " + gd.returnTableName();
+		String upit = gd.returnInnerJoin();
         HashMap<String, GeneralDomain> userHash = new HashMap<>();
         try {
             Statement st = Connection.getInstance().getConn().createStatement();
@@ -90,8 +86,20 @@ public class Broker implements IBroker {
     }
 
     @Override
-    public HashMap<String, GeneralDomain> getInnerJoinNewUser(GeneralDomain gd) {
-        return null;
+	public HashMap<String, List<GeneralDomain>> getInnerJoinList(GeneralDomain gd) {
+		String query = gd.returnInnerJoin();
+		HashMap<String, List<GeneralDomain>> userHash = new HashMap<>();
+		try {
+			Statement st = Connection.getInstance().getConn().createStatement();
+			ResultSet rs = st.executeQuery(query);
+			userHash = gd.fixInnerSelectList(rs);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return userHash;
     }
 
 

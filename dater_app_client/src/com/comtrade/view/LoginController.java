@@ -1,7 +1,6 @@
 package com.comtrade.view;
 
 import com.comtrade.controllerUI.Controller;
-import com.comtrade.domain.GeneralDomain;
 import com.comtrade.domain.User;
 import com.comtrade.geoloc.GeoLoc;
 import com.comtrade.thread.ProcessingFromServer;
@@ -36,8 +35,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import static com.comtrade.domain.Constants.*;
@@ -211,7 +208,7 @@ public class LoginController implements Initializable, Serializable {
                     newUser.setFirstName(firstNameString);
                     String lastNameString = btnLastName.getText();
                     newUser.setLastName(lastNameString);
-                    String usernameString = txtUsername.getText();
+                    String usernameString = txtUsername.getText().toLowerCase();
                     newUser.setUsername(usernameString);
 
                     if (radioM.isSelected()) {
@@ -258,8 +255,6 @@ public class LoginController implements Initializable, Serializable {
                             newUser.setUserPhoto(userPhotoString);
 
                             // Check if Username is in DB
-                            Map<String, GeneralDomain> checkMap = new HashMap<>();
-                            System.out.println(newUser.getFirstName());
                             tf.setClient_object(newUser);
 	                        tf.setOperation(CHECK_USER);
 	                        Controller.getInstance().sendToServer(tf);

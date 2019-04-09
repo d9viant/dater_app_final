@@ -8,10 +8,11 @@ import java.util.List;
 public interface IBroker {
     void save(GeneralDomain gd);
     void delete(GeneralDomain gd);
-    List<GeneralDomain> getAll(GeneralDomain gd);
+
+    GeneralDomain getFromDb(GeneralDomain gd);
 
     HashMap<String, GeneralDomain> getInnerJoinUser(GeneralDomain gd);
 
-    HashMap<String, GeneralDomain> getInnerJoinNewUser(GeneralDomain gd);
+    HashMap<String, List<GeneralDomain>> getInnerJoinList(GeneralDomain gd);
 
 }

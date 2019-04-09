@@ -2,19 +2,11 @@ package com.comtrade.controllerBL;
 
 import com.comtrade.domain.GeneralDomain;
 import com.comtrade.domain.User;
-import com.comtrade.profil.SO.GetMessagesMatchesDB;
-import com.comtrade.profil.SO.SaveIntoDatabaseSO;
+import com.comtrade.profil.SO.*;
 import com.comtrade.sysops.GeneralSystemOperation;
-import com.comtrade.threads.ClientThread;
-import com.comtrade.threads.backupThreads.FromDBBackupThread;
-import com.comtrade.transfer.TransferClass;
 
 import java.util.HashMap;
 import java.util.List;
-
-import static com.comtrade.domain.Constants.USER;
-import static com.comtrade.domain.Constants.USERNAME_TAKEN;
-
 
 
 public class ControllerBLogic {
@@ -43,30 +35,30 @@ public class ControllerBLogic {
 		op.executeSo(u);
 	}
 
-    public void getAllMessagesMatches(HashMap<String, List<GeneralDomain>> hm) {
-        GeneralSystemOperation op = new GetMessagesMatchesDB();
+	public void getAllMessages(HashMap<String, HashMap<String, List<GeneralDomain>>> hm) {
+		GeneralSystemOperation op = new GetMessagesDBSO();
 		op.executeSo(hm);
 	}
 
-    public void getAllUsers(HashMap<String, GeneralDomain> allUsers) {
+	public void getAllUsers(HashMap<String, HashMap<String, GeneralDomain>> allUsers) {
+		GeneralSystemOperation op = new GetInnerJoinFromUserDBSO();
+		op.executeSo(allUsers);
 
     }
 
 	public void checkProfile(User check) {
-		TransferClass tf = new TransferClass();
-		FromDBBackupThread dbBackupThread = new FromDBBackupThread();
-        List<GeneralDomain> users = dbBackupThread.getAllMessagesPicturesMatches().get(USER);
-		for (GeneralDomain u : users) {
-			User user = (User) u;
-			if (user.getUsername().equalsIgnoreCase(check.getUsername())) {
-				tf.setOperation(USERNAME_TAKEN);
-                ClientThread ct = new ClientThread();
-                ct.sendToClient(tf);
-			}
-		}
-
-
+		GeneralSystemOperation op = new GetUserDBSO();
+		op.executeSo(check);
 
 	}
 
+	public void getUserFromDB(HashMap<String, GeneralDomain> u) {
+		GeneralSystemOperation op = new GetUserDBSO();
+		op.executeSo(u);
+	}
+
+	public void getAllMatches(HashMap<String, HashMap<String, List<GeneralDomain>>> allMatches) {
+		GeneralSystemOperation op = new GetMatchesDBSO();
+		op.executeSo(allMatches);
+	}
 }

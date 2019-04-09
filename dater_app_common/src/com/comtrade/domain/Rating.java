@@ -104,7 +104,12 @@ public class Rating implements GeneralDomain, Serializable
 	}
 
 	@Override
-	public List<GeneralDomain> fixSelect(ResultSet rs) {
+	public GeneralDomain fixSelect(ResultSet rs) {
+		return null;
+	}
+
+	@Override
+	public String returnInnerJoin() {
 		return null;
 	}
 
@@ -133,6 +138,16 @@ public class Rating implements GeneralDomain, Serializable
     public HashMap<String, GeneralDomain> fixInnerSelect(ResultSet rs) throws SQLException {
         return null;
     }
+
+	@Override
+	public HashMap<String, List<GeneralDomain>> fixInnerSelectList(ResultSet rs) throws SQLException {
+		return null;
+	}
+
+	@Override
+	public String returnUserName(GeneralDomain gd) {
+		return null;
+	}
 
 	public int getReadyForSql() {
 		return readyForSql;

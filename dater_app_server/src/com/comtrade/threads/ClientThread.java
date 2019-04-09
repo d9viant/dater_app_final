@@ -1,6 +1,7 @@
 package com.comtrade.threads;
 
 import com.comtrade.controllerBL.ControllerBLogic;
+import com.comtrade.domain.GeneralDomain;
 import com.comtrade.domain.User;
 import com.comtrade.threads.backupThreads.FromDBBackupThread;
 import com.comtrade.transfer.TransferClass;
@@ -36,22 +37,21 @@ public class ClientThread extends Thread {
         switch (tf.getOperation()) {
             case SAVE_USER:
                 User u = (User) tf.getClient_object();
-//                HashMap<String, GeneralDomain> userMap = new HashMap<>();
-//                userMap.put("user", u);
-//                userMap.put("age", u.getAge());
-//                userMap.put("gender", u.getGender());
-//                userMap.put("location", u.getLocation());
-//                userMap.put("ratings", u.getRating());
-//                ControllerBLogic.getInstance().saveIntoDB(userMap);
-                u.setReadyForSql(1);
-                backupThread.getGetAllUserList().put(u.getUsername(), u);
+                HashMap<String, GeneralDomain> hm = new HashMap<>();
+                hm.put(USER, u);
+
+                ControllerBLogic.getInstance().saveIntoDB(hm);  //saves user to db
+
+                ControllerBLogic.getInstance().getUserFromDB(hm);  //gets user from db with unique ID
+                User backFromDB = (User) hm.get(USER);
+                backupThread.getGetAllUserList().get(ALL_USERS).put(backFromDB.getUsername(), backFromDB);
                 break;
             case RETURN_PROFILE:
                 break;
             case CHECK_USER:
                 User check = (User) tf.getClient_object();
-                HashMap hashMap = backupThread.getGetAllUserList();
-                if (hashMap.containsKey(check.getUsername())) {
+                HashMap hashMap = backupThread.getGetAllUserList().get(ALL_USERS);
+                if (hashMap.containsKey(check.getUsername().toLowerCase())) {
                     TransferClass back = new TransferClass();
                     back.setOperation(USERNAME_TAKEN);
                     sendToClient(back);

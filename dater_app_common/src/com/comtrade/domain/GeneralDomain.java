@@ -6,7 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface GeneralDomain {
-    List<GeneralDomain> fixSelect(ResultSet rs) throws SQLException;
+    GeneralDomain fixSelect(ResultSet rs) throws SQLException;
+
+    String returnInnerJoin();
 
     String returnTableName();
 
@@ -17,4 +19,8 @@ public interface GeneralDomain {
     String delete(GeneralDomain gd);
 
     HashMap<String, GeneralDomain> fixInnerSelect(ResultSet rs) throws SQLException;
+
+    HashMap<String, List<GeneralDomain>> fixInnerSelectList(ResultSet rs) throws SQLException;
+
+    String returnUserName(GeneralDomain gd);
 }
