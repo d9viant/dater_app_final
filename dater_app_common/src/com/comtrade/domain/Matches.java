@@ -86,7 +86,7 @@ public class Matches implements Serializable, GeneralDomain{
     }
 
     @Override
-    public String returnInsertFormat() {
+    public String returnInsertFormat(GeneralDomain gd) {
         return null;
     }
 

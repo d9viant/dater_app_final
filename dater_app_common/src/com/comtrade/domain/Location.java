@@ -68,7 +68,7 @@ public class Location implements GeneralDomain, Serializable {
     }
 
     @Override
-    public String returnInsertFormat() {
+    public String returnInsertFormat(GeneralDomain gd) {
         return null;
     }
 

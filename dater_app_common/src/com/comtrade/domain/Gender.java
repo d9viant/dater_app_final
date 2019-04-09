@@ -8,8 +8,21 @@ import java.util.List;
 
 public class Gender implements GeneralDomain, Serializable {
     private int userId;
-    private char gender;
-    private char preferredGender;
+    private int gender;
+    private int preferredGender;
+
+
+    public Gender() {
+
+    }
+
+    public Gender(int userId, int gender, int preferredGender) {
+        this.userId = userId;
+        this.gender = gender;
+        this.preferredGender = preferredGender;
+
+    }
+
     private int readyForSql = 0;
 
 
@@ -23,19 +36,19 @@ public class Gender implements GeneralDomain, Serializable {
         this.userId = userId;
     }
 
-    public char getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 
-    public char getPreferredGender() {
+    public int getPreferredGender() {
         return preferredGender;
     }
 
-    public void setPreferredGender(char preferredGender) {
+    public void setPreferredGender(int preferredGender) {
         this.preferredGender = preferredGender;
     }
 
@@ -60,7 +73,7 @@ public class Gender implements GeneralDomain, Serializable {
     }
 
     @Override
-    public String returnInsertFormat() {
+    public String returnInsertFormat(GeneralDomain gd) {
         return null;
     }
 

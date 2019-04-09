@@ -11,10 +11,15 @@ public class Constants {
 	public static final int USERNAME_TAKEN = 7;
     public static final int USERNAME_OK = 8;
 
+
     public static final int DBREADY = 9;
     public static final int DBWRITTEN = 10;
 
-	public static final String USER = "user";
+    public static final int MALE = 11;
+    public static final int FEMALE = 11;
+
+
+    public static final String USER = "user";
 	public static final String AGE = "age";
 	public static final String GENDER = "gender";
 	public static final String LOCATION = "location";

@@ -75,6 +75,7 @@ public class Broker implements IBroker {
         try {
             Statement st = Connection.getInstance().getConn().createStatement();
             ResultSet rs = st.executeQuery(upit);
+
             userHash = gd.fixInnerSelect(rs);
 
         } catch (SQLException e) {

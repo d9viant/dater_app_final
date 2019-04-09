@@ -204,6 +204,7 @@ public class LoginController implements Initializable, Serializable {
                     inputAlert.showAndWait();
 
                 } else {
+
                     String firstNameString = btnName.getText();
                     newUser.setFirstName(firstNameString);
                     String lastNameString = btnLastName.getText();
@@ -212,9 +213,9 @@ public class LoginController implements Initializable, Serializable {
                     newUser.setUsername(usernameString);
 
                     if (radioM.isSelected()) {
-                        newUser.getGender().setGender('m');
+                        newUser.getGender().setGender(MALE);
                     } else {
-                        newUser.getGender().setGender('z');
+                        newUser.getGender().setGender(FEMALE);
                     }
 
                     String birthdateString = datePicker.getValue().toString();

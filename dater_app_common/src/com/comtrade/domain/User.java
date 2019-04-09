@@ -158,6 +158,7 @@ public class User implements GeneralDomain, Serializable {
         this.age = a;
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
     public GeneralDomain fixSelect(ResultSet rs) {
         User u = new User();
@@ -215,11 +216,32 @@ public class User implements GeneralDomain, Serializable {
         return "WHERE id =" + u.getId();
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
     public HashMap<String, GeneralDomain> fixInnerSelect(ResultSet rs) throws SQLException {
         HashMap<String, GeneralDomain> list = new HashMap<>();
+
+        Gender g = new Gender();
+        Location l = new Location();
+        Age a = new Age();
+        Rating r = new Rating();
         try {
             while (rs.next()) {
+                int idUser = rs.getInt("id");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                String userName = rs.getString("username");
+                String password = rs.getString("password");
+                String email = rs.getString("email");
+                String bio = rs.getString("bio");
+                String userPhoto = rs.getString("userPhoto");
+                User u = new User(idUser, firstName, lastName, userName, password, email, bio, userPhoto);
+                int genderID = rs.getInt("userId");
+                int gender = rs.getInt("gender");
+                int prefferedGender = rs.getInt("preferredGender");
+                Gender gen = new Gender(genderID, gender, prefferedGender);
+                ;
+                list.put(u.getUsername(), u);
 
             }
         } catch (SQLException e) {
