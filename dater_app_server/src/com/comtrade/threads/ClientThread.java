@@ -39,9 +39,7 @@ public class ClientThread extends Thread {
                 User u = (User) tf.getClient_object();
                 HashMap<String, GeneralDomain> hm = new HashMap<>();
                 hm.put(USER, u);
-
                 ControllerBLogic.getInstance().saveIntoDB(hm);  //saves user to db
-
                 ControllerBLogic.getInstance().getUserFromDB(hm);  //gets user from db with unique ID
                 User backFromDB = (User) hm.get(USER);
                 backupThread.getGetAllUserList().get(ALL_USERS).put(backFromDB.getUsername(), backFromDB);
