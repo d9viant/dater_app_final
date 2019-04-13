@@ -8,18 +8,14 @@ import com.comtrade.sysops.GeneralSystemOperation;
 
 import java.util.HashMap;
 
-import static com.comtrade.domain.Constants.USER;
-
 public class GetInnerJoinFromUserDBSO extends GeneralSystemOperation {
     @Override
     public void executeConcreteOperation(Object obj) {
-        HashMap<String, HashMap<String, GeneralDomain>> getAllUserList = (HashMap<String, HashMap<String, GeneralDomain>>) obj;
+        HashMap<String, GeneralDomain> getAllUserList = (HashMap<String, GeneralDomain>) obj;
         IBroker ib = new Broker();
+        HashMap<String, GeneralDomain> fromDbHm = ib.getInnerJoinUser(new User());
+        getAllUserList.putAll(fromDbHm);
 
-        HashMap<String, GeneralDomain> hm = new HashMap<>();
-        HashMap<String, GeneralDomain> hm1 = ib.getInnerJoinUser(new User());
-        hm.putAll(hm1);
 
-        getAllUserList.put(USER, ib.getInnerJoinUser(new User()));
     }
 }

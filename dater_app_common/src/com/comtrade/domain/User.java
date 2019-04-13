@@ -189,7 +189,11 @@ public class User implements GeneralDomain, Serializable {
 
     @Override
     public String returnInnerJoin() {
-        return "SELECT * FROM user INNER JOIN location ON location.userId = user.id INNER JOIN gender ON gender.userId = user=user.id INNER JOIN age ON age.userId = user.id INNER JOIN rating ON rating.id = user.id";
+        return "SELECT * FROM user" +
+                " INNER JOIN location ON location.userId = user.id" +
+                " INNER JOIN gender ON gender.userId = user=user.id" +
+                " INNER JOIN age ON age.userId = user.id" +
+                " INNER JOIN rating ON rating.id = user.id";
     }
 
 

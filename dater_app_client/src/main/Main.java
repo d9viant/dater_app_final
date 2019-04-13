@@ -10,14 +10,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Main extends Application {
-    private Stage stage;	
+    public static Stage stage;
 	public Stage getStage() {
 		return stage;
 	}
 
 	@Override
     public void start(Stage primaryStage) throws Exception{
-      this.stage=primaryStage;
+        Main.stage = primaryStage;
         startTask();
         mainWindow();
     }
@@ -51,7 +51,7 @@ public class Main extends Application {
             Scene scene=new Scene(pane);
             scene.getStylesheets().addAll(Main.class.getResource("application.css").toExternalForm());
             stage.setResizable(false);
-            stage.setTitle("Dater");
+            stage.setTitle("Dater Login");
             stage.setScene(scene);
             stage.show();
 

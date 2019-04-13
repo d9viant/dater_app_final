@@ -3,7 +3,7 @@ package com.comtrade.threads;
 import com.comtrade.controllerBL.ControllerBLogic;
 import com.comtrade.domain.GeneralDomain;
 import com.comtrade.domain.User;
-import com.comtrade.threads.backupThreads.FromDBBackupThread;
+import com.comtrade.threads.backupThreads.DataBackupThread;
 import com.comtrade.transfer.TransferClass;
 
 import java.io.IOException;
@@ -13,10 +13,9 @@ import java.net.Socket;
 import java.util.HashMap;
 
 import static com.comtrade.domain.Constants.*;
-
 public class ClientThread extends Thread {
     private Socket socket;
-    private FromDBBackupThread backupThread = new FromDBBackupThread();
+    private DataBackupThread backupThread = new DataBackupThread();
     public void setSocket(Socket socket) {
         this.socket = socket;
     }
@@ -40,22 +39,21 @@ public class ClientThread extends Thread {
                 HashMap<String, GeneralDomain> hm = new HashMap<>();
                 hm.put(USER, u);
                 ControllerBLogic.getInstance().saveIntoDB(hm);  //saves user to db
-                ControllerBLogic.getInstance().getUserFromDB(hm);  //gets user from db with unique ID
+                ControllerBLogic.getInstance().getUserFromDB(hm);  //gets user from db
                 User backFromDB = (User) hm.get(USER);
-                backupThread.getGetAllUserList().get(ALL_USERS).put(backFromDB.getUsername(), backFromDB);
+                backupThread.getGetAllUserList().put(backFromDB.getUsername(), backFromDB);
                 break;
             case RETURN_PROFILE:
                 break;
             case CHECK_USER:
                 User check = (User) tf.getClient_object();
-                HashMap hashMap = backupThread.getGetAllUserList().get(ALL_USERS);
+                HashMap hashMap = backupThread.getGetAllUserList();
                 if (hashMap.containsKey(check.getUsername().toLowerCase())) {
                     TransferClass back = new TransferClass();
                     back.setOperation(USERNAME_TAKEN);
                     sendToClient(back);
                 }
-                ControllerBLogic.getInstance().checkProfile(check);
-
+                ControllerBLogic.getInstance().checkProfile(check); // ovo vrv ne treba
                 break;
             case LIKE:
                 System.out.println("KURAC");

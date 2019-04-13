@@ -10,7 +10,9 @@ import com.sothawo.mapjfx.*;
 import com.sothawo.mapjfx.event.MapViewEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
@@ -24,6 +26,8 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import main.Main;
 
 import java.io.File;
 import java.io.IOException;
@@ -145,7 +149,11 @@ public class LoginController implements Initializable, Serializable {
             User u = new User();
             u.setUsername(loginString);
             u.setPass(passString);
-//			login(u, Event);
+            try {
+                login();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
         btnReg.setOnAction(Event -> {
             regPane.setVisible(true);
@@ -299,6 +307,25 @@ public class LoginController implements Initializable, Serializable {
         player.setVolume(0);
 	    player.setCycleCount(MediaPlayer.INDEFINITE);
         player.play();
+    }
+
+
+    //proveri stari repo, wow pa to sam i uradio yay
+    private void login() throws IOException {
+        Stage stage = Main.stage;
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/comtrade/viewLayout/mainscreen.fxml"));
+        AnchorPane pane = loader.load();
+        Scene scene = new Scene(pane);
+        stage.setResizable(false);
+        stage.setTitle("Dater App! Find true love!");
+        stage.setScene(scene);
+
+//      MainController controller = loader.<MainController>getController();
+        MainController controller = loader.getController();
+//      controller.setCurrentUser(currUser);   Sets current user!
+        stage.show();
+
+
     }
 
 //	private void login(User u, ActionEvent Event){

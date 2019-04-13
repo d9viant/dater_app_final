@@ -9,16 +9,14 @@ import com.comtrade.sysops.GeneralSystemOperation;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.comtrade.domain.Constants.MESSAGES;
-
 
 public class GetMessagesDBSO extends GeneralSystemOperation {
     @Override
     public void executeConcreteOperation(Object obj) {
-        HashMap<String, HashMap<String, List<GeneralDomain>>> hm = (HashMap<String, HashMap<String, List<GeneralDomain>>>) obj;
+        HashMap<String, List<GeneralDomain>> allMessages = (HashMap<String, List<GeneralDomain>>) obj;
         IBroker ib = new Broker();
-        HashMap<String, List<GeneralDomain>> allMessages = ib.getInnerJoinList(new Message());
-        hm.put(MESSAGES, allMessages);
+        HashMap<String, List<GeneralDomain>> msgDB = ib.getInnerJoinList(new Message());
+        allMessages.putAll(msgDB);
 
 
 

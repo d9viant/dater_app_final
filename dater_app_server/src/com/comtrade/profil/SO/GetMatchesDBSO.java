@@ -9,15 +9,13 @@ import com.comtrade.sysops.GeneralSystemOperation;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.comtrade.domain.Constants.MATCHES;
-
 public class GetMatchesDBSO extends GeneralSystemOperation {
     @Override
     public void executeConcreteOperation(Object obj) {
-        HashMap<String, HashMap<String, List<GeneralDomain>>> hm = (HashMap<String, HashMap<String, List<GeneralDomain>>>) obj;
+        HashMap<String, List<GeneralDomain>> allMatches = (HashMap<String, List<GeneralDomain>>) obj;
         IBroker ib = new Broker();
-        HashMap<String, List<GeneralDomain>> allMatches = ib.getInnerJoinList(new Matches());
-        hm.put(MATCHES, allMatches);
+        HashMap<String, List<GeneralDomain>> allMatchesFromDb = ib.getInnerJoinList(new Matches());
+        allMatches.putAll(allMatchesFromDb);
     }
 
 }

@@ -12,7 +12,7 @@ import java.util.List;
 public class ControllerBLogic {
     private static final Object mutex = new Object();
 	private static ControllerBLogic instance;
-	HashMap<String, GeneralDomain> getAllUserList = new HashMap<>();
+
 
 	//// U KONTROLER PRVO IDE KURAC PA ONDA U JEBENI THREAD U USTA GA JEBEM
 	private ControllerBLogic() {
@@ -38,14 +38,14 @@ public class ControllerBLogic {
 		op.executeSo(u);
 	}
 
-	public void getAllMessages(HashMap<String, HashMap<String, List<GeneralDomain>>> hm) {
+    public void getAllMessages(HashMap<String, List<GeneralDomain>> hm) {
 		GeneralSystemOperation op = new GetMessagesDBSO();
 		op.executeSo(hm);
 	}
 
-	public void getAllUsers() {
+    public void getAllUsers(HashMap<String, GeneralDomain> allUsersHm) {
 		GeneralSystemOperation op = new GetInnerJoinFromUserDBSO();
-		op.executeSo(getAllUserList);
+        op.executeSo(allUsersHm);
 
     }
 
@@ -60,7 +60,7 @@ public class ControllerBLogic {
 		op.executeSo(u);
 	}
 
-	public void getAllMatches(HashMap<String, HashMap<String, List<GeneralDomain>>> allMatches) {
+    public void getAllMatches(HashMap<String, List<GeneralDomain>> allMatches) {
 		GeneralSystemOperation op = new GetMatchesDBSO();
 		op.executeSo(allMatches);
 	}
