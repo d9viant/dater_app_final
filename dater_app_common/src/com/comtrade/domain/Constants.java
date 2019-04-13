@@ -28,6 +28,7 @@ public class Constants {
 	public static final String PICTURES = "pictures";
 	public static final String RATING = "rating";
     public static final String ALL_USERS = "all_users";
+    public static final String USERPHOTO = "userphoto";
 
 
 

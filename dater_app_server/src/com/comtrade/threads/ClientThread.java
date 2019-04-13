@@ -10,10 +10,18 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
 import static com.comtrade.domain.Constants.*;
+
+
 public class ClientThread extends Thread {
+    private Path to;
+    private Path from;
+
     private Socket socket;
     private DataBackupThread backupThread = new DataBackupThread();
     public void setSocket(Socket socket) {
@@ -42,6 +50,25 @@ public class ClientThread extends Thread {
                 ControllerBLogic.getInstance().getUserFromDB(hm);  //gets user from db
                 User backFromDB = (User) hm.get(USER);
                 backupThread.getGetAllUserList().put(backFromDB.getUsername(), backFromDB);
+                byte[] bytes = u.getPictures().getProfilePicture();
+                Path path = Paths.get("src\\ProfilePics\\" + u.getUsername() + ".jpg");
+                try {
+                    Files.write(path, bytes);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+//
+//                from = Paths.get(selectedFile.toURI());
+//                to = Paths.get("src\\ProfilePics\\" + u.getUsername() + selectedFile.getName());
+//                try {
+//                    Files.copy(from, to);
+//                } catch (IOException e) {
+//                    // TODO Auto-generated catch block
+//                    e.printStackTrace();
+//                }
+
+
                 break;
             case RETURN_PROFILE:
                 break;

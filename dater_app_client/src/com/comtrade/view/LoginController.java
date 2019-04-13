@@ -1,6 +1,8 @@
 package com.comtrade.view;
 
+import com.comtrade.compression.Compression;
 import com.comtrade.controllerUI.Controller;
+import com.comtrade.domain.Pictures;
 import com.comtrade.domain.User;
 import com.comtrade.geoloc.GeoLoc;
 import com.comtrade.thread.ProcessingFromServer;
@@ -36,7 +38,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -110,6 +111,7 @@ public class LoginController implements Initializable, Serializable {
         this.checkUser = checkUser;
     }
 
+    private Pictures p = null;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -259,9 +261,9 @@ public class LoginController implements Initializable, Serializable {
                             pAlert.setContentText("Please upload profile picture");
                             pAlert.showAndWait();
                         } else {
-
-                            String userPhotoString = newUser.getUsername() + selectedFile.getName();
-                            newUser.setUserPhoto(userPhotoString);
+//
+//                            String userPhotoString = newUser.getUsername() + selectedFile.getName();
+//                            newUser.setUserPhoto(userPhotoString);
 
                             // Check if Username is in DB
                             tf.setClient_object(newUser);
@@ -275,18 +277,12 @@ public class LoginController implements Initializable, Serializable {
                                 bye.setContentText("Username is taken, please change your username");
                                 bye.showAndWait();
                             } else {
-                                // Copy picture file to folder on server
-                                from = Paths.get(selectedFile.toURI());
-                                to = Paths.get("src\\ProfilePics\\" + newUser.getUsername() + selectedFile.getName());
-                                try {
-                                    Files.copy(from, to);
-                                } catch (IOException e) {
-                                    // TODO Auto-generated catch block
-                                    e.printStackTrace();
-                                }
+                                // Add profile picture added in the Upload photo method
+                                newUser.setPictures(p);
+                                newUser.getPictures().setProfilePicture(newUser.getUsername() + " " + USERPHOTO);
+                                // Set and Send!
                                 tf.setClient_object(newUser);
                                 System.out.println(newUser.getFirstName());
-
 	                            tf.setOperation(SAVE_USER);
 	                            Controller.getInstance().sendToServer(tf);
                             }
@@ -337,10 +333,14 @@ public class LoginController implements Initializable, Serializable {
 //		return  p.check(u);
 //	}
 
+    // UPLOADS PHOTO, COMPRESSES IT AND ATTACHES TO PICTURES!
     private void uploadPhoto(ActionEvent event) {
         TransferClass tf = new TransferClass();
         tf.setOperation(LIKE);
         Controller.getInstance().sendToServer(tf);
+        File fi = null;
+        File compressedimage = null;
+        Compression compress = new Compression();
         FileChooser.ExtensionFilter extFilter =
                 new FileChooser.ExtensionFilter("PICTURE files (*.png, *.jpg, *.jpeg)", "*.png", "*.jpg", "*.jpeg");
         fileChooser.getExtensionFilters().add(extFilter);
@@ -349,8 +349,13 @@ public class LoginController implements Initializable, Serializable {
             String photoUrl = null;
             try {
                 photoUrl = selectedFile.toURI().toURL().toString();
+                fi = selectedFile;
+                compressedimage = compress.compression(fi);
+
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
 
@@ -364,8 +369,18 @@ public class LoginController implements Initializable, Serializable {
 //			} catch (IOException e) {
 //				e.printStackTrace();
 //			}
-
             uplProfile.setImage(image);
+
+            byte[] fileContent = new byte[0];
+            try {
+                fileContent = Files.readAllBytes(compressedimage.toPath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            p = new Pictures();
+            p.setProfilePicture(fileContent);
+
+
         }
     }
 

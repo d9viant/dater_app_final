@@ -21,10 +21,9 @@ public class User implements GeneralDomain, Serializable {
     private Age age = null;
     private Rating rating = null;
     private Gender gender = null;
+    private Pictures pictures = null;
     private int readyForSql = 0;
     private static int userArrayIndex;
-
-
     private Matches matches = null;
 
     public User() {
@@ -158,6 +157,30 @@ public class User implements GeneralDomain, Serializable {
         this.age = a;
     }
 
+    public static int getUserArrayIndex() {
+        return userArrayIndex;
+    }
+
+    public static void setUserArrayIndex(int userArrayIndex) {
+        User.userArrayIndex = userArrayIndex;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+
+    public Pictures getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(Pictures pictures) {
+        this.pictures = pictures;
+    }
+
     @SuppressWarnings("Duplicates")
     @Override
     public GeneralDomain fixSelect(ResultSet rs) {
@@ -193,7 +216,8 @@ public class User implements GeneralDomain, Serializable {
                 " INNER JOIN location ON location.userId = user.id" +
                 " INNER JOIN gender ON gender.userId = user=user.id" +
                 " INNER JOIN age ON age.userId = user.id" +
-                " INNER JOIN rating ON rating.id = user.id";
+                " INNER JOIN rating ON rating.id = user.id" +
+                " INNER JOIN pictures ON pictures.idUser = user.id";
     }
 
 
@@ -229,6 +253,7 @@ public class User implements GeneralDomain, Serializable {
         Location l = new Location();
         Age a = new Age();
         Rating r = new Rating();
+        Pictures p = new Pictures();
         try {
             while (rs.next()) {
                 int idUser = rs.getInt("id");
