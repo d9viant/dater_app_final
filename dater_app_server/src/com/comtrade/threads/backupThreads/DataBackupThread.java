@@ -2,20 +2,27 @@ package com.comtrade.threads.backupThreads;
 
 import com.comtrade.controllerBL.ControllerBLogic;
 import com.comtrade.domain.GeneralDomain;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DataBackupThread extends Thread {
-	private HashMap<String, List<GeneralDomain>> allMatches = new HashMap<>();
-	private HashMap<String, List<GeneralDomain>> allMessages = new HashMap<>();
-	private HashMap<String, GeneralDomain> getAllUserList = new HashMap<>();
+	private Map<String, List<GeneralDomain>> allMatches = new HashMap<>();
+	ObservableMap<String, List<GeneralDomain>> allMatchesObserver = FXCollections.observableMap(allMatches);
+	private Map<String, List<GeneralDomain>> allMessages = new HashMap<>();
+	ObservableMap<String, List<GeneralDomain>> allMessageObserver = FXCollections.observableMap(allMessages);
+	private Map<String, GeneralDomain> getAllUserList = new HashMap<>();
+	ObservableMap<String, GeneralDomain> allUsersObserver = FXCollections.observableMap(getAllUserList);
 
 	public void run() {
 		backupToDb();
 		getAllUsers();
 		getAllMessagesMatches();
 		notifyAll();
+
 	}
 
 	private void backupToDb() {
@@ -36,14 +43,14 @@ public class DataBackupThread extends Thread {
 
 	}
 
-	public HashMap<String, List<GeneralDomain>> getAllMatches() {
+	public Map<String, List<GeneralDomain>> getAllMatches() {
 		synchronized (this) {
 			return allMatches;
 		}
 
 	}
 
-	public HashMap<String, GeneralDomain> getGetAllUserList() {
+	public Map<String, GeneralDomain> getGetAllUserList() {
 		synchronized (this) {
 			return getAllUserList;
 		}
@@ -54,7 +61,7 @@ public class DataBackupThread extends Thread {
 		this.getAllUserList = getAllUserList;
 	}
 
-	public HashMap<String, List<GeneralDomain>> getAllMessages() {
+	public Map<String, List<GeneralDomain>> getAllMessages() {
 		synchronized (this) {
 			return allMessages;
 		}

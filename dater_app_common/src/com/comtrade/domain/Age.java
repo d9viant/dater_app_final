@@ -30,7 +30,6 @@ public class Age implements GeneralDomain, Serializable {
             break;
         }
 
-
     }
 
     public int getAgeInYears() {

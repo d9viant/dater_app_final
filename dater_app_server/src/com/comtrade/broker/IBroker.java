@@ -2,8 +2,8 @@ package com.comtrade.broker;
 
 import com.comtrade.domain.GeneralDomain;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface IBroker {
     void save(GeneralDomain gd);
@@ -11,8 +11,8 @@ public interface IBroker {
 
     GeneralDomain getFromDb(GeneralDomain gd);
 
-    HashMap<String, GeneralDomain> getInnerJoinUser(GeneralDomain gd);
+    Map<String, GeneralDomain> getInnerJoinUser(GeneralDomain gd);
 
-    HashMap<String, List<GeneralDomain>> getInnerJoinList(GeneralDomain gd);
+    Map<String, List<GeneralDomain>> getInnerJoinList(GeneralDomain gd);
 
 }

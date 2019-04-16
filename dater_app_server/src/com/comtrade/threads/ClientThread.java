@@ -2,23 +2,24 @@ package com.comtrade.threads;
 
 import com.comtrade.controllerBL.ControllerBLogic;
 import com.comtrade.domain.GeneralDomain;
+import com.comtrade.domain.Pictures;
 import com.comtrade.domain.User;
 import com.comtrade.threads.backupThreads.DataBackupThread;
 import com.comtrade.transfer.TransferClass;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.Map;
 
 import static com.comtrade.domain.Constants.*;
+import static java.nio.file.Files.write;
 
 
-public class ClientThread extends Thread {
+public class ClientThread extends Thread implements Serializable {
     private Path to;
     private Path from;
 
@@ -40,41 +41,18 @@ public class ClientThread extends Thread {
         }
     }
 
-    private void processClientRequest(TransferClass tf) {
+    private void processClientRequest(TransferClass tf) throws IOException {
         switch (tf.getOperation()) {
             case SAVE_USER:
                 User u = (User) tf.getClient_object();
-                HashMap<String, GeneralDomain> hm = new HashMap<>();
-                hm.put(USER, u);
-                ControllerBLogic.getInstance().saveIntoDB(hm);  //saves user to db
-                ControllerBLogic.getInstance().getUserFromDB(hm);  //gets user from db
-                User backFromDB = (User) hm.get(USER);
-                backupThread.getGetAllUserList().put(backFromDB.getUsername(), backFromDB);
-                byte[] bytes = u.getPictures().getProfilePicture();
-                Path path = Paths.get("src\\ProfilePics\\" + u.getUsername() + ".jpg");
-                try {
-                    Files.write(path, bytes);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-//
-//                from = Paths.get(selectedFile.toURI());
-//                to = Paths.get("src\\ProfilePics\\" + u.getUsername() + selectedFile.getName());
-//                try {
-//                    Files.copy(from, to);
-//                } catch (IOException e) {
-//                    // TODO Auto-generated catch block
-//                    e.printStackTrace();
-//                }
-
-
+                saveUser(u);
+                savePic(u);
                 break;
             case RETURN_PROFILE:
                 break;
             case CHECK_USER:
                 User check = (User) tf.getClient_object();
-                HashMap hashMap = backupThread.getGetAllUserList();
+                Map hashMap = backupThread.getGetAllUserList();
                 if (hashMap.containsKey(check.getUsername().toLowerCase())) {
                     TransferClass back = new TransferClass();
                     back.setOperation(USERNAME_TAKEN);
@@ -82,13 +60,51 @@ public class ClientThread extends Thread {
                 }
                 ControllerBLogic.getInstance().checkProfile(check); // ovo vrv ne treba
                 break;
-            case LIKE:
-                System.out.println("KURAC");
+            case LIKE: //TESTIRAM KURCE OVDE
+                System.out.println("hm");
+                Pictures p = (Pictures) tf.getClient_object();
+                byte[] by = p.getPicture();
+                File file = new File("pics/profilepics/ugabuga");
+
+                File theDirecc = new File("pics/profilepics/Kurac.jpg");
+                Path pathh = Paths.get(theDirecc.getAbsolutePath());
+                Path pathh2 = Paths.get(file.getAbsolutePath());
+                Files.createDirectories(pathh2);
+                System.out.println(pathh);
+                System.out.println(pathh2);
+                try {
+                    write(pathh, by);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             case DISLIKE:
                 break;
             case SUPER:
                 break;
+        }
+    }
+
+    private void saveUser(User u) {
+        HashMap<String, GeneralDomain> hm = new HashMap<>();
+        hm.put(USER, u);
+        ControllerBLogic.getInstance().saveIntoDB(hm);  //saves user to db
+        ControllerBLogic.getInstance().getUserFromDB(hm);  //gets user from db
+        User backFromDB = (User) hm.get(USER);
+        backupThread.getGetAllUserList().put(backFromDB.getUsername(), backFromDB);
+
+    }
+
+    private void savePic(User u) throws IOException {
+        byte[] bytes = u.getPictures().getPicture();
+        File theDir = new File(WINDIRPICS + u.getUsername());
+        Path newDir = Paths.get(theDir.getAbsolutePath());
+        Files.createDirectories(newDir);
+        Path path = Paths.get(newDir + u.getUsername() + ".jpg");
+        try {
+            write(path, bytes);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -100,4 +116,6 @@ public class ClientThread extends Thread {
             e.printStackTrace();
         }
     }
+
+
 }

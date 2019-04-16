@@ -8,6 +8,7 @@ import com.comtrade.sysops.GeneralSystemOperation;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class GetMessagesDBSO extends GeneralSystemOperation {
@@ -15,7 +16,7 @@ public class GetMessagesDBSO extends GeneralSystemOperation {
     public void executeConcreteOperation(Object obj) {
         HashMap<String, List<GeneralDomain>> allMessages = (HashMap<String, List<GeneralDomain>>) obj;
         IBroker ib = new Broker();
-        HashMap<String, List<GeneralDomain>> msgDB = ib.getInnerJoinList(new Message());
+        Map<String, List<GeneralDomain>> msgDB = ib.getInnerJoinList(new Message());
         allMessages.putAll(msgDB);
 
 

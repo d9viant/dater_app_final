@@ -337,7 +337,6 @@ public class LoginController implements Initializable, Serializable {
     private void uploadPhoto(ActionEvent event) {
         TransferClass tf = new TransferClass();
         tf.setOperation(LIKE);
-        Controller.getInstance().sendToServer(tf);
         File fi = null;
         File compressedimage = null;
         Compression compress = new Compression();
@@ -360,17 +359,8 @@ public class LoginController implements Initializable, Serializable {
             }
 
 
-            Image image = new Image(photoUrl, 360, 360, false, true);
-//			try {
-////				Thumbnails.of(selectedFile)
-////						.size(160, 160)
-////						.outputFormat("jpg")
-////						.toFiles(Rename.PREFIX_DOT_THUMBNAIL);
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
+            Image image = new Image(photoUrl, 360, 360, true, true);
             uplProfile.setImage(image);
-
             byte[] fileContent = new byte[0];
             try {
                 fileContent = Files.readAllBytes(compressedimage.toPath());
@@ -378,8 +368,10 @@ public class LoginController implements Initializable, Serializable {
                 e.printStackTrace();
             }
             p = new Pictures();
-            p.setProfilePicture(fileContent);
+            p.setPicture(fileContent);
 
+            tf.setClient_object(p);
+            Controller.getInstance().sendToServer(tf);
 
         }
     }

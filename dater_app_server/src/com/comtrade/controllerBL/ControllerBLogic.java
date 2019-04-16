@@ -7,6 +7,7 @@ import com.comtrade.sysops.GeneralSystemOperation;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class ControllerBLogic {
@@ -14,7 +15,7 @@ public class ControllerBLogic {
 	private static ControllerBLogic instance;
 
 
-	//// U KONTROLER PRVO IDE KURAC PA ONDA U JEBENI THREAD U USTA GA JEBEM
+
 	private ControllerBLogic() {
 
 	}
@@ -38,12 +39,12 @@ public class ControllerBLogic {
 		op.executeSo(u);
 	}
 
-    public void getAllMessages(HashMap<String, List<GeneralDomain>> hm) {
+	public void getAllMessages(Map<String, List<GeneralDomain>> hm) {
 		GeneralSystemOperation op = new GetMessagesDBSO();
 		op.executeSo(hm);
 	}
 
-    public void getAllUsers(HashMap<String, GeneralDomain> allUsersHm) {
+	public void getAllUsers(Map<String, GeneralDomain> allUsersHm) {
 		GeneralSystemOperation op = new GetInnerJoinFromUserDBSO();
         op.executeSo(allUsersHm);
 
@@ -60,7 +61,7 @@ public class ControllerBLogic {
 		op.executeSo(u);
 	}
 
-    public void getAllMatches(HashMap<String, List<GeneralDomain>> allMatches) {
+	public void getAllMatches(Map<String, List<GeneralDomain>> allMatches) {
 		GeneralSystemOperation op = new GetMatchesDBSO();
 		op.executeSo(allMatches);
 	}

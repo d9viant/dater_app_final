@@ -29,6 +29,8 @@ public class Constants {
 	public static final String RATING = "rating";
     public static final String ALL_USERS = "all_users";
     public static final String USERPHOTO = "userphoto";
+    //Windows directory example
+    public static final String WINDIRPICS = "pics/profilepics/";
 
 
 
