@@ -4,6 +4,7 @@ import com.comtrade.domain.GeneralDomain;
 import com.comtrade.domain.User;
 import com.comtrade.profil.SO.*;
 import com.comtrade.sysops.GeneralSystemOperation;
+import com.comtrade.threads.ClientThread;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.Map;
 public class ControllerBLogic {
     private static final Object mutex = new Object();
 	private static ControllerBLogic instance;
+    private Map<String, ClientThread> connectedUserMap = new HashMap<>();
 
 
 
@@ -65,4 +67,15 @@ public class ControllerBLogic {
 		GeneralSystemOperation op = new GetMatchesDBSO();
 		op.executeSo(allMatches);
 	}
+
+
+    public void insertIntoActive(String s, ClientThread thread) {
+        connectedUserMap.put(s, thread);
+
+    }
+
+
+    public void removeActiveUser(String currentUsername) {
+        connectedUserMap.remove(currentUsername);
+    }
 }

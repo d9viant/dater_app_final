@@ -30,7 +30,7 @@ public class Server extends Thread {
 	}
 
 	private void startServer() throws IOException {
-		ServerSocket ss = new ServerSocket(9000);
+        ServerSocket ss = new ServerSocket(9500);
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         txtServerLogs.setText("Server Started" + " " + "at" + " " + sdf.format(new Date()));
 		while (true) {

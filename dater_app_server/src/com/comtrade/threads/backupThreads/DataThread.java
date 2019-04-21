@@ -2,36 +2,27 @@ package com.comtrade.threads.backupThreads;
 
 import com.comtrade.controllerBL.ControllerBLogic;
 import com.comtrade.domain.GeneralDomain;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableMap;
+import com.comtrade.domain.User;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DataBackupThread extends Thread {
+public class DataThread extends Thread {
 	private Map<String, List<GeneralDomain>> allMatches = new HashMap<>();
-	ObservableMap<String, List<GeneralDomain>> allMatchesObserver = FXCollections.observableMap(allMatches);
 	private Map<String, List<GeneralDomain>> allMessages = new HashMap<>();
-	ObservableMap<String, List<GeneralDomain>> allMessageObserver = FXCollections.observableMap(allMessages);
 	private Map<String, GeneralDomain> getAllUserList = new HashMap<>();
-	ObservableMap<String, GeneralDomain> allUsersObserver = FXCollections.observableMap(getAllUserList);
+
 
 	public void run() {
-		backupToDb();
 		getAllUsers();
-		getAllMessagesMatches();
-		notifyAll();
+		User u = (User) getAllUserList.get("keseljs");
+		System.out.println(u.getFirstName());
+//		getAllMessagesMatches();
+//		notifyAll();
 
 	}
 
-	private void backupToDb() {
-
-
-
-
-
-	}
 
 	private void getAllUsers() {
 		ControllerBLogic.getInstance().getAllUsers(getAllUserList);

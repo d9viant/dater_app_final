@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Matches implements Serializable, GeneralDomain{
-    private int userOneId;
-    private int userTwoId;
-    private int requestUser;
+    private String usernameOne;
+    private String usernameTwo;
+    private String requestUsername;
     private boolean matchStatus;
     private int readyForSql = 0;
 
@@ -17,57 +17,60 @@ public class Matches implements Serializable, GeneralDomain{
 
     }
 
-    public Matches(int userOneId, int userTwoId, int requestUser, boolean actionStatus){
-        this.userOneId=userOneId;
-        this.userTwoId=userTwoId;
-        this.requestUser = requestUser;
+    public Matches(String userOneId, String userTwoId, String requestUser, boolean actionStatus) {
+        this.usernameOne = userOneId;
+        this.usernameTwo = userTwoId;
+        this.requestUsername = requestUser;
         this.matchStatus = actionStatus;
     }
 
 
-    public int getUserOneId() {
-        return userOneId;
-    }
-
-    public void setUserOneId(int userOneId) {
-        this.userOneId = userOneId;
-    }
-
-    public int getUserTwoId() {
-        return userTwoId;
-    }
-
-    public void setUserTwoId(int userTwoId) {
-        this.userTwoId = userTwoId;
-    }
-
-    public int getRequestUser() {
-        return requestUser;
-    }
-
-    public void setRequestUser(int requestUser) {
-        this.requestUser = requestUser;
-    }
 
     public boolean isMatchStatus() {
         return matchStatus;
+    }
+
+    public String getUsernameOne() {
+        return usernameOne;
+    }
+
+    public void setUsernameOne(String usernameOne) {
+        this.usernameOne = usernameOne;
+    }
+
+    public String getUsernameTwo() {
+        return usernameTwo;
+    }
+
+    public void setUsernameTwo(String usernameTwo) {
+        this.usernameTwo = usernameTwo;
+    }
+
+    public String getRequestUsername() {
+        return requestUsername;
+    }
+
+    public void setRequestUsername(String requestUsername) {
+        this.requestUsername = requestUsername;
     }
 
     public void setMatchStatus(boolean matchStatus) {
         this.matchStatus = matchStatus;
     }
     @Override
-    public GeneralDomain fixSelect(ResultSet rs) throws SQLException {
 
+
+    public GeneralDomain fixSelect(ResultSet rs) throws SQLException {
+        Matches m = null;
         while (rs.next()) {
-            int userOneId = rs.getInt("userOne");
-            int userTwoId = rs.getInt("userTwo");
-            int requestUser = rs.getInt("requestUser");
+            String userOneId = rs.getString("usernameOne");
+            String userTwoId = rs.getString("usernameTwo");
+            String requestUser = rs.getString("requestUsername");
             boolean matchStatus = rs.getBoolean("matchStatus");
-            Matches m = new Matches(userOneId, userTwoId, requestUser, matchStatus);
+            m = new Matches(userOneId, userTwoId, requestUser, matchStatus);
 
         }
-        return null;
+        return m;
     }
 
     @Override
@@ -86,19 +89,20 @@ public class Matches implements Serializable, GeneralDomain{
     }
 
     @Override
-    public String returnInsertFormat(GeneralDomain gd) {
+    public String returnInsertFormat() {
         return null;
     }
 
     @Override
     public String delete(GeneralDomain gd) {
         Matches m = (Matches) gd;
-        if (m.getUserOneId()<m.getUserTwoId()) {
-            return " WHERE userOneId="+m.getUserOneId()+" AND userTwoId="+m.getUserTwoId()+"";
-        }else {
-            return " WHERE userOneId="+m.getUserTwoId()+" AND userTwoId="+m.getUserOneId()+"";
-        }
+//        if (m.getUsernameOne()<m.getUserTwoId()) {
+//            return " WHERE userOneId="+m.getUserOneId()+" AND userTwoId="+m.getUserTwoId()+"";
+//        }else {
+//            return " WHERE userOneId="+m.getUserTwoId()+" AND userTwoId="+m.getUserOneId()+"";
+//        }
 
+        return null;
     }
 
     @Override
@@ -112,7 +116,12 @@ public class Matches implements Serializable, GeneralDomain{
     }
 
     @Override
-    public String returnUserName(GeneralDomain gd) {
+    public String returnUserName() {
+        return null;
+    }
+
+    @Override
+    public String getForSelectForSpecific(GeneralDomain u) {
         return null;
     }
 

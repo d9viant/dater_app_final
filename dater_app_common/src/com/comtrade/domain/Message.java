@@ -126,16 +126,22 @@ public class Message implements GeneralDomain, Serializable {
 
     @Override
     public String returnInnerJoin() {
-        return "SELECT user.username, chatmessage.* FROM user INNER JOIN chatmessage ON chatmessage.userOne = user.id";
+        return "SELECT\n" +
+                "  user.username,\n" +
+                "  chatmessage.*\n" +
+                "FROM chatmessage\n" +
+                "  INNER JOIN user\n" +
+                "    ON chatmessage.usernameOne = user.username\n" +
+                "WHERE user.username = chatmessage.usernameOne\n" +
+                "OR user.username = chatmessage.usernameTwo";
     }
 
 
-//    SELECT
-//    user.username,
-//    chatmessage.*
-//    FROM user
-//    INNER JOIN chatmessage
-//    ON chatmessage.userOne = user.id
+    @Override
+    public String getForSelectForSpecific(GeneralDomain u) {
+        User user = (User) u;
+        return " WHERE usernameOne=" + user.getUsername() + " or usernameTwo=" + user.getUsername();
+    }
 
 
     @Override
@@ -149,7 +155,7 @@ public class Message implements GeneralDomain, Serializable {
     }
 
     @Override
-    public String returnInsertFormat(GeneralDomain gd) {
+    public String returnInsertFormat() {
         return null;
     }
 
@@ -199,9 +205,10 @@ public class Message implements GeneralDomain, Serializable {
     }
 
     @Override
-    public String returnUserName(GeneralDomain gd) {
+    public String returnUserName() {
         return null;
     }
+
 
     public int getReadyForSql() {
         return readyForSql;

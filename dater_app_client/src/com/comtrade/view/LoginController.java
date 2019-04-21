@@ -3,9 +3,9 @@ package com.comtrade.view;
 import com.comtrade.compression.Compression;
 import com.comtrade.controllerUI.Controller;
 import com.comtrade.domain.Pictures;
+import com.comtrade.domain.Rating;
 import com.comtrade.domain.User;
 import com.comtrade.geoloc.GeoLoc;
-import com.comtrade.thread.ProcessingFromServer;
 import com.comtrade.transfer.TransferClass;
 import com.jfoenix.controls.*;
 import com.sothawo.mapjfx.*;
@@ -58,7 +58,7 @@ public class LoginController implements Initializable, Serializable {
     private Pane regPane, loginpane;
 
     @FXML
-    private JFXTextField btnName, btnLastName, txtUsername, btnLoc, txtLoc, txtLoginUsername;
+    private JFXTextField btnName, tfLastName, txtUsername, btnLoc, txtLoc, txtLoginUsername, tfEmail;
 
     @FXML
     private JFXRadioButton radioM, radioF;
@@ -105,7 +105,7 @@ public class LoginController implements Initializable, Serializable {
 
     private GeoLoc g=null;
 
-    private Boolean checkUser = null;
+    private Boolean checkUser = Boolean.FALSE;
 
     public void setCheckUser(Boolean checkUser) {
         this.checkUser = checkUser;
@@ -115,7 +115,7 @@ public class LoginController implements Initializable, Serializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        startListeningFromServer();
+
         radioM.setToggleGroup(tGroup);
         radioM.setSelected(true);
         radioF.setToggleGroup(tGroup);
@@ -129,8 +129,6 @@ public class LoginController implements Initializable, Serializable {
 
 
         btnMapCoord.setOnAction(this::showMapCoord);
-
-        btnUplProf.setOnAction(this::uploadPhoto);
 
         btnSignUp.setOnAction(this::createUser);
 
@@ -167,11 +165,6 @@ public class LoginController implements Initializable, Serializable {
         });
     }
 
-    private void startListeningFromServer() {
-        ProcessingFromServer pfs = new ProcessingFromServer();
-        pfs.run();
-    }
-
     private void startGeoLoc() throws IOException {
         g = new GeoLoc();
     }
@@ -184,7 +177,10 @@ public class LoginController implements Initializable, Serializable {
     }
 
     private void createUser(ActionEvent event) {
+        Rating r = new Rating();
+        r.setReadyForSql(RDYFORDB);
         User newUser = new User();
+        newUser.setRating(r);
         TransferClass tf = new TransferClass();
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setHeaderText("You are about to create your profile, are you sure that you want to continue?");
@@ -197,7 +193,7 @@ public class LoginController implements Initializable, Serializable {
             if (type == okButton) {
                 if ((btnName.getText().equals("")) ||
 
-                        (btnLastName.getText().equals("")) ||
+                        (tfLastName.getText().equals("")) ||
 
                         (txtUsername.getText().equals("")) ||
 
@@ -205,7 +201,9 @@ public class LoginController implements Initializable, Serializable {
 
                         (datePicker.getValue().toString().equals("")) ||
 
-                        (txtLoc.getText().equals(""))) {
+                        (txtLoc.getText().equals("")) ||
+
+                        (tfEmail.getText().equals(""))) {
 
                     Alert inputAlert = new Alert(AlertType.WARNING);
                     inputAlert.setHeaderText(null);
@@ -217,23 +215,27 @@ public class LoginController implements Initializable, Serializable {
 
                     String firstNameString = btnName.getText();
                     newUser.setFirstName(firstNameString);
-                    String lastNameString = btnLastName.getText();
+                    String lastNameString = tfLastName.getText();
                     newUser.setLastName(lastNameString);
                     String usernameString = txtUsername.getText().toLowerCase();
                     newUser.setUsername(usernameString);
 
                     if (radioM.isSelected()) {
                         newUser.getGender().setGender(MALE);
+                        newUser.getGender().setReadyForSql(RDYFORDB);
                     } else {
                         newUser.getGender().setGender(FEMALE);
+                        newUser.getGender().setReadyForSql(RDYFORDB);
                     }
 
                     String birthdateString = datePicker.getValue().toString();
                     LocalDate date = LocalDate.parse(birthdateString);
                     newUser.getAge().setBirthday(date);
+                    newUser.getAge().setReadyForSql(RDYFORDB);
                     String locationString = txtLoc.getText();
                     System.out.println(locationString);
                     newUser.getLocation().setAddress(locationString);
+                    newUser.getLocation().setReadyForSql(RDYFORDB);
 
                     try {
                         newUser.getLocation().setLatitude(red.get(0).doubleValue());
@@ -252,23 +254,13 @@ public class LoginController implements Initializable, Serializable {
                     } else {
                         String passwrString = txtPassword.getText();
                         newUser.setPass(passwrString);
+                        {
 
-                        // Check if profile picture is selected
-                        if (selectedFile == null) {
-                            Alert pAlert = new Alert(AlertType.WARNING);
-                            pAlert.setHeaderText(null);
-                            pAlert.setTitle("Error");
-                            pAlert.setContentText("Please upload profile picture");
-                            pAlert.showAndWait();
-                        } else {
-//
-//                            String userPhotoString = newUser.getUsername() + selectedFile.getName();
-//                            newUser.setUserPhoto(userPhotoString);
 
                             // Check if Username is in DB
                             tf.setClient_object(newUser);
-	                        tf.setOperation(CHECK_USER);
-	                        Controller.getInstance().sendToServer(tf);
+                            tf.setOperation(CHECK_USER);
+                            Controller.getInstance().sendToServer(tf);
 
                             if (checkUser) {
                                 Alert bye = new Alert(AlertType.WARNING);
@@ -277,14 +269,13 @@ public class LoginController implements Initializable, Serializable {
                                 bye.setContentText("Username is taken, please change your username");
                                 bye.showAndWait();
                             } else {
-                                // Add profile picture added in the Upload photo method
-                                newUser.setPictures(p);
-                                newUser.getPictures().setProfilePicture(newUser.getUsername() + " " + USERPHOTO);
+                                String email = tfEmail.getText();
+                                newUser.setEmail(email);
                                 // Set and Send!
                                 tf.setClient_object(newUser);
                                 System.out.println(newUser.getFirstName());
-	                            tf.setOperation(SAVE_USER);
-	                            Controller.getInstance().sendToServer(tf);
+                                tf.setOperation(SAVE_USER);
+                                Controller.getInstance().sendToServer(tf);
                             }
                         }
                     }
@@ -323,16 +314,6 @@ public class LoginController implements Initializable, Serializable {
 
 
     }
-
-//	private void login(User u, ActionEvent Event){
-//		IProxy p = new ProxyLogin(u, Event);
-//		p.login(u);
-//	}
-//	private boolean checkUser(User u, ActionEvent Event){
-//		IProxy p = new ProxyLogin(u, Event);
-//		return  p.check(u);
-//	}
-
     // UPLOADS PHOTO, COMPRESSES IT AND ATTACHES TO PICTURES!
     private void uploadPhoto(ActionEvent event) {
         TransferClass tf = new TransferClass();
@@ -368,7 +349,7 @@ public class LoginController implements Initializable, Serializable {
                 e.printStackTrace();
             }
             p = new Pictures();
-            p.setPicture(fileContent);
+            p.getPictures().add(fileContent);
 
             tf.setClient_object(p);
             Controller.getInstance().sendToServer(tf);

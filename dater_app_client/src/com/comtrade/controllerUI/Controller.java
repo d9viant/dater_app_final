@@ -22,8 +22,6 @@ public class Controller {
     }
 
     public void sendToServer(TransferClass tc) {
-//        TransferClass tf = new TransferClass();
-//        tf.setClient_object(tc);
         Comm.getInstance().send(tc);
     }
 

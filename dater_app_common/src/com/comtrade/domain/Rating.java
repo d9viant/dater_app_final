@@ -9,10 +9,10 @@ import java.util.List;
 public class Rating implements GeneralDomain, Serializable
 {
 
-	private static int idUser;
-	private static int rating = 1300;
-	private static boolean newStatus=true;
-	private static boolean superUser=false;
+    private String username;
+    private int rating = 1300;
+    private boolean newStatus = true;
+    private boolean superUser = false;
 	private static int K = 50;
 	private int readyForSql = 0;
 
@@ -63,44 +63,44 @@ public class Rating implements GeneralDomain, Serializable
 	
 	
 	// Setters and Getters
-	public static int getRating() {
+    public int getRating() {
 		return rating;
 	}
 
-	public static void setRating(int rating) {
-		Rating.rating = rating;
-	}
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
 
-	public static boolean isNewStatus() {
+    public boolean isNewStatus() {
 		return newStatus;
 	}
 
-	public static void setNewStatus(boolean newStatus) {
-		Rating.newStatus = newStatus;
-	}
+    public void setNewStatus(boolean newStatus) {
+        this.newStatus = newStatus;
+    }
 
-	public static int getIdUser() {
-		return idUser;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public static void setIdUser(int idUser) {
-		Rating.idUser = idUser;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public static int getK() {
+    public int getK() {
 		return K;
 	}
 
-	public static void setK(int k) {
+    public void setK(int k) {
 		K = k;
 	}
 
-	public static boolean isSuperUser() {
+    public boolean isSuperUser() {
 		return superUser;
 	}
 
-	public static void setSuperUser(boolean superUser) {
-		Rating.superUser = superUser;
+    public void setSuperUser(boolean superUser) {
+        this.superUser = superUser;
 	}
 
 	@Override
@@ -125,7 +125,7 @@ public class Rating implements GeneralDomain, Serializable
 	}
 
 	@Override
-	public String returnInsertFormat(GeneralDomain gd) {
+    public String returnInsertFormat() {
 		return null;
 	}
 
@@ -145,7 +145,13 @@ public class Rating implements GeneralDomain, Serializable
 	}
 
 	@Override
-	public String returnUserName(GeneralDomain gd) {
+    public String returnUserName() {
+        return null;
+    }
+
+
+    @Override
+    public String getForSelectForSpecific(GeneralDomain u) {
 		return null;
 	}
 

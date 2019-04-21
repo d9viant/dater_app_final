@@ -6,7 +6,7 @@ package com.comtrade.view;
 
 import com.comtrade.threads.Server;
 import com.comtrade.threads.ServerTimeThread;
-import com.comtrade.threads.backupThreads.DataBackupThread;
+import com.comtrade.threads.backupThreads.DataThread;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,7 +38,7 @@ public class SwingServerUI extends JFrame {
     }
 
     private void button1ActionPerformed(ActionEvent e) {
-        DataBackupThread dbbt = new DataBackupThread();
+        DataThread dbbt = new DataThread();
         Server s = new Server(textStart);
         ServerTimeThread stt = new ServerTimeThread(timeText);
         dbbt.start();

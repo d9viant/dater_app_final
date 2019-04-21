@@ -9,9 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Age implements GeneralDomain, Serializable {
-    private int idUser;
-    private static LocalDate birthday;
-    private static int age;
+    private String username;
+    private LocalDate birthday;
+    private int age;
     private int readyForSql = 0;
 
     public Age(){
@@ -19,7 +19,7 @@ public class Age implements GeneralDomain, Serializable {
     }
 
     public Age(LocalDate birthday){
-        Age.birthday=birthday;
+        this.birthday = birthday;
 
     }
 
@@ -36,29 +36,20 @@ public class Age implements GeneralDomain, Serializable {
         return age;
     }
 
-    public static void setAge(int age) {
-        Age.age = age;
-    }
-
-    public static LocalDate getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
     public void setBirthday(LocalDate birthday) {
-        Age.birthday = birthday;
+        this.birthday = birthday;
     }
 
-
-    public int getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-
-    public static int getAge() {
+    public int getAge() {
         return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override
@@ -73,7 +64,7 @@ public class Age implements GeneralDomain, Serializable {
 
     @Override
     public String returnTableName() {
-        return null;
+        return "age";
     }
 
     @Override
@@ -82,8 +73,16 @@ public class Age implements GeneralDomain, Serializable {
     }
 
     @Override
-    public String returnInsertFormat(GeneralDomain gd) {
+    public String returnInsertFormat() {
         return null;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
@@ -102,7 +101,12 @@ public class Age implements GeneralDomain, Serializable {
     }
 
     @Override
-    public String returnUserName(GeneralDomain gd) {
+    public String returnUserName() {
+        return null;
+    }
+
+    @Override
+    public String getForSelectForSpecific(GeneralDomain u) {
         return null;
     }
 

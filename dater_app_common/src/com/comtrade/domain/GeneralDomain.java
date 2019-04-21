@@ -14,7 +14,7 @@ public interface GeneralDomain {
 
     String returnTableRows();
 
-    String returnInsertFormat(GeneralDomain gd);
+    String returnInsertFormat();
 
     String delete(GeneralDomain gd);
 
@@ -22,5 +22,7 @@ public interface GeneralDomain {
 
     HashMap<String, List<GeneralDomain>> fixInnerSelectList(ResultSet rs) throws SQLException;
 
-    String returnUserName(GeneralDomain gd);
+    String returnUserName();
+
+    String getForSelectForSpecific(GeneralDomain u);
 }

@@ -16,6 +16,7 @@ public class SaveIntoDatabaseSO extends GeneralSystemOperation {
         Map<String, Object> hm = (Map<String, Object>) obj;
         if (hm.containsKey(USER)) {
             User u = (User) hm.get(USER);
+
             ib.save(u);
         } else if (hm.containsKey(AGE)) {
             Age a = (Age) hm.get(AGE);

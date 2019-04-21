@@ -15,7 +15,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -150,11 +149,11 @@ public class MainController implements Initializable, Serializable {
 
 
     private void setProfilePic() {
-        String profile = "file:src\\ProfilePics\\" + currentUser.getUserPhoto();
-        Image profileImage = new Image(profile, 200, 200, false, false);
-        profilePic.setImage(profileImage);
-        System.out.println(currentUser.getAge().getAgeInYears());
-        lvlNameAge1.setText(String.valueOf(currentUser.getAge().getAgeInYears()));
+//        String profile = "file:src\\ProfilePics\\" + currentUser.getUserPhoto();
+//        Image profileImage = new Image(profile, 200, 200, false, false);
+//        profilePic.setImage(profileImage);
+//        System.out.println(currentUser.getAge().getAgeInYears());
+//        lvlNameAge1.setText(String.valueOf(currentUser.getAge().getAgeInYears()));
     }
 
     private void MapViewClose() {

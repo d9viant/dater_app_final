@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.comtrade.domain.Constants.DBWRITTEN;
+
 public class User implements GeneralDomain, Serializable {
 
 
@@ -16,15 +18,14 @@ public class User implements GeneralDomain, Serializable {
     private String pass;
     private String email;
     private String bio;
-    private String userPhoto;
     private Location location = null;
     private Age age = null;
     private Rating rating = null;
     private Gender gender = null;
-    private Pictures pictures = null;
-    private int readyForSql = 0;
-    private static int userArrayIndex;
+    private int readyForSql = DBWRITTEN;
+    private int seen = 0;
     private Matches matches = null;
+    private Pictures p = null;
 
     public User() {
         age = new Age();
@@ -33,7 +34,7 @@ public class User implements GeneralDomain, Serializable {
         location=new Location();
     }
 
-    public User(int ID, String firstname, String lastName, String userName, String password, String email, String bio, String userPhoto) {
+    public User(int ID, String firstname, String lastName, String userName, String password, String email, String bio) {
         this.id=ID;
         this.firstName=firstname;
         this.lastName=lastName;
@@ -41,7 +42,7 @@ public class User implements GeneralDomain, Serializable {
         this.pass=password;
         this.email=email;
         this.bio=bio;
-        this.userPhoto=userPhoto;
+
     }
 
     public int getReadyForSql() {
@@ -108,14 +109,6 @@ public class User implements GeneralDomain, Serializable {
         this.rating = r;
     }
 
-    public String getUserPhoto() {
-        return userPhoto;
-    }
-
-    public void setUserPhoto(String userPhoto) {
-        this.userPhoto = userPhoto;
-    }
-
     public int getId() {
         return id;
     }
@@ -157,12 +150,12 @@ public class User implements GeneralDomain, Serializable {
         this.age = a;
     }
 
-    public static int getUserArrayIndex() {
-        return userArrayIndex;
+    public Pictures getP() {
+        return p;
     }
 
-    public static void setUserArrayIndex(int userArrayIndex) {
-        User.userArrayIndex = userArrayIndex;
+    public void setP(Pictures p) {
+        this.p = p;
     }
 
     public void setLocation(Location location) {
@@ -173,12 +166,12 @@ public class User implements GeneralDomain, Serializable {
         this.rating = rating;
     }
 
-    public Pictures getPictures() {
-        return pictures;
+    public int getSeen() {
+        return seen;
     }
 
-    public void setPictures(Pictures pictures) {
-        this.pictures = pictures;
+    public void setSeen(int seen) {
+        this.seen = seen;
     }
 
     @SuppressWarnings("Duplicates")
@@ -194,7 +187,6 @@ public class User implements GeneralDomain, Serializable {
                 String password = rs.getString("password");
                 String email = rs.getString("email");
                 String bio = rs.getString("bio");
-                String userPhoto = rs.getString("userPhoto");
                 u.setId(idUser);
                 u.setFirstName(firstName);
                 u.setLastName(lastName);
@@ -202,7 +194,7 @@ public class User implements GeneralDomain, Serializable {
                 u.setPass(password);
                 u.setEmail(email);
                 u.setBio(bio);
-                u.setUserPhoto(userPhoto);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -213,11 +205,10 @@ public class User implements GeneralDomain, Serializable {
     @Override
     public String returnInnerJoin() {
         return "SELECT * FROM user" +
-                " INNER JOIN location ON location.userId = user.id" +
-                " INNER JOIN gender ON gender.userId = user=user.id" +
-                " INNER JOIN age ON age.userId = user.id" +
-                " INNER JOIN rating ON rating.id = user.id" +
-                " INNER JOIN pictures ON pictures.idUser = user.id";
+                " INNER JOIN location ON location.username = user.username" +
+                " INNER JOIN gender ON gender.username = user.username" +
+                " INNER JOIN age ON age.username = user.username" +
+                " INNER JOIN rating ON rating.username = user.username";
     }
 
 
@@ -229,13 +220,14 @@ public class User implements GeneralDomain, Serializable {
 
     @Override
     public String returnTableRows() {
-        return " (firstName,lastName,username,password,email,bio,userPhoto) ";
+        return " (firstName, lastName, username, password, email, bio) ";
     }
 
     @Override
-    public String returnInsertFormat(GeneralDomain gd) {
-        User u = (User) gd;
-        return "VALUES ( '" + u.firstName + "','" + u.lastName + "','" + u.username + "','" + u.pass + "','" + u.lastName + "','" + u.email + "','" + u.bio + "','" + u.userPhoto + "')";
+    public String returnInsertFormat() {
+
+        return "VALUES ('" + getFirstName() + "','" + getLastName() + "','" + getUsername() + "','" + getPass() + "','" + getEmail() + "','" + getBio() + "')";
+
     }
 
     @Override
@@ -249,11 +241,10 @@ public class User implements GeneralDomain, Serializable {
     public HashMap<String, GeneralDomain> fixInnerSelect(ResultSet rs) throws SQLException {
         HashMap<String, GeneralDomain> list = new HashMap<>();
 
-        Gender g = new Gender();
-        Location l = new Location();
+        Gender g;
+        Location l;
         Age a = new Age();
         Rating r = new Rating();
-        Pictures p = new Pictures();
         try {
             while (rs.next()) {
                 int idUser = rs.getInt("id");
@@ -263,13 +254,30 @@ public class User implements GeneralDomain, Serializable {
                 String password = rs.getString("password");
                 String email = rs.getString("email");
                 String bio = rs.getString("bio");
-                String userPhoto = rs.getString("userPhoto");
-                User u = new User(idUser, firstName, lastName, userName, password, email, bio, userPhoto);
-                int genderID = rs.getInt("userId");
+                User u = new User(idUser, firstName, lastName, userName, password, email, bio);
+                String genderID = rs.getString("username");
                 int gender = rs.getInt("gender");
-                int prefferedGender = rs.getInt("preferredGender");
-                Gender gen = new Gender(genderID, gender, prefferedGender);
-
+                int prefferedGender = rs.getInt("prefferedGender");
+                g = new Gender(genderID, gender, prefferedGender);
+                u.setGender(g);
+                double longitude = rs.getDouble("longitude");
+                double latitude = rs.getDouble("latitude");
+                String address = rs.getString("address");
+                int prefDistance = rs.getInt("prefferedDistance");
+                l = new Location(longitude, latitude, address, prefDistance);
+                u.setLocation(l);
+                int Age = rs.getInt("age");
+                a.setAge(Age);
+                u.setAge(a);
+                int rating = rs.getInt("rating");
+                boolean newStatus = rs.getBoolean("newStatus");
+                boolean superUser = rs.getBoolean("superUser");
+                int k = rs.getInt("k");
+                r.setRating(rating);
+                r.setNewStatus(newStatus);
+                r.setSuperUser(superUser);
+                r.setK(k);
+                u.setR(r);
                 list.put(u.getUsername(), u);
 
             }
@@ -285,9 +293,14 @@ public class User implements GeneralDomain, Serializable {
     }
 
     @Override
-    public String returnUserName(GeneralDomain gd) {
-        User u = (User) gd;
-        return "WHERE username =" + u.getUsername();
+    public String returnUserName() {
+
+        return " WHERE user.username = " + getUsername();
+    }
+
+    @Override
+    public String getForSelectForSpecific(GeneralDomain u) {
+        return null;
     }
 
     public void setId(int id) {

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Gender implements GeneralDomain, Serializable {
-    private int userId;
+    private String username;
     private int gender;
     private int preferredGender;
 
@@ -16,8 +16,8 @@ public class Gender implements GeneralDomain, Serializable {
 
     }
 
-    public Gender(int userId, int gender, int preferredGender) {
-        this.userId = userId;
+    public Gender(String username, int gender, int preferredGender) {
+        this.username = username;
         this.gender = gender;
         this.preferredGender = preferredGender;
 
@@ -26,15 +26,6 @@ public class Gender implements GeneralDomain, Serializable {
     private int readyForSql = 0;
 
 
-
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public int getGender() {
         return gender;
@@ -50,6 +41,14 @@ public class Gender implements GeneralDomain, Serializable {
 
     public void setPreferredGender(int preferredGender) {
         this.preferredGender = preferredGender;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
@@ -73,7 +72,7 @@ public class Gender implements GeneralDomain, Serializable {
     }
 
     @Override
-    public String returnInsertFormat(GeneralDomain gd) {
+    public String returnInsertFormat() {
         return null;
     }
 
@@ -93,7 +92,12 @@ public class Gender implements GeneralDomain, Serializable {
     }
 
     @Override
-    public String returnUserName(GeneralDomain gd) {
+    public String returnUserName() {
+        return null;
+    }
+
+    @Override
+    public String getForSelectForSpecific(GeneralDomain u) {
         return null;
     }
 

@@ -8,13 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Pictures implements GeneralDomain, Serializable {
-    private byte[] picture;
-    private List<byte[]> pictures = new ArrayList<byte[]>();
-    private String pictureString;
-    private String pictureString2;
-    private String pictureString3;
-    private String pictureString4;
-    private String pictureString5;
+    private List<byte[]> pictures = new ArrayList<>();
     private int readyForSql = 0;
 
 
@@ -22,17 +16,6 @@ public class Pictures implements GeneralDomain, Serializable {
     public GeneralDomain fixSelect(ResultSet rs) throws SQLException {
         return null;
     }
-
-
-    public Pictures(String pictureString, String pictureString2, String pictureString3, String pictureString4, int readyForSql) {
-
-        this.pictureString = pictureString;
-        this.pictureString2 = pictureString2;
-        this.pictureString3 = pictureString3;
-        this.pictureString4 = pictureString4;
-        this.readyForSql = readyForSql;
-    }
-
     public Pictures() {
 
     }
@@ -53,7 +36,7 @@ public class Pictures implements GeneralDomain, Serializable {
     }
 
     @Override
-    public String returnInsertFormat(GeneralDomain gd) {
+    public String returnInsertFormat() {
         return null;
     }
 
@@ -73,58 +56,17 @@ public class Pictures implements GeneralDomain, Serializable {
     }
 
     @Override
-    public String returnUserName(GeneralDomain gd) {
+    public String returnUserName() {
         return null;
     }
 
-    public byte[] getPicture() {
-        return picture;
-    }
-
-    public void setPicture(byte[] picture) {
-        this.picture = picture;
-    }
-
-    public String getPictureString() {
-        return pictureString;
-    }
-
-    public void setPictureString(String pictureString) {
-        this.pictureString = pictureString;
+    @Override
+    public String getForSelectForSpecific(GeneralDomain u) {
+        return null;
     }
 
 
-    public void setProfilePicture(String profilePictureString) {
-        this.pictureString = profilePictureString;
-    }
 
-    public String getprofilePictureString() {
-        return pictureString;
-    }
-
-    public String getPictureString2() {
-        return pictureString2;
-    }
-
-    public void setPictureString2(String pictureString2) {
-        this.pictureString2 = pictureString2;
-    }
-
-    public String getPictureString3() {
-        return pictureString3;
-    }
-
-    public void setPictureString3(String pictureString3) {
-        this.pictureString3 = pictureString3;
-    }
-
-    public String getPictureString4() {
-        return pictureString4;
-    }
-
-    public void setPictureString4(String pictureString4) {
-        this.pictureString4 = pictureString4;
-    }
 
     public int getReadyForSql() {
         return readyForSql;
@@ -141,11 +83,6 @@ public class Pictures implements GeneralDomain, Serializable {
     public void setPictures(List<byte[]> pictures) {
         this.pictures = pictures;
     }
-    public String getPictureString5() {
-        return pictureString5;
-    }
 
-    public void setPictureString5(String pictureString5) {
-        this.pictureString5 = pictureString5;
-    }
+
 }

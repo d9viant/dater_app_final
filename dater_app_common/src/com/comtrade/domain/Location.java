@@ -6,21 +6,26 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.comtrade.domain.Constants.DBWRITTEN;
+
 public class Location implements GeneralDomain, Serializable {
-    private int userID;
+    private String username;
     private double longitude;
     private double latitude;
     private String address;
-    private static int prefferedDistance = 50;
-    private int readyForSql = 0;
+    private int prefferedDistance = 50;
+    private int readyForSql = DBWRITTEN;
 
 
     public Location(){
 
     }
-    public Location(double longitude, double latitude) {
+
+    public Location(double longitude, double latitude, String address, int prefferedDistance) {
 	    this.longitude=longitude;
 	    this.latitude=latitude;
+        this.address = address;
+        this.prefferedDistance = prefferedDistance;
 	}
 
     public double getLongitude() {
@@ -47,6 +52,22 @@ public class Location implements GeneralDomain, Serializable {
         this.address = address;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getPrefferedDistance() {
+        return prefferedDistance;
+    }
+
+    public void setPrefferedDistance(int prefferedDistance) {
+        this.prefferedDistance = prefferedDistance;
+    }
+
     @Override
     public GeneralDomain fixSelect(ResultSet rs) throws SQLException {
         return null;
@@ -68,7 +89,7 @@ public class Location implements GeneralDomain, Serializable {
     }
 
     @Override
-    public String returnInsertFormat(GeneralDomain gd) {
+    public String returnInsertFormat() {
         return null;
     }
 
@@ -88,7 +109,13 @@ public class Location implements GeneralDomain, Serializable {
     }
 
     @Override
-    public String returnUserName(GeneralDomain gd) {
+    public String returnUserName() {
+        return null;
+    }
+
+
+    @Override
+    public String getForSelectForSpecific(GeneralDomain u) {
         return null;
     }
 

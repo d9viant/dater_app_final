@@ -16,6 +16,8 @@ public class GetUserDBSO extends GeneralSystemOperation {
         IBroker ib = new Broker();
         HashMap<String, GeneralDomain> hm = (HashMap<String, GeneralDomain>) obj;
         User u = (User) hm.get(USER);
-        hm.put(USER, ib.getFromDb(u));
+//        Map<String, GeneralDomain> back = ib.getFromDb(u);
+//        hm.putAll(back);
+        hm.put(u.getUsername(), ib.getFromDb(u));
     }
 }
