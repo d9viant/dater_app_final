@@ -43,7 +43,7 @@ public class ClientThread extends Thread implements Serializable {
         switch (tf.getOperation()) {
             case SAVE_USER:
                 User u = (User) tf.getClient_object();
-                System.out.println("lebac" + u.getUsername());
+                
                 putUserInDataThread(u);
 //                savePic(u); pomeri save pic u main, prvi ekran upload slike i namesta preference
                 break;
@@ -59,7 +59,7 @@ public class ClientThread extends Thread implements Serializable {
                 }
                 ControllerBLogic.getInstance().checkProfile(check); // ovo vrv ne treba
                 break;
-            case LIKE: 
+            case LIKE:
                 System.out.println("hm");
 //                Pictures p = (Pictures) tf.getClient_object();
 //               byte[] by = p.getPicture();
