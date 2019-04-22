@@ -19,4 +19,4 @@ https://github.com/controlsfx/controlsfx
 http://jfoenix.com/
 
 
-The project is still in the works and some things may change, I will make an update in due time! 
+I will update any changes made here.
