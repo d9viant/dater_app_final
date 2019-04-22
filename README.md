@@ -8,7 +8,7 @@ https://www.sothawo.com/projects/mapjfx/ - JavaFX Project for Map Implementation
 
 https://dev.maxmind.com/geoip/geoip2/geolite2/ - A free geolocation database which points towards an street address using the user IP
 
-https://www.daniel-braun.com/technik/reverse-geocoding-library-for-java/ - A reverse geolocation https://www.openstreetmap.org/ API which returns the address details for the LAN and LONG passed attributes
+https://www.daniel-braun.com/technik/reverse-geocoding-library-for-java/ - A reverse geolocation Openstreetmap API which returns the address details for the LAN and LONG passed attributes
 
 JavaFX libraries used:
 
