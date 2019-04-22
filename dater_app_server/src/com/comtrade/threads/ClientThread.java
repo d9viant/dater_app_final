@@ -59,7 +59,7 @@ public class ClientThread extends Thread implements Serializable {
                 }
                 ControllerBLogic.getInstance().checkProfile(check); // ovo vrv ne treba
                 break;
-            case LIKE: //TESTIRAM KURCE OVDE
+            case LIKE: 
                 System.out.println("hm");
 //                Pictures p = (Pictures) tf.getClient_object();
 //               byte[] by = p.getPicture();
