@@ -297,7 +297,7 @@ public class LoginController implements Initializable, Serializable {
     }
 
 
-    //proveri stari repo, wow pa to sam i uradio yay
+    //proveri stari repo
     private void login() throws IOException {
         Stage stage = Main.stage;
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/comtrade/viewLayout/mainscreen.fxml"));
