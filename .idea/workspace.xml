@@ -7,7 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b3dfac1-7723-470a-b738-eb8519dacb07" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.metadata/.plugins/org.eclipse.jdt.core/.org.eclipse.jdt.core.external.folders/bin/" />
@@ -270,11 +269,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="161" />
-    <option name="y" value="45" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="177" />
+    <option name="y" value="23" />
     <option name="width" value="2180" />
-    <option name="height" value="1057" />
+    <option name="height" value="1074" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -283,7 +282,22 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="ProjectPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="dater_app_final" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dater_app_client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dater_app_final" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dater_app_client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -451,7 +465,7 @@
       <workItem from="1555405704506" duration="20389000" />
       <workItem from="1555538763258" duration="10890000" />
       <workItem from="1555580236217" duration="7546000" />
-      <workItem from="1555948420648" duration="1905000" />
+      <workItem from="1555948420648" duration="3195000" />
     </task>
     <task id="LOCAL-00001" summary="Second Push">
       <created>1552910803993</created>
@@ -579,11 +593,18 @@
       <option name="project" value="LOCAL" />
       <updated>1555951240333</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="implementing observers">
+      <created>1555958468007</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1555958468007</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="288843000" />
+    <option name="totallyTimeSpent" value="290133000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -595,8 +616,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2455" height="1096" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="2455" height="1096" extended-state="7" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09565581" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
