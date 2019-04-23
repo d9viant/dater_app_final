@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
   <component name="EclipseModuleManager">
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/charm-down-core-3.8.0.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/charm-down-plugin-storage-3.8.0.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/commons-codec-1.10.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/commons-logging-1.2.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/controlsfx-8.40.14.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/controlsfx-samples-8.40.14.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/fxsampler-1.0.10.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/geocoder-1.3.8.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/geoip2-2.12.0.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/geoip2-2.12.0-javadoc.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/geoip2-2.12.0-sources.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/httpclient-4.5.5.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/httpcore-4.4.9.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/jackson-annotations-2.9.5.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/jackson-core-2.9.5.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/jackson-databind-2.9.5.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/java-json.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/jfoenix-8.0.8.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/json-simple-1.1.1.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/log4j-1.2.17.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1-javadoc.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1-sources.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1-tests.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1-test-sources.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/mapjfx-1.24.0.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/maps-1.0.3.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/maxmind-db-1.2.2.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/mysql-connector-java-8.0.15.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/reverseGeocoding.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/slf4j-api-1.7.25.jar" />
-    <libelement value="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/thumbnailator-0.4.8.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/charm-down-core-3.8.0.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/charm-down-plugin-storage-3.8.0.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/commons-codec-1.10.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/commons-logging-1.2.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/controlsfx-8.40.14.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/controlsfx-samples-8.40.14.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/fxsampler-1.0.10.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/geocoder-1.3.8.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/geoip2-2.12.0.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/geoip2-2.12.0-javadoc.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/geoip2-2.12.0-sources.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/httpclient-4.5.5.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/httpcore-4.4.9.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/jackson-annotations-2.9.5.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/jackson-core-2.9.5.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/jackson-databind-2.9.5.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/java-json.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/jfoenix-8.0.8.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/json-simple-1.1.1.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/log4j-1.2.17.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1-javadoc.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1-sources.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1-tests.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1-test-sources.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/mapjfx-1.24.0.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/maps-1.0.3.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/maxmind-db-1.2.2.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/mysql-connector-java-8.0.15.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/reverseGeocoding.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/slf4j-api-1.7.25.jar" />
+    <libelement value="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/thumbnailator-0.4.8.jar" />
     <src_description expected_position="1">
       <src_folder value="file://$MODULE_DIR$/src" expected_position="1" />
     </src_description>
@@ -48,7 +48,7 @@
     <orderEntry type="module-library">
       <library name="charm-down-core-3.8.0.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/charm-down-core-3.8.0.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/charm-down-core-3.8.0.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -57,7 +57,7 @@
     <orderEntry type="module-library">
       <library name="charm-down-plugin-storage-3.8.0.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/charm-down-plugin-storage-3.8.0.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/charm-down-plugin-storage-3.8.0.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -66,7 +66,7 @@
     <orderEntry type="module-library">
       <library name="commons-codec-1.10.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/commons-codec-1.10.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/commons-codec-1.10.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -75,7 +75,7 @@
     <orderEntry type="module-library">
       <library name="commons-logging-1.2.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/commons-logging-1.2.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/commons-logging-1.2.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -84,7 +84,7 @@
     <orderEntry type="module-library">
       <library name="controlsfx-8.40.14.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/controlsfx-8.40.14.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/controlsfx-8.40.14.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -93,7 +93,7 @@
     <orderEntry type="module-library">
       <library name="controlsfx-samples-8.40.14.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/controlsfx-samples-8.40.14.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/controlsfx-samples-8.40.14.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -102,7 +102,7 @@
     <orderEntry type="module-library">
       <library name="fxsampler-1.0.10.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/fxsampler-1.0.10.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/fxsampler-1.0.10.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -111,7 +111,7 @@
     <orderEntry type="module-library">
       <library name="geocoder-1.3.8.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/geocoder-1.3.8.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/geocoder-1.3.8.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -120,7 +120,7 @@
     <orderEntry type="module-library">
       <library name="geoip2-2.12.0.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/geoip2-2.12.0.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/geoip2-2.12.0.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -129,7 +129,7 @@
     <orderEntry type="module-library">
       <library name="geoip2-2.12.0-javadoc.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/geoip2-2.12.0-javadoc.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/geoip2-2.12.0-javadoc.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -138,7 +138,7 @@
     <orderEntry type="module-library">
       <library name="geoip2-2.12.0-sources.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/geoip2-2.12.0-sources.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/geoip2-2.12.0-sources.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -147,7 +147,7 @@
     <orderEntry type="module-library">
       <library name="httpclient-4.5.5.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/httpclient-4.5.5.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/httpclient-4.5.5.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -156,7 +156,7 @@
     <orderEntry type="module-library">
       <library name="httpcore-4.4.9.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/httpcore-4.4.9.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/httpcore-4.4.9.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -165,7 +165,7 @@
     <orderEntry type="module-library">
       <library name="jackson-annotations-2.9.5.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/jackson-annotations-2.9.5.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/jackson-annotations-2.9.5.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -174,7 +174,7 @@
     <orderEntry type="module-library">
       <library name="jackson-core-2.9.5.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/jackson-core-2.9.5.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/jackson-core-2.9.5.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -183,7 +183,7 @@
     <orderEntry type="module-library">
       <library name="jackson-databind-2.9.5.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/jackson-databind-2.9.5.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/jackson-databind-2.9.5.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -192,7 +192,7 @@
     <orderEntry type="module-library">
       <library name="java-json.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/java-json.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/java-json.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -201,7 +201,7 @@
     <orderEntry type="module-library">
       <library name="jfoenix-8.0.8.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/jfoenix-8.0.8.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/jfoenix-8.0.8.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -210,7 +210,7 @@
     <orderEntry type="module-library">
       <library name="json-simple-1.1.1.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/json-simple-1.1.1.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/json-simple-1.1.1.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -219,7 +219,7 @@
     <orderEntry type="module-library">
       <library name="log4j-1.2.17.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/log4j-1.2.17.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/log4j-1.2.17.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -228,7 +228,7 @@
     <orderEntry type="module-library">
       <library name="log4j-core-2.11.1.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -237,7 +237,7 @@
     <orderEntry type="module-library">
       <library name="log4j-core-2.11.1-javadoc.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1-javadoc.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1-javadoc.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -246,7 +246,7 @@
     <orderEntry type="module-library">
       <library name="log4j-core-2.11.1-sources.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1-sources.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1-sources.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -255,7 +255,7 @@
     <orderEntry type="module-library">
       <library name="log4j-core-2.11.1-tests.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1-tests.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1-tests.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -264,7 +264,7 @@
     <orderEntry type="module-library">
       <library name="log4j-core-2.11.1-test-sources.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1-test-sources.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/log4j-core-2.11.1-test-sources.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -273,7 +273,7 @@
     <orderEntry type="module-library">
       <library name="mapjfx-1.24.0.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/mapjfx-1.24.0.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/mapjfx-1.24.0.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -282,7 +282,7 @@
     <orderEntry type="module-library">
       <library name="maps-1.0.3.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/maps-1.0.3.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/maps-1.0.3.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -291,7 +291,7 @@
     <orderEntry type="module-library">
       <library name="maxmind-db-1.2.2.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/maxmind-db-1.2.2.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/maxmind-db-1.2.2.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -300,7 +300,7 @@
     <orderEntry type="module-library">
       <library name="mysql-connector-java-8.0.15.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/mysql-connector-java-8.0.15.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/mysql-connector-java-8.0.15.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -309,7 +309,7 @@
     <orderEntry type="module-library">
       <library name="reverseGeocoding.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/reverseGeocoding.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/reverseGeocoding.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -318,7 +318,7 @@
     <orderEntry type="module-library">
       <library name="slf4j-api-1.7.25.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/slf4j-api-1.7.25.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/slf4j-api-1.7.25.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -327,7 +327,7 @@
     <orderEntry type="module-library">
       <library name="thumbnailator-0.4.8.jar">
         <CLASSES>
-          <root url="file://C:/Users/Strahinja/dater_app/dater_app_client/src/libraries/thumbnailator-0.4.8.jar" />
+          <root url="file://$USER_HOME$/dater_app/dater_app_client/src/libraries/thumbnailator-0.4.8.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -335,5 +335,6 @@
     </orderEntry>
     <orderEntry type="module" module-name="dater_app_common" />
     <orderEntry type="library" name="libraries" level="project" />
+    <orderEntry type="module" module-name="dater_app_common" />
   </component>
 </module>

@@ -11,6 +11,7 @@ import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Map;
 
 import static com.comtrade.domain.Constants.*;
@@ -92,16 +93,21 @@ public class ClientThread extends Thread implements Serializable {
     }
 
     private void savePics(User u) throws IOException {
-        byte[] bytes = u.getPictures().getPicture();
-        File theDir = new File(WINDIRPICS + u.getUsername());
-        Path newDir = Paths.get(theDir.getAbsolutePath());
-        Files.createDirectories(newDir);
-        Path path = Paths.get(newDir + u.getUsername() + ".jpg");
-        try {
-            write(path, bytes);
-        } catch (IOException e) {
-            e.printStackTrace();
+        List<byte[]> bytes = u.getP().getPictures();
+        int length = bytes.size()-1;
+        for(int i=0; i<length; i++){
+            byte[] b = bytes.get(i);
+            File theDir = new File(WINDIRPICS + u.getUsername());
+            Path newDir = Paths.get(theDir.getAbsolutePath());
+            Files.createDirectories(newDir);
+            Path path = Paths.get(newDir + u.getUsername() + i + ".jpg");
+            try {
+                write(path, b);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     public void sendToClient(TransferClass tc2) {

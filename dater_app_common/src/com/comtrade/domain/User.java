@@ -32,6 +32,7 @@ public class User implements GeneralDomain, Serializable {
         rating=new Rating();
         gender=new Gender();
         location=new Location();
+        p=new Pictures();
     }
 
     public User(int ID, String firstname, String lastName, String userName, String password, String email, String bio) {
