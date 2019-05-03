@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.comtrade.domain.Constants.RDYFORDB;
+
 public class Message implements GeneralDomain, Serializable {
     private int idMessage;
     private int userOneId;
@@ -18,7 +20,7 @@ public class Message implements GeneralDomain, Serializable {
     private String receivedDate;
     private String receivedTime;
     private String messageBody;
-    private int readyForSql = 0;
+    private int readyForSql = RDYFORDB;
 
     public Message(){
 

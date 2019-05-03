@@ -12,8 +12,8 @@ public class Constants {
     public static final int USERNAME_OK = 8;
 
 
-    public static final int RDYFORDB = 1;
-    public static final int DBWRITTEN = 0;
+    public static final int RDYFORDB = 9;
+    public static final int DBWRITTEN = 10;
 
     public static final int MALE = 11;
     public static final int FEMALE = 12;

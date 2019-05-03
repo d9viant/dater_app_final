@@ -18,14 +18,17 @@ public class DataThread extends Thread {
 		getAllUsers();
 		User u = (User) getAllUserList.get("keseljs");
 		System.out.println(u.getFirstName());
-//		getAllMessagesMatches();
-//		notifyAll();
+		System.out.println(u.getAge().getAge());
+
 
 	}
 
 
 	private void getAllUsers() {
 		ControllerBLogic.getInstance().getAllUsers(getAllUserList);
+		getAllMessagesMatches();
+
+
 	}
 
 	private void getAllMessagesMatches() {

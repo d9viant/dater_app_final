@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static com.comtrade.domain.Constants.DBWRITTEN;
+import static com.comtrade.domain.Constants.RDYFORDB;
 
 public class Location implements GeneralDomain, Serializable {
     private String username;
@@ -14,7 +15,7 @@ public class Location implements GeneralDomain, Serializable {
     private double latitude;
     private String address;
     private int prefferedDistance = 50;
-    private int readyForSql = DBWRITTEN;
+    private int readyForSql = RDYFORDB;
 
 
     public Location(){

@@ -8,11 +8,13 @@ import java.time.Period;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.comtrade.domain.Constants.RDYFORDB;
+
 public class Age implements GeneralDomain, Serializable {
     private String username;
     private LocalDate birthday;
     private int age;
-    private int readyForSql = 0;
+    private int readyForSql = RDYFORDB;
 
     public Age(){
         calculateAge();

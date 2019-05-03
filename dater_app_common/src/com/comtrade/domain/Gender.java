@@ -6,11 +6,13 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.comtrade.domain.Constants.RDYFORDB;
+
 public class Gender implements GeneralDomain, Serializable {
     private String username;
     private int gender;
     private int preferredGender;
-
+    private int readyForSql = RDYFORDB;
 
     public Gender() {
 
@@ -23,7 +25,7 @@ public class Gender implements GeneralDomain, Serializable {
 
     }
 
-    private int readyForSql = 0;
+
 
 
 

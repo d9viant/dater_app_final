@@ -27,7 +27,7 @@ public class Connection {
 
     public void startTransaction() {
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dater_app?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dater_app_final?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
             conn.setAutoCommit(false);
         } catch (SQLException e) {
             e.printStackTrace();

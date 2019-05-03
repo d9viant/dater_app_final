@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static com.comtrade.domain.Constants.DBWRITTEN;
+import static com.comtrade.domain.Constants.RDYFORDB;
 
 public class User implements GeneralDomain, Serializable {
 
@@ -22,7 +23,7 @@ public class User implements GeneralDomain, Serializable {
     private Age age = null;
     private Rating rating = null;
     private Gender gender = null;
-    private int readyForSql = DBWRITTEN;
+    private int readyForSql = RDYFORDB;
     private int seen = 0;
     private Matches matches = null;
     private Pictures p = null;

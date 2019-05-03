@@ -2,12 +2,16 @@ package com.comtrade.broker;
 
 import com.comtrade.connection.Connection;
 import com.comtrade.domain.GeneralDomain;
+import com.comtrade.domain.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static com.comtrade.domain.Constants.RDYFORDB;
 
 public class Broker implements IBroker {
 	private static Broker instance;
@@ -31,14 +35,46 @@ public class Broker implements IBroker {
 	}
 
 
-	public void save(GeneralDomain gd) {
-        String query = "INSERT INTO " + gd.returnTableName() + " " + gd.returnTableRows() + " " + gd.returnInsertFormat();
-		try {
-			Statement st = Connection.getInstance().getConn().createStatement();
-			st.execute(query);
-		} catch (SQLException e) {
-			e.printStackTrace();
+	// BATCH FOR DATABASE
+	public void save(Map<String, GeneralDomain> gd) throws SQLException {
+		Statement st = Connection.getInstance().getConn().createStatement();
+		for (Map.Entry<String, GeneralDomain> entry : gd.entrySet()) {
+			User u = (User) entry.getValue();
+			if(u.getReadyForSql() == RDYFORDB) {
+				// USER QUERY
+				String query = "INSERT INTO " + u.returnTableName() + " " + u.returnTableRows() + " " + u.returnInsertFormat();
+				st.addBatch(query);
+
+			}else if(u.getLocation().getReadyForSql() == RDYFORDB){
+				// LOCATION QUERY
+				String query = "INSERT INTO " + u.getLocation().returnTableName() + " " + u.getLocation().returnTableRows() + " " + u.getLocation().returnInsertFormat();
+				st.addBatch(query);
+
+			}else if(u.getAge().getReadyForSql() == RDYFORDB){
+				// AGE QUERY
+				String query = "INSERT INTO " + u.getAge().returnTableName() + " " + u.getAge().returnTableRows() + " " + u.getAge().returnInsertFormat();
+				st.addBatch(query);
+
+			}else if(u.getRating().getReadyForSql() == RDYFORDB){
+				// RATING QUERY
+				String query = "INSERT INTO " + u.getRating().returnTableName() + " " + u.getRating().returnTableRows() + " " + u.getRating().returnInsertFormat();
+				st.addBatch(query);
+
+			}else if(u.getGender().getReadyForSql() == RDYFORDB){
+				// GENDER QUERY
+				String query = "INSERT INTO " + u.getGender().returnTableName() + " " + u.getGender().returnTableRows() + " " + u.getGender().returnInsertFormat();
+				st.addBatch(query);
+
+			}
 		}
+
+		st.executeBatch();
+	}
+
+	@Override
+	public void saveList(Map<String, List<GeneralDomain>> asd) throws SQLException {
+
+
 
 	}
 

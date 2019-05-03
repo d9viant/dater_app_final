@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.comtrade.domain.Constants.RDYFORDB;
+
 public class Rating implements GeneralDomain, Serializable
 {
 
@@ -14,7 +16,7 @@ public class Rating implements GeneralDomain, Serializable
     private boolean newStatus = true;
     private boolean superUser = false;
 	private static int K = 50;
-	private int readyForSql = 0;
+	private int readyForSql = RDYFORDB;
 
 
 

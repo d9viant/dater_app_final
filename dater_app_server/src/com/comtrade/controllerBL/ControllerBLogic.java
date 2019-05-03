@@ -36,8 +36,8 @@ public class ControllerBLogic {
 		return instance;
 	}
 
-	public void saveIntoDB(HashMap u) {
-		GeneralSystemOperation op = new SaveIntoDatabaseSO();
+	public void saveBatch(Map<String, GeneralDomain> u) {
+		GeneralSystemOperation op = new BatchUserSO();
 		op.executeSo(u);
 	}
 
