@@ -66,7 +66,7 @@ public class ClientThread extends Thread implements Serializable {
 //               byte[] by = p.getPicture();
 //                File file = new File("pics/profilepics/ugabuga");
 //
-//                File theDirecc = new File("pics/profilepics/Kurac.jpg");
+//                File theDirecc = new File("pics/profilepics/asd.jpg");
 //                Path pathh = Paths.get(theDirecc.getAbsolutePath());
 //                Path pathh2 = Paths.get(file.getAbsolutePath());
 //                Files.createDirectories(pathh2);
