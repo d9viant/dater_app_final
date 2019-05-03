@@ -131,7 +131,7 @@ public class Broker implements IBroker {
             Statement st = Connection.getInstance().getConn().createStatement();
             ResultSet rs = st.executeQuery(query);
             userHash = gd.fixInnerSelectList(rs);
-
+			System.out.println("Works");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
