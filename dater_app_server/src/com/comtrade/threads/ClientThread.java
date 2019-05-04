@@ -86,7 +86,6 @@ public class ClientThread extends Thread implements Serializable {
     }
 
     private void putUserInDataThread(User u) {
-        u.setReadyForSql(RDYFORDB);
         backupThread.getGetAllUserList().put(u.getUsername(), u);
         ControllerBLogic.getInstance().insertIntoActive(u.getUsername(), this);
 

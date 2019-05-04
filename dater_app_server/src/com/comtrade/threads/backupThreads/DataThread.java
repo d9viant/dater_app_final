@@ -12,26 +12,42 @@ public class DataThread extends Thread {
 	private Map<String, List<GeneralDomain>> allMatches = new HashMap<>();
 	private Map<String, List<GeneralDomain>> allMessages = new HashMap<>();
 	private Map<String, GeneralDomain> getAllUserList = new HashMap<>();
-
+	private boolean transfer = true;
 
 	public void run() {
-		getAllUsers();
-		User u = (User) getAllUserList.get("keseljs");
-		System.out.println(u.getFirstName());
-		System.out.println(u.getAge().getAge());
+		try {
+			saveBatch();
+			getAllUsers();
+
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 
 
 	}
 
+	private synchronized void saveBatch() throws InterruptedException {
+     	while(!transfer){
+     		wait();
+		}
+     	ControllerBLogic.getInstance().saveBatch(getAllUserList);
+		transfer = false;
+		notifyAll();
+	}
 
-	private void getAllUsers() {
+
+	private synchronized void getAllUsers() throws InterruptedException {
+		while(transfer){
+			wait();
+		}
 		ControllerBLogic.getInstance().getAllUsers(getAllUserList);
 		getAllMessagesMatches();
+		transfer = true;
 
 
 	}
 
-	private void getAllMessagesMatches() {
+	private synchronized void getAllMessagesMatches() {
 		ControllerBLogic.getInstance().getAllMessages(allMessages);
 		ControllerBLogic.getInstance().getAllMatches(allMatches);
 

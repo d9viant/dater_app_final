@@ -3,6 +3,8 @@ package com.comtrade.sysops;
 import com.comtrade.broker.Broker;
 import com.comtrade.connection.Connection;
 
+import java.sql.SQLException;
+
 public abstract class GeneralSystemOperation {
     public void executeSo(Object obj) {
         try {
@@ -16,7 +18,7 @@ public abstract class GeneralSystemOperation {
         }
     }
 
-    public abstract void executeConcreteOperation(Object obj);
+    public abstract void executeConcreteOperation(Object obj) throws SQLException;
 
     private void startTransaction() {
         Connection.getInstance().startTransaction();
