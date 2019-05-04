@@ -1,10 +1,15 @@
 # Dater - A tinder clone
 
 -OOP Principles
+
 -Design Patterns
+
 -Algorithms and Data Structures
+
 -Concurrency Programming
+
 -MYSQL Database
+
 -Software Design Principles
 
 
