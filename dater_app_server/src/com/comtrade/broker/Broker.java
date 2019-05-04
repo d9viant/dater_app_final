@@ -2,6 +2,8 @@ package com.comtrade.broker;
 
 import com.comtrade.connection.Connection;
 import com.comtrade.domain.GeneralDomain;
+import com.comtrade.domain.Matches;
+import com.comtrade.domain.Message;
 import com.comtrade.domain.User;
 
 import java.sql.ResultSet;
@@ -11,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.comtrade.domain.Constants.DBWRITTEN;
 import static com.comtrade.domain.Constants.RDYFORDB;
 
 public class Broker implements IBroker {
@@ -72,10 +75,38 @@ public class Broker implements IBroker {
 	}
 
 	@Override
-	public void saveList(Map<String, List<GeneralDomain>> asd) throws SQLException {
+	public void saveListMessage(Map<String, List<GeneralDomain>> asd) throws SQLException {
+		Statement st = Connection.getInstance().getConn().createStatement();
+		for (Map.Entry<String, List<GeneralDomain>> entry : asd.entrySet()) {
+			List<GeneralDomain> listentry = entry.getValue();
+			for (GeneralDomain temp : listentry) {
+				Message m = (Message) temp;
+				if(m.getReadyForSql() == RDYFORDB){
+					String query = "INSERT INTO " + m.returnTableName() + " " + m.returnTableRows() + " " + m.returnInsertFormat();
+					st.addBatch(query);
+				}
+			}
+		}
+		st.executeBatch();
 
 
+	}
 
+	@Override
+	public void saveListMatch(Map<String, List<GeneralDomain>> asd) throws SQLException {
+		Statement st = Connection.getInstance().getConn().createStatement();
+
+		for (Map.Entry<String, List<GeneralDomain>> entry : asd.entrySet()) {
+			List<GeneralDomain> listentry = entry.getValue();
+			for (GeneralDomain temp : listentry) {
+				Matches m = (Matches) temp;
+				if(m.getReadyForSql() == RDYFORDB){
+					String query = "INSERT INTO " + m.returnTableName() + " " + m.returnTableRows() + " " + m.returnInsertFormat();
+					st.addBatch(query);
+				}
+			}
+		}
+		st.executeBatch();
 	}
 
 	public void delete(GeneralDomain gd) {

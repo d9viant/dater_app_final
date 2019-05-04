@@ -8,7 +8,8 @@ import java.util.Map;
 
 public interface IBroker {
     void save(Map<String, GeneralDomain> asd) throws SQLException;
-    void saveList(Map<String, List<GeneralDomain>> asd) throws SQLException;
+    void saveListMessage(Map<String, List<GeneralDomain>> asd) throws SQLException;
+    void saveListMatch(Map<String, List<GeneralDomain>> asd) throws SQLException;
     void delete(GeneralDomain gd);
 
     GeneralDomain getFromDb(GeneralDomain gd);

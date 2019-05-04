@@ -41,6 +41,16 @@ public class ControllerBLogic {
 		op.executeSo(u);
 	}
 
+	public void saveMessageBatch(Map<String, List<GeneralDomain>> u) {
+		GeneralSystemOperation op = new BatchUserSO();
+		op.executeSo(u);
+	}
+
+	public void saveMatchBatch(Map<String, List<GeneralDomain>> u) {
+		GeneralSystemOperation op = new BatchUserSO();
+		op.executeSo(u);
+	}
+
 	public void getAllMessages(Map<String, List<GeneralDomain>> hm) {
 		GeneralSystemOperation op = new GetMessagesDBSO();
 		op.executeSo(hm);

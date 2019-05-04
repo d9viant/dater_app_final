@@ -99,7 +99,7 @@ public class MainController implements Initializable, Serializable {
 
 
     private void initialSetup() {
-        setPaneOut(settingsPane, placeHolderPane);
+//        setPaneOut(settingsPane, placeHolderPane); 
         setPaneOut(opacityPane, placeHolderPane);
         setPaneOut(drawerPane, placeHolderPane);
         setPaneOut(profilePane, placeHolderPane);

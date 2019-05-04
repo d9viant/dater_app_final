@@ -27,22 +27,26 @@ public class DataThread extends Thread {
 	}
 
 	private synchronized void saveBatch() throws InterruptedException {
-     	while(!transfer){
+     	while(transfer){
      		wait();
 		}
      	ControllerBLogic.getInstance().saveBatch(getAllUserList);
-		transfer = false;
+		ControllerBLogic.getInstance().saveMatchBatch(allMatches);
+		ControllerBLogic.getInstance().saveMessageBatch(allMessages);
+		transfer = true;
 		notifyAll();
 	}
 
 
 	private synchronized void getAllUsers() throws InterruptedException {
-		while(transfer){
+		while(!transfer){
 			wait();
 		}
 		ControllerBLogic.getInstance().getAllUsers(getAllUserList);
 		getAllMessagesMatches();
-		transfer = true;
+		transfer = false;
+		sleep(600000);
+		notifyAll();
 
 
 	}
