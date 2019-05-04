@@ -5,6 +5,7 @@ import com.comtrade.domain.User;
 import com.comtrade.profil.SO.*;
 import com.comtrade.sysops.GeneralSystemOperation;
 import com.comtrade.threads.ClientThread;
+import com.comtrade.threads.backupThreads.DataThread;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,11 +16,12 @@ public class ControllerBLogic {
     private static final Object mutex = new Object();
 	private static ControllerBLogic instance;
     private Map<String, ClientThread> connectedUserMap = new HashMap<>();
-
+    private  DataThread datathread;
 
 
 	private ControllerBLogic() {
-
+		datathread = new DataThread();
+		datathread.start();
 	}
 
 	public static ControllerBLogic getInstance() {
@@ -84,7 +86,9 @@ public class ControllerBLogic {
 
     }
 
-
+	public DataThread getDatathread() {
+		return datathread;
+	}
     public void removeActiveUser(String currentUsername) {
         connectedUserMap.remove(currentUsername);
     }

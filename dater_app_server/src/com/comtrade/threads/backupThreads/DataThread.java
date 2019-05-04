@@ -16,40 +16,16 @@ public class DataThread extends Thread {
 
 	public void run() {
 		try {
-			saveBatch();
 			getAllUsers();
-
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-
-
 	}
-
-	private synchronized void saveBatch() throws InterruptedException {
-     	while(transfer){
-     		wait();
-		}
-     	ControllerBLogic.getInstance().saveBatch(getAllUserList);
-		ControllerBLogic.getInstance().saveMatchBatch(allMatches);
-		ControllerBLogic.getInstance().saveMessageBatch(allMessages);
-		transfer = true;
-		notifyAll();
-	}
-
 
 	private synchronized void getAllUsers() throws InterruptedException {
-		while(!transfer){
-			wait();
-		}
 		ControllerBLogic.getInstance().getAllUsers(getAllUserList);
 		getAllMessagesMatches();
-		transfer = false;
-		sleep(600000);
-		notifyAll();
-
-
-	}
+		}
 
 	private synchronized void getAllMessagesMatches() {
 		ControllerBLogic.getInstance().getAllMessages(allMessages);

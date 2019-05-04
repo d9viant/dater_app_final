@@ -157,18 +157,18 @@ public class Broker implements IBroker {
     @Override
     public HashMap<String, List<GeneralDomain>> getInnerJoinList(GeneralDomain gd) {
         String query = gd.returnInnerJoin();
-        HashMap<String, List<GeneralDomain>> userHash = new HashMap<>();
+        HashMap<String, List<GeneralDomain>> list = new HashMap<>();
         try {
             Statement st = Connection.getInstance().getConn().createStatement();
             ResultSet rs = st.executeQuery(query);
-            userHash = gd.fixInnerSelectList(rs);
+			list = gd.fixInnerSelectList(rs);
 			System.out.println("Works ");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return userHash;
+		return list;
     }
 
 

@@ -56,8 +56,7 @@ public class ClientThread extends Thread implements Serializable {
                 if (hashMap.containsKey(check.getUsername().toLowerCase())) {
                     TransferClass back = new TransferClass();
                     back.setOperation(USERNAME_TAKEN);
-                    sendToClient(back);
-                }
+                    sendToClient(back);                }
                 ControllerBLogic.getInstance().checkProfile(check); // ovo vrv ne treba
                 break;
             case LIKE:
@@ -93,7 +92,7 @@ public class ClientThread extends Thread implements Serializable {
 
     private void savePics(User u) throws IOException {
         List<byte[]> bytes = u.getP().getPictures();
-        int length = bytes.size()-1;
+        int length = bytes.size();
         for(int i=0; i<length; i++){
             byte[] b = bytes.get(i);
             File theDir = new File(WINDIRPICS + u.getUsername());

@@ -228,7 +228,7 @@ public class User implements GeneralDomain, Serializable {
     @Override
     public String returnInsertFormat() {
 
-        return "VALUES ('" + getFirstName() + "','" + getLastName() + "','" + getUsername() + "','" + getPass() + "','" + getEmail() + "','" + getBio() + "')";
+        return "VALUES ('" + firstName + "','" + lastName + "','" + username + "','" + pass + "','" + email + "','" + bio + "')";
 
     }
 
@@ -286,6 +286,7 @@ public class User implements GeneralDomain, Serializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println(list.size() + "Strahinja");
         return list;
     }
 

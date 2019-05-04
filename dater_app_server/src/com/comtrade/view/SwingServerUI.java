@@ -4,8 +4,10 @@
 
 package com.comtrade.view;
 
+import com.comtrade.controllerBL.ControllerBLogic;
 import com.comtrade.threads.Server;
 import com.comtrade.threads.ServerTimeThread;
+import com.comtrade.threads.backupThreads.BatchThread;
 import com.comtrade.threads.backupThreads.DataThread;
 
 import javax.swing.*;
@@ -38,10 +40,11 @@ public class SwingServerUI extends JFrame {
     }
 
     private void button1ActionPerformed(ActionEvent e) {
-        DataThread dbbt = new DataThread();
+        ControllerBLogic.getInstance();
         Server s = new Server(textStart);
         ServerTimeThread stt = new ServerTimeThread(timeText);
-        dbbt.start();
+        BatchThread bt = new BatchThread();
+        bt.start();
         s.start();
         stt.start();
         button1.setEnabled(false);

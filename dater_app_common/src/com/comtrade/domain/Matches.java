@@ -87,24 +87,19 @@ public class Matches implements Serializable, GeneralDomain{
 
     @Override
     public String returnTableRows() {
-        return null;
+        return " (usernameOne, usernameTwo, requestUsername, matchStatus) ";
     }
 
     @Override
     public String returnInsertFormat() {
-        return null;
+        return "VALUES ('" + usernameOne + "','" + usernameTwo + "','" + requestUsername + "','" + matchStatus + "')";
     }
 
     @Override
     public String delete(GeneralDomain gd) {
         Matches m = (Matches) gd;
-//        if (m.getUsernameOne()<m.getUserTwoId()) {
-//            return " WHERE userOneId="+m.getUserOneId()+" AND userTwoId="+m.getUserTwoId()+"";
-//        }else {
-//            return " WHERE userOneId="+m.getUserTwoId()+" AND userTwoId="+m.getUserOneId()+"";
-//        }
+        return " WHERE userOneId="+m.getUsernameOne()+" AND userTwoId="+m.getUsernameTwo()+"";
 
-        return null;
     }
 
     @Override
@@ -114,6 +109,13 @@ public class Matches implements Serializable, GeneralDomain{
 
     @Override
     public HashMap<String, List<GeneralDomain>> fixInnerSelectList(ResultSet rs) throws SQLException {
+        HashMap<String, List<GeneralDomain>> matchesHM = new HashMap<>();
+        while(rs.next()){
+
+        }
+
+
+
         return null;
     }
 
