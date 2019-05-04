@@ -17,6 +17,7 @@ public class DataThread extends Thread {
 	public void run() {
 		try {
 			getAllUsers();
+
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -30,6 +31,7 @@ public class DataThread extends Thread {
 	private synchronized void getAllMessagesMatches() {
 		ControllerBLogic.getInstance().getAllMessages(allMessages);
 		ControllerBLogic.getInstance().getAllMatches(allMatches);
+
 
 	}
 

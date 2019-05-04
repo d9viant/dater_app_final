@@ -20,7 +20,6 @@ import static java.nio.file.Files.write;
 
 public class ClientThread extends Thread implements Serializable {
     private Socket socket;
-    private DataThread backupThread = new DataThread();
     private String currentUsername;
 
     public void setSocket(Socket socket) {
@@ -52,7 +51,7 @@ public class ClientThread extends Thread implements Serializable {
                 break;
             case CHECK_USER:
                 User check = (User) tf.getClient_object();
-                Map hashMap = backupThread.getGetAllUserList();
+                Map hashMap = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
                 if (hashMap.containsKey(check.getUsername().toLowerCase())) {
                     TransferClass back = new TransferClass();
                     back.setOperation(USERNAME_TAKEN);
@@ -85,7 +84,7 @@ public class ClientThread extends Thread implements Serializable {
     }
 
     private void putUserInDataThread(User u) {
-        backupThread.getGetAllUserList().put(u.getUsername(), u);
+        ControllerBLogic.getInstance().getDatathread().getGetAllUserList().put(u.getUsername(), u);
         ControllerBLogic.getInstance().insertIntoActive(u.getUsername(), this);
 
     }

@@ -95,7 +95,6 @@ public class Broker implements IBroker {
 	@Override
 	public void saveListMatch(Map<String, List<GeneralDomain>> asd) throws SQLException {
 		Statement st = Connection.getInstance().getConn().createStatement();
-
 		for (Map.Entry<String, List<GeneralDomain>> entry : asd.entrySet()) {
 			List<GeneralDomain> listentry = entry.getValue();
 			for (GeneralDomain temp : listentry) {
@@ -164,8 +163,7 @@ public class Broker implements IBroker {
 			list = gd.fixInnerSelectList(rs);
 			System.out.println("Works ");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("No Database Entries for Messages and Matches");
 		}
 
 		return list;
