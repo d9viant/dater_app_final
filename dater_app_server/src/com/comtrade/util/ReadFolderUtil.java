@@ -1,5 +1,7 @@
 package com.comtrade.util;
 
+import com.comtrade.domain.Pictures;
+
 import java.io.File;
 
 public class ReadFolderUtil {
@@ -17,12 +19,15 @@ public class ReadFolderUtil {
      *
      * @param directoryName to be listed
      */
-    public void listFilesAndFolders(String directoryName) {
+    public void listFilesAndFolders(String directoryName, String username) {
         File directory = new File(directoryName);
+        byte[] fileContent = new byte[0];
+
+        Pictures p = new Pictures();
         //get all the files from a directory
         File[] fList = directory.listFiles();
         for (File file : fList) {
-            System.out.println(file.getName());
+
         }
     }
 

@@ -1,15 +1,19 @@
 package com.comtrade.threads;
 
 import com.comtrade.controllerBL.ControllerBLogic;
+import com.comtrade.domain.GeneralDomain;
 import com.comtrade.domain.Message;
+import com.comtrade.domain.Pictures;
 import com.comtrade.domain.User;
 import com.comtrade.transfer.TransferClass;
+import com.comtrade.util.ReadFolderUtil;
 
 import java.io.*;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +24,8 @@ import static java.nio.file.Files.write;
 public class ClientThread extends Thread implements Serializable {
     private Socket socket;
     private String currentUsername;
+    private List<GeneralDomain> matches;
+
 
     public void setSocket(Socket socket) {
         this.socket = socket;
@@ -42,20 +48,27 @@ public class ClientThread extends Thread implements Serializable {
         switch (tf.getOperation()) {
             case SAVE_USER:
                 User u = (User) tf.getClient_object();
-                
                 putUserInDataThread(u);
 //                savePic(u); pomeri save pic u main, prvi ekran upload slike i namesta preference
                 break;
-            case RETURN_PROFILE:
+            case LOGIN:
+                u = (User) tf.getClient_object();
+                checkCredentials(u);
+
                 break;
             case CHECK_USER:
                 User check = (User) tf.getClient_object();
                 Map hashMap = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
+                TransferClass back = new TransferClass();
+
                 if (hashMap.containsKey(check.getUsername().toLowerCase())) {
-                    TransferClass back = new TransferClass();
                     back.setOperation(USERNAME_TAKEN);
-                    sendToClient(back);                }
-                ControllerBLogic.getInstance().checkProfile(check); // ovo vrv ne treba
+                    sendToClient(back);
+                }else{
+                    back.setOperation(USERNAME_OK);
+                    sendToClient(back);
+                }
+
                 break;
             case LIKE:
                 System.out.println("hm");
@@ -82,9 +95,45 @@ public class ClientThread extends Thread implements Serializable {
         }
     }
 
+    private void checkCredentials(User u) {
+        Map hashMap = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
+        HashMap<String, Object> loginMap = new HashMap<String, Object>();
+        ReadFolderUtil readFolderUtil;
+        Pictures p = new Pictures();
+        TransferClass returnLogin = new TransferClass();
+        if(hashMap.containsKey(u.getUsername())){
+            User login = (User) hashMap.get(u.getUsername());
+
+            if(login.getPass().equals(u.getPass())){
+                if(login.getRating().isNewStatus()){
+                    
+
+
+                    loginMap.put(login.getUsername(), login);
+
+
+
+                    returnLogin.setOperation(LOGIN);
+                    returnLogin.setServer_object(login);
+                    sendToClient(returnLogin);
+                    ControllerBLogic.getInstance().insertIntoActive(u.getUsername(), this);
+                }
+                //ovde treba da pakuje i slike + slike za sve matcheve
+            }else{
+                returnLogin.setOperation(WRONG_LOGIN);
+                sendToClient(returnLogin);
+            }
+        }else{
+            returnLogin.setOperation(WRONG_LOGIN);
+            sendToClient(returnLogin);
+        }
+
+
+    }
+
     private void putUserInDataThread(User u) {
+
         ControllerBLogic.getInstance().getDatathread().getGetAllUserList().put(u.getUsername(), u);
-        ControllerBLogic.getInstance().insertIntoActive(u.getUsername(), this);
 
     }
 
@@ -106,6 +155,10 @@ public class ClientThread extends Thread implements Serializable {
 
     }
 
+    private void loadPics(){
+
+    }
+
     public void sendToClient(TransferClass tc2) {
         try {
             ObjectOutputStream outStream = new ObjectOutputStream(socket.getOutputStream());
@@ -118,8 +171,29 @@ public class ClientThread extends Thread implements Serializable {
 
     public void sentMsgToOnlineFriend(Message pm) {
         TransferClass tc = new TransferClass();
+        tc.setOperation(NEW_MESSAGE);
         tc.setServer_object(pm);
         sendToClient(tc);
+    }
+
+
+
+
+
+    public String getCurrentUsername() {
+        return currentUsername;
+    }
+
+    public void setCurrentUsername(String currentUsername) {
+        this.currentUsername = currentUsername;
+    }
+
+    public List<GeneralDomain> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(List<GeneralDomain> matches) {
+        this.matches = matches;
     }
 
 

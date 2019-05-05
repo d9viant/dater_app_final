@@ -1,11 +1,11 @@
 package com.comtrade.controllerUI;
 
 import com.comtrade.communication.Comm;
+import com.comtrade.domain.User;
 import com.comtrade.transfer.TransferClass;
 import com.comtrade.view.LoginController;
 
-import static com.comtrade.domain.Constants.USERNAME_OK;
-import static com.comtrade.domain.Constants.USERNAME_TAKEN;
+import static com.comtrade.domain.Constants.*;
 
 public class Controller {
     private static Controller instance;
@@ -31,6 +31,9 @@ public class Controller {
 		        log.setCheckUser(java.lang.Boolean.TRUE);
             case USERNAME_OK:
                 log.setCheckUser(Boolean.FALSE);
+
+            case LOGIN:
+                User login =
         }
 
 

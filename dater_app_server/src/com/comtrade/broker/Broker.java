@@ -71,7 +71,11 @@ public class Broker implements IBroker {
 			}
 		}
 
-		st.executeBatch();
+		try {
+			st.executeBatch();
+		} catch (SQLException e) {
+			System.out.println("User batch Failed to Execute - Line 77 Broker");
+		}
 	}
 
 	@Override
@@ -88,7 +92,12 @@ public class Broker implements IBroker {
 				}
 			}
 		}
-		st.executeBatch();
+		try {
+			st.executeBatch();
+		}catch (SQLException e){
+			System.out.println("Message batch failed to execute - Line 98 - Broker");
+		}
+
 
 
 	}
@@ -107,7 +116,13 @@ public class Broker implements IBroker {
 				}
 			}
 		}
-		st.executeBatch();
+		try {
+			st.executeBatch();
+
+		}catch (SQLException e){
+			System.out.println("Match batch failed to execute - Line 124 - Broker");
+
+		}
 	}
 
 	public void delete(GeneralDomain gd) {

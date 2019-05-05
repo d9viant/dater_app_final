@@ -1,5 +1,6 @@
 package com.comtrade.view;
 
+import com.comtrade.communication.Comm;
 import com.comtrade.compression.Compression;
 import com.comtrade.controllerUI.Controller;
 import com.comtrade.domain.Pictures;
@@ -178,7 +179,6 @@ public class LoginController implements Initializable, Serializable {
 
     private void createUser(ActionEvent event) {
         Rating r = new Rating();
-        r.setReadyForSql(RDYFORDB);
         User newUser = new User();
         newUser.setRating(r);
         TransferClass tf = new TransferClass();
@@ -222,10 +222,8 @@ public class LoginController implements Initializable, Serializable {
 
                     if (radioM.isSelected()) {
                         newUser.getGender().setGender(MALE);
-                        newUser.getGender().setReadyForSql(RDYFORDB);
                     } else {
                         newUser.getGender().setGender(FEMALE);
-                        newUser.getGender().setReadyForSql(RDYFORDB);
                     }
 
                     String birthdateString = datePicker.getValue().toString();
@@ -299,18 +297,14 @@ public class LoginController implements Initializable, Serializable {
 
     //proveri stari repo
     private void login() throws IOException {
-        Stage stage = Main.stage;
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/comtrade/viewLayout/mainscreen.fxml"));
-        AnchorPane pane = loader.load();
-        Scene scene = new Scene(pane);
-        stage.setResizable(false);
-        stage.setTitle("Dater App! Find true love!");
-        stage.setScene(scene);
+        User u = new User();
+        TransferClass login = new TransferClass();
+        u.setUsername(txtLoginUsername.getText());
+        u.setPass(txtLoginPassword.getText());
+        login.setOperation(LOGIN);
+        login.setClient_object(u);
+        Comm.getInstance().send(login);
 
-//      MainController controller = loader.<MainController>getController();
-        MainController controller = loader.getController();
-//      controller.setCurrentUser(currUser);   Sets current user!
-        stage.show();
 
 
     }

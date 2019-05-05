@@ -10,6 +10,9 @@ public class Constants {
     public static final int SUPER = 6;
 	public static final int USERNAME_TAKEN = 7;
     public static final int USERNAME_OK = 8;
+    public static final int LOGIN = 13;
+    public static final int WRONG_LOGIN = 14;
+    public static final int NEW_MESSAGE = 15;
 
 
     public static final int RDYFORDB = 9;
