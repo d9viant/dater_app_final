@@ -34,12 +34,12 @@ public class ServerUi extends JFrame {
         ControllerBLogic.getInstance();
         Server s = new Server(serverLogs);
         ServerTimeThread stt = new ServerTimeThread(timeText);
-        // DATA THREAD AND BATCH THREAC
+        // DATA THREAD AND BATCH THREAD
         BatchThread bt = new BatchThread(backupLogs, progressBar1);
         DataStorageThread dts = new DataStorageThread(serverLogs, backupLogs, progressBar1);
         dts.start();
         bt.start();
-        // DATA THREAD AND BATCH THREAC
+        // DATA THREAD AND BATCH THREAD
         s.start();
         stt.start();
         startServer.setEnabled(false);
