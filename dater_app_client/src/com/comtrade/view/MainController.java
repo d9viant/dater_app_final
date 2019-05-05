@@ -14,10 +14,12 @@ import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
 import java.io.Serializable;
@@ -90,6 +92,8 @@ public class MainController implements Initializable, Serializable {
 
     private Marker matchMarker = Marker.createProvided(Marker.Provided.BLUE).setPosition(matchCoord).setVisible(true);
 
+    final FileChooser fileChooser = new FileChooser();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initialSetup();
@@ -110,6 +114,7 @@ public class MainController implements Initializable, Serializable {
         womanCheckbox.setToggleGroup(tGroup);
         womanCheckbox.setSelectedColor(Color.web("ff6969"));
         menCheckbox.setSelectedColor(Color.web("ff6969"));
+
     }
     private void controlButtons() {
         settingsBackToMain.setOnAction(Event -> setPaneOut(settingsPane, placeHolderPane));

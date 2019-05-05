@@ -1,6 +1,8 @@
 package main;
 
+import com.comtrade.domain.User;
 import com.comtrade.thread.ProcessingFromServer;
+import com.comtrade.view.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -65,6 +67,8 @@ public class Main extends Application {
         launch(args);
     
     }
+
+
 
 
 

@@ -7,17 +7,20 @@ import com.comtrade.view.LoginController;
 import com.comtrade.view.MainController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import main.Main;
+
+import java.io.IOException;
 
 import static com.comtrade.domain.Constants.*;
 
 public class Controller {
     private static Controller instance;
-    private LoginController log = new LoginController();
+    private LoginController log;
     private Controller() {
-
+        log=new LoginController();
     }
 
     public static Controller getInstance() {
@@ -31,7 +34,7 @@ public class Controller {
         Comm.getInstance().send(tc);
     }
 
-    public void getFromServer(TransferClass tc) {
+    public void getFromServer(TransferClass tc) throws IOException {
         switch (tc.getOperation()) {
 	        case USERNAME_TAKEN:
 		        log.setCheckUser(java.lang.Boolean.TRUE);
@@ -39,21 +42,22 @@ public class Controller {
                 log.setCheckUser(Boolean.FALSE);
 
             case LOGIN:
+                User u = (User) tc.getServer_object();
+                LoginController.changeWindow(u);
 
-                Stage stage = Main.stage;
-                FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/comtrade/viewLayout/mainscreen.fxml"));
-                AnchorPane pane = loader.load();
-                Scene scene = new Scene(pane);
-                stage.setResizable(false);
-                stage.setTitle("Dater App! Find true love!");
-                stage.setScene(scene);
 
-//      MainController controller = loader.<MainController>getController();
-                MainController controller = loader.getController();
-//      controller.setCurrentUser(currUser);   Sets current user!
-                stage.show();
+
+
+            case WRONG_LOGIN:
+                Alert bye = new Alert(Alert.AlertType.WARNING);
+                bye.setHeaderText(null);
+                bye.setTitle("Error");
+                bye.setContentText("Username or Password are wrong");
+                bye.showAndWait();
         }
 
 
     }
+
+
 }

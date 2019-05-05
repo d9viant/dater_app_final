@@ -103,16 +103,10 @@ public class ClientThread extends Thread implements Serializable {
         TransferClass returnLogin = new TransferClass();
         if(hashMap.containsKey(u.getUsername())){
             User login = (User) hashMap.get(u.getUsername());
-
+            login.getRating().setNewStatus(true);
             if(login.getPass().equals(u.getPass())){
                 if(login.getRating().isNewStatus()){
-
-
-
-                    loginMap.put(login.getUsername(), login);
-
-
-
+//                    loginMap.put(login.getUsername(), login);
                     returnLogin.setOperation(LOGIN);
                     returnLogin.setServer_object(login);
                     sendToClient(returnLogin);

@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -46,6 +47,7 @@ import java.util.ResourceBundle;
 import static com.comtrade.domain.Constants.*;
 //import net.coobird.thumbnailator.Thumbnails;
 //import net.coobird.thumbnailator.name.Rename;
+import javafx.scene.Node;
 
 public class LoginController implements Initializable, Serializable {
 
@@ -108,6 +110,16 @@ public class LoginController implements Initializable, Serializable {
 
     private Boolean checkUser = Boolean.FALSE;
 
+    public Boolean getLoginCheck() {
+        return loginCheck;
+    }
+
+    public void setLoginCheck(Boolean loginCheck) {
+        this.loginCheck = loginCheck;
+    }
+
+    private Boolean loginCheck = Boolean.FALSE;
+
     public void setCheckUser(Boolean checkUser) {
         this.checkUser = checkUser;
     }
@@ -121,7 +133,9 @@ public class LoginController implements Initializable, Serializable {
         radioM.setSelected(true);
         radioF.setToggleGroup(tGroup);
         mapPaneLogin.setVisible(false);
-        loadVideo();
+        regPane.setVisible(false);
+
+//        loadVideo();
         try {
             startGeoLoc();
         } catch (IOException e) {
@@ -180,6 +194,7 @@ public class LoginController implements Initializable, Serializable {
     private void createUser(ActionEvent event) {
         Rating r = new Rating();
         User newUser = new User();
+        r.setNewStatus(true);
         newUser.setRating(r);
         TransferClass tf = new TransferClass();
         Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -283,9 +298,9 @@ public class LoginController implements Initializable, Serializable {
     }
 
     private void loadVideo() {
-        regPane.setVisible(false);
 
-        String vurl = "C:\\Users\\Strahinja\\IdeaProjects\\dater_app_final\\dater_app_client\\src\\assets\\love.mp4";
+
+        String vurl = "/home/strahinja/IdeaProjects/dater_app_final/dater_app_client/src/assets/love.mp4";
         Media media = new Media(new File(vurl).toURI().toString());
         MediaPlayer player = new MediaPlayer(media);
         logMedia.setMediaPlayer(player);
@@ -298,12 +313,16 @@ public class LoginController implements Initializable, Serializable {
     //proveri stari repo
     private void login() throws IOException {
         User u = new User();
+//        changeWindow(u);
         TransferClass login = new TransferClass();
         u.setUsername(txtLoginUsername.getText());
         u.setPass(txtLoginPassword.getText());
         login.setOperation(LOGIN);
         login.setClient_object(u);
+        System.out.println(u.getUsername());
         Comm.getInstance().send(login);
+
+
 
 
 
@@ -370,4 +389,23 @@ public class LoginController implements Initializable, Serializable {
             txtLoc.setText(redStrings[1] + " " + redStrings[0]);
         });
     }
+
+
+    public static void changeWindow(User userr) throws IOException {
+
+        Stage stage = Main.stage;
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/comtrade/viewLayout/mainscreen.fxml"));
+        AnchorPane pane = loader.load();
+        Scene scene = new Scene(pane);
+        stage.setResizable(false);
+        stage.setTitle("Dater App! Find true love!");
+        stage.setScene(scene);
+        stage.show();
+////      MainController controller = loader.<MainController>getController();
+//        MainController controller = loader.getController();
+//        controller.setCurrentUser(userr);
+
+
+    }
+
 }

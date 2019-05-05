@@ -337,5 +337,6 @@
     <orderEntry type="library" name="libraries" level="project" />
     <orderEntry type="module" module-name="dater_app_common" />
     <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
+    <orderEntry type="module" module-name="dater_app_common" />
   </component>
 </module>
