@@ -3,7 +3,6 @@ package com.comtrade.threads;
 import com.comtrade.controllerBL.ControllerBLogic;
 import com.comtrade.domain.Message;
 import com.comtrade.domain.User;
-import com.comtrade.threads.backupThreads.DataThread;
 import com.comtrade.transfer.TransferClass;
 
 import java.io.*;

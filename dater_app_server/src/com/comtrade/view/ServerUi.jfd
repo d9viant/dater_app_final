@@ -1,70 +1,73 @@
-JFDML JFormDesigner: "6.0.6.2.195" Java: "1.8.0_202-release" encoding: "UTF-8"
+JFDML JFormDesigner: "6.0.6.4.204" Java: "1.8.0_202-release" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 			name: "this"
+			"resizable": false
 			"$sizePolicy": 1
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button1"
-				"text": "Start  Server"
+				name: "startServer"
+				"text": "START SERVER"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button1ActionPerformed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 40
+				"x": 30
 				"y": 35
 				"width": 125
-				"height": 50
+				"height": 55
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button2"
-				"text": "Start Backup"
+				name: "backupButton"
+				"text": "START BACKUP"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button2ActionPerformed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 30
+				"y": 140
 				"width": 125
-				"height": 50
-				"x": 40
-				"y": 95
+				"height": 55
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "serverLogs"
+				} )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 185
+				"y": 30
+				"width": 305
+				"height": 60
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane2"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "backupLogs"
+				} )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 185
+				"y": 135
+				"width": 305
+				"height": 60
 			} )
 			add( new FormComponent( "javax.swing.JProgressBar" ) {
 				name: "progressBar1"
+				"stringPainted": true
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 40
-				"y": 165
-				"height": 20
-				"width": 440
-			} )
-			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-				name: "scrollPaneStart"
-				add( new FormComponent( "javax.swing.JTextArea" ) {
-					name: "textStart"
-				} )
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 195
-				"y": 40
-				"width": 285
-				"height": 45
-			} )
-			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-				name: "scrollPaneBackup"
-				add( new FormComponent( "javax.swing.JTextArea" ) {
-					name: "textBackup"
-				} )
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 285
-				"height": 45
-				"x": 195
-				"y": 100
+				"x": 35
+				"y": 205
+				"width": 475
+				"height": 40
 			} )
 			add( new FormComponent( "javax.swing.JTextArea" ) {
 				name: "timeText"
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 40
+				"x": 30
 				"y": 10
 				"width": 125
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 205, 70 )
-			"size": new java.awt.Dimension( 500, 345 )
+			"location": new java.awt.Point( 5, 10 )
+			"size": new java.awt.Dimension( 545, 300 )
 		} )
 	}
 }
