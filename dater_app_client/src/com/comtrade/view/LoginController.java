@@ -307,6 +307,7 @@ public class LoginController implements Initializable, Serializable {
 
 
 
+
     }
     // UPLOADS PHOTO, COMPRESSES IT AND ATTACHES TO PICTURES!
     private void uploadPhoto(ActionEvent event) {

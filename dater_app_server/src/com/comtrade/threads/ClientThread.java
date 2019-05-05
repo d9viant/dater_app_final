@@ -106,7 +106,7 @@ public class ClientThread extends Thread implements Serializable {
 
             if(login.getPass().equals(u.getPass())){
                 if(login.getRating().isNewStatus()){
-                    
+
 
 
                     loginMap.put(login.getUsername(), login);
