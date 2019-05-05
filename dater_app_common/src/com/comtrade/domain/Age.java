@@ -71,12 +71,13 @@ public class Age implements GeneralDomain, Serializable {
 
     @Override
     public String returnTableRows() {
-        return null;
+        return " (username, birthday, age) ";
     }
 
     @Override
     public String returnInsertFormat() {
-        return null;
+        return "VALUES ('" + username + "','" + birthday + "','" + age + "')";
+
     }
 
     public String getUsername() {

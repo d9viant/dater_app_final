@@ -117,18 +117,19 @@ public class Rating implements GeneralDomain, Serializable
 
 	@Override
 	public String returnTableName() {
-		return null;
+		return "rating";
 	}
 
 	@Override
 	public String returnTableRows() {
 
-		return null;
+		return " (username, rating, newStatus, superUser, k) ";
 	}
 
 	@Override
     public String returnInsertFormat() {
-		return null;
+		return "VALUES ('" + username + "','" + rating + "','" + newStatus + "','" + superUser + "','" + K + "')";
+
 	}
 
 	@Override
