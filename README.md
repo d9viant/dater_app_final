@@ -1,6 +1,19 @@
-# Dater - A tinder clone - First Java Project
+# Dater - A tinder clone
 
-A tinder clone built using core Java/JavaFX and MySQL with additional APIs. It is structured in a three layer fashion consisting of client/common/server parts. I've Implemented a basic representation of the ELO Matchmaking system, an open source map library which utilizes BingMaps with the addition of the GeoLoc2Lite library to provide a basic system which tracks the address through the IP address on the network. Implementations of certain Design Patterns and multi-thread concurrency concepts are present.
+-OOP Principles
+
+-Design Patterns
+
+-Algorithms and Data Structures
+
+-Concurrency Programming
+
+-MYSQL Database
+
+-Software Design Principles
+
+
+A tinder clone built using core Java/JavaFX and MySQL with additional APIs in a client/server archicteture. It is structured in a three layer fashion consisting of client/common/server parts. I've Implemented a basic representation of the ELO Matchmaking system, chat system, an open source map library which utilizes BingMaps with the addition of the GeoLoc2Lite library to provide a basic system which tracks the address through the IP address on the network. Implementations of certain Design Patterns and multi-thread concurrency concepts are present.
 
 Database schema: https://imgur.com/LUEsuTy
 
