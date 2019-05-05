@@ -5,6 +5,8 @@ import com.comtrade.domain.User;
 import com.comtrade.transfer.TransferClass;
 import com.comtrade.view.LoginController;
 import com.comtrade.view.MainController;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -42,8 +44,24 @@ public class Controller {
                 log.setCheckUser(Boolean.FALSE);
 
             case LOGIN:
+
                 User u = (User) tc.getServer_object();
-                LoginController.changeWindow(u);
+                try{
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                LoginController.changeWindow(u);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
 
 
 

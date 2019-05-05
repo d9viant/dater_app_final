@@ -33,7 +33,8 @@ public class Constants {
     public static final String ALL_USERS = "all_users";
     public static final String USERPHOTO = "userphoto";
     //Windows directory example
-    public static final String WINDIRPICS = "pics/profilepics/";
+    public static final String WINDIRPICS = "pics/profile";
+    public static final String SERVERPICS = "pics/profile";
 
 
 

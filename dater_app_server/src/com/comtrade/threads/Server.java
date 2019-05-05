@@ -24,6 +24,7 @@ public class Server extends Thread {
 			try {
 				throw new Exception("Server did not start");
 			} catch (Exception exception) {
+				
 				exception.printStackTrace();
 			}
 		}

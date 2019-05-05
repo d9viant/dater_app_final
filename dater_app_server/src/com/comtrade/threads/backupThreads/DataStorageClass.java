@@ -20,7 +20,7 @@ public class DataStorageClass{
 
 
 	public synchronized void getData(JTextArea backupLogs, JProgressBar progressBar) throws InterruptedException {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 			ControllerBLogic.getInstance().getAllUsers(getAllUserList);
 			progressBar.setValue(25);
 			Thread.sleep(2000);

@@ -72,21 +72,8 @@ public class ClientThread extends Thread implements Serializable {
                 break;
             case LIKE:
                 System.out.println("hm");
-//                Pictures p = (Pictures) tf.getClient_object();
-//               byte[] by = p.getPicture();
-//                File file = new File("pics/profilepics/ugabuga");
-//
-//                File theDirecc = new File("pics/profilepics/asd.jpg");
-//                Path pathh = Paths.get(theDirecc.getAbsolutePath());
-//                Path pathh2 = Paths.get(file.getAbsolutePath());
-//                Files.createDirectories(pathh2);
-//                System.out.println(pathh);
-//                System.out.println(pathh2);
-//                try {
-//                   write(pathh, by);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
+                User test = (User) tf.getClient_object();
+                savePics(test);
                 break;
             case DISLIKE:
                 break;
@@ -136,10 +123,10 @@ public class ClientThread extends Thread implements Serializable {
         int length = bytes.size();
         for(int i=0; i<length; i++){
             byte[] b = bytes.get(i);
-            File theDir = new File(WINDIRPICS + u.getUsername());
+            File theDir = new File(SERVERPICS);
             Path newDir = Paths.get(theDir.getAbsolutePath());
             Files.createDirectories(newDir);
-            Path path = Paths.get(newDir + u.getUsername() + i + ".jpg");
+            Path path = Paths.get(theDir + u.getUsername() + i + ".jpg");
             try {
                 write(path, b);
             } catch (IOException e) {

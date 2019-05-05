@@ -395,15 +395,19 @@ public class LoginController implements Initializable, Serializable {
 
         Stage stage = Main.stage;
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/comtrade/viewLayout/mainscreen.fxml"));
+
         AnchorPane pane = loader.load();
         Scene scene = new Scene(pane);
         stage.setResizable(false);
         stage.setTitle("Dater App! Find true love!");
         stage.setScene(scene);
         stage.show();
-////      MainController controller = loader.<MainController>getController();
-//        MainController controller = loader.getController();
-//        controller.setCurrentUser(userr);
+//      MainController controller = loader.<MainController>getController();
+        MainController controller = loader.getController();
+        controller.setCurrentUser(userr);
+
+
+
 
 
     }
