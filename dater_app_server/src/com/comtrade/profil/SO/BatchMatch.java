@@ -22,14 +22,14 @@ public class BatchMatch extends GeneralSystemOperation
         IBroker ib = new Broker();
         ib.saveListMessage(ul);
 
-        for (Map.Entry<String, List<GeneralDomain>> entry : ul.entrySet()) {
-            List<GeneralDomain> listentry = entry.getValue();
-            for (GeneralDomain temp : listentry) {
-                Matches m = (Matches) temp;
-                if(m.getReadyForSql() == RDYFORDB){
-                    m.setReadyForSql(DBWRITTEN);
-                }
-            }
-        }
+//        for (Map.Entry<String, List<GeneralDomain>> entry : ul.entrySet()) {
+//            List<GeneralDomain> listentry = entry.getValue();
+//            for (GeneralDomain temp : listentry) {
+//                Matches m = (Matches) temp;
+//                if(m.getReadyForSql() == RDYFORDB){
+//                    m.setReadyForSql(DBWRITTEN);
+//                }
+//            }
+//        }
     }
 }

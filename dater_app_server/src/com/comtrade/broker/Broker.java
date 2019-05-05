@@ -47,27 +47,27 @@ public class Broker implements IBroker {
 				// USER QUERY
 				String query = "INSERT INTO " + u.returnTableName() + " " + u.returnTableRows() + " " + u.returnInsertFormat();
 				st.addBatch(query);
-
+				u.setReadyForSql(DBWRITTEN);
 			}else if(u.getLocation().getReadyForSql() == RDYFORDB){
 				// LOCATION QUERY
 				String query = "INSERT INTO " + u.getLocation().returnTableName() + " " + u.getLocation().returnTableRows() + " " + u.getLocation().returnInsertFormat();
 				st.addBatch(query);
-
+				u.getLocation().setReadyForSql(DBWRITTEN);
 			}else if(u.getAge().getReadyForSql() == RDYFORDB){
 				// AGE QUERY
 				String query = "INSERT INTO " + u.getAge().returnTableName() + " " + u.getAge().returnTableRows() + " " + u.getAge().returnInsertFormat();
 				st.addBatch(query);
-
+				u.getAge().setReadyForSql(DBWRITTEN);
 			}else if(u.getRating().getReadyForSql() == RDYFORDB){
 				// RATING QUERY
 				String query = "INSERT INTO " + u.getRating().returnTableName() + " " + u.getRating().returnTableRows() + " " + u.getRating().returnInsertFormat();
 				st.addBatch(query);
-
+				u.getRating().setReadyForSql(DBWRITTEN);
 			}else if(u.getGender().getReadyForSql() == RDYFORDB){
 				// GENDER QUERY
 				String query = "INSERT INTO " + u.getGender().returnTableName() + " " + u.getGender().returnTableRows() + " " + u.getGender().returnInsertFormat();
 				st.addBatch(query);
-
+				u.getGender().setReadyForSql(DBWRITTEN);
 			}
 		}
 
@@ -84,6 +84,7 @@ public class Broker implements IBroker {
 				if(m.getReadyForSql() == RDYFORDB){
 					String query = "INSERT INTO " + m.returnTableName() + " " + m.returnTableRows() + " " + m.returnInsertFormat();
 					st.addBatch(query);
+					m.setReadyForSql(DBWRITTEN);
 				}
 			}
 		}
@@ -102,6 +103,7 @@ public class Broker implements IBroker {
 				if(m.getReadyForSql() == RDYFORDB){
 					String query = "INSERT INTO " + m.returnTableName() + " " + m.returnTableRows() + " " + m.returnInsertFormat();
 					st.addBatch(query);
+					m.setReadyForSql(DBWRITTEN);
 				}
 			}
 		}

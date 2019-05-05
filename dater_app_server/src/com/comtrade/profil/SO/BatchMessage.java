@@ -24,16 +24,16 @@ public class BatchMessage extends GeneralSystemOperation {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        for (Map.Entry<String, List<GeneralDomain>> entry : ul.entrySet()) {
-            List<GeneralDomain> listentry = entry.getValue();
-            for (GeneralDomain temp : listentry) {
-                Message m = (Message) temp;
-                if(m.getReadyForSql() == RDYFORDB){
-                    m.setReadyForSql(DBWRITTEN);
-                }
-            }
-        }
+// DODAJ NEW TAG DA NE POBIJE STVARNO NOVE UNOSE
+//        for (Map.Entry<String, List<GeneralDomain>> entry : ul.entrySet()) {
+//            List<GeneralDomain> listentry = entry.getValue();
+//            for (GeneralDomain temp : listentry) {
+//                Message m = (Message) temp;
+//                if(m.getReadyForSql() == RDYFORDB){
+//                    m.setReadyForSql(DBWRITTEN);
+//                }
+//            }
+//        }
 
     }
 }

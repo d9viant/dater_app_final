@@ -18,21 +18,21 @@ public class BatchUserSO extends GeneralSystemOperation {
         HashMap<String, GeneralDomain> ul = (HashMap<String, GeneralDomain>) obj;
         IBroker ib = new Broker();
         ib.save(ul);
-        for (Map.Entry<String, GeneralDomain> entry : ul.entrySet()) {
-            User u = (User) entry.getValue();
-            if(u.getReadyForSql() == RDYFORDB){
-                u.setReadyForSql(DBWRITTEN);
-            }else if(u.getGender().getReadyForSql() == RDYFORDB){
-                u.getGender().setReadyForSql(DBWRITTEN);
-            }else if(u.getRating().getReadyForSql() == RDYFORDB){
-                u.getRating().setReadyForSql(DBWRITTEN);
-            }else if(u.getLocation().getReadyForSql() == RDYFORDB){
-                u.getLocation().setReadyForSql(DBWRITTEN);
-            }else if(u.getAge().getReadyForSql() == RDYFORDB){
-                u.getAge().setReadyForSql(DBWRITTEN);
-            }
-
-        }
+//        for (Map.Entry<String, GeneralDomain> entry : ul.entrySet()) {
+//            User u = (User) entry.getValue();
+//            if(u.getReadyForSql() == RDYFORDB){
+//                u.setReadyForSql(DBWRITTEN);
+//            }else if(u.getGender().getReadyForSql() == RDYFORDB){
+//                u.getGender().setReadyForSql(DBWRITTEN);
+//            }else if(u.getRating().getReadyForSql() == RDYFORDB){
+//                u.getRating().setReadyForSql(DBWRITTEN);
+//            }else if(u.getLocation().getReadyForSql() == RDYFORDB){
+//                u.getLocation().setReadyForSql(DBWRITTEN);
+//            }else if(u.getAge().getReadyForSql() == RDYFORDB){
+//                u.getAge().setReadyForSql(DBWRITTEN);
+//            }
+//
+//        }
 
 
     }

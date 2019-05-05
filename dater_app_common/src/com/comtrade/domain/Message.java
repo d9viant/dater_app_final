@@ -11,9 +11,9 @@ import static com.comtrade.domain.Constants.RDYFORDB;
 
 public class Message implements GeneralDomain, Serializable {
     private int idMessage;
-    private int userOneId;
-    private int userTwoId;
-    private int senderId;
+    private String usernameOne;
+    private String usernameTwo;
+    private String senderUsername;
     private String messageStatus;
     private String sendDate;
     private String sendTime;
@@ -26,13 +26,13 @@ public class Message implements GeneralDomain, Serializable {
 
     }
 
-    public Message(int idMessage, int userOneId, int userTwoId, int senderId, String messageStatus,
+    public Message(int idMessage, String userOneId, String userTwoId, String senderId, String messageStatus,
                    String sendDate, String receivedDate, String sendTime, String receivedTime, String messageBody) {
 
         this.idMessage = idMessage;
-        this.userOneId = userOneId;
-        this.userTwoId = userTwoId;
-        this.senderId = senderId;
+        this.usernameOne = userOneId;
+        this.usernameTwo = userTwoId;
+        this.senderUsername = senderId;
         this.messageStatus = messageStatus;
         this.sendDate = sendDate;
         this.receivedDate = receivedDate;
@@ -49,28 +49,28 @@ public class Message implements GeneralDomain, Serializable {
         this.idMessage = idMessage;
     }
 
-    public int getUserOneId() {
-        return userOneId;
+    public String getUserOneId() {
+        return usernameOne;
     }
 
-    public void setUserOneId(int userOneId) {
-        this.userOneId = userOneId;
+    public void setUserOneId(String userOneId) {
+        this.usernameOne = userOneId;
     }
 
-    public int getUserTwoId() {
-        return userTwoId;
+    public String getUserTwoId() {
+        return usernameTwo;
     }
 
-    public void setUserTwoId(int userTwoId) {
-        this.userTwoId = userTwoId;
+    public void setUserTwoId(String userTwoId) {
+        this.usernameTwo = userTwoId;
     }
 
-    public int getSenderId() {
-        return senderId;
+    public String getSenderId() {
+        return senderUsername;
     }
 
-    public void setSenderId(int senderId) {
-        this.senderId = senderId;
+    public void setSenderId(String senderId) {
+        this.senderUsername = senderId;
     }
 
     public String getMessageStatus() {
@@ -148,17 +148,17 @@ public class Message implements GeneralDomain, Serializable {
 
     @Override
     public String returnTableName() {
-        return null;
+        return "chatmessage";
     }
 
     @Override
     public String returnTableRows() {
-        return null;
+        return " (usernameOne, usernameTwo, senderUsername, messaegeStatus, sendDate, sendTime, recivedDate, recivedTime, messageBody) ";
     }
 
     @Override
     public String returnInsertFormat() {
-        return null;
+        return "VALUES ('" + usernameOne + "','" + usernameTwo + "','" + senderUsername + "','" + messageStatus + "','" + sendDate + "','" + sendTime + "','" + receivedDate + "','" + receivedTime + "','" + messageBody +  "')";
     }
 
     @Override
@@ -179,9 +179,9 @@ public class Message implements GeneralDomain, Serializable {
             while (rs.next()) {
                 String username = rs.getString("username").toLowerCase();
                 int idMessage = rs.getInt("idMessage");
-                int userOneId = rs.getInt("userOneId");
-                int userTwoId = rs.getInt("userTwoId");
-                int senderId = rs.getInt("senderId");
+                String userOneId = rs.getString("usernameOne");
+                String userTwoId = rs.getString("usernameTwo");
+                String senderId = rs.getString("senderUsername");
                 String messageStatus = rs.getString("messageStatus");
                 String sendDate = rs.getDate("sendDate").toString();
                 String receivedDate = rs.getDate("receivedDate").toString();

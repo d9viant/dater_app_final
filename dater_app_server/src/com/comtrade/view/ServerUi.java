@@ -34,10 +34,12 @@ public class ServerUi extends JFrame {
         ControllerBLogic.getInstance();
         Server s = new Server(serverLogs);
         ServerTimeThread stt = new ServerTimeThread(timeText);
+        // DATA THREAD AND BATCH THREAC
         BatchThread bt = new BatchThread(backupLogs, progressBar1);
         DataStorageThread dts = new DataStorageThread(serverLogs, backupLogs, progressBar1);
         dts.start();
         bt.start();
+        // DATA THREAD AND BATCH THREAC
         s.start();
         stt.start();
         startServer.setEnabled(false);
@@ -52,7 +54,6 @@ public class ServerUi extends JFrame {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Strahinja
         startServer = new JButton();
-        backupButton = new JButton();
         scrollPane1 = new JScrollPane();
         serverLogs = new JTextArea();
         scrollPane2 = new JScrollPane();
@@ -71,12 +72,6 @@ public class ServerUi extends JFrame {
         contentPane.add(startServer);
         startServer.setBounds(30, 35, 125, 55);
 
-        //---- backupButton ----
-        backupButton.setText("START BACKUP");
-        backupButton.addActionListener(e -> button2ActionPerformed(e));
-        contentPane.add(backupButton);
-        backupButton.setBounds(30, 140, 125, 55);
-
         //======== scrollPane1 ========
         {
             scrollPane1.setViewportView(serverLogs);
@@ -89,10 +84,11 @@ public class ServerUi extends JFrame {
             scrollPane2.setViewportView(backupLogs);
         }
         contentPane.add(scrollPane2);
-        scrollPane2.setBounds(185, 135, 305, 60);
+        scrollPane2.setBounds(115, 135, 305, 60);
 
         //---- progressBar1 ----
         progressBar1.setStringPainted(true);
+        progressBar1.setBackground(Color.white);
         contentPane.add(progressBar1);
         progressBar1.setBounds(35, 205, 475, 40);
         contentPane.add(timeText);
@@ -119,7 +115,6 @@ public class ServerUi extends JFrame {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Strahinja
     private JButton startServer;
-    private JButton backupButton;
     private JScrollPane scrollPane1;
     private JTextArea serverLogs;
     private JScrollPane scrollPane2;
