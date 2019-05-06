@@ -8,6 +8,8 @@ public class DataStorageThread extends Thread{
     private JTextArea txtServerLogs;
     JTextArea backupLogs;
     JProgressBar progressBar1;
+    volatile boolean kill = true;
+
 
     public DataStorageThread(JTextArea textStart, JTextArea backupLogs, JProgressBar progressBar1) {
         this.txtServerLogs=textStart;
@@ -19,9 +21,13 @@ public class DataStorageThread extends Thread{
 
     public void run(){
         try {
-            Thread.sleep(2000);
-            ControllerBLogic.getInstance().getDatathread().getData(backupLogs, progressBar1);
-            txtServerLogs.append("\n" + "Data Loaded Into Memory");
+            while(kill){
+                Thread.sleep(2000);
+                ControllerBLogic.getInstance().getDatathread().getData(backupLogs, progressBar1);
+                txtServerLogs.append("\n" + "Data Loaded Into Memory");
+                kill=false;
+            }
+
         } catch (InterruptedException e) {
             System.out.println("DataStorageThread has Failed to start");
         }

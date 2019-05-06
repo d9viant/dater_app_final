@@ -221,7 +221,6 @@ public class MainController implements Initializable, Serializable {
                 String photoUrl = null;
                 for(int i=0; i<list.size();i++){
                     File fi = list.get(i);
-
                     try {
                         photoUrl = list.get(0).toURI().toURL().toString();
                         compressedimage = compress.compression(fi);

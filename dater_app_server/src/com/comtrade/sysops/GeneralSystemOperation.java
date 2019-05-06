@@ -1,6 +1,5 @@
 package com.comtrade.sysops;
 
-import com.comtrade.broker.Broker;
 import com.comtrade.connection.Connection;
 
 import java.sql.SQLException;

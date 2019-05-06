@@ -13,6 +13,9 @@ public class Constants {
     public static final int LOGIN = 13;
     public static final int WRONG_LOGIN = 14;
     public static final int NEW_MESSAGE = 15;
+    public static final int LOGIN_USER = 16;
+    public static int  NEW_USER = 17;
+    public static int NOT_SUPER = 18;
 
 
     public static final int RDYFORDB = 9;

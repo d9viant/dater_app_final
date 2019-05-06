@@ -13,7 +13,7 @@ public class ProcessingFromServer extends Thread {
                 Controller.getInstance().getFromServer(tc);
 
             } catch (Exception e) {
-//				e.printStackTrace();
+				e.printStackTrace();
                 break;
             }
         }

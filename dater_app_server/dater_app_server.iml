@@ -8,5 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="dater_app_common" />
+    <orderEntry type="library" name="mysql-connector-java-8.0.15" level="project" />
+    <orderEntry type="library" name="libraries" level="project" />
   </component>
 </module>

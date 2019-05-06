@@ -19,21 +19,21 @@ public class User implements GeneralDomain, Serializable {
     private String pass;
     private String email;
     private String bio;
-    private Location location = null;
+    private Location location;
     private Age age = null;
     private Rating rating = null;
     private Gender gender = null;
-    private int readyForSql = RDYFORDB;
+    private int readyForSql = DBWRITTEN;
     private int seen = 0;
-    private Matches matches = null;
     private Pictures p = null;
 
     public User() {
-        age = new Age();
-        rating=new Rating();
-        gender=new Gender();
         location=new Location();
-        p=new Pictures();
+        age = new Age();
+        rating = new Rating();
+        gender = new Gender();
+
+
     }
 
     public User(int ID, String firstname, String lastName, String userName, String password, String email, String bio) {
@@ -131,13 +131,6 @@ public class User implements GeneralDomain, Serializable {
         this.gender = gender;
     }
 
-    public Matches getMatches() {
-        return matches;
-    }
-
-    public void setMatches(Matches matches) {
-        this.matches = matches;
-    }
 
     public int getId_usera() {
         return id;
@@ -257,29 +250,34 @@ public class User implements GeneralDomain, Serializable {
                 String email = rs.getString("email");
                 String bio = rs.getString("bio");
                 User u = new User(idUser, firstName, lastName, userName, password, email, bio);
+
                 String genderID = rs.getString("username");
                 int gender = rs.getInt("gender");
                 int prefferedGender = rs.getInt("prefferedGender");
                 g = new Gender(genderID, gender, prefferedGender);
                 u.setGender(g);
+
                 double longitude = rs.getDouble("longitude");
                 double latitude = rs.getDouble("latitude");
                 String address = rs.getString("address");
                 int prefDistance = rs.getInt("prefferedDistance");
                 l = new Location(longitude, latitude, address, prefDistance);
                 u.setLocation(l);
+
                 int Age = rs.getInt("age");
                 a.setAge(Age);
                 u.setAge(a);
+
                 int rating = rs.getInt("rating");
-                boolean newStatus = rs.getBoolean("newStatus");
-                boolean superUser = rs.getBoolean("superUser");
+                int newStatus = rs.getInt("newStatus");
+                int superUser = rs.getInt("superUser");
                 int k = rs.getInt("k");
                 r.setRating(rating);
                 r.setNewStatus(newStatus);
                 r.setSuperUser(superUser);
                 r.setK(k);
                 u.setR(r);
+
                 list.put(u.getUsername(), u);
 
             }

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.comtrade.domain.Constants.DBWRITTEN;
 import static com.comtrade.domain.Constants.RDYFORDB;
 
 public class Matches implements Serializable, GeneralDomain{
@@ -13,7 +14,7 @@ public class Matches implements Serializable, GeneralDomain{
     private String usernameTwo;
     private String requestUsername;
     private boolean matchStatus;
-    private int readyForSql = RDYFORDB;
+    private int readyForSql = DBWRITTEN;
 
     public Matches(){
 

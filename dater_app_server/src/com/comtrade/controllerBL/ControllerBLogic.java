@@ -15,7 +15,10 @@ import java.util.Map;
 public class ControllerBLogic {
     private static final Object mutex = new Object();
 	private static ControllerBLogic instance;
-    private Map<String, ClientThread> connectedUserMap;
+
+
+
+	private Map<String, ClientThread> connectedUserMap;
     private DataStorageClass data;
 
 
@@ -92,4 +95,8 @@ public class ControllerBLogic {
     public void removeActiveUser(String currentUsername) {
         connectedUserMap.remove(currentUsername);
     }
+
+	public Map<String, ClientThread> getConnectedUserMap() {
+		return connectedUserMap;
+	}
 }

@@ -6,14 +6,12 @@ import com.comtrade.domain.Message;
 import com.comtrade.domain.Pictures;
 import com.comtrade.domain.User;
 import com.comtrade.transfer.TransferClass;
-import com.comtrade.util.ReadFolderUtil;
 
 import java.io.*;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,80 +43,72 @@ public class ClientThread extends Thread implements Serializable {
     }
 
     private void processClientRequest(TransferClass tf) throws IOException {
-        switch (tf.getOperation()) {
+        switch (tf.getOperation()){
             case SAVE_USER:
                 User u = (User) tf.getClient_object();
-                System.out.println(u.getUsername());
-                System.out.println(u.getFirstName());
-                System.out.println(u.getLastName());
-                System.out.println("klijent jebeni thread");
                 putUserInDataThread(u);
                 break;
-            case LOGIN:
-                System.out.println("umri na loginu");
+
+            case LOGIN_USER:
                 User login = (User) tf.getClient_object();
-                System.out.println(login.getUsername());
-                checkCredentials(login);
-                break;
+                Map getAllUserList = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
+                if(getAllUserList.containsKey(login.getUsername())){
+                    User check = (User) getAllUserList.get(login.getUsername());
+                    if(login.getPass().equals(check.getPass())){
+                        Map loginMap = getMatchesAndPics(); // napravi matcheve i slike, stavi u hm i poteraj natrag
+                        Map testPicsforUser = testPicsUser();
+                        TransferClass ltf = new TransferClass();
+                        ltf.setOperation(LOGIN);
+                        ltf.setServer_object(check);
+                        ControllerBLogic.getInstance().insertIntoActive(check.getUsername(), this);
+                        sendToClient(ltf);
+
+                    }
+                }else if(!getAllUserList.containsKey(login.getUsername())){
+                    TransferClass tce = new TransferClass();
+                    tce.setOperation(WRONG_LOGIN);
+                    sendToClient(tce);
+                }
             case CHECK_USER:
-                /// CHECK USER NE TREBA
-                System.out.println("umri");
-                User check = (User) tf.getClient_object();
-                Map hashMap = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
-                TransferClass back = new TransferClass();
-                if (hashMap.containsKey(check.getUsername().toLowerCase())) {
-                    back.setOperation(USERNAME_TAKEN);
-                    sendToClient(back);
-                }else{
-                    back.setOperation(USERNAME_OK);
-                    sendToClient(back);
+                Map check = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
+                User checkU = (User) tf.getClient_object();
+                if(check.containsKey(checkU)){
+                    TransferClass checktf = new TransferClass();
+                    checktf.setOperation(USERNAME_TAKEN);
+                    sendToClient(checktf);
                 }
 
-                break;
-            case LIKE:
-                System.out.println("hm");
-                User test = (User) tf.getClient_object();
-                savePics(test);
-                break;
-            case DISLIKE:
-                break;
-            case RETURN_PROFILE:
-                System.out.println("test test test");
-                break;
+
         }
     }
 
+    private Map testPicsUser() {
+
+
+        return null;
+    }
+
+    private Map getMatchesAndPics() {
+        return null;
+    }
+
     private void checkCredentials(User u) {
-        System.out.println("usao je u p,etodu");
-        System.out.println(ControllerBLogic.getInstance().getDatathread().getGetAllUserList().get("keseljs").returnUserName());
-        System.out.println("ucitao hash mapu");
         Map getAllUserList = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
         Pictures p = new Pictures();
         TransferClass returnLogin = new TransferClass();
-        User check = (User) getAllUserList.get("keseljs");
-        System.out.println(check.getUsername() + "IZ HASH MAPE");
         if(getAllUserList.containsKey(u.getUsername())){
             User login = (User) getAllUserList.get(u.getUsername());
-            login.getRating().setNewStatus(true);
             if(login.getPass().equals(u.getPass())){
-                if(login.getRating().isNewStatus()){
-                    System.out.println("usao je u drugi if");
-                    returnLogin.setOperation(LOGIN);
-                    returnLogin.setServer_object(login);
-                    sendToClient(returnLogin);
-                    System.out.println("poslat je login");
-                    ControllerBLogic.getInstance().insertIntoActive(u.getUsername(), this);
-                }
-                returnLogin.setOperation(LOGIN);
-                returnLogin.setServer_object(login);
-                sendToClient(returnLogin);
-            }else{
+                TransferClass logged = new TransferClass();
+                logged.setOperation(LOGIN_USER);
+                logged.setServer_object(login);
+                sendToClient(logged);
 
-                returnLogin.setOperation(LOGIN);
-                returnLogin.setServer_object(login);
+            }else{
+                returnLogin.setOperation(WRONG_LOGIN);
                 sendToClient(returnLogin);
             }
-        }else{
+        }else if(!getAllUserList.containsKey(u.getUsername())){
             returnLogin.setOperation(WRONG_LOGIN);
             sendToClient(returnLogin);
         }
@@ -128,6 +118,7 @@ public class ClientThread extends Thread implements Serializable {
 
     private void putUserInDataThread(User u) {
         ControllerBLogic.getInstance().getDatathread().getGetAllUserList().put(u.getUsername(), u);
+        System.out.println("New User Added to Hash Map");
     }
 
     private void savePics(User u) throws IOException {

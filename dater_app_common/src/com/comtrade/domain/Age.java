@@ -8,42 +8,20 @@ import java.time.Period;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.comtrade.domain.Constants.DBWRITTEN;
 import static com.comtrade.domain.Constants.RDYFORDB;
 
 public class Age implements GeneralDomain, Serializable {
     private String username;
-    private LocalDate birthday;
     private int age;
-    private int readyForSql = RDYFORDB;
+    private int readyForSql = DBWRITTEN;
 
     public Age(){
-        calculateAge();
-    }
-
-    public Age(LocalDate birthday){
-        this.birthday = birthday;
-
-    }
-
-    private void calculateAge() {
-        LocalDate currentDate = LocalDate.now();
-        while(birthday!=null){
-            age = Period.between(birthday, currentDate).getYears();
-            break;
-        }
 
     }
 
     public int getAgeInYears() {
         return age;
-    }
-
-    public LocalDate getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
     }
 
     public int getAge() {
@@ -71,12 +49,12 @@ public class Age implements GeneralDomain, Serializable {
 
     @Override
     public String returnTableRows() {
-        return " (username, birthday, age) ";
+        return " (username, age) ";
     }
 
     @Override
     public String returnInsertFormat() {
-        return "VALUES ('" + username + "','" + birthday + "','" + age + "')";
+        return "VALUES ('" + username + "','" + age + "')";
 
     }
 

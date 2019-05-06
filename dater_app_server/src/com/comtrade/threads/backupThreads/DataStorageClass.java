@@ -2,14 +2,13 @@ package com.comtrade.threads.backupThreads;
 
 import com.comtrade.controllerBL.ControllerBLogic;
 import com.comtrade.domain.GeneralDomain;
-import com.comtrade.domain.User;
 
 import javax.swing.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static java.lang.Thread.sleep;
+
 
 public class DataStorageClass {
 	private Map<String, List<GeneralDomain>> allMatches = new HashMap<>();
@@ -21,13 +20,12 @@ public class DataStorageClass {
 
 
 	public synchronized void getData(JTextArea backupLogs, JProgressBar progressBar) throws InterruptedException {
-
-
 			ControllerBLogic.getInstance().getAllUsers(getAllUserList);
-			ControllerBLogic.getInstance().getAllMessages(allMessages);
+        	ControllerBLogic.getInstance().getAllMessages(allMessages);
 			ControllerBLogic.getInstance().getAllMatches(allMatches);
 			System.out.println("data thread notified");
 			notifyAll();
+
 	}
 
 
@@ -39,7 +37,7 @@ public class DataStorageClass {
 		System.out.println("backup thread notified");
 		try {
 			while(trigger){
-				Thread.sleep(600000);
+				Thread.sleep(60000);
 				txtServerLogs.append("\n" + "Backup Started");
 				ControllerBLogic.getInstance().saveBatch(getAllUserList);
 				txtServerLogs.append("\n" + "Users saved");

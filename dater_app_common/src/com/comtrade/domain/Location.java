@@ -15,7 +15,7 @@ public class Location implements GeneralDomain, Serializable {
     private double latitude;
     private String address;
     private int prefferedDistance = 50;
-    private int readyForSql = RDYFORDB;
+    private int readyForSql = DBWRITTEN;
 
 
     public Location(){
@@ -81,17 +81,17 @@ public class Location implements GeneralDomain, Serializable {
 
     @Override
     public String returnTableName() {
-        return null;
+        return "location";
     }
 
     @Override
     public String returnTableRows() {
-        return null;
+        return " (username, longitude, latitude, address, prefferedDistance) ";
     }
 
     @Override
     public String returnInsertFormat() {
-        return null;
+        return "VALUES ('" + username + "','" + longitude + "','" + latitude + "','" + address + "','" + prefferedDistance + "')";
     }
 
     @Override

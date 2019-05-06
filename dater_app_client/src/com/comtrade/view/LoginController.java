@@ -41,6 +41,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -172,10 +173,14 @@ public class LoginController implements Initializable, Serializable {
         });
         btnReg.setOnAction(Event -> {
             regPane.setVisible(true);
+            regPane.setDisable(false);
+            loginpane.setDisable(true);
             loginpane.setVisible(false);
         });
         btnBack.setOnAction(Event -> {
             regPane.setVisible(false);
+            regPane.setDisable(true);
+            loginpane.setDisable(false);
             loginpane.setVisible(true);
         });
     }
@@ -192,10 +197,8 @@ public class LoginController implements Initializable, Serializable {
     }
 
     private void createUser(ActionEvent event) {
-        Rating r = new Rating();
         User newUser = new User();
-        r.setNewStatus(true);
-        newUser.setRating(r);
+        newUser.getRating().setNewStatus(NEW_USER);
         TransferClass tf = new TransferClass();
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setHeaderText("You are about to create your profile, are you sure that you want to continue?");
@@ -244,10 +247,11 @@ public class LoginController implements Initializable, Serializable {
 
                     String birthdateString = datePicker.getValue().toString();
                     LocalDate date = LocalDate.parse(birthdateString);
-                    newUser.getAge().setBirthday(date);
+                    newUser.getAge().setAge(calculateAge(date));
                     String locationString = txtLoc.getText();
                     System.out.println(locationString);
                     newUser.getLocation().setAddress(locationString);
+
 
 
                     try {
@@ -274,20 +278,34 @@ public class LoginController implements Initializable, Serializable {
                             Controller.getInstance().sendToServer(tf);
 
                             if (checkUser) {
-                                Alert bye = new Alert(AlertType.WARNING);
-                                bye.setHeaderText(null);
-                                bye.setTitle("Error");
-                                bye.setContentText("Username is taken, please change your username");
-                                bye.showAndWait();
-                            } else{
+                                wrongCredentials();
+                            }if(!checkUser){
                                 String email = tfEmail.getText();
                                 newUser.setEmail(email);
+
+
+                                newUser.getRating().setUsername(newUser.getUsername());
+                                newUser.getLocation().setUsername(newUser.getUsername());
+                                newUser.getGender().setUsername(newUser.getUsername());
+                                newUser.getAge().setUsername(newUser.getUsername());
+
+                                newUser.getLocation().setReadyForSql(RDYFORDB);
+                                newUser.setReadyForSql(RDYFORDB);
+                                newUser.getRating().setReadyForSql(RDYFORDB);
+                                newUser.getLocation().setReadyForSql(RDYFORDB);
+                                newUser.getGender().setReadyForSql(RDYFORDB);
+                                newUser.getAge().setReadyForSql(RDYFORDB);
+
                                 // Set and Send!
                                 TransferClass create = new TransferClass();
                                 create.setClient_object(newUser);
                                 create.setOperation(SAVE_USER);
-                                System.out.println("save user test pre slanja");
+
                                 Controller.getInstance().sendToServer(create);
+                                regPane.setVisible(false);
+                                regPane.setDisable(true);
+                                loginpane.setDisable(false);
+                                loginpane.setVisible(true);
                             }
 
 
@@ -301,9 +319,15 @@ public class LoginController implements Initializable, Serializable {
 
     }
 
+    private int calculateAge(LocalDate date) {
+        LocalDate currentDate = LocalDate.now();
+
+          int age = Period.between(date, currentDate).getYears();
+
+        return age;
+    }
+
     private void loadVideo() {
-
-
         String vurl = "/home/strahinja/IdeaProjects/dater_app_final/dater_app_client/src/assets/love.mp4";
         Media media = new Media(new File(vurl).toURI().toString());
         MediaPlayer player = new MediaPlayer(media);
@@ -314,16 +338,13 @@ public class LoginController implements Initializable, Serializable {
     }
 
 
-    //proveri stari repo
-    private void login(User u) throws IOException {
 
-//     changeWindow(u);
+    private void login(User u) throws IOException {
         TransferClass login = new TransferClass();
         u.setUsername(txtLoginUsername.getText());
         u.setPass(txtLoginPassword.getText());
-        login.setOperation(LOGIN);
+        login.setOperation(LOGIN_USER);
         login.setClient_object(u);
-        System.out.println(u.getUsername());
         Comm.getInstance().send(login);
 
 
@@ -395,8 +416,7 @@ public class LoginController implements Initializable, Serializable {
     }
 
 
-    public static void changeWindow(User userr) throws IOException {
-
+    public static void changeWindow(User user) throws IOException {
         Stage stage = Main.stage;
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/comtrade/viewLayout/mainscreen.fxml"));
 
@@ -408,12 +428,15 @@ public class LoginController implements Initializable, Serializable {
         stage.show();
 //      MainController controller = loader.<MainController>getController();
         MainController controller = loader.getController();
-        controller.setCurrentUser(userr);
-
-
-
-
-
+        controller.setCurrentUser(user);
     }
 
+
+    public void wrongCredentials() {
+        Alert bye = new Alert(AlertType.WARNING);
+        bye.setHeaderText(null);
+        bye.setTitle("Error");
+        bye.setContentText("Please check username");
+        bye.showAndWait();
+    }
 }

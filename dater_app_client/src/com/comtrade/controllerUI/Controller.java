@@ -40,21 +40,24 @@ public class Controller {
         switch (tc.getOperation()) {
 	        case USERNAME_TAKEN:
 		        log.setCheckUser(java.lang.Boolean.TRUE);
-            case USERNAME_OK:
-                log.setCheckUser(Boolean.FALSE);
+            case WRONG_LOGIN:
+                try{
+                    Platform.runLater(() -> {
+                        log.wrongCredentials();
+                    });
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
 
             case LOGIN:
                 User u = (User) tc.getServer_object();
-                System.out.println("stigao je login");
                 try{
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                LoginController.changeWindow(u);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                    Platform.runLater(() -> {
+                        try {
+                            LoginController.changeWindow(u);
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
                     });
 
@@ -63,15 +66,6 @@ public class Controller {
                 }
 
 
-
-
-
-            case WRONG_LOGIN:
-                Alert bye = new Alert(Alert.AlertType.WARNING);
-                bye.setHeaderText(null);
-                bye.setTitle("Error");
-                bye.setContentText("Username or Password are wrong");
-                bye.showAndWait();
         }
 
 

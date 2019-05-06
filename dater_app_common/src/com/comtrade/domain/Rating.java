@@ -6,17 +6,17 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.comtrade.domain.Constants.RDYFORDB;
+import static com.comtrade.domain.Constants.*;
 
 public class Rating implements GeneralDomain, Serializable
 {
 
     private String username;
     private int rating = 1300;
-    private boolean newStatus = true;
-    private boolean superUser = false;
+    private int newStatus = NEW_USER;
+    private int superUser = NOT_SUPER;
 	private static int K = 50;
-	private int readyForSql = RDYFORDB;
+	private int readyForSql = DBWRITTEN;
 
 
 
@@ -27,7 +27,7 @@ public class Rating implements GeneralDomain, Serializable
   
 	public void EloRating(int userA, boolean btn){
 		float userB=rating;
-		if(newStatus) {
+		if(newStatus == NEW_USER) {
 			K = 100;
 		}
 		
@@ -73,11 +73,11 @@ public class Rating implements GeneralDomain, Serializable
         this.rating = rating;
     }
 
-    public boolean isNewStatus() {
+    public int getNewStatus() {
 		return newStatus;
 	}
 
-    public void setNewStatus(boolean newStatus) {
+    public void setNewStatus(int newStatus) {
         this.newStatus = newStatus;
     }
 
@@ -97,11 +97,11 @@ public class Rating implements GeneralDomain, Serializable
 		K = k;
 	}
 
-    public boolean isSuperUser() {
+    public int getSuperUser() {
 		return superUser;
 	}
 
-    public void setSuperUser(boolean superUser) {
+    public void setSuperUser(int superUser) {
         this.superUser = superUser;
 	}
 
