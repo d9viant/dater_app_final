@@ -51,6 +51,7 @@ public class ClientThread extends Thread implements Serializable {
                 System.out.println(u.getUsername());
                 System.out.println(u.getFirstName());
                 System.out.println(u.getLastName());
+                System.out.println("klijent jebeni thread");
                 putUserInDataThread(u);
                 break;
             case LOGIN:
@@ -60,6 +61,7 @@ public class ClientThread extends Thread implements Serializable {
                 checkCredentials(login);
                 break;
             case CHECK_USER:
+                /// CHECK USER NE TREBA
                 System.out.println("umri");
                 User check = (User) tf.getClient_object();
                 Map hashMap = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
@@ -87,26 +89,19 @@ public class ClientThread extends Thread implements Serializable {
     }
 
     private void checkCredentials(User u) {
-        Map<String, GeneralDomain> getAllUserList = null;
         System.out.println("usao je u p,etodu");
-        try {
-            getAllUserList = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        System.out.println(ControllerBLogic.getInstance().getDatathread().getGetAllUserList().get("keseljs").returnUserName());
         System.out.println("ucitao hash mapu");
+        Map getAllUserList = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
         Pictures p = new Pictures();
         TransferClass returnLogin = new TransferClass();
         User check = (User) getAllUserList.get("keseljs");
         System.out.println(check.getUsername() + "IZ HASH MAPE");
         if(getAllUserList.containsKey(u.getUsername())){
             User login = (User) getAllUserList.get(u.getUsername());
-            System.out.println("usao je u prvi if");
             login.getRating().setNewStatus(true);
             if(login.getPass().equals(u.getPass())){
                 if(login.getRating().isNewStatus()){
-//                    loginMap.put(login.getUsername(), login);
                     System.out.println("usao je u drugi if");
                     returnLogin.setOperation(LOGIN);
                     returnLogin.setServer_object(login);
@@ -132,10 +127,7 @@ public class ClientThread extends Thread implements Serializable {
     }
 
     private void putUserInDataThread(User u) {
-
         ControllerBLogic.getInstance().getDatathread().getGetAllUserList().put(u.getUsername(), u);
-
-
     }
 
     private void savePics(User u) throws IOException {
