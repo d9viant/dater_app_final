@@ -44,8 +44,8 @@ public class Controller {
                 log.setCheckUser(Boolean.FALSE);
 
             case LOGIN:
-
                 User u = (User) tc.getServer_object();
+                System.out.println("stigao je login");
                 try{
                     Platform.runLater(new Runnable() {
                         @Override

@@ -19,6 +19,7 @@ public class DataStorageThread extends Thread{
 
     public void run(){
         try {
+            Thread.sleep(2000);
             ControllerBLogic.getInstance().getDatathread().getData(backupLogs, progressBar1);
             txtServerLogs.append("\n" + "Data Loaded Into Memory");
         } catch (InterruptedException e) {

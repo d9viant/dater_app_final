@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXSlider?>
 <?import com.sothawo.mapjfx.MapView?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="placeHolderPane" prefHeight="550.0" prefWidth="322.0"
-            xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="com.comtrade.view.MainController">
+
+<AnchorPane fx:id="placeHolderPane" prefHeight="550.0" prefWidth="322.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.comtrade.view.MainController">
    <children>
       <AnchorPane fx:id="rootPane" layoutY="50.0" prefHeight="500.0" prefWidth="322.0" style="-fx-border-color: black; -fx-border-style: solid; -fx-border-width: 2px; -fx-border-radius: 5px;">
          <children>
@@ -63,8 +72,7 @@
       <JFXHamburger fx:id="drawerImg" layoutY="8.0" prefHeight="35.0" prefWidth="52.0" />
       <AnchorPane fx:id="profilePane" prefHeight="550.0" prefWidth="322.0" style="-fx-background-color: #fff;">
          <children>
-             <ImageView fx:id="profilePic" fitHeight="296.0" fitWidth="239.0" layoutX="12.0" layoutY="52.0"
-                        pickOnBounds="true" preserveRatio="true">
+             <ImageView fx:id="profilePic" fitHeight="296.0" fitWidth="239.0" layoutX="12.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../ProfilePics/123testdudeProfilePic.jpg" />
                </image>
@@ -100,7 +108,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="mapPane" prefHeight="550.0" prefWidth="322.0" style="-fx-background-color: #fff;">
+      <AnchorPane fx:id="mapPane" prefHeight="550.0" prefWidth="322.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <MapView fx:id="mapView" layoutX="13.0" layoutY="67.0" prefHeight="273.0" prefWidth="297.0" />
             <ImageView fitHeight="35.0" fitWidth="45.0" layoutX="245.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true">
@@ -127,7 +135,7 @@
                </font>
             </JFXButton>
             <Label layoutX="27.0" layoutY="397.0" prefHeight="16.0" prefWidth="141.0" text="I'm interested in:" />
-            <ImageView fitHeight="35.0" fitWidth="45.0" layoutX="262.0" layoutY="484.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="uplPhotoCheck" fitHeight="35.0" fitWidth="45.0" layoutX="262.0" layoutY="484.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../assets/right-arrow.png" />
                </image>
@@ -137,6 +145,17 @@
             <JFXRadioButton fx:id="womanCheckbox" layoutX="26.0" layoutY="447.0" text="Women" />
             <JFXSlider layoutX="26.0" layoutY="506.0" majorTickUnit="100.0" prefHeight="26.0" prefWidth="200.0" showTickLabels="true" showTickMarks="true" style="-jfx-indicator-position: right;" />
             <Label layoutX="27.0" layoutY="471.0" prefHeight="16.0" prefWidth="141.0" text="Match Distance:" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="chatPane" prefHeight="560.0" prefWidth="332.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="35.0" fitWidth="45.0" layoutX="272.0" layoutY="493.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/right-arrow.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="backFromChatToMain" layoutX="263.0" layoutY="488.0" prefHeight="45.0" prefWidth="52.0" textFill="TRANSPARENT" />
+            <JFXListView fx:id="chatUserList" layoutX="22.0" layoutY="14.0" prefHeight="401.0" prefWidth="286.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="opacityPane" opacity="0.29" prefHeight="550.0" prefWidth="331.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />

@@ -2,6 +2,7 @@ package com.comtrade.threads.backupThreads;
 
 import com.comtrade.controllerBL.ControllerBLogic;
 import com.comtrade.domain.GeneralDomain;
+import com.comtrade.domain.User;
 
 import javax.swing.*;
 import java.util.HashMap;
@@ -20,8 +21,10 @@ public class DataStorageClass{
 
 
 	public synchronized void getData(JTextArea backupLogs, JProgressBar progressBar) throws InterruptedException {
+
 			Thread.sleep(2000);
 			ControllerBLogic.getInstance().getAllUsers(getAllUserList);
+
 			progressBar.setValue(25);
 			Thread.sleep(2000);
 			ControllerBLogic.getInstance().getAllMessages(allMessages);
@@ -33,6 +36,7 @@ public class DataStorageClass{
 			progressBar.setValue(100);
 			Thread.sleep(1000);
 			progressBar.setValue(0);
+			System.out.println("data thread notified");
 			notifyAll();
 	}
 
@@ -42,10 +46,11 @@ public class DataStorageClass{
 		this.progressBar1=progressBar1;
 		this.txtServerLogs=txtServerLogs;
 		wait();
+		System.out.println("backup thread notified");
 		try {
 			while(trigger){
 				Thread.sleep(600000);
-				txtServerLogs.append("Backup Started");
+				txtServerLogs.append("\n" + "Backup Started");
 				Thread.sleep(10000);
 				ControllerBLogic.getInstance().saveBatch(getAllUserList);
 				txtServerLogs.append("\n" + "Users saved");
@@ -77,17 +82,16 @@ public class DataStorageClass{
 
 
 
-	public Map<String, List<GeneralDomain>> getAllMatches() {
-		synchronized (this) {
+	public synchronized Map<String, List<GeneralDomain>> getAllMatches() {
 			return allMatches;
-		}
+
 
 	}
 
-	public Map<String, GeneralDomain> getGetAllUserList() {
-		synchronized (this) {
+	public synchronized Map<String, GeneralDomain> getGetAllUserList() {
+		System.out.println(getAllUserList.size() + "na kraju");
 			return getAllUserList;
-		}
+
 
 	}
 

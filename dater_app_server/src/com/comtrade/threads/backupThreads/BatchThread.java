@@ -13,7 +13,6 @@ public class BatchThread extends Thread{
     }
 
     public void run() {
-        while(true){
             try {
                 txtServerLogs.append("Backup thread is locked and loaded");
                 ControllerBLogic.getInstance().getDatathread().saveBatch(txtServerLogs, progressBar1);
@@ -21,7 +20,7 @@ public class BatchThread extends Thread{
                 e.printStackTrace();
             }
 
-        }
+
 
 
     }

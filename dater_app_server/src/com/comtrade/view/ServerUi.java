@@ -37,12 +37,13 @@ public class ServerUi extends JFrame {
         // DATA THREAD AND BATCH THREAD
         BatchThread bt = new BatchThread(backupLogs, progressBar1);
         DataStorageThread dts = new DataStorageThread(serverLogs, backupLogs, progressBar1);
-        dts.start();
-        bt.start();
         // DATA THREAD AND BATCH THREAD
+        bt.start();
         s.start();
         stt.start();
+        dts.start();
         startServer.setEnabled(false);
+
     }
 
     private void button2ActionPerformed(ActionEvent e) {

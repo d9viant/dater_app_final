@@ -48,19 +48,22 @@ public class ClientThread extends Thread implements Serializable {
         switch (tf.getOperation()) {
             case SAVE_USER:
                 User u = (User) tf.getClient_object();
+                System.out.println(u.getUsername());
+                System.out.println(u.getFirstName());
+                System.out.println(u.getLastName());
                 putUserInDataThread(u);
-//                savePic(u); pomeri save pic u main, prvi ekran upload slike i namesta preference
                 break;
             case LOGIN:
-                u = (User) tf.getClient_object();
-                checkCredentials(u);
-
+                System.out.println("umri na loginu");
+                User login = (User) tf.getClient_object();
+                System.out.println(login.getUsername());
+                checkCredentials(login);
                 break;
             case CHECK_USER:
+                System.out.println("umri");
                 User check = (User) tf.getClient_object();
                 Map hashMap = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
                 TransferClass back = new TransferClass();
-
                 if (hashMap.containsKey(check.getUsername().toLowerCase())) {
                     back.setOperation(USERNAME_TAKEN);
                     sendToClient(back);
@@ -77,31 +80,47 @@ public class ClientThread extends Thread implements Serializable {
                 break;
             case DISLIKE:
                 break;
-            case SUPER:
+            case RETURN_PROFILE:
+                System.out.println("test test test");
                 break;
         }
     }
 
     private void checkCredentials(User u) {
-        Map hashMap = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
-        HashMap<String, Object> loginMap = new HashMap<String, Object>();
-        ReadFolderUtil readFolderUtil;
+        Map<String, GeneralDomain> getAllUserList = null;
+        System.out.println("usao je u p,etodu");
+        try {
+            getAllUserList = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        System.out.println("ucitao hash mapu");
         Pictures p = new Pictures();
         TransferClass returnLogin = new TransferClass();
-        if(hashMap.containsKey(u.getUsername())){
-            User login = (User) hashMap.get(u.getUsername());
+        User check = (User) getAllUserList.get("keseljs");
+        System.out.println(check.getUsername() + "IZ HASH MAPE");
+        if(getAllUserList.containsKey(u.getUsername())){
+            User login = (User) getAllUserList.get(u.getUsername());
+            System.out.println("usao je u prvi if");
             login.getRating().setNewStatus(true);
             if(login.getPass().equals(u.getPass())){
                 if(login.getRating().isNewStatus()){
 //                    loginMap.put(login.getUsername(), login);
+                    System.out.println("usao je u drugi if");
                     returnLogin.setOperation(LOGIN);
                     returnLogin.setServer_object(login);
                     sendToClient(returnLogin);
+                    System.out.println("poslat je login");
                     ControllerBLogic.getInstance().insertIntoActive(u.getUsername(), this);
                 }
-                //ovde treba da pakuje i slike + slike za sve matcheve
+                returnLogin.setOperation(LOGIN);
+                returnLogin.setServer_object(login);
+                sendToClient(returnLogin);
             }else{
-                returnLogin.setOperation(WRONG_LOGIN);
+
+                returnLogin.setOperation(LOGIN);
+                returnLogin.setServer_object(login);
                 sendToClient(returnLogin);
             }
         }else{
@@ -115,6 +134,7 @@ public class ClientThread extends Thread implements Serializable {
     private void putUserInDataThread(User u) {
 
         ControllerBLogic.getInstance().getDatathread().getGetAllUserList().put(u.getUsername(), u);
+
 
     }
 

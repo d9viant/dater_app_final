@@ -6,6 +6,7 @@ import com.comtrade.domain.Matches;
 import com.comtrade.domain.Message;
 import com.comtrade.domain.User;
 
+import java.sql.BatchUpdateException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -73,7 +74,8 @@ public class Broker implements IBroker {
 
 		try {
 			st.executeBatch();
-		} catch (SQLException e) {
+		} catch (BatchUpdateException ex) {
+			ex.printStackTrace();
 			System.out.println("User batch Failed to Execute - Line 77 Broker");
 		}
 	}
@@ -178,7 +180,7 @@ public class Broker implements IBroker {
             Statement st = Connection.getInstance().getConn().createStatement();
             ResultSet rs = st.executeQuery(query);
 			list = gd.fixInnerSelectList(rs);
-			System.out.println("Works ");
+
 		} catch (SQLException e) {
 			System.out.println("No Database Entries for Messages and Matches");
 		}

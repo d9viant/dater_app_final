@@ -14,7 +14,7 @@ public class Comm {
 
     private Comm(){
         try {
-            socket = new Socket("127.0.0.1", 9500);
+            socket = new Socket("127.0.0.1", 9000);
         } catch (IOException e) {
             e.printStackTrace();
         }

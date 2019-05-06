@@ -17,6 +17,7 @@ public class BatchUserSO extends GeneralSystemOperation {
     public void executeConcreteOperation(Object obj) throws SQLException {
         HashMap<String, GeneralDomain> ul = (HashMap<String, GeneralDomain>) obj;
         IBroker ib = new Broker();
+
         ib.save(ul);
 //        for (Map.Entry<String, GeneralDomain> entry : ul.entrySet()) {
 //            User u = (User) entry.getValue();

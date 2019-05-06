@@ -165,7 +165,7 @@ public class LoginController implements Initializable, Serializable {
             u.setUsername(loginString);
             u.setPass(passString);
             try {
-                login();
+                login(u);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -235,6 +235,7 @@ public class LoginController implements Initializable, Serializable {
                     String usernameString = txtUsername.getText().toLowerCase();
                     newUser.setUsername(usernameString);
 
+
                     if (radioM.isSelected()) {
                         newUser.getGender().setGender(MALE);
                     } else {
@@ -244,11 +245,10 @@ public class LoginController implements Initializable, Serializable {
                     String birthdateString = datePicker.getValue().toString();
                     LocalDate date = LocalDate.parse(birthdateString);
                     newUser.getAge().setBirthday(date);
-                    newUser.getAge().setReadyForSql(RDYFORDB);
                     String locationString = txtLoc.getText();
                     System.out.println(locationString);
                     newUser.getLocation().setAddress(locationString);
-                    newUser.getLocation().setReadyForSql(RDYFORDB);
+
 
                     try {
                         newUser.getLocation().setLatitude(red.get(0).doubleValue());
@@ -268,8 +268,6 @@ public class LoginController implements Initializable, Serializable {
                         String passwrString = txtPassword.getText();
                         newUser.setPass(passwrString);
                         {
-
-
                             // Check if Username is in DB
                             tf.setClient_object(newUser);
                             tf.setOperation(CHECK_USER);
@@ -281,20 +279,26 @@ public class LoginController implements Initializable, Serializable {
                                 bye.setTitle("Error");
                                 bye.setContentText("Username is taken, please change your username");
                                 bye.showAndWait();
-                            } else {
+                            } else{
                                 String email = tfEmail.getText();
                                 newUser.setEmail(email);
                                 // Set and Send!
-                                tf.setClient_object(newUser);
-                                System.out.println(newUser.getFirstName());
-                                tf.setOperation(SAVE_USER);
-                                Controller.getInstance().sendToServer(tf);
+                                TransferClass create = new TransferClass();
+                                create.setClient_object(newUser);
+                                create.setOperation(SAVE_USER);
+                                System.out.println("save user test pre slanja");
+                                Controller.getInstance().sendToServer(create);
                             }
+
+
+
+
                         }
                     }
                 }
             }
         });
+
     }
 
     private void loadVideo() {
@@ -311,9 +315,9 @@ public class LoginController implements Initializable, Serializable {
 
 
     //proveri stari repo
-    private void login() throws IOException {
-        User u = new User();
-//        changeWindow(u);
+    private void login(User u) throws IOException {
+
+//     changeWindow(u);
         TransferClass login = new TransferClass();
         u.setUsername(txtLoginUsername.getText());
         u.setPass(txtLoginPassword.getText());

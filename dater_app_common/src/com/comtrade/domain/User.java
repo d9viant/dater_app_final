@@ -76,7 +76,7 @@ public class User implements GeneralDomain, Serializable {
     }
 
     public void setLastName(String lastName) {
-        lastName = lastName;
+        this.lastName = lastName;
     }
 
     public String getPass() {
@@ -286,7 +286,7 @@ public class User implements GeneralDomain, Serializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(list.size() + "Strahinja");
+
         return list;
     }
 
