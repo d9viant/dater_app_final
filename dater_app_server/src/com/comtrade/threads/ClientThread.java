@@ -57,7 +57,7 @@ public class ClientThread extends Thread implements Serializable {
                 if(getAllUserList.containsKey(login.getUsername())){
                     User check = (User) getAllUserList.get(login.getUsername());
                     if(login.getPass().equals(check.getPass())){
-                        Map loginMap = getMatchesAndPics(); // napravi matcheve i slike, stavi u hm i poteraj natrag
+
                         Map testPicsforUser = testPicsUser();
                         try {
                             p = getPics(check);

@@ -5,10 +5,7 @@ import com.comtrade.controllerUI.Controller;
 import com.comtrade.domain.Pictures;
 import com.comtrade.domain.User;
 import com.comtrade.transfer.TransferClass;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.controls.JFXPopup;
-import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.*;
 import com.sothawo.mapjfx.Coordinate;
 import com.sothawo.mapjfx.MapType;
 import com.sothawo.mapjfx.MapView;
@@ -28,6 +25,7 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
@@ -40,11 +38,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static com.comtrade.domain.Constants.LIKE;
-import static com.comtrade.domain.Constants.WINDIRPICS;
+import static com.comtrade.domain.Constants.*;
 import static java.nio.file.Files.write;
 
 public class MainController implements Initializable, Serializable {
+    @FXML
+    private JFXSlider distanceSlider;
+
     @FXML
     private AnchorPane mapPane;
 
@@ -67,7 +67,7 @@ public class MainController implements Initializable, Serializable {
     private Label txtBiography;
 
     @FXML
-    private JFXButton enter, btnDislike, btnBoost, btnHeart, btnSuper, btnRevert, btnProfileToMain, btnStalkerGlobe, drawerProfile, drawerChat, drawerSettings, btnStalkerToMain, btnNadji, settingsBackToMain, btnChangeProf, backFromChatToMain;
+    private JFXButton btnUpdtBio, enter, btnDislike, btnBoost, btnHeart, btnSuper, btnRevert, btnProfileToMain, btnStalkerGlobe, drawerProfile, drawerChat, drawerSettings, btnStalkerToMain, btnNadji, settingsBackToMain, btnChangeProf, backFromChatToMain;
 
     @FXML
     private JFXHamburger drawerImg;
@@ -118,7 +118,7 @@ public class MainController implements Initializable, Serializable {
 
     final FileChooser fileChooser = new FileChooser();
 
-    int incrementSelection = -1;
+    int incrementSelection = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -137,6 +137,8 @@ public class MainController implements Initializable, Serializable {
         setPaneOut(mapPane, placeHolderPane);
         imgStalkerGlobe.setVisible(false);
         btnStalkerGlobe.setVisible(false);
+        imgStalkerGlobe.setDisable(true);
+        btnStalkerGlobe.setDisable(true);
         menCheckbox.setToggleGroup(tGroup);
         womanCheckbox.setToggleGroup(tGroup);
         womanCheckbox.setSelectedColor(Color.web("ff6969"));
@@ -145,7 +147,10 @@ public class MainController implements Initializable, Serializable {
     }
     private void controlButtons() {
 
-
+        btnUpdtBio.setOnAction(Event->{
+           String bio = bioTextFieldOpacity.getText();
+           currentUser.setBio(bio);
+        });
 
         enter.setOnAction(Event -> {
            setPaneOut(firstPane, placeHolderPane);
@@ -154,10 +159,22 @@ public class MainController implements Initializable, Serializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            if(currentUser.getGender().getGender()==MALE){
+                womanCheckbox.setSelected(true);
+
+            }
+            if(currentUser.getGender().getGender()==FEMALE){
+                womanCheckbox.setSelected(true);
+            }
         });
 
         imgChangeProfile.setOnMouseClicked(Event ->{
-            cycleImage();
+            try {
+                setProfilePic(imgChangeProfile);
+                cycleImage(imgChangeProfile);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
         });
 
 
@@ -171,7 +188,10 @@ public class MainController implements Initializable, Serializable {
             setPaneOut(chatPane, placeHolderPane);
         });
 
-        settingsBackToMain.setOnAction(Event -> setPaneOut(settingsPane, placeHolderPane));
+        settingsBackToMain.setOnAction(Event -> {
+            setPaneOut(settingsPane, placeHolderPane);
+            updateInfo();
+        });
 
         opacityPane.setOnMouseClicked(Event -> setPaneOut(opacityPane, drawerPane));
 
@@ -199,8 +219,21 @@ public class MainController implements Initializable, Serializable {
             setPaneIn(mapPane);
         });
 
+        profilePic.setOnMouseClicked(Event ->{
+            System.out.println("PROFILNA YOY");
+            try {
+                cycleImage(profilePic);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        });
+
         drawerProfile.setOnAction(Event -> {
-            setProfilePic();
+            try {
+                setProfilePic(profilePic);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
             setPaneIn(profilePane);
             setPaneOut(opacityPane, drawerPane);
         });
@@ -247,18 +280,43 @@ public class MainController implements Initializable, Serializable {
         });
     }
 
-    private void cycleImage() {
+    private void updateInfo() {
+
+    }
+
+    private void setProfilePic(ImageView view) throws MalformedURLException {
+        String photoUrl = currentUserPhotos.get(0).toURI().toURL().toString();
+        Image image = new Image(photoUrl, 360, 360, true, true);
+        if(view.getId().equals(profilePic.getId())){
+            profilePic.setImage(image);
+        }
+        if(view.getId().equals(imgChangeProfile.getId())){
+            imgChangeProfile.setImage(image);
+        }
+    }
+
+    private void cycleImage(ImageView view) throws MalformedURLException {
+        String photoUrl = currentUserPhotos.get(incrementSelection).toURI().toURL().toString();
+        System.out.println(currentUserPhotos.size());
         if(incrementSelection == currentUserPhotos.size()-1){
             incrementSelection = -1;
         }
         incrementSelection++;
+        System.out.println(incrementSelection);
         try {
-            String photoUrl = currentUserPhotos.get(incrementSelection).toURI().toURL().toString();
-            Image image = new Image(photoUrl, 360, 360, true, true);
-            imgChangeProfile.setImage(image);
+            photoUrl = currentUserPhotos.get(incrementSelection).toURI().toURL().toString();
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        Image image = new Image(photoUrl, 360, 360, true, true);
+        if(view.getId().equals(imgChangeProfile.getId())){
+            imgChangeProfile.setImage(image);
+        }else{
+            profilePic.setImage(image);
+        }
+
+
     }
 
 
@@ -278,6 +336,9 @@ public class MainController implements Initializable, Serializable {
                 e.printStackTrace();
             }
         }
+
+
+
         loadPics(u);
 
 
@@ -288,26 +349,23 @@ public class MainController implements Initializable, Serializable {
         boolean loggedUser = u.getUsername().equals(currentUser.getUsername());
         if (loggedUser) {
             directory = new File(WINDIRPICS+currentUser.getUsername());
+        } else{
+            directory = new File(WINDIRPICS+u.getUsername());
         }
-        directory = new File(WINDIRPICS+u.getUsername());
+
+
         File[] fList = directory.listFiles();
         for (File file : fList) {
-            if ( (!file.isDirectory()) && (file.getAbsolutePath().endsWith(".jpg") )) {
-                if(loggedUser){
+            if ((!file.isDirectory()) && (file.getAbsolutePath().endsWith(".jpg")) && loggedUser) {
                     currentUserPhotos.add(file);
-                }
+            }
+            if((!file.isDirectory()) && (file.getAbsolutePath().endsWith(".jpg")) && !loggedUser){
                 otherUserPhotos.add(file);
             }
         }
     }
 
-    private void setProfilePic() {
-//        String profile = "file:src\\ProfilePics\\" + currentUser.getUserPhoto();
-//        Image profileImage = new Image(profile, 200, 200, false, false);
-//        profilePic.setImage(profileImage);
-//        System.out.println(currentUser.getAge().getAgeInYears());
-//        lvlNameAge1.setText(String.valueOf(currentUser.getAge().getAgeInYears()));
-    }
+
 
     private void MapViewClose() {
         this.mapView.close();
