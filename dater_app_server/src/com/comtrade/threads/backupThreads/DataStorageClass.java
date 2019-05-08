@@ -24,7 +24,6 @@ public class DataStorageClass {
         	ControllerBLogic.getInstance().getAllMessages(allMessages);
 			ControllerBLogic.getInstance().getAllMatches(allMatches);
 			System.out.println("data thread notified");
-			notifyAll();
 
 	}
 
@@ -33,11 +32,7 @@ public class DataStorageClass {
 	public synchronized void saveBatch(JTextArea txtServerLogs, JProgressBar progressBar1) throws InterruptedException {
 		this.progressBar1=progressBar1;
 		this.txtServerLogs=txtServerLogs;
-		wait();
-		System.out.println("backup thread notified");
-		try {
-			while(trigger){
-				Thread.sleep(60000);
+
 				txtServerLogs.append("\n" + "Backup Started");
 				ControllerBLogic.getInstance().saveBatch(getAllUserList);
 				txtServerLogs.append("\n" + "Users saved");
@@ -46,14 +41,8 @@ public class DataStorageClass {
 				ControllerBLogic.getInstance().saveMessageBatch(allMessages);
 				txtServerLogs.append("\n" + "Messages saved");
 				txtServerLogs.append("\n"+"Backup Done");
-			}
 
 
-
-
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 
 	}
 
@@ -65,7 +54,7 @@ public class DataStorageClass {
 
 	}
 
-	public  Map<String, GeneralDomain> getGetAllUserList() {
+	public synchronized Map<String, GeneralDomain> getGetAllUserList() {
 
 		return getAllUserList;
 
@@ -77,7 +66,6 @@ public class DataStorageClass {
 	}
 
 	public Map<String, List<GeneralDomain>> getAllMessages() {
-
 			return allMessages;
 
 

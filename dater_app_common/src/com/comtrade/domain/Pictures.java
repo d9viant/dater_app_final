@@ -1,5 +1,6 @@
 package com.comtrade.domain;
 
+import java.io.File;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +10,8 @@ import java.util.List;
 
 public class Pictures implements GeneralDomain, Serializable {
     private List<byte[]> pictures = new ArrayList<>();
+    List<File> pictureFiles = new ArrayList<>();
+
     private int readyForSql = 0;
 
 
@@ -82,6 +85,14 @@ public class Pictures implements GeneralDomain, Serializable {
 
     public void setPictures(List<byte[]> pictures) {
         this.pictures = pictures;
+    }
+
+    public List<File> getPictureFiles() {
+        return pictureFiles;
+    }
+
+    public void setPictureFiles(List<File> pictureFiles) {
+        this.pictureFiles = pictureFiles;
     }
 
 

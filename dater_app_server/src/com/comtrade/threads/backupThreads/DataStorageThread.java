@@ -8,7 +8,8 @@ public class DataStorageThread extends Thread{
     private JTextArea txtServerLogs;
     JTextArea backupLogs;
     JProgressBar progressBar1;
-    volatile boolean kill = true;
+    private static volatile boolean killthread = false;
+    private static volatile boolean batchstart = false;
 
 
     public DataStorageThread(JTextArea textStart, JTextArea backupLogs, JProgressBar progressBar1) {
@@ -20,18 +21,25 @@ public class DataStorageThread extends Thread{
     }
 
     public void run(){
+
         try {
-            while(kill){
-                Thread.sleep(2000);
-                ControllerBLogic.getInstance().getDatathread().getData(backupLogs, progressBar1);
-                txtServerLogs.append("\n" + "Data Loaded Into Memory");
-                kill=false;
+            Thread.sleep(3000);
+            while(!killthread){
+                    ControllerBLogic.getInstance().getDatathread().getData(backupLogs, progressBar1);
+                    txtServerLogs.append("\n" + "Data Loaded Into Memory");
+                    killthread=true;
             }
+            System.out.println("data thread killed");
+            BatchThread.setKillthread(true);
+
+
 
         } catch (InterruptedException e) {
             System.out.println("DataStorageThread has Failed to start");
         }
     }
 
-
+    public static void setBatchstart(boolean batchstart) {
+        DataStorageThread.batchstart = batchstart;
+    }
 }

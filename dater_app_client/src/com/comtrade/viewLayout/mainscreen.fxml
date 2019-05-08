@@ -203,5 +203,11 @@
             </GridPane>
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="firstPane" prefHeight="570.0" prefWidth="342.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <TextArea editable="false" layoutX="49.0" layoutY="38.0" prefHeight="200.0" prefWidth="245.0" text="Welcome to the worlds best dating app! The app mimics Tinder, and the contrlos should be straight forward... Hope you'll like it! :)" wrapText="true" />
+            <JFXButton fx:id="enter" layoutX="140.0" layoutY="329.0" style="-fx-background-color: red;" text="ENTER" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

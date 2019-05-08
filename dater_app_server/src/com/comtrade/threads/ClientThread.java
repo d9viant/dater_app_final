@@ -50,14 +50,23 @@ public class ClientThread extends Thread implements Serializable {
                 break;
 
             case LOGIN_USER:
+                Pictures p = new Pictures();
                 User login = (User) tf.getClient_object();
                 Map getAllUserList = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
+                System.out.println("got login data");
                 if(getAllUserList.containsKey(login.getUsername())){
                     User check = (User) getAllUserList.get(login.getUsername());
                     if(login.getPass().equals(check.getPass())){
                         Map loginMap = getMatchesAndPics(); // napravi matcheve i slike, stavi u hm i poteraj natrag
                         Map testPicsforUser = testPicsUser();
+                        try {
+                            p = getPics(check);
+                        }catch (Exception e){
+                            System.out.println("nov user nema slike");
+                        }
+
                         TransferClass ltf = new TransferClass();
+                        check.setP(p);
                         ltf.setOperation(LOGIN);
                         ltf.setServer_object(check);
                         ControllerBLogic.getInstance().insertIntoActive(check.getUsername(), this);
@@ -69,6 +78,7 @@ public class ClientThread extends Thread implements Serializable {
                     tce.setOperation(WRONG_LOGIN);
                     sendToClient(tce);
                 }
+                break;
             case CHECK_USER:
                 Map check = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
                 User checkU = (User) tf.getClient_object();
@@ -77,12 +87,35 @@ public class ClientThread extends Thread implements Serializable {
                     checktf.setOperation(USERNAME_TAKEN);
                     sendToClient(checktf);
                 }
+                break;
 
-
+            case LIKE:
+                User pics = (User) tf.getClient_object();
+                savePics(pics);
+                break;
         }
     }
 
+    private Pictures getPics(User check) throws IOException {
+        Pictures p = new Pictures();
+        byte[] fileContent = new byte[0];
+        List<File> list;
+        File directory = new File("serverpics/"+check.getUsername());
+        //get all the files from a directory
+        File[] fList = directory.listFiles();
+        for (File file : fList) {
+            if ( (!file.isDirectory()) && (file.getAbsolutePath().endsWith(".jpg") )) {
+                System.out.println(file.getName());
+                fileContent=Files.readAllBytes(file.toPath());
+                p.getPictures().add(fileContent);
+            }
+        }
+
+        return p;
+    }
+
     private Map testPicsUser() {
+
 
 
         return null;
@@ -122,14 +155,14 @@ public class ClientThread extends Thread implements Serializable {
     }
 
     private void savePics(User u) throws IOException {
-        List<byte[]> bytes = u.getP().getPictures();
-        int length = bytes.size();
+        List<byte[]> pictures = u.getP().getPictures();
+        int length = pictures.size();
+//        File theDir = new File(SERVERPICS);
+        Path newDir = Paths.get(SERVERPICS + u.getUsername()+"/folder");
+        Files.createDirectories(newDir);
         for(int i=0; i<length; i++){
-            byte[] b = bytes.get(i);
-            File theDir = new File(SERVERPICS);
-            Path newDir = Paths.get(theDir.getAbsolutePath());
-            Files.createDirectories(newDir);
-            Path path = Paths.get(theDir + u.getUsername() + i + ".jpg");
+            byte[] b = pictures.get(i);
+            Path path = Paths.get(newDir + u.getUsername()+ i + ".jpg");
             try {
                 write(path, b);
             } catch (IOException e) {

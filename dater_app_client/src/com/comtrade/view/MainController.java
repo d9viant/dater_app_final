@@ -15,12 +15,10 @@ import com.sothawo.mapjfx.MapView;
 import com.sothawo.mapjfx.Marker;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,6 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -37,6 +36,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -67,7 +67,7 @@ public class MainController implements Initializable, Serializable {
     private Label txtBiography;
 
     @FXML
-    private JFXButton btnDislike, btnBoost, btnHeart, btnSuper, btnRevert, btnProfileToMain, btnStalkerGlobe, drawerProfile, drawerChat, drawerSettings, btnStalkerToMain, btnNadji, settingsBackToMain, btnChangeProf, backFromChatToMain;
+    private JFXButton enter, btnDislike, btnBoost, btnHeart, btnSuper, btnRevert, btnProfileToMain, btnStalkerGlobe, drawerProfile, drawerChat, drawerSettings, btnStalkerToMain, btnNadji, settingsBackToMain, btnChangeProf, backFromChatToMain;
 
     @FXML
     private JFXHamburger drawerImg;
@@ -85,7 +85,7 @@ public class MainController implements Initializable, Serializable {
     private ImageView imgStalkerGlobe, profilePic;
 
     @FXML
-    private AnchorPane opacityPane;
+    private AnchorPane opacityPane, firstPane;
 
     @FXML
     private AnchorPane placeHolderPane;
@@ -107,7 +107,8 @@ public class MainController implements Initializable, Serializable {
 
     private User currentUser;
 
-    List<File> list;
+    private List<File> currentUserPhotos = new ArrayList<>();
+    private List<File> otherUserPhotos = new ArrayList<>();
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
@@ -145,19 +146,18 @@ public class MainController implements Initializable, Serializable {
     private void controlButtons() {
 
 
-        imgChangeProfile.setOnMouseClicked(Event ->{
-            if(incrementSelection == list.size()-1){
-                incrementSelection = -1;
-            }
-            incrementSelection++;
-            System.out.println(incrementSelection);
+
+        enter.setOnAction(Event -> {
+           setPaneOut(firstPane, placeHolderPane);
             try {
-                String photoUrl = list.get(incrementSelection).toURI().toURL().toString();
-                Image image = new Image(photoUrl, 360, 360, true, true);
-                imgChangeProfile.setImage(image);
-            } catch (MalformedURLException e) {
+                savePics(currentUser);
+            } catch (IOException e) {
                 e.printStackTrace();
             }
+        });
+
+        imgChangeProfile.setOnMouseClicked(Event ->{
+            cycleImage();
         });
 
 
@@ -211,18 +211,17 @@ public class MainController implements Initializable, Serializable {
             Compression compress = new Compression();
             File compressedimage;
             byte[] fileContent;
-
             Pictures p = new Pictures();
             FileChooser.ExtensionFilter extFilter =
                     new FileChooser.ExtensionFilter("PICTURE files (*.png, *.jpg, *.jpeg)", "*.png", "*.jpg", "*.jpeg");
             fileChooser.getExtensionFilters().add(extFilter);
-            list = fileChooser.showOpenMultipleDialog(null);
-            if (list!=null) {
+            currentUserPhotos = fileChooser.showOpenMultipleDialog(null);
+            if (currentUserPhotos !=null) {
                 String photoUrl = null;
-                for(int i=0; i<list.size();i++){
-                    File fi = list.get(i);
+                for(int i = 0; i< currentUserPhotos.size(); i++){
+                    File fi = currentUserPhotos.get(i);
                     try {
-                        photoUrl = list.get(0).toURI().toURL().toString();
+                        photoUrl = currentUserPhotos.get(0).toURI().toURL().toString();
                         compressedimage = compress.compression(fi);
                         fileContent = Files.readAllBytes(compressedimage.toPath());
                         p.getPictures().add(fileContent);
@@ -248,23 +247,58 @@ public class MainController implements Initializable, Serializable {
         });
     }
 
+    private void cycleImage() {
+        if(incrementSelection == currentUserPhotos.size()-1){
+            incrementSelection = -1;
+        }
+        incrementSelection++;
+        try {
+            String photoUrl = currentUserPhotos.get(incrementSelection).toURI().toURL().toString();
+            Image image = new Image(photoUrl, 360, 360, true, true);
+            imgChangeProfile.setImage(image);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
 
-    private static void savePics(User u) throws IOException {
+
+    private void savePics(User u) throws IOException {
         List<byte[]> bytes = u.getP().getPictures();
         int length = bytes.size();
-        File theDir = new File(WINDIRPICS);
+        File theDir = new File(WINDIRPICS + u.getUsername() + "/folder");
         Path newDir = Paths.get(theDir.getAbsolutePath());
         Files.createDirectories(newDir);
+        Path path;
         for(int i=0; i<length; i++){
             byte[] b = bytes.get(i);
-            Path path = Paths.get(  newDir + u.getUsername() + i + ".jpg");
+            path = Paths.get(  newDir + u.getUsername() + i + ".jpg");
             try {
                 write(path, b);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+        loadPics(u);
 
+
+    }
+
+    private void loadPics(User u) {
+        File directory = null;
+        boolean loggedUser = u.getUsername().equals(currentUser.getUsername());
+        if (loggedUser) {
+            directory = new File(WINDIRPICS+currentUser.getUsername());
+        }
+        directory = new File(WINDIRPICS+u.getUsername());
+        File[] fList = directory.listFiles();
+        for (File file : fList) {
+            if ( (!file.isDirectory()) && (file.getAbsolutePath().endsWith(".jpg") )) {
+                if(loggedUser){
+                    currentUserPhotos.add(file);
+                }
+                otherUserPhotos.add(file);
+            }
+        }
     }
 
     private void setProfilePic() {
