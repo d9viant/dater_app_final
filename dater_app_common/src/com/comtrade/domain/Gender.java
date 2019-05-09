@@ -71,12 +71,12 @@ public class Gender implements GeneralDomain, Serializable {
 
     @Override
     public String returnTableRows() {
-        return " (username, gender, prefferedGender) ";
+        return " (username, gender, preferredGender) ";
     }
 
     @Override
     public String returnInsertFormat() {
-        return "VALUES ('" + username + "','" + gender + "','" + preferredGender + "')";
+        return "VALUES ('" + username + "','" + gender + "','" + preferredGender + "')"+"ON DUPLICATE KEY UPDATE preferredGender='" + preferredGender + "'";
     }
 
     @Override

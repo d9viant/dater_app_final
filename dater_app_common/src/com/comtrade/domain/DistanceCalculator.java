@@ -10,14 +10,9 @@ public class DistanceCalculator {
 
     }
 
-    public DistanceCalculator(User userOne, User userTwo) {
-        DistanceCalculator.userOne = userOne;
-        DistanceCalculator.userTwo = userTwo;
-        DistanceCalculation();
-    }
 
 
-    private double DistanceCalculation() {
+    public static double DistanceCalculation(User userOne, User userTwo) {
         double lat1 = userOne.getLocation().getLatitude();
         double lon1 = userOne.getLocation().getLongitude();
         double lat2 = userTwo.getLocation().getLatitude();
@@ -53,7 +48,7 @@ public class DistanceCalculator {
         DistanceCalculator.userTwo = userTwo;
     }
 
-    public static double getDistanceInBetween() {
+    public static double getDistanceInBetween(User u, User currentUser) {
         return distanceInBetween;
     }
 

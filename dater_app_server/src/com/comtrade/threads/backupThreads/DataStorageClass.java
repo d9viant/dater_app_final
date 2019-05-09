@@ -2,6 +2,7 @@ package com.comtrade.threads.backupThreads;
 
 import com.comtrade.controllerBL.ControllerBLogic;
 import com.comtrade.domain.GeneralDomain;
+import com.comtrade.domain.User;
 
 import javax.swing.*;
 import java.util.HashMap;
@@ -35,6 +36,7 @@ public class DataStorageClass {
 
 				txtServerLogs.append("\n" + "Backup Started");
 				ControllerBLogic.getInstance().saveBatch(getAllUserList);
+
 				txtServerLogs.append("\n" + "Users saved");
 				ControllerBLogic.getInstance().saveMatchBatch(allMatches);
 				txtServerLogs.append("\n" + "Matches saved");

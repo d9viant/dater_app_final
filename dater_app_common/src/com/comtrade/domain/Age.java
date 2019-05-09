@@ -54,7 +54,7 @@ public class Age implements GeneralDomain, Serializable {
 
     @Override
     public String returnInsertFormat() {
-        return "VALUES ('" + username + "','" + age + "')";
+        return "VALUES ('" + username + "','" + age + "')"+"ON DUPLICATE KEY UPDATE age='" + age + "'";
 
     }
 

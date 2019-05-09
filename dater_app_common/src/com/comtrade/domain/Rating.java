@@ -128,7 +128,7 @@ public class Rating implements GeneralDomain, Serializable
 
 	@Override
     public String returnInsertFormat() {
-		return "VALUES ('" + username + "','" + rating + "','" + newStatus + "','" + superUser + "','" + K + "')";
+		return "VALUES ('" + username + "','" + rating + "','" + newStatus + "','" + superUser + "','" + K + "')"+ "ON DUPLICATE KEY UPDATE rating='" + rating+ "'";
 
 	}
 

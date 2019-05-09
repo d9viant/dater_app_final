@@ -1,17 +1,17 @@
 package com.comtrade.threads;
 
 import com.comtrade.controllerBL.ControllerBLogic;
-import com.comtrade.domain.GeneralDomain;
-import com.comtrade.domain.Message;
-import com.comtrade.domain.Pictures;
-import com.comtrade.domain.User;
+import com.comtrade.domain.*;
 import com.comtrade.transfer.TransferClass;
 
 import java.io.*;
+import java.lang.Exception;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +23,7 @@ public class ClientThread extends Thread implements Serializable {
     private Socket socket;
     private String currentUsername;
     private List<GeneralDomain> matches;
+    private Map<String, GeneralDomain> getAllUserList;
 
 
     public void setSocket(Socket socket) {
@@ -52,28 +53,29 @@ public class ClientThread extends Thread implements Serializable {
             case LOGIN_USER:
                 Pictures p = new Pictures();
                 User login = (User) tf.getClient_object();
-                Map getAllUserList = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
+                getAllUserList = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
                 System.out.println("got login data");
                 if(getAllUserList.containsKey(login.getUsername())){
                     User check = (User) getAllUserList.get(login.getUsername());
                     if(login.getPass().equals(check.getPass())){
-
-                        Map testPicsforUser = testPicsUser();
+                        Map<String, Object> testPicsforUser = getall(check);
                         try {
                             p = getPics(check);
                         }catch (Exception e){
                             System.out.println("nov user nema slike");
                         }
+                        check.setP(p);
+                        testPicsforUser.put("current", check);
 
                         TransferClass ltf = new TransferClass();
-                        check.setP(p);
                         ltf.setOperation(LOGIN);
-                        ltf.setServer_object(check);
+                        ltf.setServer_object(testPicsforUser);
                         ControllerBLogic.getInstance().insertIntoActive(check.getUsername(), this);
                         sendToClient(ltf);
 
                     }
-                }else if(!getAllUserList.containsKey(login.getUsername())){
+                }
+                 if(!getAllUserList.containsKey(login.getUsername())){
                     TransferClass tce = new TransferClass();
                     tce.setOperation(WRONG_LOGIN);
                     sendToClient(tce);
@@ -89,10 +91,17 @@ public class ClientThread extends Thread implements Serializable {
                 }
                 break;
 
-            case LIKE:
+            case SAVEPICS:
                 User pics = (User) tf.getClient_object();
                 savePics(pics);
                 break;
+
+            case TEST:
+                User test = (User) tf.getClient_object();
+                Map testm = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
+                testm.put(test.getUsername(), test);
+                System.out.println();
+
         }
     }
 
@@ -114,11 +123,28 @@ public class ClientThread extends Thread implements Serializable {
         return p;
     }
 
-    private Map testPicsUser() {
+    private Map getall(User check) throws IOException {
+        Pictures p = new Pictures();
+        int upRate = check.getRating().getRating() + 200;
+        int downRate = check.getRating().getRating()-200;
+        Map<String, Object> all = new HashMap<>();
+        List<GeneralDomain> matches = ControllerBLogic.getInstance().getDatathread().getAllMatches().get(check.getUsername());
+        List<GeneralDomain> messages = ControllerBLogic.getInstance().getDatathread().getAllMessages().get(check.getUsername());
+        List<GeneralDomain> ratings = new ArrayList<>();
+        all.put("messages", messages);
+        all.put("matches", matches);
+        for (Map.Entry<String, GeneralDomain> entry : getAllUserList.entrySet()) {{
+            User u = (User) entry.getValue();
+            if(!u.getUsername().equals(check.getUsername()) && u.getRating().getRating() <= upRate && u.getRating().getRating() >= downRate ){
+                p = getPics(u);
+                u.setP(p);
+                ratings.add(u);
+            }
+        }}
 
+        all.put("rating", ratings);
 
-
-        return null;
+        return all;
     }
 
     private Map getMatchesAndPics() {

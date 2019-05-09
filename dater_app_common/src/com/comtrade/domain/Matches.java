@@ -13,23 +13,23 @@ public class Matches implements Serializable, GeneralDomain{
     private String usernameOne;
     private String usernameTwo;
     private String requestUsername;
-    private boolean matchStatus;
+    private int matchStatus;
     private int readyForSql = DBWRITTEN;
 
     public Matches(){
 
     }
 
-    public Matches(String userOneId, String userTwoId, String requestUser, boolean actionStatus) {
+    public Matches(String userOneId, String userTwoId, String requestUser, int matchStatus) {
         this.usernameOne = userOneId;
         this.usernameTwo = userTwoId;
         this.requestUsername = requestUser;
-        this.matchStatus = actionStatus;
+        this.matchStatus = matchStatus;
     }
 
 
 
-    public boolean isMatchStatus() {
+    public int isMatchStatus() {
         return matchStatus;
     }
 
@@ -57,7 +57,7 @@ public class Matches implements Serializable, GeneralDomain{
         this.requestUsername = requestUsername;
     }
 
-    public void setMatchStatus(boolean matchStatus) {
+    public void setMatchStatus(int matchStatus) {
         this.matchStatus = matchStatus;
     }
     @Override
@@ -69,7 +69,7 @@ public class Matches implements Serializable, GeneralDomain{
             String userOneId = rs.getString("usernameOne");
             String userTwoId = rs.getString("usernameTwo");
             String requestUser = rs.getString("requestUsername");
-            boolean matchStatus = rs.getBoolean("matchStatus");
+            int matchStatus = rs.getInt("matchStatus");
             m = new Matches(userOneId, userTwoId, requestUser, matchStatus);
 
         }
@@ -93,7 +93,7 @@ public class Matches implements Serializable, GeneralDomain{
 
     @Override
     public String returnInsertFormat() {
-        return "VALUES ('" + usernameOne + "','" + usernameTwo + "','" + requestUsername + "','" + matchStatus + "')";
+        return "VALUES ('" + usernameOne + "','" + usernameTwo + "','" + requestUsername + "','" + matchStatus + "') " + "ON DUPLICATE KEY UPDATE matchStatus='" + matchStatus+ "'";
     }
 
     @Override

@@ -91,7 +91,7 @@ public class Location implements GeneralDomain, Serializable {
 
     @Override
     public String returnInsertFormat() {
-        return "VALUES ('" + username + "','" + longitude + "','" + latitude + "','" + address + "','" + prefferedDistance + "')";
+        return "VALUES ('" + username + "','" + longitude + "','" + latitude + "','" + address + "','" + prefferedDistance + "') "+"ON DUPLICATE KEY UPDATE address='" + address + "'";
     }
 
     @Override

@@ -221,7 +221,7 @@ public class User implements GeneralDomain, Serializable {
     @Override
     public String returnInsertFormat() {
 
-        return "VALUES ('" + firstName + "','" + lastName + "','" + username + "','" + pass + "','" + email + "','" + bio + "')";
+        return "VALUES ('" + firstName + "','" + lastName + "','" + username + "','" + pass + "','" + email + "','" + bio + "')"+"ON DUPLICATE KEY UPDATE bio='" + bio + "'";
 
     }
 
@@ -235,11 +235,6 @@ public class User implements GeneralDomain, Serializable {
     @Override
     public HashMap<String, GeneralDomain> fixInnerSelect(ResultSet rs) throws SQLException {
         HashMap<String, GeneralDomain> list = new HashMap<>();
-
-        Gender g;
-        Location l;
-        Age a = new Age();
-        Rating r = new Rating();
         try {
             while (rs.next()) {
                 int idUser = rs.getInt("id");
@@ -250,34 +245,31 @@ public class User implements GeneralDomain, Serializable {
                 String email = rs.getString("email");
                 String bio = rs.getString("bio");
                 User u = new User(idUser, firstName, lastName, userName, password, email, bio);
-
                 String genderID = rs.getString("username");
                 int gender = rs.getInt("gender");
-                int prefferedGender = rs.getInt("prefferedGender");
-                g = new Gender(genderID, gender, prefferedGender);
+                int preferredGender = rs.getInt("preferredGender");
+                Gender g = new Gender(genderID, gender, preferredGender);
                 u.setGender(g);
-
                 double longitude = rs.getDouble("longitude");
                 double latitude = rs.getDouble("latitude");
                 String address = rs.getString("address");
                 int prefDistance = rs.getInt("prefferedDistance");
-                l = new Location(longitude, latitude, address, prefDistance);
+                Location l = new Location(longitude, latitude, address, prefDistance);
                 u.setLocation(l);
-
                 int Age = rs.getInt("age");
+                Age a = new Age();
                 a.setAge(Age);
                 u.setAge(a);
-
                 int rating = rs.getInt("rating");
                 int newStatus = rs.getInt("newStatus");
                 int superUser = rs.getInt("superUser");
                 int k = rs.getInt("k");
+                Rating r = new Rating();
                 r.setRating(rating);
                 r.setNewStatus(newStatus);
                 r.setSuperUser(superUser);
                 r.setK(k);
                 u.setR(r);
-
                 list.put(u.getUsername(), u);
 
             }

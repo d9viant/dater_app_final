@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import main.Main;
 
 import java.io.IOException;
+import java.util.Map;
 
 import static com.comtrade.domain.Constants.*;
 
@@ -49,13 +50,13 @@ public class Controller {
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-
+                break;
             case LOGIN:
-                User u = (User) tc.getServer_object();
+                Map<String, Object> testPicsforUser = (Map<String, Object>) tc.getServer_object();
                 try{
                     Platform.runLater(() -> {
                         try {
-                            LoginController.changeWindow(u);
+                            LoginController.changeWindow(testPicsforUser);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

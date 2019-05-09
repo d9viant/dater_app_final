@@ -4,7 +4,6 @@ import com.comtrade.communication.Comm;
 import com.comtrade.compression.Compression;
 import com.comtrade.controllerUI.Controller;
 import com.comtrade.domain.Pictures;
-import com.comtrade.domain.Rating;
 import com.comtrade.domain.User;
 import com.comtrade.geoloc.GeoLoc;
 import com.comtrade.transfer.TransferClass;
@@ -15,7 +14,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -43,12 +41,13 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import static com.comtrade.domain.Constants.*;
 //import net.coobird.thumbnailator.Thumbnails;
 //import net.coobird.thumbnailator.name.Rename;
-import javafx.scene.Node;
+
 
 public class LoginController implements Initializable, Serializable {
 
@@ -241,8 +240,10 @@ public class LoginController implements Initializable, Serializable {
 
                     if (radioM.isSelected()) {
                         newUser.getGender().setGender(MALE);
-                    } else {
+                        newUser.getGender().setPreferredGender(FEMALE);
+                    } else if(radioF.isSelected()){
                         newUser.getGender().setGender(FEMALE);
+                        newUser.getGender().setPreferredGender(MALE);
                     }
 
                     String birthdateString = datePicker.getValue().toString();
@@ -300,7 +301,6 @@ public class LoginController implements Initializable, Serializable {
                                 TransferClass create = new TransferClass();
                                 create.setClient_object(newUser);
                                 create.setOperation(SAVE_USER);
-
                                 Controller.getInstance().sendToServer(create);
                                 regPane.setVisible(false);
                                 regPane.setDisable(true);
@@ -356,7 +356,7 @@ public class LoginController implements Initializable, Serializable {
     // UPLOADS PHOTO, COMPRESSES IT AND ATTACHES TO PICTURES!
     private void uploadPhoto(ActionEvent event) {
         TransferClass tf = new TransferClass();
-        tf.setOperation(LIKE);
+        tf.setOperation(SAVEPICS);
         File fi = null;
         File compressedimage = null;
         Compression compress = new Compression();
@@ -416,7 +416,7 @@ public class LoginController implements Initializable, Serializable {
     }
 
 
-    public static void changeWindow(User user) throws IOException {
+    public static void changeWindow(Map<String, Object> map) throws IOException {
         Stage stage = Main.stage;
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/comtrade/viewLayout/mainscreen.fxml"));
 
@@ -428,7 +428,7 @@ public class LoginController implements Initializable, Serializable {
         stage.show();
 //      MainController controller = loader.<MainController>getController();
         MainController controller = loader.getController();
-        controller.setCurrentUser(user);
+        controller.setTestPicsforUser(map);
     }
 
 

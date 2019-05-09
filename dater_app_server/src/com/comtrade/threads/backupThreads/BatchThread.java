@@ -27,7 +27,7 @@ public class BatchThread extends Thread{
                 System.out.println("its true");
                 try {
                     txtServerLogs.append("\n"+"Backup thread on standby");
-                    Thread.sleep(600000);
+                    Thread.sleep(60000);
                     ControllerBLogic.getInstance().getDatathread().saveBatch(txtServerLogs, progressBar1);
 
                 } catch (InterruptedException e) {
