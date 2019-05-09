@@ -24,7 +24,6 @@ public class DataStorageClass {
 			ControllerBLogic.getInstance().getAllUsers(getAllUserList);
         	ControllerBLogic.getInstance().getAllMessages(allMessages);
 			ControllerBLogic.getInstance().getAllMatches(allMatches);
-			System.out.println(allMatches.size()+"radi molim te");
 			System.out.println("data thread notified");
 
 	}

@@ -67,11 +67,8 @@ public class Matches implements Serializable, GeneralDomain{
     public GeneralDomain fixSelect(ResultSet rs) throws SQLException {
         Matches m = null;
         while (rs.next()) {
-            String userOneId = rs.getString("usernameOne");
-            String userTwoId = rs.getString("usernameTwo");
-            String requestUser = rs.getString("requestUsername");
-            int matchStatus = rs.getInt("matchStatus");
-            m = new Matches(userOneId, userTwoId, requestUser, matchStatus);
+
+
 
         }
         return m;
@@ -79,10 +76,7 @@ public class Matches implements Serializable, GeneralDomain{
 
     @Override
     public String returnInnerJoin() {
-        return "SELECT user.username, matchtable.* FROM matchtable" +
-                " INNER JOIN user ON matchtable.usernameOne = user.username" +
-                " WHERE user.username = matchtable.usernameOne" +
-                " OR user.username = matchtable.usernameTwo";
+        return "SELECT * FROM user INNER JOIN matchtable ON (user.username=matchtable.usernameOne or user.username=matchtable.usernameTwo)";
     }
 
     @Override

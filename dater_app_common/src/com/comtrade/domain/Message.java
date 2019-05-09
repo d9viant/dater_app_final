@@ -129,10 +129,7 @@ public class Message implements GeneralDomain, Serializable {
 
     @Override
     public String returnInnerJoin() {
-        return "SELECT user.username, chatmessage.* FROM chatmessage" +
-                " INNER JOIN user ON chatmessage.usernameOne = user.username" +
-                " WHERE user.username = chatmessage.usernameOne" +
-                " OR user.username = chatmessage.usernameTwo";
+        return "SELECT * FROM `chatmessage` INNER JOIN user ON (user.username=chatmessage.usernameOne OR user.username=chatmessage.usernameTwo)";
     }
 
 

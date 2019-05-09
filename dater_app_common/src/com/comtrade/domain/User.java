@@ -169,8 +169,10 @@ public class User implements GeneralDomain, Serializable {
     @Override
     public GeneralDomain fixSelect(ResultSet rs) {
         User u = new User();
+
         try {
             while (rs.next()) {
+
                 int idUser = rs.getInt("id");
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
@@ -257,11 +259,11 @@ public class User implements GeneralDomain, Serializable {
                 Age a = new Age();
                 a.setAge(Age);
                 u.setAge(a);
+                Rating r = new Rating();
                 int rating = rs.getInt("rating");
                 int newStatus = rs.getInt("newStatus");
                 int superUser = rs.getInt("superUser");
                 int k = rs.getInt("k");
-                Rating r = new Rating();
                 r.setUsername(username);
                 r.setRating(rating);
                 r.setNewStatus(newStatus);

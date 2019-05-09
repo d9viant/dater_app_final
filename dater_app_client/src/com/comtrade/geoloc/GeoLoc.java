@@ -24,7 +24,7 @@ public class GeoLoc {
 
 
     public GeoLoc() throws IOException {
-        database = new File("/home/strahinja/IdeaProjects/dater_app_final/dater_app_client/src/assets/GeoLite2-City.mmdb");
+        database = new File("C:\\Users\\Strahinja\\IdeaProjects\\dater_app_final\\dater_app_client\\src\\assets\\GeoLite2-City.mmdb");
         dbReader = new DatabaseReader.Builder(database).build();
     }
 

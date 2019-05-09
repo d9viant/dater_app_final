@@ -21,7 +21,7 @@ import static java.nio.file.Files.write;
 
 public class ClientThread extends Thread implements Serializable {
     private Socket socket;
-    private String currentUsername;
+    private volatile String currentUsername;
     private List<GeneralDomain> matches;
     private Map<String, GeneralDomain> getAllUserList;
 
@@ -57,8 +57,13 @@ public class ClientThread extends Thread implements Serializable {
                 System.out.println("got login data");
                 if(getAllUserList.containsKey(login.getUsername())){
                     User check = (User) getAllUserList.get(login.getUsername());
+                    currentUsername=check.getUsername();
                     if(login.getPass().equals(check.getPass())){
+                        Path newDir = Paths.get(SERVERPICS + login.getUsername()+"/folder");
+                        Files.createDirectories(newDir);
+
                         Map<String, Object> testPicsforUser = getall(check);
+
                         try {
                             p = getPics(check);
                         }catch (Exception e){
@@ -66,7 +71,7 @@ public class ClientThread extends Thread implements Serializable {
                         }
                         check.setP(p);
                         testPicsforUser.put("current", check);
-
+//TODO TREBA DA KREIRA FOLDER PRE NEGO STO POKUSA DA POVUCE SLIKE U USTA GA JEBEM SKRBAVA
                         TransferClass ltf = new TransferClass();
                         ltf.setOperation(LOGIN);
                         ltf.setServer_object(testPicsforUser);
@@ -117,10 +122,13 @@ public class ClientThread extends Thread implements Serializable {
             case CREATE_MATCH:
                 Matches create = (Matches) tf.getClient_object();
                 Map<String, List<GeneralDomain>> matchesC=ControllerBLogic.getInstance().getDatathread().getAllMatches();
-                List<GeneralDomain> matchAdd= matchesC.get(create.getRequestUsername());
-                matchAdd.add(create);
-                List<GeneralDomain> matchAdd2= matchesC.get(currentUsername);
-                matchAdd2.add(create);
+                List<GeneralDomain> lista = new ArrayList<>();
+                matchesC.put(currentUsername, lista);
+                matchesC.get(currentUsername).add(create);
+                List<GeneralDomain> matchAdd = new ArrayList<>();
+                matchesC.put(create.getRequestUsername(), matchAdd);
+                matchesC.get(create.getRequestUsername()).add(create);
+
                 Map <String, ClientThread> activeM = ControllerBLogic.getInstance().getConnectedUserMap();
                 for (Map.Entry<String, ClientThread> entry : activeM.entrySet()) {
                     if(entry.getKey().equals(create.getRequestUsername())){
@@ -242,7 +250,7 @@ public class ClientThread extends Thread implements Serializable {
     private void savePics(User u) throws IOException {
         List<byte[]> pictures = u.getP().getPictures();
         int length = pictures.size();
-//        File theDir = new File(SERVERPICS);
+        File theDir = new File(SERVERPICS);
         Path newDir = Paths.get(SERVERPICS + u.getUsername()+"/folder");
         Files.createDirectories(newDir);
         for(int i=0; i<length; i++){

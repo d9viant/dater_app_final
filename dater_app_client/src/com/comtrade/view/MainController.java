@@ -207,9 +207,12 @@ public class MainController implements Initializable, Serializable {
                 m.setUsernameTwo(matchUser.getUsername());
                 m.setRequestUsername(matchUser.getUsername());
                 m.setReadyForSql(RDYFORDB);
+                matches = new ArrayList<>();
                 matches.add(m);
-                tf.setOperation(CREATE_MATCH);
-                Controller.getInstance().sendToServer(tf);
+                TransferClass matchtc= new TransferClass();
+                matchtc.setOperation(CREATE_MATCH);
+                matchtc.setClient_object(m);
+                Controller.getInstance().sendToServer(matchtc);
             }
 
 
