@@ -3,6 +3,7 @@ package com.comtrade.domain;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -78,7 +79,10 @@ public class Matches implements Serializable, GeneralDomain{
 
     @Override
     public String returnInnerJoin() {
-        return null;
+        return "SELECT user.username, matchtable.* FROM matchtable" +
+                " INNER JOIN user ON matchtable.usernameOne = user.username" +
+                " WHERE user.username = matchtable.usernameOne" +
+                " OR user.username = matchtable.usernameTwo";
     }
 
     @Override
@@ -112,12 +116,24 @@ public class Matches implements Serializable, GeneralDomain{
     public HashMap<String, List<GeneralDomain>> fixInnerSelectList(ResultSet rs) throws SQLException {
         HashMap<String, List<GeneralDomain>> matchesHM = new HashMap<>();
         while(rs.next()){
-
+            String username = rs.getString("username").toLowerCase();
+            String userOneId = rs.getString("usernameOne");
+            String userTwoId = rs.getString("usernameTwo");
+            String requestId = rs.getString("requestUsername");
+            int matchStatus = rs.getInt("matchStatus");
+            Matches m = new Matches(userOneId, userTwoId,requestId,  matchStatus);
+            if (matchesHM.containsKey(username)) {
+                matchesHM.get(username).add(m);
+            } else {
+                List<GeneralDomain> messageList = new ArrayList<>();
+                matchesHM.put(username, messageList);
+                matchesHM.get(username).add(m);
+            }
         }
 
 
 
-        return null;
+        return matchesHM;
     }
 
     @Override

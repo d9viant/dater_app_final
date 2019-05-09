@@ -2,10 +2,7 @@ package com.comtrade.view;
 
 import com.comtrade.compression.Compression;
 import com.comtrade.controllerUI.Controller;
-import com.comtrade.domain.DistanceCalculator;
-import com.comtrade.domain.GeneralDomain;
-import com.comtrade.domain.Pictures;
-import com.comtrade.domain.User;
+import com.comtrade.domain.*;
 import com.comtrade.transfer.TransferClass;
 import com.jfoenix.controls.*;
 import com.sothawo.mapjfx.Coordinate;
@@ -40,6 +37,20 @@ import static com.comtrade.domain.Constants.*;
 import static java.nio.file.Files.write;
 
 public class MainController implements Initializable, Serializable {
+
+    @FXML
+    private AnchorPane chattingWindow;
+
+    @FXML
+    private JFXTextArea chatWindowText;
+
+    @FXML
+    private JFXTextField sendTextmsg;
+
+    @FXML
+    private JFXButton sendTextGo;
+
+
     @FXML
     private JFXCheckBox boostCheck;
 
@@ -101,22 +112,24 @@ public class MainController implements Initializable, Serializable {
 
     private Coordinate matchCoord = new Coordinate(44.819977, 20.5080518);
 
-    private User currentUser;
-    private User match;
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+
+    private static User currentUser;
+    private User matchUser;
 
     private List<File> currentUserPhotos = new ArrayList<>();
     private List<File> otherUserPhotos = new ArrayList<>();
-    private List<GeneralDomain> matches = new ArrayList<>();
-    private List<GeneralDomain> messages = new ArrayList<>();
-    private List<GeneralDomain> ratings = new ArrayList<>();
-
+    private static List<GeneralDomain> matches;
+    private static List<GeneralDomain> messages;
+    private List<GeneralDomain> ratings;
     private List<User> preferreMatches = new ArrayList<>();
     private ListIterator<User> iterator = preferreMatches.listIterator();
-
     Map<String, Object> testPicsforUser;
 
     public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
+        MainController.currentUser = currentUser;
     }
 
     private Marker matchMarker = Marker.createProvided(Marker.Provided.BLUE).setPosition(matchCoord).setVisible(true);
@@ -135,12 +148,12 @@ public class MainController implements Initializable, Serializable {
 
 
     private void initialSetup() {
-//        setPaneOut(settingsPane, placeHolderPane);
         setPaneOut(chatPane, placeHolderPane);
         setPaneOut(opacityPane, placeHolderPane);
         setPaneOut(drawerPane, placeHolderPane);
         setPaneOut(profilePane, placeHolderPane);
         setPaneOut(mapPane, placeHolderPane);
+        setPaneOut(chattingWindow, placeHolderPane);
         imgStalkerGlobe.setDisable(true);
         btnStalkerGlobe.setDisable(true);
 
@@ -149,7 +162,7 @@ public class MainController implements Initializable, Serializable {
 
         imgMatchProfile.setOnMouseClicked(Event->{
                 matchOrUser = false;
-                loadPics(match);
+                loadPics(matchUser);
                 setPaneIn(profilePane);
             try {
                 setProfilePic(imgMatchProfile);
@@ -158,12 +171,53 @@ public class MainController implements Initializable, Serializable {
             }
         });
 
-        btnBoost.setOnAction(Event->{
+
+        btnHeart.setOnAction(Event -> {
+            boolean check = true;
+            matchUser.getRating().EloRating(currentUser.getRating().getRating(), true);
+            matchUser.getRating().setReadyForSql(RDYFORDB);
+            matchUser.getRating().setUsername(matchUser.getUsername());
             TransferClass tf = new TransferClass();
-            currentUser.setReadyForSql(RDYFORDB);
-            tf.setClient_object(currentUser);
-            tf.setOperation(TEST);
+            tf.setClient_object(matchUser.getRating());
+            tf.setOperation(UPDATE_RATING);
             Controller.getInstance().sendToServer(tf);
+//            if(matches.size()==0){
+//                check=true;
+//            }else if(!check){
+//                for(GeneralDomain match:matches){
+//                    Matches matches = (Matches) match;
+//                    if(matches.getUsernameOne().equals(matchUser.getUsername()) || matches.getUsernameTwo().equals(matchUser.getUsername())){
+//                        matches.setMatchStatus(MATCHED);
+//                        matches.setRequestUsername(matchUser.getUsername());
+//                        matches.setReadyForSql(RDYFORDB);
+//                        TransferClass mtf = new TransferClass();
+//                        check=false;
+//                        mtf.setOperation(UPDATE_MATCH);
+//                        mtf.setClient_object(matches);
+//                        Controller.getInstance().sendToServer(mtf);
+//                        // TODO UPDATE LABELU DA POKAZE +1 MATCHED
+//                    }else{
+//                        check=true;
+//                    }
+//                }
+//            }
+            if(check){
+                Matches m = new Matches();
+                m.setUsernameOne(currentUser.getUsername());
+                m.setUsernameTwo(matchUser.getUsername());
+                m.setRequestUsername(matchUser.getUsername());
+                m.setReadyForSql(RDYFORDB);
+                matches.add(m);
+                tf.setOperation(CREATE_MATCH);
+                Controller.getInstance().sendToServer(tf);
+            }
+
+
+        });
+
+        btnBoost.setOnAction(Event->{
+            System.out.println(matchUser.getRating().getRating());
+
         });
 
 
@@ -177,6 +231,8 @@ public class MainController implements Initializable, Serializable {
                 imgStalkerGlobe.setDisable(false);
                 btnStalkerGlobe.setDisable(false);
             }
+            matches=new ArrayList<>(0);
+            messages=new ArrayList<>(0);
             currentUser = (User) getTestPicsforUser().get("current");
             ratings= (List<GeneralDomain>) getTestPicsforUser().get("rating");
             matches= (List<GeneralDomain>) getTestPicsforUser().get("matches");
@@ -341,7 +397,7 @@ public class MainController implements Initializable, Serializable {
             }
         }
         loadPics(preferreMatches.get(0));
-        match = preferreMatches.get(0);
+        matchUser = preferreMatches.get(0);
         setProfilePic(imgMatchProfile);
         lvlNameAge.setText(preferreMatches.get(0).getFirstName() + " " + preferreMatches.get(0).getAge().getAge());
         txtBiography.setText(preferreMatches.get(0).getBio());
@@ -373,8 +429,8 @@ public class MainController implements Initializable, Serializable {
             Image otherImage = new Image(other, 360, 360, true, true);
             imgMatchProfile.setImage(otherImage);
             profilePic.setImage(otherImage);
-            txtBiography1.setText(match.getBio());
-            lvlNameAge1.setText(match.getFirstName()+ " " + match.getAge().getAge());
+            txtBiography1.setText(matchUser.getBio());
+            lvlNameAge1.setText(matchUser.getFirstName()+ " " + matchUser.getAge().getAge());
 
         }
     }
@@ -473,11 +529,6 @@ public class MainController implements Initializable, Serializable {
         translateTransition.setByX(322);
         translateTransition.play();
     }
-
-
-
-
-
     // Sets defined panels outside of the scene
     private void setPaneOut(AnchorPane pane, AnchorPane pane2) {
         if (pane.getId().equals(opacityPane.getId())) {
@@ -512,15 +563,15 @@ public class MainController implements Initializable, Serializable {
     }
 
 
-    public List<GeneralDomain> getMatches() {
+    public static List<GeneralDomain> getMatches() {
         return matches;
     }
 
     public void setMatches(List<GeneralDomain> matches) {
-        this.matches = matches;
+        MainController.matches = matches;
     }
 
-    public List<GeneralDomain> getMessages() {
+    public static List<GeneralDomain> getMessages() {
         return messages;
     }
 

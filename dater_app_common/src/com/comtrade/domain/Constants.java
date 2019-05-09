@@ -27,6 +27,9 @@ public class Constants {
     public static final int NOT_SUPER = 18;
     public static final int MATCHED= 19;
     public static final int TEST = 20;
+    public static final int UPDATE_RATING =21;
+    public static final int CREATE_MATCH =22;
+    public static final int UPDATE_MATCH =23;
 
     public static final String USER = "user";
 	public static final String AGE = "age";

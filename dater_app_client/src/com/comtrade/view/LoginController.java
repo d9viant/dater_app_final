@@ -151,7 +151,7 @@ public class LoginController implements Initializable, Serializable {
             try {
                red = g.location();
             } catch (IOException e2) {
-                // TODO Auto-generated catch block
+
                 e2.printStackTrace();
             }
             redStrings = g.ReverseGeoLoc();
@@ -372,7 +372,7 @@ public class LoginController implements Initializable, Serializable {
                 compressedimage = compress.compression(fi);
 
             } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
+
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();

@@ -101,9 +101,65 @@ public class ClientThread extends Thread implements Serializable {
                 Map testm = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
                 testm.put(test.getUsername(), test);
                 System.out.println();
+                break;
+            case UPDATE_RATING:
+                Rating r = (Rating) tf.getClient_object();
+                Map users = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
+                User rating  = (User) users.get(r.getUsername());
+                rating.setR(r);
+                Map <String, ClientThread> active = ControllerBLogic.getInstance().getConnectedUserMap();
+                for (Map.Entry<String, ClientThread> entry : active.entrySet()) {
+                    if(entry.getKey().equals(r.getUsername())){
+                        entry.getValue().updateRating(r);
+                    }
+                }
+                break;
+            case CREATE_MATCH:
+                Matches create = (Matches) tf.getClient_object();
+                Map<String, List<GeneralDomain>> matchesC=ControllerBLogic.getInstance().getDatathread().getAllMatches();
+                List<GeneralDomain> matchAdd= matchesC.get(create.getRequestUsername());
+                matchAdd.add(create);
+                List<GeneralDomain> matchAdd2= matchesC.get(currentUsername);
+                matchAdd2.add(create);
+                Map <String, ClientThread> activeM = ControllerBLogic.getInstance().getConnectedUserMap();
+                for (Map.Entry<String, ClientThread> entry : activeM.entrySet()) {
+                    if(entry.getKey().equals(create.getRequestUsername())){
+                        create.setRequestUsername(currentUsername);
+                        entry.getValue().sendCreatedMatch(create);
+                    }
+                }
+                break;
+            case UPDATE_MATCH:
+                Matches update = (Matches) tf.getClient_object();
+                Map<String, List<GeneralDomain>> matches=ControllerBLogic.getInstance().getDatathread().getAllMatches();
+                List<GeneralDomain> match= matches.get(update.getRequestUsername());
+                for(GeneralDomain m: match){
+                    Matches search = (Matches) m;
+                    if(search.getUsernameOne().equals(currentUsername) || search.getUsernameTwo().equals(currentUsername)){
+                        search.setMatchStatus(MATCHED);
+                        search.setReadyForSql(RDYFORDB);
+                    }
+                }
+                List<GeneralDomain> currmatch= matches.get(currentUsername);
+                for(GeneralDomain curr: currmatch){
+                    Matches search = (Matches) curr;
+                    if(search.getUsernameOne().equals(update.getRequestUsername()) || search.getUsernameTwo().equals(update.getRequestUsername())){
+                        search.setMatchStatus(MATCHED);
+                        search.setReadyForSql(RDYFORDB);
+                    }
+                }
+                Map <String, ClientThread> activeM2 = ControllerBLogic.getInstance().getConnectedUserMap();
+                for (Map.Entry<String, ClientThread> entry : activeM2.entrySet()) {
+                    if(entry.getKey().equals(update.getRequestUsername())){
+                        update.setRequestUsername(currentUsername);
+                        entry.getValue().updateMatches(update);
+                    }
+                }
+                break;
 
         }
     }
+
 
     private Pictures getPics(User check) throws IOException {
         Pictures p = new Pictures();
@@ -133,6 +189,9 @@ public class ClientThread extends Thread implements Serializable {
         List<GeneralDomain> ratings = new ArrayList<>();
         all.put("messages", messages);
         all.put("matches", matches);
+
+
+
         for (Map.Entry<String, GeneralDomain> entry : getAllUserList.entrySet()) {{
             User u = (User) entry.getValue();
             if(!u.getUsername().equals(check.getUsername()) && u.getRating().getRating() <= upRate && u.getRating().getRating() >= downRate ){
@@ -212,14 +271,33 @@ public class ClientThread extends Thread implements Serializable {
     }
 
 
-    public void sentMsgToOnlineFriend(Message pm) {
+    public void sentMsgToOnlineMatch(Message pm) {
         TransferClass tc = new TransferClass();
         tc.setOperation(NEW_MESSAGE);
         tc.setServer_object(pm);
         sendToClient(tc);
     }
 
+    public void updateRating(Rating r){
+        TransferClass tc = new TransferClass();
+        tc.setOperation(UPDATE_RATING);
+        tc.setServer_object(r);
+        sendToClient(tc);
+    }
 
+    public void updateMatches(Matches m){
+        TransferClass tc = new TransferClass();
+        tc.setOperation(UPDATE_MATCH);
+        tc.setServer_object(m);
+        sendToClient(tc);
+    }
+
+    private void sendCreatedMatch(Matches create) {
+        TransferClass tc = new TransferClass();
+        tc.setOperation(CREATE_MATCH);
+        tc.setServer_object(create);
+        sendToClient(tc);
+    }
 
 
 

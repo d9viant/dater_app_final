@@ -10,8 +10,6 @@ import static com.comtrade.domain.Constants.DBWRITTEN;
 import static com.comtrade.domain.Constants.RDYFORDB;
 
 public class User implements GeneralDomain, Serializable {
-
-
     private int id;
     private String username;
     private String firstName;
@@ -32,8 +30,6 @@ public class User implements GeneralDomain, Serializable {
         age = new Age();
         rating = new Rating();
         gender = new Gender();
-
-
     }
 
     public User(int ID, String firstname, String lastName, String userName, String password, String email, String bio) {
@@ -255,6 +251,7 @@ public class User implements GeneralDomain, Serializable {
                 String address = rs.getString("address");
                 int prefDistance = rs.getInt("prefferedDistance");
                 Location l = new Location(longitude, latitude, address, prefDistance);
+                l.setUsername(username);
                 u.setLocation(l);
                 int Age = rs.getInt("age");
                 Age a = new Age();
@@ -265,6 +262,7 @@ public class User implements GeneralDomain, Serializable {
                 int superUser = rs.getInt("superUser");
                 int k = rs.getInt("k");
                 Rating r = new Rating();
+                r.setUsername(username);
                 r.setRating(rating);
                 r.setNewStatus(newStatus);
                 r.setSuperUser(superUser);

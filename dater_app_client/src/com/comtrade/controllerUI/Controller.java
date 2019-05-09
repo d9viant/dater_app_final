@@ -1,6 +1,9 @@
 package com.comtrade.controllerUI;
 
 import com.comtrade.communication.Comm;
+import com.comtrade.domain.GeneralDomain;
+import com.comtrade.domain.Matches;
+import com.comtrade.domain.Rating;
 import com.comtrade.domain.User;
 import com.comtrade.transfer.TransferClass;
 import com.comtrade.view.LoginController;
@@ -15,6 +18,7 @@ import javafx.stage.Stage;
 import main.Main;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import static com.comtrade.domain.Constants.*;
@@ -22,8 +26,10 @@ import static com.comtrade.domain.Constants.*;
 public class Controller {
     private static Controller instance;
     private LoginController log;
+    private MainController main;
     private Controller() {
         log=new LoginController();
+        main=new MainController();
     }
 
     public static Controller getInstance() {
@@ -65,8 +71,26 @@ public class Controller {
                 }catch (Exception e){
                     e.printStackTrace();
                 }
+                break;
+            case UPDATE_RATING:
+                Rating r = (Rating) tc.getServer_object();
+                MainController.getCurrentUser().setR(r);
+                break;
+            case UPDATE_MATCH:
+                Matches update = (Matches) tc.getServer_object();
+                List<GeneralDomain> matches = MainController.getMatches();
+                for(GeneralDomain match: matches){
+                    Matches m = (Matches) match;
+                    if(m.getUsernameOne().equals(update.getRequestUsername())|| m.getUsernameTwo().equals(update.getRequestUsername())){
+                        m.setMatchStatus(MATCHED);
+                    }
+                }
+                break;
+            case CREATE_MATCH:
+                Matches create = (Matches) tc.getServer_object();
+                MainController.getMatches().add(create);
 
-
+                break;
         }
 
 

@@ -24,6 +24,7 @@ public class DataStorageClass {
 			ControllerBLogic.getInstance().getAllUsers(getAllUserList);
         	ControllerBLogic.getInstance().getAllMessages(allMessages);
 			ControllerBLogic.getInstance().getAllMatches(allMatches);
+			System.out.println(allMatches.size()+"radi molim te");
 			System.out.println("data thread notified");
 
 	}
@@ -39,6 +40,7 @@ public class DataStorageClass {
 
 				txtServerLogs.append("\n" + "Users saved");
 				ControllerBLogic.getInstance().saveMatchBatch(allMatches);
+
 				txtServerLogs.append("\n" + "Matches saved");
 				ControllerBLogic.getInstance().saveMessageBatch(allMessages);
 				txtServerLogs.append("\n" + "Messages saved");

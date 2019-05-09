@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXBadge?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXHamburger?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import com.sothawo.mapjfx.MapView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -20,6 +23,7 @@
 
 <AnchorPane fx:id="placeHolderPane" prefHeight="550.0" prefWidth="322.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.comtrade.view.MainController">
    <children>
+      <JFXHamburger fx:id="drawerImg" layoutY="8.0" prefHeight="35.0" prefWidth="52.0" />
       <AnchorPane fx:id="rootPane" layoutY="50.0" prefHeight="500.0" prefWidth="322.0" style="-fx-border-color: black; -fx-border-style: solid; -fx-border-width: 2px; -fx-border-radius: 5px;">
          <children>
             <ImageView fx:id="imgMatchProfile" fitHeight="296.0" fitWidth="299.0" layoutX="11.0" layoutY="6.0" pickOnBounds="true">
@@ -69,7 +73,6 @@
             <JFXButton fx:id="btnRevert" layoutX="12.0" layoutY="411.0" prefHeight="60.0" prefWidth="59.0" text="back" textFill="TRANSPARENT" />
          </children>
       </AnchorPane>
-      <JFXHamburger fx:id="drawerImg" layoutY="8.0" prefHeight="35.0" prefWidth="52.0" />
       <AnchorPane fx:id="profilePane" prefHeight="550.0" prefWidth="322.0" style="-fx-background-color: #fff;">
          <children>
              <ImageView fx:id="profilePic" fitHeight="296.0" fitWidth="239.0" layoutX="45.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="198.5443115234375" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="58.0">
@@ -114,6 +117,17 @@
             </ImageView>
             <JFXButton fx:id="btnStalkerToMain" layoutX="237.0" layoutY="368.0" prefHeight="45.0" prefWidth="52.0" textFill="TRANSPARENT" />
             <JFXButton fx:id="btnNadji" layoutX="132.0" layoutY="438.0" prefHeight="26.0" prefWidth="59.0" style="-fx-background-color: #ff6969;" text=";)" textAlignment="CENTER" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="chattingWindow" layoutX="10.0" layoutY="10.0" prefHeight="570.0" prefWidth="342.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXTextArea fx:id="chatWindowText" layoutX="11.0" layoutY="9.0" prefHeight="476.0" prefWidth="299.0" />
+            <JFXTextField fx:id="sendTextmsg" layoutX="11.0" layoutY="494.0" prefHeight="45.0" prefWidth="239.0" />
+            <JFXButton fx:id="sendTextGo" layoutX="265.0" layoutY="500.0" prefHeight="34.0" prefWidth="35.0" style="-fx-background-color: #ff6969; -fx-background-radius: 50px;" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="chatPane" prefHeight="560.0" prefWidth="332.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -209,11 +223,13 @@
                </image>
             </ImageView>
             <JFXCheckBox fx:id="boostCheck" checkedColor="RED" layoutX="85.0" layoutY="69.0" text="Boost" unCheckedColor="#d02727" />
-            <JFXButton fx:id="enter" layoutX="81.0" layoutY="478.0" prefHeight="34.0" prefWidth="135.0" style="-fx-background-color: #ff6969; -fx-background-radius: 50px;" text="Enter Dater!" textFill="WHITE">
+            <JFXButton fx:id="enter" layoutX="94.0" layoutY="475.0" prefHeight="34.0" prefWidth="135.0" style="-fx-background-color: #ff6969; -fx-background-radius: 50px;" text="Enter Dater!" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </JFXButton>
+            <JFXBadge fx:id="matchBadge" layoutX="265.0" layoutY="14.0" prefHeight="26.0" prefWidth="28.0" />
+            <JFXBadge fx:id="chatBadge" layoutX="237.0" layoutY="14.0" prefHeight="26.0" prefWidth="28.0" />
          </children>
       </AnchorPane>
    </children>
