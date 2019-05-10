@@ -3,6 +3,7 @@ package com.comtrade.domain;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +22,7 @@ public class Message implements GeneralDomain, Serializable {
     private String receivedDate;
     private String receivedTime;
     private String messageBody;
+    private Timestamp messagetime;
     private int readyForSql = DBWRITTEN;
 
     public Message(){
@@ -129,7 +131,7 @@ public class Message implements GeneralDomain, Serializable {
 
     @Override
     public String returnInnerJoin() {
-        return "SELECT * FROM chatmessage INNER JOIN user ON (user.username=chatmessage.usernameOne OR user.username=chatmessage.usernameTwo)";
+        return "SELECT * FROM chatmessage INNER JOIN user ON (user.username=chatmessage.usernameOne OR user.username=chatmessage.usernameTwo) ORDER BY chatmessage.messageTime ASC";
     }
 
 
@@ -152,7 +154,7 @@ public class Message implements GeneralDomain, Serializable {
 
     @Override
     public String returnInsertFormat() {
-        return "VALUES ('" + usernameOne + "','" + usernameTwo + "','" + senderUsername + "','" + messageStatus + "','" + sendDate + "','" + sendTime + "','" + receivedDate + "','" + receivedTime + "','" + messageBody +  "')";
+        return "VALUES ('" + usernameOne + "','" + usernameTwo + "','" + senderUsername + "','" + messageStatus + "','" + sendDate + "','" + sendTime + "','" + receivedDate + "','" + receivedTime + "','" + messageBody +  "') ORDER BY ";
     }
 
     @Override
