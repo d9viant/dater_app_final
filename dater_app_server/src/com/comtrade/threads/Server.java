@@ -34,6 +34,7 @@ public class Server extends Thread {
         ServerSocket ss = new ServerSocket(9000);
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         txtServerLogs.setText("Server Started" + " " + "at" + " " + sdf.format(new Date()));
+
 		while (true) {
 			Socket socket = ss.accept();
 			ClientThread ct = new ClientThread();

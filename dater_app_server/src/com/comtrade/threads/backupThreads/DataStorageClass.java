@@ -36,10 +36,8 @@ public class DataStorageClass {
 
 				txtServerLogs.append("\n" + "Backup Started");
 				ControllerBLogic.getInstance().saveBatch(getAllUserList);
-
 				txtServerLogs.append("\n" + "Users saved");
 				ControllerBLogic.getInstance().saveMatchBatch(allMatches);
-
 				txtServerLogs.append("\n" + "Matches saved");
 				ControllerBLogic.getInstance().saveMessageBatch(allMessages);
 				txtServerLogs.append("\n" + "Messages saved");

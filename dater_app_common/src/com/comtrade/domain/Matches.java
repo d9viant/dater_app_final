@@ -13,7 +13,7 @@ public class Matches implements Serializable, GeneralDomain{
     private String usernameOne;
     private String usernameTwo;
     private String requestUsername;
-    private int matchStatus;
+    private int matchStatus = 0;
     private int readyForSql = DBWRITTEN;
     private int matchListed = MATCH_UNLISTED;
 
@@ -80,7 +80,7 @@ public class Matches implements Serializable, GeneralDomain{
 
     @Override
     public String returnInnerJoin() {
-        return "SELECT * FROM user INNER JOIN matchtable ON (user.username=matchtable.usernameOne)";
+        return "SELECT * FROM user INNER JOIN matchtable ON (user.username=matchtable.usernameOne OR user.username=matchtable.usernameTwo)";
     }
 
     @Override

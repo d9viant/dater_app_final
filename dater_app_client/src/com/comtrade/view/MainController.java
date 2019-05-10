@@ -3,6 +3,7 @@ package com.comtrade.view;
 import com.comtrade.compression.Compression;
 import com.comtrade.controllerUI.Controller;
 import com.comtrade.domain.*;
+import com.comtrade.geoloc.GeoLoc;
 import com.comtrade.transfer.TransferClass;
 import com.jfoenix.controls.*;
 import com.sothawo.mapjfx.Coordinate;
@@ -11,6 +12,7 @@ import com.sothawo.mapjfx.MapView;
 import com.sothawo.mapjfx.Marker;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -32,6 +34,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static com.comtrade.domain.Constants.*;
 import static java.nio.file.Files.write;
@@ -113,11 +116,14 @@ public class MainController implements Initializable, Serializable {
     private JFXPopup popup = new JFXPopup();
     private Coordinate belgrade = new Coordinate(44.7866, 20.4489);
 
-    private Coordinate matchCoord = new Coordinate(44.819977, 20.5080518);
 
     public static User getCurrentUser() {
         return currentUser;
     }
+
+    private GeoLoc g = null;
+
+    private static ArrayList<Double> red = new ArrayList<>(2);
 
     private static User currentUser;
     private User matchUser;
@@ -128,14 +134,13 @@ public class MainController implements Initializable, Serializable {
     private static List<GeneralDomain> messages;
     private List<GeneralDomain> ratings;
     private List<User> preferreMatches = new ArrayList<>();
-    private ListIterator<User> iterator = preferreMatches.listIterator();
+    private int iterator = 0;
     Map<String, Object> testPicsforUser;
 
     public void setCurrentUser(User currentUser) {
         MainController.currentUser = currentUser;
     }
 
-    private Marker matchMarker = Marker.createProvided(Marker.Provided.BLUE).setPosition(matchCoord).setVisible(true);
 
     private final FileChooser fileChooser = new FileChooser();
 
@@ -147,7 +152,16 @@ public class MainController implements Initializable, Serializable {
     public void initialize(URL location, ResourceBundle resources) {
         initialSetup();
         controlButtons();
+        startGeoLoc();
 
+    }
+
+    private void startGeoLoc() {
+        try {
+            g = new GeoLoc();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -178,70 +192,8 @@ public class MainController implements Initializable, Serializable {
 
 
         btnHeart.setOnAction(Event -> {
-            boolean check = false;
-            matchUser.getRating().EloRating(currentUser.getRating().getRating(), true);
-            matchUser.getRating().setReadyForSql(RDYFORDB);
-            matchUser.getRating().setUsername(matchUser.getUsername());
-            TransferClass tf = new TransferClass();
-            tf.setClient_object(matchUser.getRating());
-            tf.setOperation(UPDATE_RATING);
-            Controller.getInstance().sendToServer(tf);
-            if (matches.size() == 0) {
-                check = true;
-            } else if (!check) {
-                for (GeneralDomain match : matches) {
-                    Matches matches = (Matches) match;
-                    if (matches.getUsernameOne().equals(matchUser.getUsername()) || matches.getUsernameTwo().equals(matchUser.getUsername())) {
-                        matches.setMatchStatus(MATCHED);
-                        matches.setRequestUsername(matchUser.getUsername());
-                        matches.setReadyForSql(RDYFORDB);
-                        TransferClass mtf = new TransferClass();
-                        check = false;
-                        mtf.setOperation(UPDATE_MATCH);
-                        mtf.setClient_object(matches);
-                        Controller.getInstance().sendToServer(mtf);
-                        try {
-                            checkMatchesUpdateBadges(true);
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
-
-                    } else {
-                        check = true;
-                    }
-                }
-            }
-            if (check) {
-                Matches m = new Matches();
-                m.setUsernameOne(currentUser.getUsername());
-                m.setUsernameTwo(matchUser.getUsername());
-                m.setRequestUsername(matchUser.getUsername());
-                m.setReadyForSql(RDYFORDB);
-                matches.add(m);
-                TransferClass matchtc = new TransferClass();
-                matchtc.setOperation(CREATE_MATCH);
-                matchtc.setClient_object(m);
-                Controller.getInstance().sendToServer(matchtc);
-            }
-
-//            if(iterator.hasNext()){
-//                System.out.println(iterator.next().getUsername()+ " jebem ti mamu jos jednom");
-//                matchUser = iterator.next();
-//                try {
-//                    savePics(matchUser);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                loadPics(matchUser);
-//                try {
-//                    setProfilePic(imgMatchProfile);
-//                } catch (MalformedURLException e) {
-//                    e.printStackTrace();
-//                }
-//                lvlNameAge.setText(matchUser.getFirstName() + " " + preferreMatches.get(0).getAge().getAge());
-//                txtBiography.setText(matchUser.getBio());
-//
-//            }
+                matchOperations();// Create or update match
+                cycleNextUser();
         });
 
         btnBoost.setOnAction(Event -> {
@@ -285,8 +237,6 @@ public class MainController implements Initializable, Serializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
         });
 
         imgChangeProfile.setOnMouseClicked(Event -> {
@@ -311,22 +261,7 @@ public class MainController implements Initializable, Serializable {
         });
 
         settingsBackToMain.setOnAction(Event -> {
-            if (currentUserPhotos.isEmpty() && currentUser.getBio() == null) {
-                Alert passAlert = new Alert(Alert.AlertType.WARNING);
-                passAlert.setHeaderText(null);
-                passAlert.setTitle("Info is missing");
-                passAlert.setContentText("Add some pictures and write something about yourself :)");
-                passAlert.showAndWait();
-            } else {
-                setPaneOut(settingsPane, placeHolderPane);
-                int prefdist = (int) distanceSlider.getValue();
-                currentUser.getLocation().setPrefferedDistance(prefdist);
-                try {
-                    setupMatches();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-            }
+            setupOperations();
         });
 
         opacityPane.setOnMouseClicked(Event -> setPaneOut(opacityPane, drawerPane));
@@ -341,6 +276,8 @@ public class MainController implements Initializable, Serializable {
         });
 
         btnNadji.setOnAction(Event -> {
+            Coordinate matchCoord = new Coordinate(matchUser.getLocation().getLatitude(), matchUser.getLocation().getLongitude());
+            Marker matchMarker = Marker.createProvided(Marker.Provided.BLUE).setPosition(matchCoord).setVisible(true);
             mapView.setCenter(matchCoord);
             mapView.addMarker(matchMarker);
         });
@@ -417,21 +354,133 @@ public class MainController implements Initializable, Serializable {
         });
     }
 
+    private void cycleNextUser() {
+        if (iterator == preferreMatches.size()-1) {
+            noMoreUsersWarning();
+        }else{
+            iterator++;
+            matchUser = preferreMatches.get(iterator);
+        }
+        try {
+            savePics(matchUser);
+            loadPics(matchUser);
+            setProfilePic(imgMatchProfile);
+        }catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        lvlNameAge.setText(matchUser.getFirstName() + " " + matchUser.getAge().getAge());
+        txtBiography.setText(matchUser.getBio());
+
+
+    }
+
+    private void noMoreUsersWarning() {
+        Alert passAlert = new Alert(Alert.AlertType.WARNING);
+        passAlert.setHeaderText(null);
+        passAlert.setTitle("End of list!");
+        passAlert.setContentText("Try Again Later :)");
+        passAlert.showAndWait();
+        //TODO napravi kurac koji ce da refresh rating listu u usta je jebem
+
+    }
+
+    private void setupOperations() {
+        if (currentUserPhotos.isEmpty() && currentUser.getBio() == null) {
+            Alert passAlert = new Alert(Alert.AlertType.WARNING);
+            passAlert.setHeaderText(null);
+            passAlert.setTitle("Info is missing");
+            passAlert.setContentText("Add some pictures and write something about yourself :)");
+            passAlert.showAndWait();
+        } else {
+            setPaneOut(settingsPane, placeHolderPane);
+            int prefdist = (int) distanceSlider.getValue();
+            currentUser.getLocation().setPrefferedDistance(prefdist);
+            try {
+                setupMatches();
+                checkMatchesUpdateBadges(true);
+            } catch (MalformedURLException e) {
+
+
+            } catch (Exception e) {
+                noMoreUsersWarning();
+            }
+        }
+    }
+
+    private void matchOperations() {
+        boolean check = false;
+        matchUser.getRating().EloRating(currentUser.getRating().getRating(), true);
+        matchUser.getRating().setReadyForSql(RDYFORDB);
+        matchUser.getRating().setUsername(matchUser.getUsername());
+        TransferClass tf = new TransferClass();
+        tf.setClient_object(matchUser.getRating());
+        tf.setOperation(UPDATE_RATING);
+        Controller.getInstance().sendToServer(tf);
+        if (matches==null) {
+            check = true;
+        } else if (!check) {
+            for (GeneralDomain match : matches) {
+                Matches matches = (Matches) match;
+                if (matches.getUsernameOne().equals(matchUser.getUsername()) || matches.getUsernameTwo().equals(matchUser.getUsername()) && matches.getMatchStatus() == 0) {
+                    matches.setMatchStatus(MATCHED);
+                    matches.setRequestUsername(matchUser.getUsername());
+                    matches.setReadyForSql(RDYFORDB);
+                    TransferClass mtf = new TransferClass();
+                    check = false;
+                    mtf.setOperation(UPDATE_MATCH);
+                    mtf.setClient_object(matches);
+                    Controller.getInstance().sendToServer(mtf);
+                    try {
+                        checkMatchesUpdateBadges(true);
+                    } catch (FileNotFoundException e) {
+                        System.out.println("no matches");
+                    }
+
+                } else {
+                    check = true;
+                }
+            }
+        }
+        if (check) {
+            Matches m = new Matches();
+            m.setUsernameOne(currentUser.getUsername());
+            m.setUsernameTwo(matchUser.getUsername());
+            m.setRequestUsername(matchUser.getUsername());
+            m.setReadyForSql(RDYFORDB);
+            m.setMatchStatus(0);
+            matches = new ArrayList<>();
+            matches.add(m);
+            TransferClass matchtc = new TransferClass();
+            matchtc.setOperation(CREATE_MATCH);
+            matchtc.setClient_object(m);
+            Controller.getInstance().sendToServer(matchtc);
+        }
+    }
+
     private void setupMatches() throws MalformedURLException {
         for (GeneralDomain gd : ratings) {
             User u = (User) gd;
-            int distnce = (int) DistanceCalculator.getDistanceInBetween(u, currentUser);
-            if (distnce <= currentUser.getLocation().getPrefferedDistance()) {
-                preferreMatches.add(u);
-            }
+            preferreMatches.add(u);
+//            for(GeneralDomain m : matches){
+//                Matches mm = (Matches) m;
+//                if(u.getUsername().equals(mm.getUsernameOne()) || u.getUsername().equals(mm.getUsernameTwo()) && mm.getMatchStatus()== 0){
+//                    int distnce = (int) DistanceCalculator.getDistanceInBetween(u, currentUser);
+//                    if (distnce <= currentUser.getLocation().getPrefferedDistance()) {
+//                       preferreMatches.add(u);
+//                }
+//            }
+//
+//            }
         }
         loadPics(preferreMatches.get(0));
         matchUser = preferreMatches.get(0);
         setProfilePic(imgMatchProfile);
         lvlNameAge.setText(preferreMatches.get(0).getFirstName() + " " + preferreMatches.get(0).getAge().getAge());
         txtBiography.setText(preferreMatches.get(0).getBio());
-
-
     }
 
     public void checkMatchesUpdateBadges(Boolean check) throws FileNotFoundException {
@@ -457,8 +506,12 @@ public class MainController implements Initializable, Serializable {
             check = false;
         }
 
+    }
+
+    public void checkMessageStatus(Boolean check) {
 
     }
+
 
     public void setlbl(Boolean b) throws FileNotFoundException {
 
@@ -482,7 +535,7 @@ public class MainController implements Initializable, Serializable {
         }
 
         if (view.getId().equals(imgMatchProfile.getId())) {
-            String other = otherUserPhotos.get(0).toURI().toURL().toString();
+            String other = otherUserPhotos.get(iterator).toURI().toURL().toString();
             Image otherImage = new Image(other, 360, 360, true, true);
             imgMatchProfile.setImage(otherImage);
             profilePic.setImage(otherImage);
@@ -542,6 +595,7 @@ public class MainController implements Initializable, Serializable {
         boolean loggedUser = u.getUsername().equals(currentUser.getUsername());
         if (loggedUser) {
             directory = new File(WINDIRPICS + currentUser.getUsername());
+
         } else {
             directory = new File(WINDIRPICS + u.getUsername());
         }

@@ -22,6 +22,7 @@ import static java.nio.file.Files.write;
 public class ClientThread extends Thread implements Serializable {
     private Socket socket;
     private volatile String currentUsername;
+    private User currentUser;
     private List<GeneralDomain> matches;
     private Map<String, GeneralDomain> getAllUserList;
 
@@ -39,7 +40,7 @@ public class ClientThread extends Thread implements Serializable {
                 processClientRequest(tf);
             } catch (IOException | ClassNotFoundException e) {
                 ControllerBLogic.getInstance().removeActiveUser(currentUsername);
-                e.printStackTrace();
+
             }
         }
     }
@@ -59,6 +60,7 @@ public class ClientThread extends Thread implements Serializable {
                 if (getAllUserList.containsKey(login.getUsername())) {
                     User check = (User) getAllUserList.get(login.getUsername());
                     currentUsername = check.getUsername();
+                    currentUser=check;
                     if (login.getPass().equals(check.getPass())) {
                         Path newDir = Paths.get(SERVERPICS + login.getUsername() + "/folder");
                         Files.createDirectories(newDir);
@@ -124,9 +126,8 @@ public class ClientThread extends Thread implements Serializable {
                 matchesC.put(currentUsername, lista);
                 matchesC.get(currentUsername).add(create);
                 List<GeneralDomain> matchAdd = new ArrayList<>();
-                matchesC.put(create.getRequestUsername(), matchAdd);
-                matchesC.get(create.getRequestUsername()).add(create);
-
+                matchesC.put(create.getUsernameOne(), matchAdd);
+                matchesC.get(create.getUsernameOne()).add(create);
                 Map<String, ClientThread> activeM = ControllerBLogic.getInstance().getConnectedUserMap();
                 for (Map.Entry<String, ClientThread> entry : activeM.entrySet()) {
                     if (entry.getKey().equals(create.getRequestUsername())) {
@@ -188,7 +189,7 @@ public class ClientThread extends Thread implements Serializable {
     }
 
     private Map getall(User check) throws IOException {
-        Pictures p = new Pictures();
+        Pictures p;
         int upRate = check.getRating().getRating() + 200;
         int downRate = check.getRating().getRating() - 200;
         Map<String, Object> all = new HashMap<>();
@@ -197,10 +198,9 @@ public class ClientThread extends Thread implements Serializable {
         List<GeneralDomain> ratings = new ArrayList<>();
         all.put("messages", messages);
         all.put("matches", matches);
-        for (Map.Entry<String, GeneralDomain> entry : getAllUserList.entrySet()) {
-            {
+        for (Map.Entry<String, GeneralDomain> entry : getAllUserList.entrySet()) {                        {
                 User u = (User) entry.getValue();
-                if (!u.getUsername().equals(check.getUsername()) && u.getRating().getRating() <= upRate && u.getRating().getRating() >= downRate) {
+                if (!u.getUsername().equals(check.getUsername()) && u.getRating().getRating() <= upRate && u.getRating().getRating() >= downRate && u.getGender().getPreferredGender()==currentUser.getGender().getGender())  {
                     p = getPics(u);
                     u.setP(p);
                     ratings.add(u);
