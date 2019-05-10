@@ -13,6 +13,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -23,9 +24,8 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
 
-import java.io.File;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
+import java.lang.Exception;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -95,6 +95,9 @@ public class MainController implements Initializable, Serializable {
     private TextArea txtBiography1;
 
     @FXML
+    private JFXListView<Label> chatUserList;
+
+    @FXML
     private ImageView imgStalkerGlobe, profilePic;
 
     @FXML
@@ -137,6 +140,7 @@ public class MainController implements Initializable, Serializable {
     private final FileChooser fileChooser = new FileChooser();
 
     private int incrementSelection = 0;
+
     private boolean matchOrUser = true;
 
     @Override
@@ -158,12 +162,13 @@ public class MainController implements Initializable, Serializable {
         btnStalkerGlobe.setDisable(true);
 
     }
+
     private void controlButtons() {
 
-        imgMatchProfile.setOnMouseClicked(Event->{
-                matchOrUser = false;
-                loadPics(matchUser);
-                setPaneIn(profilePane);
+        imgMatchProfile.setOnMouseClicked(Event -> {
+            matchOrUser = false;
+            loadPics(matchUser);
+            setPaneIn(profilePane);
             try {
                 setProfilePic(imgMatchProfile);
             } catch (MalformedURLException e) {
@@ -173,7 +178,7 @@ public class MainController implements Initializable, Serializable {
 
 
         btnHeart.setOnAction(Event -> {
-            boolean check = true;
+            boolean check = false;
             matchUser.getRating().EloRating(currentUser.getRating().getRating(), true);
             matchUser.getRating().setReadyForSql(RDYFORDB);
             matchUser.getRating().setUsername(matchUser.getUsername());
@@ -181,69 +186,94 @@ public class MainController implements Initializable, Serializable {
             tf.setClient_object(matchUser.getRating());
             tf.setOperation(UPDATE_RATING);
             Controller.getInstance().sendToServer(tf);
-//            if(matches.size()==0){
-//                check=true;
-//            }else if(!check){
-//                for(GeneralDomain match:matches){
-//                    Matches matches = (Matches) match;
-//                    if(matches.getUsernameOne().equals(matchUser.getUsername()) || matches.getUsernameTwo().equals(matchUser.getUsername())){
-//                        matches.setMatchStatus(MATCHED);
-//                        matches.setRequestUsername(matchUser.getUsername());
-//                        matches.setReadyForSql(RDYFORDB);
-//                        TransferClass mtf = new TransferClass();
-//                        check=false;
-//                        mtf.setOperation(UPDATE_MATCH);
-//                        mtf.setClient_object(matches);
-//                        Controller.getInstance().sendToServer(mtf);
-//                        // TODO UPDATE LABELU DA POKAZE +1 MATCHED
-//                    }else{
-//                        check=true;
-//                    }
-//                }
-//            }
-            if(check){
+            if (matches.size() == 0) {
+                check = true;
+            } else if (!check) {
+                for (GeneralDomain match : matches) {
+                    Matches matches = (Matches) match;
+                    if (matches.getUsernameOne().equals(matchUser.getUsername()) || matches.getUsernameTwo().equals(matchUser.getUsername())) {
+                        matches.setMatchStatus(MATCHED);
+                        matches.setRequestUsername(matchUser.getUsername());
+                        matches.setReadyForSql(RDYFORDB);
+                        TransferClass mtf = new TransferClass();
+                        check = false;
+                        mtf.setOperation(UPDATE_MATCH);
+                        mtf.setClient_object(matches);
+                        Controller.getInstance().sendToServer(mtf);
+                        try {
+                            checkMatchesUpdateBadges(true);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+
+                    } else {
+                        check = true;
+                    }
+                }
+            }
+            if (check) {
                 Matches m = new Matches();
                 m.setUsernameOne(currentUser.getUsername());
                 m.setUsernameTwo(matchUser.getUsername());
                 m.setRequestUsername(matchUser.getUsername());
                 m.setReadyForSql(RDYFORDB);
-                matches = new ArrayList<>();
                 matches.add(m);
-                TransferClass matchtc= new TransferClass();
+                TransferClass matchtc = new TransferClass();
                 matchtc.setOperation(CREATE_MATCH);
                 matchtc.setClient_object(m);
                 Controller.getInstance().sendToServer(matchtc);
             }
 
+//            if(iterator.hasNext()){
+//                System.out.println(iterator.next().getUsername()+ " jebem ti mamu jos jednom");
+//                matchUser = iterator.next();
+//                try {
+//                    savePics(matchUser);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                loadPics(matchUser);
+//                try {
+//                    setProfilePic(imgMatchProfile);
+//                } catch (MalformedURLException e) {
+//                    e.printStackTrace();
+//                }
+//                lvlNameAge.setText(matchUser.getFirstName() + " " + preferreMatches.get(0).getAge().getAge());
+//                txtBiography.setText(matchUser.getBio());
+//
+//            }
+        });
+
+        btnBoost.setOnAction(Event -> {
+            Label lbl = new Label("kurac");
+            try {
+                lbl.setGraphic(new ImageView((new Image(new FileInputStream("/home/strahinja/IdeaProjects/dater_app_final/dater_app_client/src/assets/chatHeart.png")))));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            chatUserList.getItems().add(lbl);
 
         });
 
-        btnBoost.setOnAction(Event->{
-            System.out.println(matchUser.getRating().getRating());
 
-        });
-
-
-        btnUpdtBio.setOnAction(Event->{
-           String bio = bioTextFieldOpacity.getText();
-           currentUser.setBio(bio);
+        btnUpdtBio.setOnAction(Event -> {
+            String bio = bioTextFieldOpacity.getText();
+            currentUser.setBio(bio);
         });
 
         enter.setOnAction(Event -> {
-            if(boostCheck.isSelected()){
+            if (boostCheck.isSelected()) {
                 imgStalkerGlobe.setDisable(false);
                 btnStalkerGlobe.setDisable(false);
             }
-            matches=new ArrayList<>(0);
-            messages=new ArrayList<>(0);
             currentUser = (User) getTestPicsforUser().get("current");
-            ratings= (List<GeneralDomain>) getTestPicsforUser().get("rating");
-            matches= (List<GeneralDomain>) getTestPicsforUser().get("matches");
-            messages= (List<GeneralDomain>) getTestPicsforUser().get("messages");
+            ratings = (List<GeneralDomain>) getTestPicsforUser().get("rating");
+            MainController.matches = (List<GeneralDomain>) getTestPicsforUser().get("matches");
+            MainController.messages = (List<GeneralDomain>) getTestPicsforUser().get("messages");
             setPaneOut(firstPane, placeHolderPane);
             try {
                 savePics(currentUser);
-                for(int i=0; i<ratings.size();i++){
+                for (int i = 0; i < ratings.size(); i++) {
                     User match = (User) ratings.get(i);
                     savePics(match);
                 }
@@ -257,11 +287,9 @@ public class MainController implements Initializable, Serializable {
             }
 
 
-
-
         });
 
-        imgChangeProfile.setOnMouseClicked(Event ->{
+        imgChangeProfile.setOnMouseClicked(Event -> {
             try {
 
                 setProfilePic(imgChangeProfile);
@@ -270,7 +298,6 @@ public class MainController implements Initializable, Serializable {
                 e.printStackTrace();
             }
         });
-
 
 
         drawerChat.setOnAction(Event -> {
@@ -284,15 +311,15 @@ public class MainController implements Initializable, Serializable {
         });
 
         settingsBackToMain.setOnAction(Event -> {
-            if(currentUserPhotos.isEmpty() && currentUser.getBio()==null){
+            if (currentUserPhotos.isEmpty() && currentUser.getBio() == null) {
                 Alert passAlert = new Alert(Alert.AlertType.WARNING);
                 passAlert.setHeaderText(null);
                 passAlert.setTitle("Info is missing");
                 passAlert.setContentText("Add some pictures and write something about yourself :)");
                 passAlert.showAndWait();
-            }else{
+            } else {
                 setPaneOut(settingsPane, placeHolderPane);
-                int prefdist= (int) distanceSlider.getValue();
+                int prefdist = (int) distanceSlider.getValue();
                 currentUser.getLocation().setPrefferedDistance(prefdist);
                 try {
                     setupMatches();
@@ -328,7 +355,7 @@ public class MainController implements Initializable, Serializable {
             setPaneIn(mapPane);
         });
 
-        profilePic.setOnMouseClicked(Event ->{
+        profilePic.setOnMouseClicked(Event -> {
             try {
                 cycleImage(profilePic);
             } catch (MalformedURLException e) {
@@ -359,9 +386,9 @@ public class MainController implements Initializable, Serializable {
                     new FileChooser.ExtensionFilter("PICTURE files (*.png, *.jpg, *.jpeg)", "*.png", "*.jpg", "*.jpeg");
             fileChooser.getExtensionFilters().add(extFilter);
             currentUserPhotos = fileChooser.showOpenMultipleDialog(null);
-            if (currentUserPhotos !=null) {
+            if (currentUserPhotos != null) {
                 String photoUrl = null;
-                for(int i = 0; i< currentUserPhotos.size(); i++){
+                for (int i = 0; i < currentUserPhotos.size(); i++) {
                     File fi = currentUserPhotos.get(i);
                     try {
                         photoUrl = currentUserPhotos.get(0).toURI().toURL().toString();
@@ -391,11 +418,10 @@ public class MainController implements Initializable, Serializable {
     }
 
     private void setupMatches() throws MalformedURLException {
-        DistanceCalculator distanceCalculator=new DistanceCalculator();
-        for(GeneralDomain gd : ratings){
+        for (GeneralDomain gd : ratings) {
             User u = (User) gd;
             int distnce = (int) DistanceCalculator.getDistanceInBetween(u, currentUser);
-            if(distnce <= currentUser.getLocation().getPrefferedDistance()){
+            if (distnce <= currentUser.getLocation().getPrefferedDistance()) {
                 preferreMatches.add(u);
             }
         }
@@ -406,22 +432,50 @@ public class MainController implements Initializable, Serializable {
         txtBiography.setText(preferreMatches.get(0).getBio());
 
 
+    }
+
+    public void checkMatchesUpdateBadges(Boolean check) throws FileNotFoundException {
+        while (check) {
+            for (GeneralDomain match : matches) {
+                Matches m = (Matches) match;
+                if (m.getMatchListed() == MATCH_UNLISTED && m.getMatchStatus() == MATCHED) {
+                    if (m.getUsernameOne().equals(currentUser.getUsername())) {
+                        Label lbl = new Label(m.getUsernameTwo());
+                        lbl.setGraphic(new ImageView((new Image(new FileInputStream("/home/strahinja/IdeaProjects/dater_app_final/dater_app_client/src/assets/chatHeart.png")))));
+                        chatUserList.getItems().add(lbl);
+                        m.setMatchListed(MATCH_LISTED);
+                    } else {
+                        Label lbl = new Label(m.getUsernameOne());
+                        lbl.setGraphic(new ImageView((new Image(new FileInputStream("/home/strahinja/IdeaProjects/dater_app_final/dater_app_client/src/assets/chatHeart.png")))));
+                        chatUserList.getItems().add(lbl);
+                        m.setMatchListed(MATCH_LISTED);
+                    }
+                }
+                // set neki label + dodaj u listu username
+
+            }
+            check = false;
+        }
+
 
     }
 
+    public void setlbl(Boolean b) throws FileNotFoundException {
+
+    }
 
     private void setProfilePic(ImageView view) throws MalformedURLException {
 
-        if(view.getId().equals(profilePic.getId())){
+        if (view.getId().equals(profilePic.getId())) {
             String photoUrl = currentUserPhotos.get(0).toURI().toURL().toString();
             Image image = new Image(photoUrl, 360, 360, true, true);
             profilePic.setImage(image);
             txtBiography1.setText(currentUser.getBio());
-            lvlNameAge1.setText(currentUser.getFirstName()+ " " + currentUser.getAge().getAge());
+            lvlNameAge1.setText(currentUser.getFirstName() + " " + currentUser.getAge().getAge());
         }
 
 
-        if(view.getId().equals(imgChangeProfile.getId())){
+        if (view.getId().equals(imgChangeProfile.getId())) {
             String photoUrl = currentUserPhotos.get(0).toURI().toURL().toString();
             Image image = new Image(photoUrl, 360, 360, true, true);
             imgChangeProfile.setImage(image);
@@ -433,7 +487,7 @@ public class MainController implements Initializable, Serializable {
             imgMatchProfile.setImage(otherImage);
             profilePic.setImage(otherImage);
             txtBiography1.setText(matchUser.getBio());
-            lvlNameAge1.setText(matchUser.getFirstName()+ " " + matchUser.getAge().getAge());
+            lvlNameAge1.setText(matchUser.getFirstName() + " " + matchUser.getAge().getAge());
 
         }
     }
@@ -441,24 +495,24 @@ public class MainController implements Initializable, Serializable {
     private void cycleImage(ImageView view) throws MalformedURLException {
         String photoUrl;
         Image image = null;
-        if(incrementSelection == currentUserPhotos.size()-1){
+        if (incrementSelection == currentUserPhotos.size() - 1) {
             incrementSelection = -1;
         }
         incrementSelection++;
-        if (!matchOrUser){
+        if (!matchOrUser) {
             photoUrl = otherUserPhotos.get(incrementSelection).toURI().toURL().toString();
             image = new Image(photoUrl, 360, 360, true, true);
-        }else if(matchOrUser){
+        } else if (matchOrUser) {
             photoUrl = currentUserPhotos.get(incrementSelection).toURI().toURL().toString();
             image = new Image(photoUrl, 360, 360, true, true);
         }
 
-        
-        if(view.getId().equals(imgChangeProfile.getId())){
+
+        if (view.getId().equals(imgChangeProfile.getId())) {
             imgChangeProfile.setImage(image);
-        }else if(view.getId().equals(profilePic.getId())){
+        } else if (view.getId().equals(profilePic.getId())) {
             profilePic.setImage(image);
-        }else if(view.getId().equals(imgMatchProfile.getId())){
+        } else if (view.getId().equals(imgMatchProfile.getId())) {
             imgMatchProfile.setImage(image);
         }
 
@@ -472,9 +526,9 @@ public class MainController implements Initializable, Serializable {
         Path newDir = Paths.get(theDir.getAbsolutePath());
         Files.createDirectories(newDir);
         Path path;
-        for(int i=0; i<length; i++){
+        for (int i = 0; i < length; i++) {
             byte[] b = bytes.get(i);
-            path = Paths.get(  newDir + u.getUsername() + i + ".jpg");
+            path = Paths.get(newDir + u.getUsername() + i + ".jpg");
             try {
                 write(path, b);
             } catch (IOException e) {
@@ -487,16 +541,16 @@ public class MainController implements Initializable, Serializable {
         File directory = null;
         boolean loggedUser = u.getUsername().equals(currentUser.getUsername());
         if (loggedUser) {
-            directory = new File(WINDIRPICS+currentUser.getUsername());
-        } else{
-            directory = new File(WINDIRPICS+u.getUsername());
+            directory = new File(WINDIRPICS + currentUser.getUsername());
+        } else {
+            directory = new File(WINDIRPICS + u.getUsername());
         }
         File[] fList = directory.listFiles();
         for (File file : fList) {
             if ((!file.isDirectory()) && (file.getAbsolutePath().endsWith(".jpg")) && loggedUser) {
-                    currentUserPhotos.add(file);
+                currentUserPhotos.add(file);
             }
-            if((!file.isDirectory()) && (file.getAbsolutePath().endsWith(".jpg")) && !loggedUser){
+            if ((!file.isDirectory()) && (file.getAbsolutePath().endsWith(".jpg")) && !loggedUser) {
                 otherUserPhotos.add(file);
             }
         }
@@ -532,6 +586,7 @@ public class MainController implements Initializable, Serializable {
         translateTransition.setByX(322);
         translateTransition.play();
     }
+
     // Sets defined panels outside of the scene
     private void setPaneOut(AnchorPane pane, AnchorPane pane2) {
         if (pane.getId().equals(opacityPane.getId())) {
@@ -581,7 +636,6 @@ public class MainController implements Initializable, Serializable {
     public void setMessages(List<GeneralDomain> messages) {
         this.messages = messages;
     }
-
 
 
 }

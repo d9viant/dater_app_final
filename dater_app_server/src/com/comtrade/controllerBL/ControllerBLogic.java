@@ -47,12 +47,12 @@ public class ControllerBLogic {
 	}
 
 	public void saveMessageBatch(Map<String, List<GeneralDomain>> u) {
-		GeneralSystemOperation op = new BatchUserSO();
+		GeneralSystemOperation op = new BatchMessage();
 		op.executeSo(u);
 	}
 
 	public void saveMatchBatch(Map<String, List<GeneralDomain>> u) {
-		GeneralSystemOperation op = new BatchUserSO();
+		GeneralSystemOperation op = new BatchMatch();
 		op.executeSo(u);
 	}
 

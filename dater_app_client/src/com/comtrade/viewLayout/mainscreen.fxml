@@ -214,7 +214,7 @@
          <children>
             <TextArea fx:id="welcomeText" layoutX="32.0" layoutY="108.0" prefHeight="60.0" prefWidth="261.0" style="-fx-background-color: white;" text="The boost unlocks special features, try it out. :)" wrapText="true">
                <font>
-                  <Font size="14.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </TextArea>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="31.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
@@ -223,7 +223,7 @@
                </image>
             </ImageView>
             <JFXCheckBox fx:id="boostCheck" checkedColor="RED" layoutX="85.0" layoutY="69.0" text="Boost" unCheckedColor="#d02727" />
-            <JFXButton fx:id="enter" layoutX="94.0" layoutY="475.0" prefHeight="34.0" prefWidth="135.0" style="-fx-background-color: #ff6969; -fx-background-radius: 50px;" text="Enter Dater!" textFill="WHITE">
+            <JFXButton fx:id="enter" layoutX="95.0" layoutY="478.0" prefHeight="34.0" prefWidth="135.0" style="-fx-background-color: #ff6969; -fx-background-radius: 50px;" text="Enter Dater!" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

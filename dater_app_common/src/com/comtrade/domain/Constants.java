@@ -30,7 +30,9 @@ public class Constants {
     public static final int UPDATE_RATING =21;
     public static final int CREATE_MATCH =22;
     public static final int UPDATE_MATCH =23;
-
+    public static final int MATCH_LISTED =24;
+    public static final int MATCH_UNLISTED =25;
+    public static final int DELETE_MATCH =25;
     public static final String USER = "user";
 	public static final String AGE = "age";
 	public static final String GENDER = "gender";

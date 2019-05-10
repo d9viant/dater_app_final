@@ -15,7 +15,7 @@ public class BatchMatch extends GeneralSystemOperation
     public void executeConcreteOperation(Object obj) throws SQLException {
         HashMap<String, List<GeneralDomain>> ul = (HashMap<String, List<GeneralDomain>>) obj;
         IBroker ib = new Broker();
-        ib.saveListMessage(ul);
+        ib.saveListMatch(ul);
 
 //        for (Map.Entry<String, List<GeneralDomain>> entry : ul.entrySet()) {
 //            List<GeneralDomain> listentry = entry.getValue();

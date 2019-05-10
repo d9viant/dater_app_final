@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.comtrade.domain.Constants.DBWRITTEN;
-import static com.comtrade.domain.Constants.RDYFORDB;
+import static com.comtrade.domain.Constants.*;
 
 public class Matches implements Serializable, GeneralDomain{
     private String usernameOne;
@@ -16,6 +15,7 @@ public class Matches implements Serializable, GeneralDomain{
     private String requestUsername;
     private int matchStatus;
     private int readyForSql = DBWRITTEN;
+    private int matchListed = MATCH_UNLISTED;
 
     public Matches(){
 
@@ -61,6 +61,10 @@ public class Matches implements Serializable, GeneralDomain{
     public void setMatchStatus(int matchStatus) {
         this.matchStatus = matchStatus;
     }
+
+    public int getMatchStatus() {
+        return matchStatus;
+    }
     @Override
 
 
@@ -76,7 +80,7 @@ public class Matches implements Serializable, GeneralDomain{
 
     @Override
     public String returnInnerJoin() {
-        return "SELECT * FROM user INNER JOIN matchtable ON (user.username=matchtable.usernameOne or user.username=matchtable.usernameTwo)";
+        return "SELECT * FROM user INNER JOIN matchtable ON (user.username=matchtable.usernameOne)";
     }
 
     @Override
@@ -147,5 +151,14 @@ public class Matches implements Serializable, GeneralDomain{
 
     public void setReadyForSql(int readyForSql) {
         this.readyForSql = readyForSql;
+    }
+
+
+    public int getMatchListed() {
+        return matchListed;
+    }
+
+    public void setMatchListed(int matchListed) {
+        this.matchListed = matchListed;
     }
 }

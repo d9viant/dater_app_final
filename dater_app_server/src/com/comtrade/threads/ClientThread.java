@@ -29,6 +29,7 @@ public class ClientThread extends Thread implements Serializable {
     public void setSocket(Socket socket) {
         this.socket = socket;
     }
+
     public void run() {
 
         while (true) {
@@ -44,7 +45,7 @@ public class ClientThread extends Thread implements Serializable {
     }
 
     private void processClientRequest(TransferClass tf) throws IOException {
-        switch (tf.getOperation()){
+        switch (tf.getOperation()) {
             case SAVE_USER:
                 User u = (User) tf.getClient_object();
                 putUserInDataThread(u);
@@ -55,18 +56,16 @@ public class ClientThread extends Thread implements Serializable {
                 User login = (User) tf.getClient_object();
                 getAllUserList = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
                 System.out.println("got login data");
-                if(getAllUserList.containsKey(login.getUsername())){
+                if (getAllUserList.containsKey(login.getUsername())) {
                     User check = (User) getAllUserList.get(login.getUsername());
-                    currentUsername=check.getUsername();
-                    if(login.getPass().equals(check.getPass())){
-                        Path newDir = Paths.get(SERVERPICS + login.getUsername()+"/folder");
+                    currentUsername = check.getUsername();
+                    if (login.getPass().equals(check.getPass())) {
+                        Path newDir = Paths.get(SERVERPICS + login.getUsername() + "/folder");
                         Files.createDirectories(newDir);
-
                         Map<String, Object> testPicsforUser = getall(check);
-
                         try {
                             p = getPics(check);
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             System.out.println("nov user nema slike");
                         }
                         check.setP(p);
@@ -77,10 +76,9 @@ public class ClientThread extends Thread implements Serializable {
                         ltf.setServer_object(testPicsforUser);
                         ControllerBLogic.getInstance().insertIntoActive(check.getUsername(), this);
                         sendToClient(ltf);
-
                     }
                 }
-                 if(!getAllUserList.containsKey(login.getUsername())){
+                if (!getAllUserList.containsKey(login.getUsername())) {
                     TransferClass tce = new TransferClass();
                     tce.setOperation(WRONG_LOGIN);
                     sendToClient(tce);
@@ -89,7 +87,7 @@ public class ClientThread extends Thread implements Serializable {
             case CHECK_USER:
                 Map check = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
                 User checkU = (User) tf.getClient_object();
-                if(check.containsKey(checkU)){
+                if (check.containsKey(checkU)) {
                     TransferClass checktf = new TransferClass();
                     checktf.setOperation(USERNAME_TAKEN);
                     sendToClient(checktf);
@@ -110,18 +108,18 @@ public class ClientThread extends Thread implements Serializable {
             case UPDATE_RATING:
                 Rating r = (Rating) tf.getClient_object();
                 Map users = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
-                User rating  = (User) users.get(r.getUsername());
+                User rating = (User) users.get(r.getUsername());
                 rating.setR(r);
-                Map <String, ClientThread> active = ControllerBLogic.getInstance().getConnectedUserMap();
+                Map<String, ClientThread> active = ControllerBLogic.getInstance().getConnectedUserMap();
                 for (Map.Entry<String, ClientThread> entry : active.entrySet()) {
-                    if(entry.getKey().equals(r.getUsername())){
+                    if (entry.getKey().equals(r.getUsername())) {
                         entry.getValue().updateRating(r);
                     }
                 }
                 break;
             case CREATE_MATCH:
                 Matches create = (Matches) tf.getClient_object();
-                Map<String, List<GeneralDomain>> matchesC=ControllerBLogic.getInstance().getDatathread().getAllMatches();
+                Map<String, List<GeneralDomain>> matchesC = ControllerBLogic.getInstance().getDatathread().getAllMatches();
                 List<GeneralDomain> lista = new ArrayList<>();
                 matchesC.put(currentUsername, lista);
                 matchesC.get(currentUsername).add(create);
@@ -129,9 +127,9 @@ public class ClientThread extends Thread implements Serializable {
                 matchesC.put(create.getRequestUsername(), matchAdd);
                 matchesC.get(create.getRequestUsername()).add(create);
 
-                Map <String, ClientThread> activeM = ControllerBLogic.getInstance().getConnectedUserMap();
+                Map<String, ClientThread> activeM = ControllerBLogic.getInstance().getConnectedUserMap();
                 for (Map.Entry<String, ClientThread> entry : activeM.entrySet()) {
-                    if(entry.getKey().equals(create.getRequestUsername())){
+                    if (entry.getKey().equals(create.getRequestUsername())) {
                         create.setRequestUsername(currentUsername);
                         entry.getValue().sendCreatedMatch(create);
                     }
@@ -139,26 +137,26 @@ public class ClientThread extends Thread implements Serializable {
                 break;
             case UPDATE_MATCH:
                 Matches update = (Matches) tf.getClient_object();
-                Map<String, List<GeneralDomain>> matches=ControllerBLogic.getInstance().getDatathread().getAllMatches();
-                List<GeneralDomain> match= matches.get(update.getRequestUsername());
-                for(GeneralDomain m: match){
+                Map<String, List<GeneralDomain>> matches = ControllerBLogic.getInstance().getDatathread().getAllMatches();
+                List<GeneralDomain> match = matches.get(update.getRequestUsername());
+                for (GeneralDomain m : match) {
                     Matches search = (Matches) m;
-                    if(search.getUsernameOne().equals(currentUsername) || search.getUsernameTwo().equals(currentUsername)){
+                    if (search.getUsernameOne().equals(currentUsername) || search.getUsernameTwo().equals(currentUsername)) {
                         search.setMatchStatus(MATCHED);
                         search.setReadyForSql(RDYFORDB);
                     }
                 }
-                List<GeneralDomain> currmatch= matches.get(currentUsername);
-                for(GeneralDomain curr: currmatch){
+                List<GeneralDomain> currmatch = matches.get(currentUsername);
+                for (GeneralDomain curr : currmatch) {
                     Matches search = (Matches) curr;
-                    if(search.getUsernameOne().equals(update.getRequestUsername()) || search.getUsernameTwo().equals(update.getRequestUsername())){
+                    if (search.getUsernameOne().equals(update.getRequestUsername()) || search.getUsernameTwo().equals(update.getRequestUsername())) {
                         search.setMatchStatus(MATCHED);
                         search.setReadyForSql(RDYFORDB);
                     }
                 }
-                Map <String, ClientThread> activeM2 = ControllerBLogic.getInstance().getConnectedUserMap();
+                Map<String, ClientThread> activeM2 = ControllerBLogic.getInstance().getConnectedUserMap();
                 for (Map.Entry<String, ClientThread> entry : activeM2.entrySet()) {
-                    if(entry.getKey().equals(update.getRequestUsername())){
+                    if (entry.getKey().equals(update.getRequestUsername()) && !entry.getKey().equals(currentUsername)) {
                         update.setRequestUsername(currentUsername);
                         entry.getValue().updateMatches(update);
                     }
@@ -170,16 +168,18 @@ public class ClientThread extends Thread implements Serializable {
 
 
     private Pictures getPics(User check) throws IOException {
+        Path newDir = Paths.get(SERVERPICS + check.getUsername() + "/folder");
+        Files.createDirectories(newDir);
         Pictures p = new Pictures();
         byte[] fileContent = new byte[0];
         List<File> list;
-        File directory = new File("serverpics/"+check.getUsername());
+        File directory = new File("serverpics/" + check.getUsername());
         //get all the files from a directory
         File[] fList = directory.listFiles();
         for (File file : fList) {
-            if ( (!file.isDirectory()) && (file.getAbsolutePath().endsWith(".jpg") )) {
+            if ((!file.isDirectory()) && (file.getAbsolutePath().endsWith(".jpg"))) {
                 System.out.println(file.getName());
-                fileContent=Files.readAllBytes(file.toPath());
+                fileContent = Files.readAllBytes(file.toPath());
                 p.getPictures().add(fileContent);
             }
         }
@@ -190,24 +190,23 @@ public class ClientThread extends Thread implements Serializable {
     private Map getall(User check) throws IOException {
         Pictures p = new Pictures();
         int upRate = check.getRating().getRating() + 200;
-        int downRate = check.getRating().getRating()-200;
+        int downRate = check.getRating().getRating() - 200;
         Map<String, Object> all = new HashMap<>();
         List<GeneralDomain> matches = ControllerBLogic.getInstance().getDatathread().getAllMatches().get(check.getUsername());
         List<GeneralDomain> messages = ControllerBLogic.getInstance().getDatathread().getAllMessages().get(check.getUsername());
         List<GeneralDomain> ratings = new ArrayList<>();
         all.put("messages", messages);
         all.put("matches", matches);
-
-
-
-        for (Map.Entry<String, GeneralDomain> entry : getAllUserList.entrySet()) {{
-            User u = (User) entry.getValue();
-            if(!u.getUsername().equals(check.getUsername()) && u.getRating().getRating() <= upRate && u.getRating().getRating() >= downRate ){
-                p = getPics(u);
-                u.setP(p);
-                ratings.add(u);
+        for (Map.Entry<String, GeneralDomain> entry : getAllUserList.entrySet()) {
+            {
+                User u = (User) entry.getValue();
+                if (!u.getUsername().equals(check.getUsername()) && u.getRating().getRating() <= upRate && u.getRating().getRating() >= downRate) {
+                    p = getPics(u);
+                    u.setP(p);
+                    ratings.add(u);
+                }
             }
-        }}
+        }
 
         all.put("rating", ratings);
 
@@ -222,19 +221,19 @@ public class ClientThread extends Thread implements Serializable {
         Map getAllUserList = ControllerBLogic.getInstance().getDatathread().getGetAllUserList();
         Pictures p = new Pictures();
         TransferClass returnLogin = new TransferClass();
-        if(getAllUserList.containsKey(u.getUsername())){
+        if (getAllUserList.containsKey(u.getUsername())) {
             User login = (User) getAllUserList.get(u.getUsername());
-            if(login.getPass().equals(u.getPass())){
+            if (login.getPass().equals(u.getPass())) {
                 TransferClass logged = new TransferClass();
                 logged.setOperation(LOGIN_USER);
                 logged.setServer_object(login);
                 sendToClient(logged);
 
-            }else{
+            } else {
                 returnLogin.setOperation(WRONG_LOGIN);
                 sendToClient(returnLogin);
             }
-        }else if(!getAllUserList.containsKey(u.getUsername())){
+        } else if (!getAllUserList.containsKey(u.getUsername())) {
             returnLogin.setOperation(WRONG_LOGIN);
             sendToClient(returnLogin);
         }
@@ -251,11 +250,11 @@ public class ClientThread extends Thread implements Serializable {
         List<byte[]> pictures = u.getP().getPictures();
         int length = pictures.size();
         File theDir = new File(SERVERPICS);
-        Path newDir = Paths.get(SERVERPICS + u.getUsername()+"/folder");
+        Path newDir = Paths.get(SERVERPICS + u.getUsername() + "/folder");
         Files.createDirectories(newDir);
-        for(int i=0; i<length; i++){
+        for (int i = 0; i < length; i++) {
             byte[] b = pictures.get(i);
-            Path path = Paths.get(newDir + u.getUsername()+ i + ".jpg");
+            Path path = Paths.get(newDir + u.getUsername() + i + ".jpg");
             try {
                 write(path, b);
             } catch (IOException e) {
@@ -265,7 +264,7 @@ public class ClientThread extends Thread implements Serializable {
 
     }
 
-    private void loadPics(){
+    private void loadPics() {
 
     }
 
@@ -286,14 +285,14 @@ public class ClientThread extends Thread implements Serializable {
         sendToClient(tc);
     }
 
-    public void updateRating(Rating r){
+    public void updateRating(Rating r) {
         TransferClass tc = new TransferClass();
         tc.setOperation(UPDATE_RATING);
         tc.setServer_object(r);
         sendToClient(tc);
     }
 
-    public void updateMatches(Matches m){
+    public void updateMatches(Matches m) {
         TransferClass tc = new TransferClass();
         tc.setOperation(UPDATE_MATCH);
         tc.setServer_object(m);
@@ -306,7 +305,6 @@ public class ClientThread extends Thread implements Serializable {
         tc.setServer_object(create);
         sendToClient(tc);
     }
-
 
 
     public String getCurrentUsername() {

@@ -27,9 +27,10 @@ public class Controller {
     private static Controller instance;
     private LoginController log;
     private MainController main;
+
     private Controller() {
-        log=new LoginController();
-        main=new MainController();
+        log = new LoginController();
+        main = new MainController();
     }
 
     public static Controller getInstance() {
@@ -45,30 +46,31 @@ public class Controller {
 
     public void getFromServer(TransferClass tc) throws IOException {
         switch (tc.getOperation()) {
-	        case USERNAME_TAKEN:
-		        log.setCheckUser(java.lang.Boolean.TRUE);
+            case USERNAME_TAKEN:
+                log.setCheckUser(java.lang.Boolean.TRUE);
             case WRONG_LOGIN:
-                try{
+                try {
                     Platform.runLater(() -> {
                         log.wrongCredentials();
                     });
 
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 break;
             case LOGIN:
                 Map<String, Object> testPicsforUser = (Map<String, Object>) tc.getServer_object();
-                try{
+                try {
                     Platform.runLater(() -> {
                         try {
                             LoginController.changeWindow(testPicsforUser);
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     });
 
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 break;
@@ -78,17 +80,20 @@ public class Controller {
                 break;
             case UPDATE_MATCH:
                 Matches update = (Matches) tc.getServer_object();
-                List<GeneralDomain> matches = MainController.getMatches();
-                for(GeneralDomain match: matches){
+                List<GeneralDomain> matchess = MainController.getMatches();
+                for (GeneralDomain match : matchess) {
                     Matches m = (Matches) match;
-                    if(m.getUsernameOne().equals(update.getRequestUsername())|| m.getUsernameTwo().equals(update.getRequestUsername())){
+                    if (m.getUsernameOne().equals(update.getRequestUsername()) || m.getUsernameTwo().equals(update.getRequestUsername())) {
                         m.setMatchStatus(MATCHED);
                     }
                 }
+                main.checkMatchesUpdateBadges(true);
                 break;
             case CREATE_MATCH:
                 Matches create = (Matches) tc.getServer_object();
                 MainController.getMatches().add(create);
+                break;
+            case DELETE_MATCH:
 
                 break;
         }
