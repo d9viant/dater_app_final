@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXBadge?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXHamburger?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXSlider?>
-<?import com.jfoenix.controls.JFXTextArea?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import com.sothawo.mapjfx.MapView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -46,19 +44,9 @@
                   <Image url="@../../../assets/hearts.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="38.0" fitWidth="35.0" layoutX="261.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../assets/star.png" />
-               </image>
-            </ImageView>
             <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="84.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../assets/broken-heart.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="45.0" fitWidth="35.0" layoutX="24.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../assets/reply.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="148.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true">
@@ -69,8 +57,26 @@
             <JFXButton fx:id="btnDislike" layoutX="81.0" layoutY="410.0" prefHeight="60.0" prefWidth="59.0" text="heart" textFill="TRANSPARENT" />
             <JFXButton fx:id="btnBoost" layoutX="136.0" layoutY="411.0" prefHeight="60.0" prefWidth="59.0" textFill="TRANSPARENT" />
             <JFXButton fx:id="btnHeart" layoutX="191.0" layoutY="410.0" prefHeight="60.0" prefWidth="59.0" textFill="TRANSPARENT" />
-            <JFXButton fx:id="btnSuper" layoutX="249.0" layoutY="411.0" prefHeight="60.0" prefWidth="59.0" textFill="TRANSPARENT" />
-            <JFXButton fx:id="btnRevert" layoutX="12.0" layoutY="411.0" prefHeight="60.0" prefWidth="59.0" text="back" textFill="TRANSPARENT" />
+            <ImageView fx:id="matchNotif" fitHeight="45.0" fitWidth="45.0" layoutX="261.0" layoutY="445.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../../../assets/chatHeart.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="chatNotif" fitHeight="45.0" fitWidth="45.0" layoutX="14.0" layoutY="441.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../../../assets/love-message.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="chatNotificationButton" layoutX="23.0" layoutY="450.0" prefHeight="26.0" prefWidth="35.0" text="2">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="matchNotificationButton" layoutX="266.0" layoutY="454.0" prefHeight="26.0" prefWidth="35.0" style="-fx-background-color: transparent;" text="1">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="profilePane" prefHeight="550.0" prefWidth="322.0" style="-fx-background-color: #fff;">
@@ -119,17 +125,6 @@
             <JFXButton fx:id="btnNadji" layoutX="132.0" layoutY="438.0" prefHeight="26.0" prefWidth="59.0" style="-fx-background-color: #ff6969;" text=";)" textAlignment="CENTER" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="chattingWindow" layoutX="10.0" layoutY="10.0" prefHeight="570.0" prefWidth="342.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <JFXTextArea fx:id="chatWindowText" layoutX="11.0" layoutY="9.0" prefHeight="476.0" prefWidth="299.0" />
-            <JFXTextField fx:id="sendTextmsg" layoutX="11.0" layoutY="494.0" prefHeight="45.0" prefWidth="239.0" />
-            <JFXButton fx:id="sendTextGo" layoutX="265.0" layoutY="500.0" prefHeight="34.0" prefWidth="35.0" style="-fx-background-color: #ff6969; -fx-background-radius: 50px;" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </JFXButton>
-         </children>
-      </AnchorPane>
       <AnchorPane fx:id="chatPane" prefHeight="560.0" prefWidth="332.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="35.0" fitWidth="45.0" layoutX="272.0" layoutY="493.0" pickOnBounds="true" preserveRatio="true">
@@ -139,6 +134,18 @@
             </ImageView>
             <JFXButton fx:id="backFromChatToMain" layoutX="263.0" layoutY="488.0" prefHeight="45.0" prefWidth="52.0" textFill="TRANSPARENT" />
             <JFXListView fx:id="chatUserList" layoutX="22.0" layoutY="14.0" prefHeight="401.0" prefWidth="286.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="chattingWindow" layoutX="10.0" layoutY="10.0" prefHeight="570.0" prefWidth="342.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXButton fx:id="sendTextGo" layoutX="265.0" layoutY="500.0" prefHeight="34.0" prefWidth="35.0" style="-fx-background-color: #ff6969; -fx-background-radius: 50px;" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="backToChatPane" layoutX="227.0" layoutY="14.0" prefHeight="26.0" prefWidth="77.0" text="Back" />
+            <TextArea fx:id="chatWindowText" editable="false" layoutX="6.0" layoutY="51.0" prefHeight="401.0" prefWidth="312.0" wrapText="true" />
+            <TextField fx:id="sendTextmsg" layoutX="14.0" layoutY="496.0" prefHeight="38.0" prefWidth="232.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="opacityPane" opacity="0.29" prefHeight="550.0" prefWidth="331.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
@@ -228,8 +235,6 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </JFXButton>
-            <JFXBadge fx:id="matchBadge" layoutX="265.0" layoutY="14.0" prefHeight="26.0" prefWidth="28.0" />
-            <JFXBadge fx:id="chatBadge" layoutX="237.0" layoutY="14.0" prefHeight="26.0" prefWidth="28.0" />
          </children>
       </AnchorPane>
    </children>

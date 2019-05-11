@@ -1,5 +1,6 @@
 package main;
 
+import com.comtrade.controllerUI.Controller;
 import com.comtrade.domain.User;
 import com.comtrade.thread.ProcessingFromServer;
 import com.comtrade.view.MainController;
@@ -13,6 +14,12 @@ import java.io.IOException;
 
 public class Main extends Application {
     public static Stage stage;
+
+    public static FXMLLoader getLoader() {
+        return loader;
+    }
+
+    private static FXMLLoader loader;
 	public Stage getStage() {
 		return stage;
 	}
@@ -46,8 +53,7 @@ public class Main extends Application {
 
 
     private void mainWindow(){
-
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/comtrade/viewLayout/login.fxml"));
+	    loader = new FXMLLoader(Main.class.getResource("/com/comtrade/viewLayout/login.fxml"));
         try {
             AnchorPane pane= loader.load();
             Scene scene=new Scene(pane);
@@ -56,6 +62,7 @@ public class Main extends Application {
             stage.setTitle("Dater Login");
             stage.setScene(scene);
             stage.show();
+            Controller.getInstance();
 
         } catch (IOException e) {
             e.printStackTrace();

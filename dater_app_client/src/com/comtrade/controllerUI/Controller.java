@@ -1,10 +1,7 @@
 package com.comtrade.controllerUI;
 
 import com.comtrade.communication.Comm;
-import com.comtrade.domain.GeneralDomain;
-import com.comtrade.domain.Matches;
-import com.comtrade.domain.Rating;
-import com.comtrade.domain.User;
+import com.comtrade.domain.*;
 import com.comtrade.transfer.TransferClass;
 import com.comtrade.view.LoginController;
 import com.comtrade.view.MainController;
@@ -18,6 +15,7 @@ import javafx.stage.Stage;
 import main.Main;
 
 import java.io.IOException;
+import java.lang.Exception;
 import java.util.List;
 import java.util.Map;
 
@@ -28,9 +26,9 @@ public class Controller {
     private LoginController log;
     private MainController main;
 
-    private Controller() {
-        log = new LoginController();
-        main = new MainController();
+    public Controller() {
+        log=Main.getLoader().getController();
+
     }
 
     public static Controller getInstance() {
@@ -48,6 +46,7 @@ public class Controller {
         switch (tc.getOperation()) {
             case USERNAME_TAKEN:
                 log.setCheckUser(java.lang.Boolean.TRUE);
+                break;
             case WRONG_LOGIN:
                 try {
                     Platform.runLater(() -> {
@@ -64,37 +63,50 @@ public class Controller {
                     Platform.runLater(() -> {
                         try {
                             LoginController.changeWindow(testPicsforUser);
+                            main=LoginController.getLoader().getController();
 
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+
                     });
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
                 break;
             case UPDATE_RATING:
+
                 Rating r = (Rating) tc.getServer_object();
                 MainController.getCurrentUser().setR(r);
                 break;
             case UPDATE_MATCH:
                 Matches update = (Matches) tc.getServer_object();
-                List<GeneralDomain> matchess = MainController.getMatches();
-                for (GeneralDomain match : matchess) {
-                    Matches m = (Matches) match;
-                    if (m.getUsernameOne().equals(update.getRequestUsername()) || m.getUsernameTwo().equals(update.getRequestUsername())) {
-                        m.setMatchStatus(MATCHED);
-                    }
-                }
-                main.checkMatchesUpdateBadges(true);
+                main.updateMatches(update);
                 break;
             case CREATE_MATCH:
                 Matches create = (Matches) tc.getServer_object();
-                MainController.getMatches().add(create);
+                main.getMatches().add(create);
+                main.checkMatchesUpdateBadges(true);
                 break;
             case DELETE_MATCH:
 
+                break;
+            case NEW_MESSAGE:
+                Message m = (Message) tc.getServer_object();
+                main.getMessages().add(m);
+                main.appendMessage(m);
+                main.checkMessagesUpdateBadges(true);
+                break;
+            case UPDATE_PICTURES:
+                User pict= (User) tc.getServer_object();
+                main.savePics(pict);
+                main.setupMatches();
+                break;
+            case UPDATE_BIO:
+                User bio= (User) tc.getServer_object();
+                main.updateBio(bio);
                 break;
         }
 

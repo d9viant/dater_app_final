@@ -17,10 +17,6 @@ public class Message implements GeneralDomain, Serializable {
     private String usernameTwo;
     private String senderUsername;
     private String messageStatus;
-    private String sendDate;
-    private String sendTime;
-    private String receivedDate;
-    private String receivedTime;
     private String messageBody;
     private Timestamp messagetime;
     private int readyForSql = DBWRITTEN;
@@ -29,18 +25,14 @@ public class Message implements GeneralDomain, Serializable {
 
     }
 
-    public Message(int idMessage, String userOneId, String userTwoId, String senderId, String messageStatus,
-                   String sendDate, String receivedDate, String sendTime, String receivedTime, String messageBody) {
+    public Message(int idMessage, String userOneId, String userTwoId, String senderId,Timestamp messagetime, String messageStatus, String messageBody) {
 
         this.idMessage = idMessage;
         this.usernameOne = userOneId;
         this.usernameTwo = userTwoId;
         this.senderUsername = senderId;
+        this.messagetime = messagetime;
         this.messageStatus = messageStatus;
-        this.sendDate = sendDate;
-        this.receivedDate = receivedDate;
-        this.sendTime = sendTime;
-        this.receivedTime = receivedTime;
         this.messageBody = messageBody;
     }
 
@@ -84,37 +76,6 @@ public class Message implements GeneralDomain, Serializable {
         this.messageStatus = messageStatus;
     }
 
-    public String getSendDate() {
-        return sendDate;
-    }
-
-    public void setSendDate(String sendDate) {
-        this.sendDate = sendDate;
-    }
-
-    public String getSendTime() {
-        return sendTime;
-    }
-
-    public void setSendTime(String sendTime) {
-        this.sendTime = sendTime;
-    }
-
-    public String getReceivedDate() {
-        return receivedDate;
-    }
-
-    public void setReceivedDate(String receivedDate) {
-        this.receivedDate = receivedDate;
-    }
-
-    public String getReceivedTime() {
-        return receivedTime;
-    }
-
-    public void setReceivedTime(String receivedTime) {
-        this.receivedTime = receivedTime;
-    }
 
     public String getMessageBody() {
         return messageBody;
@@ -124,6 +85,14 @@ public class Message implements GeneralDomain, Serializable {
         this.messageBody = messageBody;
     }
 
+    public Timestamp getMessagetime() {
+        return messagetime;
+    }
+
+    public void setMessagetime(Timestamp messagetime) {
+        this.messagetime = messagetime;
+    }
+
     @Override
     public GeneralDomain fixSelect(ResultSet rs) throws SQLException {
         return null;
@@ -131,7 +100,7 @@ public class Message implements GeneralDomain, Serializable {
 
     @Override
     public String returnInnerJoin() {
-        return "SELECT * FROM chatmessage INNER JOIN user ON (user.username=chatmessage.usernameOne OR user.username=chatmessage.usernameTwo) ORDER BY chatmessage.messageTime ASC";
+        return "SELECT * FROM chatmessage INNER JOIN user ON (user.username=chatmessage.usernameOne OR user.username=chatmessage.usernameTwo) ORDER BY messageTime ASC";
     }
 
 
@@ -149,12 +118,12 @@ public class Message implements GeneralDomain, Serializable {
 
     @Override
     public String returnTableRows() {
-        return " (usernameOne, usernameTwo, senderUsername, messaegeStatus, sendDate, sendTime, recivedDate, recivedTime, messageBody) ";
+        return " (usernameOne, usernameTwo, senderUsername, messageTime, messaegeStatus, messageBody) ";
     }
 
     @Override
     public String returnInsertFormat() {
-        return "VALUES ('" + usernameOne + "','" + usernameTwo + "','" + senderUsername + "','" + messageStatus + "','" + sendDate + "','" + sendTime + "','" + receivedDate + "','" + receivedTime + "','" + messageBody +  "') ORDER BY ";
+        return "VALUES ('" + usernameOne + "','" + usernameTwo + "','" + senderUsername + "','" + messagetime + "','" + messageStatus + "','" + messageBody +  "')";
     }
 
     @Override
@@ -174,17 +143,13 @@ public class Message implements GeneralDomain, Serializable {
         try {
             while (rs.next()) {
                 String username = rs.getString("username").toLowerCase();
-                int idMessage = rs.getInt("idMessage");
                 String userOneId = rs.getString("usernameOne");
                 String userTwoId = rs.getString("usernameTwo");
                 String senderId = rs.getString("senderUsername");
-                String messageStatus = rs.getString("messageStatus");
-                String sendDate = rs.getDate("sendDate").toString();
-                String receivedDate = rs.getDate("receivedDate").toString();
-                String sendTime = rs.getTime("sendTime").toString();
-                String receivedTime = rs.getTime("receivedTime").toString();
+                String messageStatus = rs.getString("messaegeStatus");
+                Timestamp messagetime = rs.getTimestamp("messageTime");
                 String messageBody = rs.getString("messageBody");
-                Message m = new Message(idMessage, userOneId, userTwoId, senderId, messageStatus, sendDate, receivedDate, sendTime, receivedTime, messageBody);
+                Message m = new Message(idMessage, userOneId, userTwoId, senderId, messagetime, messageStatus, messageBody);
                 if (messageHM.containsKey(username)) {
                     messageHM.get(username).add(m);
                 } else {
@@ -192,14 +157,11 @@ public class Message implements GeneralDomain, Serializable {
                     messageHM.put(username, messageList);
                     messageHM.get(username).add(m);
                 }
-
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return messageHM;
-
     }
 
     @Override

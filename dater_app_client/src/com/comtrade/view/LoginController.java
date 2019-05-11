@@ -126,6 +126,12 @@ public class LoginController implements Initializable, Serializable {
 
     private Pictures p = null;
 
+    public static FXMLLoader getLoader() {
+        return loader;
+    }
+
+    private static FXMLLoader loader;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -283,8 +289,6 @@ public class LoginController implements Initializable, Serializable {
                             }if(!checkUser){
                                 String email = tfEmail.getText();
                                 newUser.setEmail(email);
-
-
                                 newUser.getRating().setUsername(newUser.getUsername());
                                 newUser.getLocation().setUsername(newUser.getUsername());
                                 newUser.getGender().setUsername(newUser.getUsername());
@@ -418,8 +422,7 @@ public class LoginController implements Initializable, Serializable {
 
     public static void changeWindow(Map<String, Object> map) throws IOException {
         Stage stage = Main.stage;
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/com/comtrade/viewLayout/mainscreen.fxml"));
-
+        loader = new FXMLLoader(Main.class.getResource("/com/comtrade/viewLayout/mainscreen.fxml"));
         AnchorPane pane = loader.load();
         Scene scene = new Scene(pane);
         stage.setResizable(false);
