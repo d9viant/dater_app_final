@@ -29,7 +29,7 @@ public class BatchThread extends Thread{
                     txtServerLogs.append("\n"+"Backup thread on standby");
                     Thread.sleep(60000);
                     ControllerBLogic.getInstance().getDatathread().saveBatch(txtServerLogs, progressBar1);
-
+                    DataStorageThread.setBatchstart(true);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

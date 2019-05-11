@@ -83,30 +83,38 @@ public class Controller {
                 break;
             case UPDATE_MATCH:
                 Matches update = (Matches) tc.getServer_object();
-                main.updateMatches(update);
+                List<GeneralDomain> matchess = MainController.getMatches();
+                for (GeneralDomain match : matchess) {
+                    Matches m = (Matches) match;
+                    if (m.getUsernameOne().equals(update.getRequestUsername()) || m.getUsernameTwo().equals(update.getRequestUsername())) {
+                        m.setMatchStatus(MATCHED);
+                    }
+                }
+                Platform.runLater(() -> {
+                    try {
+                        main.checkMatchesUpdateBadges(true);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                });
+
+
+
                 break;
             case CREATE_MATCH:
                 Matches create = (Matches) tc.getServer_object();
-                main.getMatches().add(create);
-                main.checkMatchesUpdateBadges(true);
+                MainController.getMatches().add(create);
                 break;
             case DELETE_MATCH:
 
                 break;
             case NEW_MESSAGE:
                 Message m = (Message) tc.getServer_object();
-                main.getMessages().add(m);
+                MainController.getMessages().add(m);
                 main.appendMessage(m);
                 main.checkMessagesUpdateBadges(true);
-                break;
-            case UPDATE_PICTURES:
-                User pict= (User) tc.getServer_object();
-                main.savePics(pict);
-                main.setupMatches();
-                break;
-            case UPDATE_BIO:
-                User bio= (User) tc.getServer_object();
-                main.updateBio(bio);
                 break;
         }
 

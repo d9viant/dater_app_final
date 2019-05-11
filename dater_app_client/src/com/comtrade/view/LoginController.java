@@ -288,7 +288,7 @@ public class LoginController implements Initializable, Serializable {
                                 wrongCredentials();
                             }if(!checkUser){
                                 String email = tfEmail.getText();
-                                newUser.setEmail(email);
+                                newUser.setBio(email);
                                 newUser.getRating().setUsername(newUser.getUsername());
                                 newUser.getLocation().setUsername(newUser.getUsername());
                                 newUser.getGender().setUsername(newUser.getUsername());

@@ -13,16 +13,12 @@ import com.sothawo.mapjfx.Marker;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
@@ -37,22 +33,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import static com.comtrade.domain.Constants.*;
 import static java.nio.file.Files.write;
 
 public class MainController implements Initializable, Serializable {
-
-    @FXML
-    private ImageView matchNotif;
-
-    @FXML
-    private JFXButton matchNotificationButton;
-
-    @FXML
-    private JFXButton chatNotificationButton;
-
 
     @FXML
     private AnchorPane chattingWindow;
@@ -83,10 +68,6 @@ public class MainController implements Initializable, Serializable {
     @FXML
     private AnchorPane rootPane, settingsPane, chatPane;
 
-    public ImageView getImgMatchProfile() {
-        return imgMatchProfile;
-    }
-
     @FXML
     private ImageView imgMatchProfile, imgChangeProfile;
 
@@ -103,7 +84,7 @@ public class MainController implements Initializable, Serializable {
     private JFXBadge testBadge;
 
     @FXML
-    private JFXButton btnUpdtBio, enter, btnDislike, btnBoost, btnHeart, btnProfileToMain, btnStalkerGlobe, drawerProfile, drawerChat, drawerSettings, btnStalkerToMain, btnNadji, settingsBackToMain, btnChangeProf, backFromChatToMain;
+    private JFXButton btnUpdtBio, enter, btnDislike, btnHeart, btnProfileToMain, btnStalkerGlobe, drawerProfile, drawerChat, drawerSettings, btnStalkerToMain, btnNadji, settingsBackToMain, btnChangeProf, backFromChatToMain;
 
     @FXML
     private JFXHamburger drawerImg;
@@ -155,11 +136,10 @@ public class MainController implements Initializable, Serializable {
 
     private List<File> currentUserPhotos = new ArrayList<>();
     private List<File> otherUserPhotos = new ArrayList<>();
-    private  List<GeneralDomain> matches;
-    private List<GeneralDomain> messages;
+    private static List<GeneralDomain> matches;
+    private static List<GeneralDomain> messages;
     private List<GeneralDomain> ratings;
     private List<User> preferreMatches = new ArrayList<>();
-    Pictures userPictures;
 
     private int iterator = 0;
     Map<String, Object> testPicsforUser;
@@ -226,16 +206,23 @@ public class MainController implements Initializable, Serializable {
 
         });
 
+
+
         backToChatPane.setOnAction(Event->{
-            chatWindowText.clear();
+            this.chatWindowText.clear();
             setPaneOut(chattingWindow, placeHolderPane);
 
         });
+
+
         chatUserList.setOnMouseClicked(Event ->{
             item = chatUserList.getSelectionModel().getSelectedItem().getText();
             messageOperations(item);
             setPaneIn(chattingWindow);
+
+
         });
+
 
         imgMatchProfile.setOnMouseClicked(Event -> {
             matchOrUser = false;
@@ -250,25 +237,30 @@ public class MainController implements Initializable, Serializable {
 
 
         btnHeart.setOnAction(Event -> {
-                matchOperations();// Create or update match
-                cycleNextUser();
+            try {
+                matchOperations(true);// Create or update match
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            cycleNextUser();
         });
 
-        btnBoost.setOnAction(Event -> {
-            setPaneIn(chattingWindow);
-
-
+        btnDislike.setOnAction(Event ->{
+            try {
+                matchOperations(false);// Create or update match
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            cycleNextUser();
         });
+
+
 
 
         btnUpdtBio.setOnAction(Event -> {
             String bio = bioTextFieldOpacity.getText();
             currentUser.setBio(bio);
-            TransferClass tf = new TransferClass();
-            tf.setClient_object(currentUser);
-            tf.setOperation(UPDATE_BIO);
-            tf.setServer_object(ratings);
-            Controller.getInstance().sendToServer(tf);
+
         });
 
         enter.setOnAction(Event -> {
@@ -278,28 +270,25 @@ public class MainController implements Initializable, Serializable {
             }
             currentUser = (User) getTestPicsforUser().get("current");
             ratings = (List<GeneralDomain>) getTestPicsforUser().get("rating");
-            matches = (List<GeneralDomain>) getTestPicsforUser().get("matches");
-            messages = (List<GeneralDomain>) getTestPicsforUser().get("messages");
+            MainController.matches = (List<GeneralDomain>) getTestPicsforUser().get("matches");
+            MainController.messages = (List<GeneralDomain>) getTestPicsforUser().get("messages");
             if(messages==null){
                 messages = new ArrayList<>();
             }
             if(matches==null){
-                matches=new ArrayList<>();
+                matches = new ArrayList<>();
             }
+
             setPaneOut(firstPane, placeHolderPane);
             try {
                 savePics(currentUser);
-                try {
-                    loadPics(currentUser);
-                }catch (Exception e){
-
-                }
-
                 for (int i = 0; i < ratings.size(); i++) {
                     User match = (User) ratings.get(i);
                     savePics(match);
                 }
-                checkMessagesUpdateBadges(true);
+
+                loadPics(currentUser);
+//                cycleImage(imgChangeProfile);
 
 
             } catch (IOException e) {
@@ -309,6 +298,7 @@ public class MainController implements Initializable, Serializable {
 
         imgChangeProfile.setOnMouseClicked(Event -> {
             try {
+
                 setProfilePic(imgChangeProfile);
                 cycleImage(imgChangeProfile);
             } catch (MalformedURLException e) {
@@ -318,6 +308,11 @@ public class MainController implements Initializable, Serializable {
 
 
         drawerChat.setOnAction(Event -> {
+            try {
+                checkMatchesUpdateBadges(true);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
             setPaneIn(chatPane);
             setPaneOut(opacityPane, drawerPane);
         });
@@ -328,15 +323,8 @@ public class MainController implements Initializable, Serializable {
         });
 
         settingsBackToMain.setOnAction(Event -> {
+            setupOperations();
 
-
-            try {
-                //                    loadPics(currentUser);
-
-                    setupOperations();
-            } catch (FileNotFoundException e) {
-                System.out.println("pls2");
-            }
         });
 
         opacityPane.setOnMouseClicked(Event -> setPaneOut(opacityPane, drawerPane));
@@ -393,7 +381,7 @@ public class MainController implements Initializable, Serializable {
             Compression compress = new Compression();
             File compressedimage;
             byte[] fileContent;
-            userPictures = new Pictures();
+            Pictures p = new Pictures();
             FileChooser.ExtensionFilter extFilter =
                     new FileChooser.ExtensionFilter("PICTURE files (*.png, *.jpg, *.jpeg)", "*.png", "*.jpg", "*.jpeg");
             fileChooser.getExtensionFilters().add(extFilter);
@@ -406,7 +394,7 @@ public class MainController implements Initializable, Serializable {
                         photoUrl = currentUserPhotos.get(0).toURI().toURL().toString();
                         compressedimage = compress.compression(fi);
                         fileContent = Files.readAllBytes(compressedimage.toPath());
-                        userPictures.getPictures().add(fileContent);
+                        p.getPictures().add(fileContent);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -414,10 +402,11 @@ public class MainController implements Initializable, Serializable {
 
                 Image image = new Image(photoUrl, 360, 360, true, true);
                 imgChangeProfile.setImage(image);
+
             }
 
             tf.setOperation(SAVEPICS);
-            currentUser.setP(userPictures);
+            currentUser.setP(p);
             tf.setClient_object(currentUser);
             Controller.getInstance().sendToServer(tf);
             try {
@@ -432,7 +421,6 @@ public class MainController implements Initializable, Serializable {
         String text = sendTextmsg.getText();
         Message m = new Message();
         m.setUserOneId(currentUser.getUsername());
-        System.out.println(currentUser.getUsername());
         m.setUserTwoId(item);
         System.out.println(item);
         m.setMessageStatus(UNREAD);
@@ -448,7 +436,7 @@ public class MainController implements Initializable, Serializable {
         Controller.getInstance().sendToServer(msg);
         int hour = m.getMessagetime().toLocalDateTime().getHour();
         int minute = m.getMessagetime().toLocalDateTime().getMinute();
-        chatWindowText.appendText("\n" +hour + ":"+ minute +"\n" + currentUser.getUsername() + " : " + m.getMessageBody());
+        this.chatWindowText.appendText("\n" +hour + ":"+ minute +"\n" + currentUser.getUsername() + " : " + m.getMessageBody());
         sendTextmsg.clear();
     }
 
@@ -462,30 +450,27 @@ public class MainController implements Initializable, Serializable {
                 }
             }
         }
-
             for(Message m : ourList){
-                m.setMessageStatus(READ);
                 int hour = m.getMessagetime().toLocalDateTime().getHour();
                 int minute = m.getMessagetime().toLocalDateTime().getMinute();
-                if(m.getUserTwoId().equals(item)){
-                    chatWindowText.appendText("\n" +hour + ":"+ minute +"\n" + item + " : " +  m.getMessageBody());
-                }else{
-                    chatWindowText.appendText("\n" +hour + ":"+ minute +"\n" + item + " : " +  m.getMessageBody());
-                }
-
+                Platform.runLater(() -> {
+                    this.chatWindowText.appendText("\n" +hour + ":"+ minute +"\n" + username + " : " +  m.getMessageBody());
+                });
 
             }
+
+
     }
 
 
 
 
     private void cycleNextUser() {
-        if (iterator == preferreMatches.size()) {
-            iterator=preferreMatches.size();
+        if (iterator == preferreMatches.size()-1) {
+            iterator = 0;
         }else{
-            matchUser = preferreMatches.get(iterator);
             iterator++;
+            matchUser = preferreMatches.get(iterator);
         }
         try {
             savePics(matchUser);
@@ -510,37 +495,36 @@ public class MainController implements Initializable, Serializable {
         passAlert.setTitle("End of list!");
         passAlert.setContentText("Try Again Later :)");
         passAlert.showAndWait();
-        //TODO napravi kurac koji ce da refresh rating listu u usta je jebem
+
 
     }
 
-    private void setupOperations() throws FileNotFoundException {
-        if (currentUserPhotos.isEmpty() || currentUser.getBio() == null) {
+    private void setupOperations() {
+        if ( currentUser.getBio() == null) {
             Alert passAlert = new Alert(Alert.AlertType.WARNING);
             passAlert.setHeaderText(null);
             passAlert.setTitle("Info is missing");
             passAlert.setContentText("Add some pictures and write something about yourself :)");
             passAlert.showAndWait();
         } else {
-
             setPaneOut(settingsPane, placeHolderPane);
             int prefdist = (int) distanceSlider.getValue();
             currentUser.getLocation().setPrefferedDistance(prefdist);
-
             try {
                 setupMatches();
+                checkMatchesUpdateBadges(true);
+            } catch (MalformedURLException e) {
+
 
             } catch (Exception e) {
                 noMoreUsersWarning();
             }
-            checkMatchesUpdateBadges(true);
-//            loadPics(currentUser);
         }
     }
 
-    private void matchOperations() {
+    private void matchOperations(boolean b) throws FileNotFoundException {
         boolean check = false;
-        matchUser.getRating().EloRating(currentUser.getRating().getRating(), true);
+        matchUser.getRating().EloRating(currentUser.getRating().getRating(), b);
         matchUser.getRating().setReadyForSql(RDYFORDB);
         matchUser.getRating().setUsername(matchUser.getUsername());
         TransferClass tf = new TransferClass();
@@ -586,23 +570,10 @@ public class MainController implements Initializable, Serializable {
             matchtc.setClient_object(m);
             Controller.getInstance().sendToServer(matchtc);
         }
+        checkMatchesUpdateBadges(true);
     }
 
-    public void updateMatches(Matches update){
-        for (GeneralDomain match : matches) {
-            Matches m = (Matches) match;
-            if (m.getUsernameOne().equals(update.getRequestUsername()) || m.getUsernameTwo().equals(update.getRequestUsername())) {
-                m.setMatchStatus(MATCHED);
-            }
-        }
-        try {
-            checkMatchesUpdateBadges(true);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void setupMatches() throws MalformedURLException {
+    private void setupMatches() throws MalformedURLException {
         for (GeneralDomain gd : ratings) {
             User u = (User) gd;
             preferreMatches.add(u);
@@ -625,20 +596,17 @@ public class MainController implements Initializable, Serializable {
     }
 
     public void checkMatchesUpdateBadges(Boolean check) throws FileNotFoundException {
-        int notif=0;
         while (check) {
             for (GeneralDomain match : matches) {
                 Matches m = (Matches) match;
                 if (m.getMatchListed() == MATCH_UNLISTED && m.getMatchStatus() == MATCHED) {
                     if (m.getUsernameOne().equals(currentUser.getUsername())) {
-                        notif++;
                         Label lbl = new Label(m.getUsernameTwo());
+
                         lbl.setGraphic(new ImageView((new Image(new FileInputStream("/home/strahinja/IdeaProjects/dater_app_final/dater_app_client/src/assets/chatHeart.png")))));
                         chatUserList.getItems().add(lbl);
                         m.setMatchListed(MATCH_LISTED);
-
-                    } else if(m.getUsernameTwo().equals(currentUser.getUsername())){
-                        notif++;
+                    } else {
                         Label lbl = new Label(m.getUsernameOne());
                         lbl.setGraphic(new ImageView((new Image(new FileInputStream("/home/strahinja/IdeaProjects/dater_app_final/dater_app_client/src/assets/chatHeart.png")))));
                         chatUserList.getItems().add(lbl);
@@ -648,52 +616,25 @@ public class MainController implements Initializable, Serializable {
                 // set neki label + dodaj u listu username
 
             }
-
-
             check = false;
         }
 
-
-        int finalNotif1 = notif;
-        Platform.runLater(() -> {
-            matchNotificationButton.setText(String.valueOf(finalNotif1));
-        });
-
-    }
-
-    public void updateBio(User u){
-        for(GeneralDomain bio : ratings){
-            User bio1 = (User) bio;
-            if(bio1.getUsername().equals(u.getUsername())){
-                bio1.setBio(u.getBio());
-            }
-        }
-        try {
-            setupMatches();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
     }
 
     public void checkMessagesUpdateBadges(Boolean check){
-        int notif=0;
         while(check){
             for(GeneralDomain msg : messages){
                 Message m = (Message) msg;
                 if(m.getMessageStatus().equals(UNREAD)){
-                    notif++;
+                    // TODO update label
                 }
             }
             check=false;
         }
-        int finalNotif = notif;
-        Platform.runLater(() -> {
-            chatNotificationButton.setText(String.valueOf(finalNotif));
-        });
 
     }
 
-    public void setProfilePic(ImageView view) throws MalformedURLException {
+    private void setProfilePic(ImageView view) throws MalformedURLException {
 
         if (view.getId().equals(profilePic.getId())) {
             String photoUrl = currentUserPhotos.get(0).toURI().toURL().toString();
@@ -705,14 +646,9 @@ public class MainController implements Initializable, Serializable {
 
 
         if (view.getId().equals(imgChangeProfile.getId())) {
-            try {
-                String photoUrl = currentUserPhotos.get(0).toURI().toURL().toString();
-                Image image = new Image(photoUrl, 360, 360, true, true);
-                imgChangeProfile.setImage(image);
-            }catch (Exception e){
-                pictureNotSetAlert();
-            }
-
+            String photoUrl = currentUserPhotos.get(0).toURI().toURL().toString();
+            Image image = new Image(photoUrl, 360, 360, true, true);
+            imgChangeProfile.setImage(image);
         }
 
         if (view.getId().equals(imgMatchProfile.getId())) {
@@ -724,14 +660,6 @@ public class MainController implements Initializable, Serializable {
             lvlNameAge1.setText(matchUser.getFirstName() + " " + matchUser.getAge().getAge());
 
         }
-    }
-
-    private void pictureNotSetAlert() {
-        Alert passAlert = new Alert(Alert.AlertType.WARNING);
-        passAlert.setHeaderText(null);
-        passAlert.setTitle("Pictures not set! ");
-        passAlert.setContentText("Please set some pictures! :)");
-
     }
 
     private void cycleImage(ImageView view) throws MalformedURLException {
@@ -761,41 +689,25 @@ public class MainController implements Initializable, Serializable {
     }
 
 
-    public void savePics(User u) throws IOException {
-        if(u.getP().getPictures().isEmpty()){
-            System.out.println("no pics");
-        }else{
-            List<byte[]> bytes = u.getP().getPictures();
-            int length = bytes.size();
-            File theDir = new File(WINDIRPICS + u.getUsername() + "/folder");
-            Path newDir = Paths.get(theDir.getAbsolutePath());
-            Files.createDirectories(newDir);
-            Path path;
-            for (int i = 0; i < length; i++) {
-                byte[] b = bytes.get(i);
-                path = Paths.get(newDir + u.getUsername() + i + ".jpg");
-                try {
-                    write(path, b);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+    private void savePics(User u) throws IOException {
+        List<byte[]> bytes = u.getP().getPictures();
+        int length = bytes.size();
+        File theDir = new File(WINDIRPICS + u.getUsername() + "/folder");
+        Path newDir = Paths.get(theDir.getAbsolutePath());
+        Files.createDirectories(newDir);
+        Path path;
+        for (int i = 0; i < length; i++) {
+            byte[] b = bytes.get(i);
+            path = Paths.get(newDir + u.getUsername() + i + ".jpg");
+            try {
+                write(path, b);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
-
     }
 
-
-    public void loadPicsForUpdate() throws IOException {
-        TransferClass tf = new TransferClass();
-        tf.setOperation(UPDATE_PICTURES);
-        tf.setClient_object(ratings);
-        User u = currentUser;
-        u.setP(getPics(u));
-        tf.setServer_object(userPictures);
-        Controller.getInstance().sendToServer(tf);
-    }
-
-    public void loadPics(User u) {
+    private void loadPics(User u) {
         File directory = null;
         boolean loggedUser = u.getUsername().equals(currentUser.getUsername());
         if (loggedUser) {
@@ -807,12 +719,7 @@ public class MainController implements Initializable, Serializable {
         File[] fList = directory.listFiles();
         for (File file : fList) {
             if ((!file.isDirectory()) && (file.getAbsolutePath().endsWith(".jpg")) && loggedUser) {
-                if(currentUserPhotos.size()!=0){
-                    System.out.println("pics already there");
-                }else{
-                    currentUserPhotos.add(file);
-                }
-
+                currentUserPhotos.add(file);
             }
             if ((!file.isDirectory()) && (file.getAbsolutePath().endsWith(".jpg")) && !loggedUser) {
                 otherUserPhotos.add(file);
@@ -885,15 +792,15 @@ public class MainController implements Initializable, Serializable {
     }
 
 
-    public  List<GeneralDomain> getMatches() {
+    public static List<GeneralDomain> getMatches() {
         return matches;
     }
 
     public void setMatches(List<GeneralDomain> matches) {
-        matches = matches;
+        MainController.matches = matches;
     }
 
-    public List<GeneralDomain> getMessages() {
+    public static List<GeneralDomain> getMessages() {
         return messages;
     }
 
@@ -907,27 +814,7 @@ public class MainController implements Initializable, Serializable {
             int hour = m.getMessagetime().toLocalDateTime().getHour();
             int minute = m.getMessagetime().toLocalDateTime().getMinute();
             this.chatWindowText.appendText("\n" +hour + ":"+ minute +"\n" + m.getUserOneId() + " : " +  m.getMessageBody());
-            messages.add(m);
         }
 
-    }
-
-    private Pictures getPics(User check) throws IOException {
-        Path newDir = Paths.get(WINDIRPICS + check.getUsername() + "/folder");
-        Files.createDirectories(newDir);
-        Pictures p = new Pictures();
-        byte[] fileContent = new byte[0];
-        List<File> list;
-        File directory = new File("pics/" + check.getUsername());
-        //get all the files from a directory
-        File[] fList = directory.listFiles();
-        for (File file : fList) {
-            if ((!file.isDirectory()) && (file.getAbsolutePath().endsWith(".jpg"))) {
-                System.out.println(file.getName());
-                fileContent = Files.readAllBytes(file.toPath());
-                p.getPictures().add(fileContent);
-            }
-        }
-        return p;
     }
 }

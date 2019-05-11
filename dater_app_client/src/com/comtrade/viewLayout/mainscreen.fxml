@@ -49,13 +49,7 @@
                   <Image url="@../../../assets/broken-heart.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="148.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../assets/flash.png" />
-               </image>
-            </ImageView>
             <JFXButton fx:id="btnDislike" layoutX="81.0" layoutY="410.0" prefHeight="60.0" prefWidth="59.0" text="heart" textFill="TRANSPARENT" />
-            <JFXButton fx:id="btnBoost" layoutX="136.0" layoutY="411.0" prefHeight="60.0" prefWidth="59.0" textFill="TRANSPARENT" />
             <JFXButton fx:id="btnHeart" layoutX="191.0" layoutY="410.0" prefHeight="60.0" prefWidth="59.0" textFill="TRANSPARENT" />
             <ImageView fx:id="matchNotif" fitHeight="45.0" fitWidth="45.0" layoutX="261.0" layoutY="445.0" pickOnBounds="true" smooth="false">
                <image>

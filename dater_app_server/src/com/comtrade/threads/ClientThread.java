@@ -3,6 +3,7 @@ package com.comtrade.threads;
 import com.comtrade.controllerBL.ControllerBLogic;
 import com.comtrade.domain.*;
 import com.comtrade.transfer.TransferClass;
+import geoloc.GeoLoc;
 
 import java.io.*;
 import java.lang.Exception;
@@ -25,6 +26,7 @@ public class ClientThread extends Thread implements Serializable {
     private User currentUser;
     private List<GeneralDomain> matches;
     private Map<String, GeneralDomain> getAllUserList;
+    private static ArrayList<Double> red = new ArrayList<>(2);
 
 
     public void setSocket(Socket socket) {
@@ -72,7 +74,6 @@ public class ClientThread extends Thread implements Serializable {
                         }
                         check.setP(p);
                         testPicsforUser.put("current", check);
-
                         TransferClass ltf = new TransferClass();
                         ltf.setOperation(LOGIN);
                         ltf.setServer_object(testPicsforUser);
@@ -125,9 +126,9 @@ public class ClientThread extends Thread implements Serializable {
                 List<GeneralDomain> lista = new ArrayList<>();
                 matchesC.put(currentUsername, lista);
                 matchesC.get(currentUsername).add(create);
-//                List<GeneralDomain> matchAdd = new ArrayList<>();
-//                matchesC.put(create.getUsernameOne(), matchAdd);
-//                matchesC.get(create.getUsernameOne()).add(create);
+                List<GeneralDomain> matchAdd = new ArrayList<>();
+                matchesC.put(create.getUsernameTwo(), matchAdd);
+                matchesC.get(create.getUsernameTwo()).add(create);
                 Map<String, ClientThread> activeM = ControllerBLogic.getInstance().getConnectedUserMap();
                 for (Map.Entry<String, ClientThread> entry : activeM.entrySet()) {
                     if (entry.getKey().equals(create.getRequestUsername())) {
@@ -165,14 +166,14 @@ public class ClientThread extends Thread implements Serializable {
                 break;
             case SEND_MESSAGE:
                 Message m = (Message) tf.getClient_object();
-                Map<String, List<GeneralDomain>> msg = ControllerBLogic.getInstance().getDatathread().getAllMessages();
-                if(msg.containsKey(m.getUserOneId())){
-                    msg.get(m.getUserOneId()).add(m);
-                }else{
-                    List<GeneralDomain> listam = new ArrayList<>();
-                    listam.add(m);
-                    msg.put(m.getUserOneId(), listam);
-                }
+//                Map<String, List<GeneralDomain>> msg = ControllerBLogic.getInstance().getDatathread().getAllMessages();
+//                if(msg.containsKey(m.getUserOneId())){
+//                    msg.get(m.getUserOneId()).add(m);
+//                }else{
+//                    List<GeneralDomain> listam = new ArrayList<>();
+//                    listam.add(m);
+//                    msg.put(m.getUserOneId(), listam);
+//                }
 
                 Map<String, ClientThread> activeMsg = ControllerBLogic.getInstance().getConnectedUserMap();
                 for (Map.Entry<String, ClientThread> entry : activeMsg.entrySet()) {
@@ -181,37 +182,10 @@ public class ClientThread extends Thread implements Serializable {
                     }
                 }
                 break;
-            case UPDATE_PICTURES:
-                User slike = (User) tf.getServer_object();
-                List<GeneralDomain> rejtinzi = (List<GeneralDomain>) tf.getClient_object();
-                Map<String, ClientThread> activePic = ControllerBLogic.getInstance().getConnectedUserMap();
-                for (Map.Entry<String, ClientThread> entry : activePic.entrySet()) {
-                    for(GeneralDomain pic : rejtinzi){
-                        User picture = (User) pic;
-                        if(entry.getKey().equals(picture.getUsername()) && !entry.getKey().equals(currentUsername)){
-                            entry.getValue().updatePictures(slike);
-                        }
-                    }
-
-                }
-                break;
             case UPDATE_BIO:
-                User bio = (User) tf.getClient_object();
-                User biohm = (User) ControllerBLogic.getInstance().getDatathread().getGetAllUserList().get(bio.getUsername());
-                biohm.setBio(bio.getBio());
-                biohm.setReadyForSql(RDYFORDB);
-                List<GeneralDomain> biog = (List<GeneralDomain>) tf.getServer_object();
-                Map<String, ClientThread> biogr = ControllerBLogic.getInstance().getConnectedUserMap();
-                for (Map.Entry<String, ClientThread> entry : biogr.entrySet()) {
-                    for(GeneralDomain pic : biog){
-                        User picture = (User) pic;
-                        if(entry.getKey().equals(picture.getUsername()) && !entry.getKey().equals(currentUsername)){
-                            entry.getValue().updateBio(bio);
-                        }
-                    }
 
-                }
                 break;
+
         }
     }
 
@@ -350,20 +324,7 @@ public class ClientThread extends Thread implements Serializable {
         TransferClass tc = new TransferClass();
         tc.setOperation(CREATE_MATCH);
         tc.setServer_object(create);
-        sendToClient(tc);
-    }
-
-    public void updatePictures(User user){
-        TransferClass tc = new TransferClass();
-        tc.setOperation(UPDATE_PICTURES);
-        tc.setServer_object(user);
-        sendToClient(tc);
-    }
-
-    public void updateBio(User user){
-        TransferClass tc = new TransferClass();
-        tc.setOperation(UPDATE_BIO);
-        tc.setServer_object(user);
+        System.out.println("match sent");
         sendToClient(tc);
     }
 
