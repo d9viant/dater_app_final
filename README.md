@@ -1,4 +1,4 @@
-# Dater - A tinder clone - 'Code by Comtrade' final project
+# Dater - A Tinder clone - 'Code by Comtrade' final project
 
 -OOP Principles
 
